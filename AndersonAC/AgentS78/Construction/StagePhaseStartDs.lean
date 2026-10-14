@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.StagePhaseStart
 
 /-!
-# The clearing-phase hand-over with a chosen scale radius
-
-agent-s78phase2. `ClearPhaseData.ofSweepDs`: `ClearPhaseData.ofSweep` (agent-s78phase) with the
+# The clearing-phase hand-over with a chosen scale radius. `ClearPhaseData.ofSweepDs`: `ClearPhaseData.ofSweep` with the
 scale radius `Ds` of the stage chosen in the window `t^{-8-ν} ≤ Ds ≤ CA t^{-8-ν}`,
 `400 Ds < L`. The clearing-phase record clauses (`ClearPhaseR`) need
 `2 clearRadius ≤ Ds ≤ Ctr clearRadius`; `Ds = 2^9 t_j^{-8-ν}` satisfies both windows when

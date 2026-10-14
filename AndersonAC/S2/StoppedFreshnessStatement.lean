@@ -1,6 +1,6 @@
 import AndersonAC.S2.Definitions
 
-/-! Frozen helper: lift fixed-operation freshness to stopped histories. -/
+/-! Lifts fixed-operation freshness to stopped histories. -/
 noncomputable section
 open MeasureTheory ProbabilityTheory AndersonAC.S2
 universe u

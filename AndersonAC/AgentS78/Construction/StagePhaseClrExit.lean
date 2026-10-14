@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.StagePhaseClr
 
 /-!
-# The exits of the clearing block: damping, endpoint and the structural DONE facts
-
-agent-s78phase2.
+# The exits of the clearing block: damping, endpoint and the structural DONE facts.
 
 * `clr_exit_r`: every exit keeps the damping `r`;
 * `clr_exit_trichotomy`: a halted reachable state exits by the empty exit (record unchanged),

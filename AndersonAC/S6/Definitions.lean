@@ -175,9 +175,8 @@ are never used in the conditional drift or its integrability requirements. -/
 def onRunning {α : Type*} (run : ℕ → Set Ω) (w : ℕ → Ω → α → ℝ) :
     ℕ → Ω → α → ℝ := fun k ω => if ω ∈ run k then w k ω else 0
 
-/- §6.4 conclusion, supplied by opus-l64 at each predictable legal heat.
-Pre/post are measured at the same positive ridge; post includes deletion of the pivot.
-This is an input, not a proved theorem or an axiom declaration. -/
+/- §6.4 drift estimate at each predictable legal heat. Pre- and post-weights are
+measured at the same positive ridge; post-weights include deletion of the pivot. -/
 structure LeverageDriftInput (μ : Measure Ω) (F : Filtration ℕ ‹MeasurableSpace Ω›)
     (ε : ℝ) (running : ℕ → Set Ω) (pre post : ℕ → Ω → ι → ℝ) : Prop where
   integrable_preA : ∀ k, Integrable (fun ω => totalWeight (pre k ω)) μ

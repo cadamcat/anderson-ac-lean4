@@ -2,10 +2,9 @@ import AndersonAC.AgentS78.SweepInitial
 import AndersonAC.S45.SweepEndpointFinal
 
 /-!
-WP10 sweep step from the unconditional `AgentS45.ordinary_sweep_endpoint_proof`
-(lane/agent-s45 811ae7d, exact type of `S45.ordinary_sweep_endpoint`): for the S45 states
-of the active blocks of `old` and `sw`, the sweep hypotheses of §5 give the
-`StageStep` sweep fields and the `AssemblyInput` initial rows and lag.
+The sweep fields of `StageStep` follow from
+`AgentS45.ordinary_sweep_endpoint_proof`. Applied to the active-block states of
+`old` and `sw`, the §5 sweep hypotheses give the `AssemblyInput` initial rows and lag.
 -/
 
 open scoped BigOperators Matrix.Norms.L2Operator

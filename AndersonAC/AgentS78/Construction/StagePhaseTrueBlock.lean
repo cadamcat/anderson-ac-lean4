@@ -5,7 +5,7 @@ import AndersonAC.AgentS78.Construction.PhysicalIdentity
 /-!
 # Invertible eliminated blocks off the exceptional set
 
-agent-s78phase2 (route R2, part (3)). Off `exceptionalSet` every principal block of the true
+ (route R2, part (3)). Off `exceptionalSet` every principal block of the true
 matrix `trueShifted = H_λ(ω) − E` is invertible; a matrix that agrees with it on the complement of
 `A` therefore has an invertible eliminated block `offB B A`. For a record whose sites outside `A`
 carry their true values `λ V`, this is the block of `installedShifted E x`.

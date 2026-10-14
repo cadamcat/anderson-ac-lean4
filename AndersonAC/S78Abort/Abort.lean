@@ -7,7 +7,7 @@ open scoped Topology
 
 namespace AndersonAC.SolS78abort
 
-/-- Verbatim copy of `AndersonAC.S78.abortBound` (frozen). -/
+/-- Abort bound used by `AndersonAC.S78.abortBound`. -/
 def abortBound (d m : ℕ) (q C : ℝ) : ℝ := (1 + C * ((m : ℝ) + 1)) *
   Real.exp (20 * (d : ℝ) * (m : ℝ) * Real.log 4 - (4 : ℝ) ^ (q * ((m : ℝ) / 2 - 1)))
 

@@ -3,7 +3,7 @@ import AndersonAC.S9Inf.InfiniteReadoutProof
 import AndersonAC.S9Inf.BoundaryAdmissibility
 import AndersonAC.S9Fin.FinalProof
 
-/-! The complete frozen all-sites statement from actual finite certificates. -/
+/-! The all-sites statement derived from finite certificates. -/
 
 noncomputable section
 

@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.StageStep
 import AndersonAC.AgentS78.Construction.PrefixInduction
 
 /-!
-# WP10 construction: a history prefix from its stage steps
+# a history prefix from its stage steps
 
 `prefix_of_steps` is `pathwise_of_steps` (StageStep.lean) for the stages `n₀ ≤ n ≤ K`: the
 stage endpoints up to `K`, one `StageStep` per stage `n < K` (sweep, committed clearings,

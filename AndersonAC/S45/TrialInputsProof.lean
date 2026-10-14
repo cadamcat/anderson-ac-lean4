@@ -6,7 +6,7 @@ import AndersonAC.S45.SmallFactsProof
 /-! `AndersonAC.S45.ordered_trial_inputs`: per-step ordered bounds with the
 harmonic `1/(M-k)` profile give the stopped concentration inputs of one trial.
 The centering identity is taken as the hypothesis `ConditionalCenteringFixed`
-(corrected form of `AndersonAC.S45.conditional_centering`, helper lane); `harmonic_slots` is luna-s45small's. -/
+(corrected form of `AndersonAC.S45.conditional_centering`, helper module); `harmonic_slots` is. -/
 
 noncomputable section
 open Matrix MeasureTheory ProbabilityTheory Filter

@@ -5,9 +5,8 @@ import AndersonAC.S45.LagProof
 import AndersonAC.S45.LaplacianBoundsProof
 
 /-! Proposition 4.8 (`AndersonAC.S45.ordinary_increment_estimates`,
-04-sweep.tex:1167–1245) from the three component estimates still open
-(`J_bounds`, `laplacian_bounds`, `lag_bounds`), taken as hypotheses with
-their exact frozen types. The proved inputs `analytic_prestate_proof`,
+04-sweep.tex:1167–1245) assembled from `J_bounds`, `laplacian_bounds`, and
+`lag_bounds`, with their stated types. The proved input `analytic_prestate_proof`,
 `fourth_bounds_proof` and `increment_pullback_proof` are plugged in.
 Never imports `Statements.lean`. -/
 

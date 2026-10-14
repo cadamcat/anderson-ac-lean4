@@ -8,8 +8,8 @@ open scoped ENNReal
 
 namespace AndersonAC.SolS9
 
-/-- The lead's sharp Poisson-measure contract, copied as an explicit input
-without importing its statement inventory. -/
+/-- Poisson-measure domination from a uniform bound on the imaginary part of the
+Borel transform. -/
 def FinitePoissonDominationInput : Prop :=
   ∀ (μ : Measure ℝ), IsFiniteMeasure μ → ∀ C : ℝ, 0 ≤ C →
     (∀ E η : ℝ, 0 < η →

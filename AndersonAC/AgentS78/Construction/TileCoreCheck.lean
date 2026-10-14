@@ -3,9 +3,8 @@ import AndersonAC.AgentS78.Construction.TileTrialHalt
 import AndersonAC.AgentS78.Construction.TileCoreA3
 import AndersonAC.AgentS78.Construction.TileCoreA0
 
-/-! Frozen pieces A0–A3 of the tile trial core (agent-s78trial) and their assembly. A helper
-proving piece `X` adds `theorem AndersonAC.AgentS78.X_proof : X` in its own file and an
-`example : X := X_proof` check. -/
+/-! Slot recursion and budget-crossing statements for the tile-trial core, together
+with their assembly. Each proposition `X` has a proof `X_proof` in its own module. -/
 
 namespace AndersonAC.AgentS78
 
@@ -20,7 +19,7 @@ example (d : ℕ) (C : ℝ) : TileSlotDescriptionStatement → TileSlotLawStatem
     TileCrossingStatement d C :=
   tileCrossing_of_pieces d C
 
-/-- Whole chain to the frozen first-trial bound (shape of `BlockRun.product_bound`). -/
+/-- Whole chain to the first-trial bound (shape of `BlockRun.product_bound`). -/
 theorem tile_first_trial_bound_of_pieces (d : ℕ) (C : ℝ) (h0 : TileSlotDescriptionStatement)
     (h1 : TileSlotLawStatement) (h2 : TileMonitorBoundsStatement d C)
     (h3 : TileFailCrossingStatement d C) :
@@ -32,11 +31,11 @@ theorem tile_first_trial_bound_of_pieces (d : ℕ) (C : ℝ) (h0 : TileSlotDescr
         ENNReal.ofReal (AndersonAC.S78.birthBound c j) :=
   tile_first_trial_bound d C (tileTrialBound_of_crossing d C (tileCrossing_of_pieces d C h0 h1 h2 h3))
 
-/-- A3 from A3b. -/
+/-- budget crossing from sweep transfer. -/
 example (d : ℕ) (C : ℝ) : TileTransferStatement d C → TileFailCrossingStatement d C :=
   tileFailCrossing_of_transfer d C
 
-/-- Whole chain from the remaining open pieces A0, A1, A2, A3b. -/
+/-- Whole chain from the remaining open pieces slot recursion, tile slot law, monitor bounds, sweep transfer. -/
 theorem tile_first_trial_bound_of_open (d : ℕ) (C : ℝ) (h0 : TileSlotDescriptionStatement)
     (h1 : TileSlotLawStatement) (h2 : TileMonitorBoundsStatement d C)
     (h3b : TileTransferStatement d C) :
@@ -48,10 +47,10 @@ theorem tile_first_trial_bound_of_open (d : ℕ) (C : ℝ) (h0 : TileSlotDescrip
         ENNReal.ofReal (AndersonAC.S78.birthBound c j) :=
   tile_first_trial_bound_of_pieces d C h0 h1 h2 (tileFailCrossing_of_transfer d C h3b)
 
-/-- A0, proved. -/
+/-- slot recursion, proved. -/
 example : TileSlotDescriptionStatement := tileSlotDescription_proof
 
-/-- Whole chain from the remaining open pieces A1, A2, A3b. -/
+/-- Whole chain from the remaining open pieces tile slot law, monitor bounds, sweep transfer. -/
 theorem tile_first_trial_bound_of_A1_A2_A3b (d : ℕ) (C : ℝ) (h1 : TileSlotLawStatement)
     (h2 : TileMonitorBoundsStatement d C) (h3b : TileTransferStatement d C) :
     ∃ c > 0, ∃ N : ℕ, ∀ n₀ ≥ N, ∀ (m : ℕ) (u : ℝ), u ∈ Set.Ioc (1 / 4 : ℝ) 1 →

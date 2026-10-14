@@ -1,7 +1,7 @@
 import AndersonAC.S3.GridLemmas
 
 /-!
-Frozen statements (lead agent-s3) for the circulant symbol of the entrywise square
+Statements for the circulant symbol of the entrywise square
 of the initial inverse, `Q(ζ) = t · gridAvg_k R(k) R(ζ-k)`, at grid frequencies.
 Here `R = gridResolvent E t r`, `E + 2d ∈ [1/400, 1/100]`, `r` in the rectangle,
 so the excess `β = E + 2d + t Re r ∈ [1/800, 3/200]` and `v = t Im r ∈ [t a₀, t B]`

@@ -47,7 +47,7 @@ namespace AndersonAC.AgentS78
 
 open AndersonAC.S78
 
-/-- The committed endpoint satisfies the frozen inverse-row bound required by the reset. -/
+/-- The committed endpoint satisfies the inverse-row bound required by the reset. -/
 theorem resetRow_proof (d : ℕ) (hd : 3 ≤ d) : ResetRowStatement d := by
   intro CA cA PA hCA hcA hPA
   obtain ⟨Csh, hCsh1, hShellAll⟩ := physicalShellBounds d

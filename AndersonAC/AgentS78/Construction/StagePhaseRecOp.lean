@@ -1,14 +1,12 @@
 import AndersonAC.AgentS78.Construction.StagePhaseRec
 
 /-!
-# The clearing indices of the schedule on the full clearing-phase invariant
-
-agent-s78phase2. `ClearPhaseR … j r x`: on non-aborted records, clearing-phase data `D` with the
+# The clearing indices of the schedule on the full clearing-phase invariant. `ClearPhaseR … j r x`: on non-aborted records, clearing-phase data `D` with the
 record clauses `ClearRecPos … j r x D.I.anchor`, the scale-radius window
 `2 clearRadius ≤ D.I.Ds ≤ Ctr clearRadius`, and the broad damping `cP ≤ Im r`, `‖r‖ ≤ CP`.
 
 `clearOpR_hInv`: the clearing index `opIndex j 2 y` maps `ClearPhaseR … j (rank y)` into
-`ClearPhaseR … j (rank y + 1)` along real local answers, given the frozen DONE statements
+`ClearPhaseR … j (rank y + 1)` along real local answers, given the DONE statements
 (`ClearingDoneStatement`, through its per-constant instance, and `ClearingDoneHopsStatement`).
 -/
 

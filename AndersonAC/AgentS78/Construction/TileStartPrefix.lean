@@ -2,12 +2,12 @@ import AndersonAC.AgentS78.Construction.SweepSchur
 import AndersonAC.AgentS78.Construction.TileStartDecayProof
 
 /-!
-# WP10 tile phase: the prefix Schur identity (P1)
+# the prefix Schur identity (P1)
 
-agent-s78start (2026-10-14). `prefixPhys_proof : PrefixPhysStatement`: the invariant of
-agent-s78schur's `sweepSchur_proof` (lane/agent-s78schur 009e745, Sherman–Morrison per
+`prefixPhys_proof : PrefixPhysStatement` states the invariant of
+`sweepSchur_proof` (Sherman–Morrison at each
 `StepRel` step) at every prefix of a well-formed bit-pivot sequence (steps without pivot
-allowed), in the form `M_A + diag ζ − t diag(ϑ r)` of eq:sweep-physical-prefix (04:46–55).
+allowed), in the form `M_A + diag ζ − t diag(ϑ r)` of eq:sweep-physical-prefix (–55).
 -/
 
 noncomputable section

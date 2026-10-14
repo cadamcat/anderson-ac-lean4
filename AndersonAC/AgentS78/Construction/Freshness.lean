@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.MarkingRule
 
 /-!
-# WP10 construction, C5a glue: read patterns are unqueried when a block starts
+# read patterns are unqueried when a block starts
 
 02-state.tex:96–113 (at a coupled site the remaining true suffix is unqueried; a pending
 mark is conservative) and 05-local-sweeps.tex:470–496 ("ordinary trials preserve the

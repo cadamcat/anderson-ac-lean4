@@ -3,7 +3,7 @@ import AndersonAC.S3.HelperStatements2
 
 /-!
 The dyadic layer-cake estimate for a product of two truncated reciprocals.
-This module depends only on the frozen §3 helper statements and Mathlib.
+This module depends only on the §3 helper statements and Mathlib.
 -/
 
 noncomputable section

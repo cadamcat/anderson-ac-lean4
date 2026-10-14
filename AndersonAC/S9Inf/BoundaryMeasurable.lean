@@ -3,8 +3,8 @@ import Mathlib
 
 /-! Measurability of finite vertical boundary events.
 
-Route (lead sol-s9inf): restrict positive heights to dense rational heights;
-continuity of each height section recovers the full vertical filter
+Restrict positive heights to dense rational heights. Continuity of each height
+section recovers the full vertical filter
 (`𝓝[>] 0`); use `MeasureTheory.measurableSet_exists_tendsto` on the
 countable comap filter and a measurable chosen limit (`limUnder`) to test
 `Im > 0`, `Im = 0` and `limit ≠ 0`.

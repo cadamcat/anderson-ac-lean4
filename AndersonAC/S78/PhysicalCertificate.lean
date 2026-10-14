@@ -57,7 +57,7 @@ theorem inverse_from_active_schur {ι : Type} [Fintype ι] [DecidableEq ι]
   change B⁻¹ i.val j.val = (Matrix.fromBlocks U V W D)⁻¹ (Sum.inl i) (Sum.inl j) at hentry
   exact hentry.trans htop
 
-/-- The final physical Schur identity directly yields the frozen bounded
+/-- The final physical Schur identity directly yields the bounded
 certificate feasibility event. This does not require a measurable choice of
 the full inverse or of the certificate witnesses. -/
 theorem bounded_certificate_of_active_schur (d n₀ m : ℕ) (u E Cr cp cg : ℝ)

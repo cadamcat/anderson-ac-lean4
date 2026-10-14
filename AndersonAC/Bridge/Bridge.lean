@@ -17,9 +17,9 @@ open AndersonAC.LunaBridge AndersonAC.MuseBridge
 
 namespace AndersonAC.Blueprint.Packages
 
-/-- WP15 fidelity bridge: the blueprint Simon problem implies the independent
+/-- The Simon problem implies the independent
 Mathlib-only Anderson challenge statement. Uses compact moment determinacy
-(phase 1), operator identification (phase 2), and iid uniform transport (phase 3).
+(phase), operator identification (phase), and iid uniform transport (phase).
 No other package hole is used. -/
 theorem challengeBridge : SimonProblem → AndersonChallenge.Statement := by
   intro hSimon d hd

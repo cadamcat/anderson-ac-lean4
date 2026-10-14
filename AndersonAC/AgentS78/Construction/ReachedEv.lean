@@ -1,13 +1,13 @@
 import AndersonAC.AgentS78.Construction.ReachedInv
 
 /-!
-# WP10 construction: blocks reached a.s., with halting hypotheses only eventually in `k`
+# blocks reached a.s., with halting hypotheses only eventually in `k`
 
 `next_block_reached_ev` / `all_blocks_reached_of_inv_ev`: as `next_block_reached` /
 `all_blocks_reached_of_inv`, but the halting patterns, their freshness and measurability, and
 the halting bound are needed only for `k ≥ K n`. A block that halts deterministically within
 `K n` steps (the clearing block: heat limit plus core size) has `notHalted = ∅` there, so it
-needs no pattern at all. (agent-s78con3)
+needs no pattern at all.
 -/
 
 open MeasureTheory Filter

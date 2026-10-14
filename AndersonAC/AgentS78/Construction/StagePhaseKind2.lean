@@ -3,9 +3,7 @@ import AndersonAC.AgentS78.Construction.StagePhaseDoneProof
 import AndersonAC.AgentS78.Construction.StagePhaseHops
 
 /-!
-# Kind 2 of the run invariant, conditional only on the analytic DONE statement
-
-agent-s78phase2. `clearOpR_hInv_of_analytic`: for the run's broad damping `(cP, CP)` and a trace
+# Kind 2 of the run invariant, conditional only on the analytic DONE statement. `clearOpR_hInv_of_analytic`: for the run's broad damping `(cP, CP)` and a trace
 constant `Ctr ≥ 2` there are assembly constants `(CA₀, cA₀, PA₀)` such that for all admissible
 `(CA, cA, PA)` there are `N, t₀` with: every clearing index `opIndex j 2 y` of a box with
 `n₀ ≥ N`, `n₀ < j`, `t_j < t₀` maps `ClearPhaseR … j (rank y)` into `ClearPhaseR … j (rank y + 1)`

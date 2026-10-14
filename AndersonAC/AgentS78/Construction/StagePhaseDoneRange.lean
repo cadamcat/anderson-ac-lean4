@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.StagePhaseDoneCore
 
 /-!
-# The DONE exit of a clearing attempt: localization of the scattering range
-
-agent-s78donea. Lemma 6.2 (06-clearing.tex:184–257) on the torus index, for the cross block
+# The DONE exit of a clearing attempt: localization of the scattering range. Lemma 6.2 (06-clearing.tex:184–257) on the torus index, for the cross block
 `C = xCross` of a damped state `(A₀, M₀)` at an eliminated set `O ⊆ A₀`: if `M₀` differs from
 direct hops `J` only between sites at zero terminal distance (terminals `univ \ A₀`), the
 projection weights decay as `L² exp(−2 a t ρ)` with `ρ = (d_T(·, O) − 1)_+`,

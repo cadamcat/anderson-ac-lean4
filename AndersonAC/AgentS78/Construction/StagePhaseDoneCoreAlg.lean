@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.StagePhaseDoneSnap
 
 /-!
-# The DONE exit of a clearing attempt: algebra of sequential core eliminations
-
-agent-s78donea. For the torus-indexed damped inverse `fullInv A M t r` (StagePhaseClr.lean):
+# The DONE exit of a clearing attempt: algebra of sequential core eliminations. For the torus-indexed damped inverse `fullInv A M t r` (StagePhaseClr.lean):
 
 * `fullInv_eqns` / `fullInv_of_eqns` / `fullInv_kernel`: it is the unique solution of the damped
   equations on `A`;

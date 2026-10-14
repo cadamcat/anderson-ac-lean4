@@ -4,7 +4,7 @@ import AndersonAC.AgentS78.Construction.Exceptional
 import AndersonAC.AgentS78.Construction.TrueValues
 
 /-!
-# WP10 construction, global run invariant: the clearing operations (agent-s78box)
+# the clearing operations
 
 `boxCL_clearOp`: the clearing operation `(j, 2, y)` (`j ≤ ⌊m/2⌋`) keeps the clearing-phase set
 `boxCL … Xc j = ClearPhase ∩ Damp ∩ PhysSet ∩ Xc j`, from
@@ -12,7 +12,7 @@ import AndersonAC.AgentS78.Construction.TrueValues
 * `clear_exit_cases` (proved): the exit keeps `r` and the abort flag, and either keeps the
   endpoint and the installed values (aborted, unscheduled, empty core, FAIL, unfinished) or is
   the DONE exit `clearingDoneExit x sc`;
-* `ClearPhase.of_exit` (agent-s78phase) with the DONE step facts;
+* `ClearPhase.of_exit` with the DONE step facts;
 * two per-box inputs of the clearing package: the DONE step (`ClearingStepFacts` of the committed
   endpoint and the physical identity of the DONE record) and the record part `Xc j`.
 -/
@@ -179,7 +179,7 @@ theorem boxCL_clearOpZ (j : ℕ) (y : Torus d m) (hj : P.n₀ < j) (hjm : j ≤ 
 
 /-- **The clearing operation of a non-clearing stage** (`⌊m/2⌋ < j ≤ m`) is the identity; it
 keeps the clearing-phase set when the record part is monotone in the scan position there
-(scan-position amendment, agent-s78phase2). -/
+(scan-position amendment). -/
 theorem boxCL_clearId (j : ℕ) (y : Torus d m) (hjm : ¬ j ≤ m / 2)
     (hmono : ∀ r, Xc j r ⊆ Xc j (r + 1)) :
     OpKeeps P ts₀ cl₀ P.n₀ P.u (fun n => RunBasics P n ∩ Xg n) j 2 y

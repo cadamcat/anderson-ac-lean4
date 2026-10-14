@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.TilePhaseRun
 
 /-!
-# WP10 construction, tile phase: completeness of accepted trials on real answers
-
-agent-s78tphase (2026-10-14). Proof of `TileCompleteStatement` (TilePhaseRun.lean): along real
+# completeness of accepted trials on real answers. Proof of `TileCompleteStatement` (TilePhaseRun.lean): along real
 local answers, the `v`-th order answer of trial `a` is `π_{j,T,a}(v)`, a permutation of the
 `|T|` positions (`M (tileOrderIndex j T a) = |T|`), and `siteAt` is a bijection from the
 positions onto the sites of `T`. A trial is accepted only after `|T|` order answers, and every

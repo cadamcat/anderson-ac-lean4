@@ -1,11 +1,10 @@
 import AndersonAC.S3.Definitions
 
 /-!
-Second batch of frozen helper statements for WP05 (§3, Proposition 3.6),
-lead agent-s3. Each helper proves `<name>_proof : <Name>Statement` (or the stated
-implication) in its own module importing only this file, `HelperStatements` and Mathlib.
+Additional helper statements for the initialization input (§3, Proposition 3.6).
+Each helper is stated as a proposition or implication.
 
-Route (lead): the fixed point, `‖K‖ ≤ 1/10` and the fourth-power rows are reduced to
+The fixed point, `‖K‖ ≤ 1/10`, and fourth-power row bounds reduce to
 (i) continuum bounds near the band bottom (`BottomResolventStatement`, from the ray and
 polar helpers), (ii) grid quadrature for Lipschitz functions on the full frequency cube
 (`PeriodicGridQuadratureStatement`), (iii) the joint-shell volume in `k` coordinates
@@ -53,7 +52,7 @@ def PeriodicGridQuadratureStatement : Prop :=
 
 /-! ### H8: continuum resolvent bounds near the band bottom (Lemma 3.5) -/
 
-/-- Lemma 3.5 of §3 in the form used by the lead (unnormalized cube integrals,
+/-- Lemma 3.5 of §3 in the unnormalized cube-integral form,
 excess energy `β`, imaginary part `v`): the absolute first power is logarithmic,
 the first power is bounded, its imaginary part is bounded below, and the second
 power is logarithmic, the last uniformly for perturbed amplitudes `|a_j - 1| ≤ ε`
@@ -78,7 +77,7 @@ def BottomResolventStatement : Prop :=
 
 /-! ### H9: the joint shell in the original frequency coordinates -/
 
-/-- The conclusion of the lead's `joint_shell_volume` (sliced coordinates
+/-- The conclusion of `joint_shell_volume` in sliced coordinates
 `x_j = sin(k_j + ζ_j/2)`), stated for every `n ≥ 2`. -/
 def JointShellXStatement : Prop :=
   ∀ n : ℕ, 2 ≤ n → ∃ C : ℝ, 0 < C ∧ ∀ ζ : Frequency (n + 1), (∀ j, |ζ j| ≤ 1 / 2) →

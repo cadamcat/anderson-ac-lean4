@@ -1,6 +1,6 @@
 import AndersonAC.S9Inf.HelperStatements
 
-/-! Frozen law-construction helper for the finite/infinite comparison. -/
+/-! law-construction helper for the finite/infinite comparison. -/
 
 noncomputable section
 

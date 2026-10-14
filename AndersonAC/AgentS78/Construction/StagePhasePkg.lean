@@ -6,13 +6,12 @@ import AndersonAC.AgentS78.Construction.StagePhaseDonePhysZ
 /-!
 # The clearing-phase package (`ClearingPhasePackage d`)
 
-agent-s78phase2 (DISPATCH 04:08:18, agent-s78con4). **`clearingPhasePackage_of`**: the clearing
-facts of every large box (`ClearingBoxFacts`, BoxPhases.lean, with the clearing phase indexed by
-the anchor scan position, the pre-approved amendment) from
+`clearingPhasePackage_of` constructs the clearing facts of each large box
+(`ClearingBoxFacts`, BoxPhases.lean) with the clearing phase indexed by the anchor
+scan position, from
 
-* `hA : ClearingDoneAnalyticStatement d` (agent-s78donea);
-* `hB : ClearingBoundR d` — the clearing first-failure bound on `ClearPhaseR` records (to be
-  replaced by agent-s78clrbound's frozen hboundC statement);
+* `hA : ClearingDoneAnalyticStatement d` ;
+* `hB : ClearingBoundR d` — the clearing first-failure bound on `ClearPhaseR` records;
 and the physical identity after a DONE clearing off the exceptional set from
 `clearingDonePhysZ_proof` (route R2; StagePhaseDonePhysZ.lean).
 

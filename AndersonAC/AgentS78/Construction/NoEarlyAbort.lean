@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.RunOpsCut
 
 /-!
-# WP10 construction: no abort before the cutoff
+# no abort before the cutoff
 
 The run aborts only at a late slot (tile slots of the stages after `⌊m/2⌋`) or at the cutoff
 operation (`runOps_abort`). All of them come at or after the cutoff index, so every record

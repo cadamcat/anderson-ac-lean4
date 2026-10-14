@@ -2,10 +2,9 @@ import AndersonAC.AgentS78.Construction.TileStartAlgebraicProof
 import AndersonAC.AgentS78.Construction.TileStartDecay
 
 /-!
-# WP10 tile phase: the duplicated stage start, v3 proposal (live ports, corrected hypotheses)
+# Duplicated stage start on the live ports
 
-agent-s78start (2026-10-14). Proposed replacement of `TileStartStatement` (false as frozen,
-INTERFACE-ISSUES agent-s78start): the stage-start clauses on the live ports
+The stage-start clauses are stated on the live ports
 (`StartAlgebraicLive ∧ StartDecayLive`) and validity at `k = 0`, under the stage bounds at
 `j − 1` plus the damped identity, the physical identity and the cover facts
 (`b`, energy, site, distance). `tileStartV3_of_decay` proves it from the decay contract
@@ -21,7 +20,7 @@ open AndersonAC.S78
 
 variable {d m : ℕ}
 
-/-- **The duplicated stage start, v3 proposal.** -/
+/-- Duplicated stage-start clauses on the live ports. -/
 def TileStartV3Statement (d : ℕ) : Prop :=
   ∀ cP CP cL CL C₀ : ℝ, 0 < cP → cP ≤ CP → 0 < cL → 0 < CL → 0 < C₀ →
   ∃ C' ≥ 1, ∃ t0 > 0, ∀ (m n₀ : ℕ) (u E : ℝ) (P : TilePlan d m) (j : ℕ) (z : RunRecord d m),

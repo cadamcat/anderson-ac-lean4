@@ -3,9 +3,9 @@ import AndersonAC.S2.RetainedMeasurable
 import AndersonAC.S2.Freshness
 
 /-!
-# WP10 random construction, C2: freezing a trial at a retained stopping time
+# freezing a trial at a retained stopping time
 
-Frozen sub-contract (agent-s78con, 2026-10-13). Paper: Lemma 2.2 (conditional freshness,
+Paper Lemma 2.2 (conditional freshness,
 02-state.tex:170–219) used as in 08-history.tex:60–80: the trial started at slot `n`
 reads only coordinates that are unqueried at its start (whole true suffixes from given
 heights at finitely many sites, finitely many unused auxiliary signs, finitely many
@@ -13,11 +13,10 @@ unexposed orders). Its prestate `X` is known at the start. Then, conditionally o
 stopped retained σ-field, the failure probability is the product-law probability of the
 trial with the prestate frozen.
 
-Superseded: as frozen, `FreezingStatement` is false for `p < 0` (agent-s78freeze,
-`not_freezingStatement`). The corrected contract `FreezingStatementNonneg` (extra hypothesis
-`0 ≤ p`) is proved as `freezing_proof` (FreezingProof.lean) and used by the consumer
-`slotRun_of_queryRun`
-(QueryRun.lean). Route: partition by the countably many values of `pattern ∘ X`, reduce
+`FreezingStatement` is false for `p < 0` (`not_freezingStatement`). The valid form
+`FreezingStatementNonneg` assumes `0 ≤ p`; `freezing_proof` establishes it for
+`slotRun_of_queryRun` (QueryRun.lean). The proof partitions by the countably many
+values of `pattern ∘ X`, reduces
 to cylinder events in the pattern's coordinates by a monotone-class argument, and apply
 `S2.conditional_freshness_ae_stopped` (whose `completionWeight` is `∏ 1/(M o)!` on
 unexposed orders, the uniform-order law).
@@ -69,7 +68,7 @@ def UnqueriedAt {M : ℕ → ℕ} (Q : ℕ → RandomSources ι M → Query ι) 
 
 end Patterns
 
-/-- **C2 (frozen contract).** Freezing a trial at an a.s. finite retained stopping time. -/
+/-- **trial freezing (contract).** Freezing a trial at an a.s. finite retained stopping time. -/
 def FreezingStatement : Prop :=
   ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (M : ℕ → ℕ) (Q : ℕ → RandomSources ι M → Query ι)
     (hQ : ObeysQueryRules ι Q) (τ : RandomSources ι M → WithTop ℕ)

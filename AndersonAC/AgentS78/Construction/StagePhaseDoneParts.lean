@@ -4,9 +4,7 @@ import AndersonAC.AgentS78.Construction.StagePhaseTrace
 import AndersonAC.S78.Statements
 
 /-!
-# The DONE exit of a clearing attempt: heat part, core part, assembly
-
-agent-s78donea. 07-assembly.tex:399–433. On the final survivors `A'` of a DONE exit the
+# The DONE exit of a clearing attempt: heat part, core part, assembly. 07-assembly.tex:399–433. On the final survivors `A'` of a DONE exit the
 committed difference splits at the core-phase snapshot `sh` (StagePhaseDoneSnap.lean):
 
   `survivorDifference x.endpoint s' t = heatPart + corePart`,
@@ -15,10 +13,10 @@ committed difference splits at the core-phase snapshot `sh` (StagePhaseDoneSnap.
   snapshot (`heat_bounds`: entry `√t t^{.42δ}`, squared row `t^{.25δ}`, Frobenius
   `n_h t^{−.01δ} ≤ t^{−1−.47δ}`);
 * `corePart = √t (fullInv A' M' − fullInv A Mh)` on `A'`: the core completion (Lemma 6.1,
-  `DoneCoreStatement`, frozen sub-statement);
+  `DoneCoreStatement`, sub-statement);
 * both combine by `S78.successful_clearing_distortions`.
 
-The decay clause is the frozen sub-statement `DoneDecayStatement` (Lemma locality for the heats,
+The decay clause is the sub-statement `DoneDecayStatement` (Lemma locality for the heats,
 Corollary 6.3 for the core, 07-assembly.tex:415–433). The Combes–Thomas clause is
 `endpoint_ct_phys` (StagePhaseDoneCT.lean).
 
@@ -93,7 +91,7 @@ theorem heat_bounds (t : ℝ) (ht : 0 < t) (A : Finset (Torus d m))
           congr 1
           norm_num [AndersonAC.S6.eh, AndersonAC.S6.delta, delta]
 
-/-! ## The core part: frozen sub-statement -/
+/-! ## The core part: sub-statement -/
 
 /-- The core-completion difference on the final survivors `A'`. -/
 def coreDiff (t : ℝ) (r : Torus d m → ℂ) (A : Finset (Torus d m))
@@ -102,7 +100,7 @@ def coreDiff (t : ℝ) (r : Torus d m → ℂ) (A : Finset (Torus d m))
   if i ∈ A' ∧ k ∈ A' then (Real.sqrt t : ℂ) * (fullInv A' M' t r i k - fullInv A Mh t r i k)
   else 0
 
-/-- **Core completion on the torus scratch data** (frozen sub-statement; Lemma 6.1,
+/-- **Core completion on the torus scratch data** (sub-statement; Lemma 6.1,
 06-clearing.tex:82–182, applied at the core-phase snapshot, 07-assembly.tex:399–413).
 From a snapshot `(A, Mh)` with the projection cap `xReady`, eliminating the whole core
 sequentially (`CoreElim`, arbitrary real core values) changes the scaled inverse on the
@@ -120,7 +118,7 @@ def DoneCoreStatement (d : ℕ) : Prop :=
     (∀ i, rowTwo (coreDiff t r A Mh A' M') i ≤ Cc * t ^ (0.44 * delta)) ∧
     frobeniusSq (coreDiff t r A Mh A' M') ≤ Cc * t ^ (-1 - nu d)
 
-/-- **The decay clause** of `ClearingDoneAnalyticStatement` (frozen sub-statement, same
+/-- **The decay clause** of `ClearingDoneAnalyticStatement` (sub-statement, same
 hypotheses; 07-assembly.tex:415–433: Lemma locality for each heat, Corollary 6.3 for the core,
 the terminal metric). -/
 def DoneDecayStatement (d : ℕ) : Prop :=
@@ -193,7 +191,7 @@ theorem done_split (n₀ j : ℕ) (u : ℝ) (y : Torus d m) (x : RunRecord d m)
 
 /-! ## Assembly -/
 
-/-- **`ClearingDoneAnalyticStatement` from its two frozen sub-statements** (core completion on
+/-- **`ClearingDoneAnalyticStatement` from its two sub-statement** (core completion on
 the scratch data and the decay clause); the Combes–Thomas clause and the heat part are proved
 here. -/
 theorem clearingDoneAnalytic_of_parts (hd : 3 ≤ d) (hcore : DoneCoreStatement d)

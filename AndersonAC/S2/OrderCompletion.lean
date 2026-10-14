@@ -3,7 +3,7 @@ import AndersonAC.S2.SignFreshness
 import AndersonAC.S2.OrderCompletionStatement
 
 /-! Universe-general order completion for the original S2 endpoints.
-Adapted from the checked S2Order helper at 144d8fe. The frozen helper contract
+Adapted from the checked S2Order helper at. The helper contract
 remains unchanged. This namespace keeps its counting helpers compatible with
 the independent stopped-freshness helper's public names. -/
 

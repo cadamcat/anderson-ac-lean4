@@ -1,7 +1,7 @@
 import AndersonAC.S9Inf.Mismatch
 import AndersonAC.S9Inf.PotentialContinuous
 
-/-! The frozen fixed-energy Anderson positivity mismatch theorem. -/
+/-! Fixed-energy Anderson positivity mismatch theorem. -/
 
 noncomputable section
 

@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.TileCoverGeneric
 
 /-!
-# WP10 construction: the §5 tile covers — boxes in the torus
-
-agent-s78cover (2026-10-14). The Poincaré inequality on an injective image of a grid box whose
+# the §5 tile covers — boxes in the torus. The Poincaré inequality on an injective image of a grid box whose
 grid edges are torus edges (05:285–291), from `GridPoincareStatement`.
 -/
 

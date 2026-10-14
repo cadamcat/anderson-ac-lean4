@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.Construction.Assembly
 import AndersonAC.AgentS78.Construction.PhysicalIdentity
 
 /-!
-# WP10 construction, C5d glue: the final record
+# the final record
 
 `hfinal` of `blockRun_of_disciplines` / `blockRun_of_runOps` from two record facts at the
 entry of the block after the final residual sweep (`stageStartIdx d m (m + 2)`):

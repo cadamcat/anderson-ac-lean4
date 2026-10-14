@@ -11,9 +11,9 @@ bound `e^{uY} ≤ 1 + uY + u²Y²` paired against `exp(u S_n) ≥ 0`, the
 martingale-difference property and `Tr(B E[Y²|ℱ]) ≤ v Tr B`. Adding the same
 process for `-Y` and applying Ville's inequality bounds the two-sided crossing.
 
-Inputs taken as hypotheses here: Golden–Thompson (muse-gt), the deterministic
+Inputs taken as hypotheses here: Golden–Thompson, the deterministic
 trace facts `TraceHelpers` and Ville's inequality `VilleStatement` (helper
-lanes). Everything else is proved. -/
+statements). Everything else is proved. -/
 
 noncomputable section
 open Matrix MeasureTheory ProbabilityTheory Filter

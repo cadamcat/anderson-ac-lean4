@@ -208,7 +208,7 @@ theorem assemblyBridgeBounds_proof : AssemblyBridgeBounds := by
       intro a ha
       have h := near_part_le I C c Cmat Cdev hC hc hCmat_pos hCdev_nn hIC hIc ht ht1
         hbpos hbt a f α v hsplit hdamp hR hside (hrow a) (hsymG a) (hsub_all a) hDbody
-      -- h has constant (2 * max ...) * t^... * local; need C' defeq
+      -- h has constant (2 * max...) * t^... * local; need C' defeq
       simpa [hC'def, hK1def, hK2def, hK3def, hKmaxdef] using h
     calc ∑ a ∈ S, (∑ i ∈ (I.state a.succ).active.filter
           (· ∈ cube d m (I.anchor a) (100 * I.Ds)),

@@ -1,9 +1,9 @@
 import AndersonAC.AgentS78.Construction.Blocks
 
 /-!
-# WP10 random construction, C3c proved: the run as a composition of blocks
+# the run as a composition of blocks
 
-`blockComposition_proof : MachineRunStatement → BlockCompositionStatement` (agent-s78blocks).
+`blockComposition_proof : MachineRunStatement → BlockCompositionStatement`.
 
 Route. The global run `machineRun` of `(gInit, gnext, gupdate)` is analysed by the
 predicate `Entered n s x ω`: at operation `s` the run enters block `n` with record `x`,
@@ -133,7 +133,7 @@ variable {ι : Type} [Fintype ι] [DecidableEq ι] (M : ℕ → ℕ) {Rec St : T
 local notation "G" => machineRun ι M (gInit blocks rec₀) (gnext blocks) (gupdate blocks)
 
 
-/-- Local order discipline (the hypothesis `_horders` of the frozen statement). -/
+/-- Local order discipline (the hypothesis `_horders` of the statement). -/
 def HOrders : Prop :=
   ∀ n x k ω o, (blocks n).halted (localState M (blocks n) x k ω) = false →
     (blocks n).next (localState M (blocks n) x k ω) = Query.nextOrder o →
@@ -142,7 +142,7 @@ def HOrders : Prop :=
       (blocks n).halted (localState M (blocks n) x k' ω) = false ∧
       (blocks n).next (localState M (blocks n) x k' ω) = Query.nextOrder o).length < M o
 
-/-- Local auxiliary discipline (the hypothesis `_haux` of the frozen statement). -/
+/-- Local auxiliary discipline (the hypothesis `_haux` of the statement). -/
 def HAux : Prop :=
   ∀ n x k ω a, (blocks n).halted (localState M (blocks n) x k ω) = false →
     (blocks n).next (localState M (blocks n) x k ω) = Query.auxiliary a →
@@ -451,7 +451,7 @@ end Meas
 end BlocksProof
 
 open BlocksProof in
-/-- **C3c proved.** Composition of blocks: the skeleton of a `QueryRun`, from the explicit
+/-- **block composition proved.** Composition of blocks: the skeleton of a `QueryRun`, from the explicit
 machine-run contract `MachineRunStatement`. -/
 theorem blockComposition_proof (hrun : MachineRunStatement) : BlockCompositionStatement := by
   intro ι _ _ M Rec St _ _ blocks rec₀ hmeas orderSet hdisj auxSet hauxdisj horders haux

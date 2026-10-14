@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.Blocks
 
 /-!
-# WP10 construction, C5b glue: invariants along every history of the run
+# invariants along every history of the run
 
 07-assembly.tex:939–946: the stage bounds hold "along every finite history produced by
 the ordinary-sweep and clearing rules, with failed trials rolled back". For the block run

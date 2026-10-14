@@ -3,7 +3,7 @@ import AndersonAC.S78.PhysicalCertificate
 /-!
 # The Schur determinant step
 
-agent-s78phase2 (DISPATCH 04:08:18 (B), route R2). For a matrix `B` and an active set `A ∋ p`, the
+For a matrix `B` and an active set `A ∋ p`, the
 block on the complement of `A.erase p` has determinant `det B_{Aᶜ} · (activeSchur B A)_{pp}`
 whenever `B_{Aᶜ}` is invertible. Hence the sequential Schur pivot at `p` is nonzero as soon as the
 two principal blocks are invertible (on `ω ∉ exceptionalSet`, every principal block of the true

@@ -4,7 +4,7 @@ import AndersonAC.AgentS78.Construction.StagePhaseStartDs
 /-!
 # Clearing-phase package: damping drift and the scale-radius window
 
-agent-s78phase2 (DISPATCH 04:08:18, `clearingPhasePackage_of`).
+ (`clearingPhasePackage_of`).
 
 * `broad_of_hist`: along a stage history the damping moves by at most
   `Σ t_{n+1}^{.35δ}` on **every** site (`StageStep.r_close`), so all sites keep

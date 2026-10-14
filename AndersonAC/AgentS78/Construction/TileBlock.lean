@@ -2,9 +2,7 @@ import AndersonAC.AgentS78.Construction.SimpleBlocks
 import AndersonAC.AgentS78.Construction.Schedule
 
 /-!
-# WP10 random construction, C3b: the ordinary tile block
-
-agent-s78tile (2026-10-13), request of agent-s78con (DISPATCH-REQUESTS 22:01:35 UTC).
+# Ordinary tile block
 Paper: 05-local-sweeps.tex:338–530 (trials and their records), 04-sweep.tex:36–90 and
 190–228 (the duplicated ports and the scalar of one deletion), 08-history.tex:340–368 (the
 final residual sweep), 02-state.tex:14–25 (scales).
@@ -12,15 +10,15 @@ final residual sweep), 02-state.tex:14–25 (scales).
 One block is the whole sequence of trials of one tile `T` in one sweep: the first trial,
 then (at stages `j ≤ ⌊m/2⌋`) the auxiliary retries until one is accepted.
 
-## Indexing of the sweeps (see INTERFACE-ISSUES 2026-10-13, agent-s78tile)
+## Indexing of the sweeps
 
 * The *digit sweep into stage `j`* (`n₀ < j ≤ m`) is the paper's sweep at scale
-  `n = j − 1` (04:36–40): `t = t_{j−1} = stageScale u (j−1) m`,
+  `n = j − 1` (–40): `t = t_{j−1} = stageScale u (j−1) m`,
   `θ = t_j / t_{j−1}`, `w = 1 − θ = 3 s_{j−1} / (4 t_{j−1})`. Its first trial inserts at a
   coupled site the next true digit, of amplitude `√(3 s_{j−1}/4)` (05:349–351,
   02-state.tex:89), i.e. digit number `j − n₀` of the paper, Lean index `prefixLength i`
-  (= `j − 1 − n₀` on actual runs, 08:11–13).
-* The *final residual sweep* (04:40–41, 05:353–359, 08:340–368) is a separate sweep at scale
+  (= `j − 1 − n₀` on actual runs, –13).
+* The *final residual sweep* (–41, 05:353–359, 08:340–368) is a separate sweep at scale
   `m`: `t = t_m = 2η = stageScale u m m`, `θ = w = 1/2`, and it inserts the whole remaining
   true suffix. In this file it has the post-sweep index `j = m + 1` (any `j > m`).
   The paper has `m − n₀` digit sweeps (into `n₀+1, …, m`) **and** this final sweep, so the
@@ -31,7 +29,7 @@ then (at stages `j ≤ ⌊m/2⌋`) the auxiliary retries until one is accepted.
 Deleting the bit port `x = (i, false)` adds the physical increment `ζ = k_x² ξ₀ = √w ξ₀` to
 the partial potential at `i`; the port scalar of the `S45.StepRel` update is
 `ξ₀ = ζ / √w`, with the port damping `r_x = k_x² r_i` of `S45.splitPorts θ`
-(04:73–80). Here `ζ = √(3 s_{j−1}/4) ε` for a digit (true or auxiliary) and
+(–80). Here `ζ = √(3 s_{j−1}/4) ε` for a digit (true or auxiliary) and
 `ζ = Σ_{k ≥ h} λ 2^{-(k+1)} ε_{i,k}` (Lean digit indices, `λ² = 3u 4^{-n₀}`) for the final
 suffix, so `ξ₀ = √2 ζ` there (08:351–353).
 
@@ -56,13 +54,13 @@ changed during a trial, so the rollback of 05:507–509 is: drop the scratch. Th
 history (all queries and answers) is kept by the S2 run itself.
 
 * Failure of the first trial: mark every active site of `T` pending with the label
-  `⟨j, tile, anchor⟩` (05:512–514, 08:41–47, anchor = designated site 08:54), set
+  `⟨j, tile, anchor⟩` (05:512–514, –47, anchor = designated site), set
   `firstFail`. Then abort if `j > ⌊m/2⌋` (late stage or final sweep: 05:519–521,
   08:313–318, 05:353–359), else retry.
-* Failure of a retry: no new label (08:53); retry again with the next family and order
+* Failure of a retry: no new label; retry again with the next family and order
   (05:515–518).
 * Acceptance: commit the prefix as `record.sweep`, add the increments to `installed`
-  (the real partial potential, 04:52–55, 202), and advance `prefixLength` at the coupled
+  (the real partial potential, –55, 202), and advance `prefixLength` at the coupled
   sites whose true digit was consumed (05:526–528).
 
 Defensive guards (never active on actual runs, documented at their definitions): an order
@@ -85,7 +83,7 @@ open AndersonAC.S2 (RandomSources Query Answer signValue binarySuffix)
 /-! ## Stage parameters -/
 
 /-- The duplicated port space of a sweep (`S45.initialPorts`): `(i, false)` is the bit port,
-`(i, true)` the reserve port of site `i` (04:67–71). -/
+`(i, true)` the reserve port of site `i` (–71). -/
 abbrev Port (d m : ℕ) := S45.initialPorts (Torus d m)
 
 /-- The final residual sweep has post-sweep index `m + 1` (any `j > m`). -/
@@ -93,15 +91,15 @@ def IsFinalSweep (m j : ℕ) : Prop := m < j
 
 instance (m j : ℕ) : Decidable (IsFinalSweep m j) := inferInstanceAs (Decidable (m < j))
 
-/-- Scale of the sweep with post-sweep index `j` (04:36–41). -/
+/-- Scale of the sweep with post-sweep index `j` (–41). -/
 def sweepScale (u : ℝ) (m j : ℕ) : ℝ :=
   if IsFinalSweep m j then stageScale u m m else stageScale u (j - 1) m
 
-/-- `θ` of the sweep with post-sweep index `j` (04:36–41). -/
+/-- `θ` of the sweep with post-sweep index `j` (–41). -/
 def sweepTheta (u : ℝ) (m j : ℕ) : ℝ :=
   if IsFinalSweep m j then 1 / 2 else stageScale u j m / stageScale u (j - 1) m
 
-/-- `w = 1 − θ`, the bit-port weight `k_bit⁴` (04:38, 67–69). -/
+/-- `w = 1 − θ`, the bit-port weight `k_bit⁴` (67–69). -/
 def sweepW (u : ℝ) (m j : ℕ) : ℝ := 1 - sweepTheta u m j
 
 /-- The coupling `λ` of a box: `u = (λ²/3) 4^{n₀}` (02-state.tex:19–24). -/
@@ -110,7 +108,7 @@ def couplingOf (u : ℝ) (n₀ : ℕ) : ℝ := Real.sqrt (3 * u / 4 ^ n₀)
 /-- Digit amplitude `√(3 s_n / 4)`, `s_n = u 4^{-n}` (02-state.tex:24, 89; 05:349). -/
 def digitAmp (u : ℝ) (n : ℕ) : ℝ := Real.sqrt (3 * (u / 4 ^ n) / 4)
 
-/-- Port damping `r_x = k_x² r_i` of the duplicated state (04:73–80); the same expression as
+/-- Port damping `r_x = k_x² r_i` of the duplicated state (–80); the same expression as
 `((S45.splitPorts _ θ).liftState old).r` in `S45.ordinary_sweep_endpoint`. -/
 def portR {d m : ℕ} (θ : ℝ) (r : Torus d m → ℂ) : Port d m → ℂ :=
   ((S45.splitPorts (Torus d m) θ).liftState ⟨0, r⟩).r
@@ -144,7 +142,7 @@ def siteAt {d m : ℕ} (S : Finset (Torus d m)) (v : ℕ) : Option (Torus d m) :
 /-- A fixed site. -/
 def site₀ (d m : ℕ) : Torus d m := (siteRank d m).symm ⟨0, siteCount_pos d m⟩
 
-/-- The designated site (label anchor) of a tile: its least site (08:54). -/
+/-- The designated site (label anchor) of a tile: its least site. -/
 def tileAnchor {d m : ℕ} {t : ℝ} (C : StageCover d m t) (T : Fin C.cover.count) : Torus d m :=
   (siteAt (tileSites C T) 0).getD (site₀ d m)
 
@@ -237,7 +235,7 @@ def commitTrial (x : RunRecord d m) (sc : TileScratch d m) (finalSweep : Bool) :
              if sc.consumed i = true && !finalSweep then 1 else 0 }
 
 open Classical in
-/-- Whole-tile marking of a first-trial failure (05:512–514, 08:41–47). -/
+/-- Whole-tile marking of a first-trial failure (05:512–514, –47). -/
 def markTile (S : Finset (Torus d m)) (label : BirthLabel (Torus d m)) (x : RunRecord d m) :
     RunRecord d m :=
   { x with pending := x.pending ∪ (S ∩ x.endpoint.active)

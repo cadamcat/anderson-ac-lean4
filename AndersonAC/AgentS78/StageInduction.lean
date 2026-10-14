@@ -2,10 +2,10 @@ import AndersonAC.AgentS78.InitialStageBR
 import AndersonAC.AgentS78.InductionGe
 
 /-!
-WP10: stage invariant along any pathwise stage history started from the §3
+certificate construction: stage invariant along any pathwise stage history started from the §3
 initialization. Combines `initial_stage_of_decay` with the induction of
 Proposition 7.5 (`InductionGe.deterministic_induction_ge`, the original proof with
-`C₀` as an input). What remains for WP10 is the construction of the
+`C₀` as an input). What remains for certificate construction is the construction of the
 `PathwiseStageInputs` themselves (sweeps, clearings, assembly, reset).
 -/
 

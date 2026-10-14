@@ -2,19 +2,19 @@ import AndersonAC.AgentS78.Construction.SlotProcess
 import AndersonAC.AgentS78.PendingFromRules
 
 /-!
-# WP10 random construction, layer B′: runs described by their status and marking rules
+# runs described by their status and marking rules
 
-`SlotRun` is what one finite-volume run of the construction must deliver at the level of
+`SlotRun` describes a finite-volume run of the construction at the level of
 stage-end site records (02-state.tex:96–113, 08-history.tex:37–131, 296–400):
 
-* the enlarged space and its true marginal (C0, `TrueSpace.lean`);
+* the enlarged space and its true marginal (`TrueSpace.lean`);
 * the chronological slot process with the conditional birth bound (history-birth);
 * stage-end pending sets and latest labels obeying the status/marking rules and the
   clearing-stage dichotomy (the inputs of `pendingHistory_of_rules`), with births equal to
   the slot events of their labels;
 * the late tile slots after the cutoff, the success event and its certificate.
 
-`runLaw_of_slotRun` turns it into a `RunLaw`; with `uniformCertificateInput_of_slotRuns`
+`runLaw_of_slotRun` turns it into a `RunLaw`. With `uniformCertificateInput_of_slotRuns`,
 this reduces `UniformCertificateInput` to constructing `SlotRun`s with uniform constants.
 -/
 

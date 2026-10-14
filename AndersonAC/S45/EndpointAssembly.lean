@@ -6,7 +6,7 @@ import AndersonAC.S45.CumulativeSchurProof
 import AndersonAC.S45.StepLProof
 import AndersonAC.S45.DuplicationProof
 
-/-! Assembly of the §§4–5 endpoints from the delivered helper proofs. -/
+/-! Assembly of the §§4–5 endpoints from the helper proofs. -/
 
 noncomputable section
 open Matrix
@@ -118,7 +118,7 @@ theorem ordinary_sweep_endpoint_of_dual_dup (hdual : SchurDualTransportStmt)
 theorem duplication_holds : DuplicationStmt :=
   fun P I _ _ _ _ => @duplication_proof P I _ _ _ _
 
-/-- `ordinary_sweep_endpoint` from the one remaining input `schur_dual_transport`. -/
+/-- `ordinary_sweep_endpoint` from `schur_dual_transport`. -/
 theorem ordinary_sweep_endpoint_of_dual (hdual : SchurDualTransportStmt) :
     ∀ (C : ℝ), 1 ≤ C → ∃ C' > 0, ∃ t0 > 0,
     ∀ (n : ℕ) (t θ : ℝ) (old new : State (Fin n))

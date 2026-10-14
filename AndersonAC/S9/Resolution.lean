@@ -2,9 +2,9 @@ import AndersonAC.S9.HelperStatements
 import AndersonAC.Spectral.SpectralProof
 import AndersonAC.Bridge.MomentDeterminacy
 
-/-! The frozen averaging contract accepts an arbitrary supplied
+/-! The averaging statement accepts an arbitrary supplied
 SpectralResolution. Compact moment determinacy identifies its scalar
-measure with the constructed WP01 resolution. -/
+measure with the constructed spectral package resolution. -/
 
 noncomputable section
 

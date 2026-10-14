@@ -35,7 +35,7 @@ lemma gridAngle_eq_centerInt (k : Torus d L) (j : Fin d) :
   unfold gridAngle
   rw [centerReal_eq]
 
-/-- Additivity of centered angles up to `2πℤ` (frozen P5). -/
+/-- Additivity of centered angles up to `2πℤ` (P5). -/
 lemma gridAngle_add_exists (k ζ : Torus d L) (j : Fin d) :
     ∃ n : ℤ, gridAngle (k + ζ) j
       = gridAngle k j + gridAngle ζ j + 2 * Real.pi * n := by
@@ -67,7 +67,7 @@ lemma gridAngle_add_exists (k ζ : Torus d L) (j : Fin d) :
   rw [hR]
   field_simp
 
-/-- Negation of centered angles up to `2πℤ` (frozen P6). -/
+/-- Negation of centered angles up to `2πℤ` (P6). -/
 lemma gridAngle_neg_exists (k : Torus d L) (j : Fin d) :
     ∃ n : ℤ, gridAngle (-k) j = -gridAngle k j + 2 * Real.pi * n := by
   have hj : (-k) j = -(k j) := Pi.neg_apply k j
@@ -1117,7 +1117,7 @@ lemma freeGreen_inverse (z : ℂ)
     by_cases hxy : x = y <;> simp [Matrix.one_apply, hxy, hN]
   exact ⟨hleft, mul_eq_one_comm.mp hleft⟩
 
-/-- All six frozen finite torus Fourier conclusions. -/
+/-- All six finite torus Fourier conclusions. -/
 theorem torusFourier_proof : TorusFourierStatement := by
   intro d L inst hL
   refine ⟨?_, circulant_opNorm, row_parseval, ?_, gridAngle_add_exists, gridAngle_neg_exists⟩

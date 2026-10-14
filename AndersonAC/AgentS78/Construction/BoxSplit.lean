@@ -4,13 +4,13 @@ import AndersonAC.AgentS78.Construction.TileTrialHalt
 import AndersonAC.AgentS78.Construction.TileTrialRetry
 
 /-!
-# WP10 construction: the run invariant package split by block kind (lead, agent-s78con3)
+# Run invariant split by block kind
 
-`BoxInvariantK` asks, besides the invariant closed along the schedule (route R2: only off the
-null `exceptionalSet`, on records with the true installed values `TrueValues`, which are kept
-jointly), the record-level final good record and the all-terminal final record, only for
-the two **goodness inclusions** the C4 bounds need: records entering a tile block are
-`TileGood` (C4a), and records entering a clearing block satisfy the clearing first-failure bound (C4b through the S6 bridge). `boxInvariant_of_K` derives the full
+`BoxInvariantK` assumes the invariant along the schedule off `exceptionalSet`, jointly
+with the true installed values `TrueValues`, plus the final good and all-terminal
+records. The two trial estimates require good entering records: tile records satisfy
+`TileGood`, and clearing records satisfy the clearing first-failure bound through the
+S6 bridge. `boxInvariant_of_K` derives the full
 `BoxInvariant`: first-failure bounds per kind (query-free blocks never fail), and the halting
 bounds (tile: the given ε; clearing: deterministic halting by `clearingHaltBound`; query-free:
 immediate), and the pathwise final record off `exceptionalSet` by the joint induction with
@@ -81,10 +81,10 @@ structure BoxInvariantK (d m n₀ : ℕ) (u E Cr cp cg c C : ℝ) (P : TilePlan 
       (stageStartIdx d m (m + 2)) ω).aborted = false →
     ∀ i, i ∈ (blockPrestate (tileOrderSize P) (scheduleBlocks (runOp P ts₀ cl₀ (clrOf n₀ u))) rec₀
       (stageStartIdx d m (m + 2)) ω).terminal
-  /-- Records entering the tile block of `(j, T)` are `TileGood` (C4a's hypothesis). -/
+  /-- Records entering the tile block of `(j, T)` are `TileGood` (tile trial's hypothesis). -/
   hgoodT : ∀ j (y : Torus d m) (T : Fin (P.cover j).cover.count), P.n₀ < j → j ≤ m + 1 →
     tileAt P j y = some T → ∀ x ∈ Inv (opIndex d m j 0 y), x ∈ TileGood C P j T
-  /-- The clearing first-failure bound on records entering a clearing block (C4b). -/
+  /-- The clearing first-failure bound on records entering a clearing block (clearing trial bound). -/
   hboundC : ∀ j (y : Torus d m), P.n₀ < j → j ≤ m / 2 → ∀ x ∈ Inv (opIndex d m j 2 y),
     sourcesLaw (Torus d m) (tileOrderSize P)
       (localFirstFail (tileOrderSize P) (clearingBlock (d := d) (m := m) n₀ j u y) x) ≤
@@ -113,7 +113,7 @@ def boxEps (P : TilePlan d m) (u : ℝ)
     then εT (decodeJ d m n) h.choose k
     else if k < clearingHaltBound d m u then 1 else 0
 
-/-- **`BoxInvariant` from the kind-split package** and the C4a tile bounds. -/
+/-- **`BoxInvariant` from the kind-split package** and the tile trial tile bounds. -/
 theorem boxInvariant_of_K {n₀ : ℕ} {u E Cr cp cg c C : ℝ} (P : TilePlan d m)
     (hn₀ : P.n₀ = n₀) (hu : P.u = u)
     (hTB : ∀ j, P.n₀ < j → j ≤ m + 1 → ∀ (T : Fin (P.cover j).cover.count),
@@ -300,11 +300,10 @@ def BoxInvariantK.mono {n₀ : ℕ} {u E Cr cp cg c c' C : ℝ} {P : TilePlan d 
   hboundC := fun j y h1 h2 x hx =>
     (B.hboundC j y h1 h2 x hx).trans (ENNReal.ofReal_le_ofReal (birthBound_anti hcc j))
 
-/-- **WP10 finish line, kind-split form.** `S78.UniformCertificateInput d e₂` from the tile
-disciplines, the clearing-block measurability and correction (6), the C4a one-trial contract
-`TileTrialBoundStatement` (A1/A2/A3b), and, for the cover constant `C` of `tilePlan_exists`,
-a `TileGood` constant, uniform constants and a kind-split run invariant package for every large
-box and tile plan with the cover facts. -/
+/-- Assembles `S78.UniformCertificateInput d e₂` from the tile disciplines,
+clearing-block measurability, a `TileTrialBoundStatement`, and uniform kind-split
+run-invariant packages for each large box and tile plan with the cover facts. The
+tile-trial bound follows from the tile slot law, monitor bounds, and sweep transfer. -/
 theorem uniformCertificateInput_of_boxInvariantsK (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
     (htmark : TileMarkingStatement) (htquery : TileQueryStatement)
     (htpat : TilePatternStatement) (htabort : TileAbortStatement)

@@ -1,7 +1,7 @@
 import AndersonAC.Blueprint.FiniteInputs
 import AndersonAC.S2.WardAlgebra
 
-/-! Sorry-free proof of the frozen WP03 package interface. -/
+/-! Proof of the Ward package interface. -/
 
 noncomputable section
 open AndersonAC.S2 AndersonAC.SolS2

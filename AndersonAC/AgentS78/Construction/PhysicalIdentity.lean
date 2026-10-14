@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.FinalCertificate
 
 /-!
-# WP10 construction, C5b/C5d: the physical identity of a committed record
+# the physical identity of a committed record
 
 02-state.tex:231–247: the committed matrix is the Schur complement, onto the active set,
 of `H − E` with the *installed* potential values (partial on active sites, exact true values

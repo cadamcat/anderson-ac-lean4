@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.Freezing
 
 /-!
-# Independence of events on disjoint source coordinates
-
-agent-s78retry (2026-10-14), for `tileRetry_of_trialBound` (TileTrialRetry.lean).
+# Independence of events on disjoint source coordinates, for `tileRetry_of_trialBound` (TileTrialRetry.lean).
 Paper: 05-local-sweeps.tex:940–961 (successive retries read new independent permutations and
 fresh auxiliary families).
 

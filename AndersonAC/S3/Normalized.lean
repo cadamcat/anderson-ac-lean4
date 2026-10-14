@@ -2,7 +2,7 @@ import AndersonAC.S3.Comparators
 
 /-!
 The normalized initialization endpoint (`initialization_normalized` in the planned
-`Statements.lean`, consumed by WP10): Proposition 3.6 at the startup scale
+`Statements.lean`, consumed by certificate construction): Proposition 3.6 at the startup scale
 `t = startupT n₀ m u`, `L = sideLength m`, with uniqueness and continuity of the
 scalar fixed point and the inverse-form comparators. Stated here with the same
 elaboration environment (classical decidability) as the planned statement.

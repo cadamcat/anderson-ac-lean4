@@ -5,7 +5,7 @@ import AndersonAC.AgentS78.Construction.StagePhaseRowInput
 # The stage operation, conditional only on the inverse-row sub-contract
 
 `stage_op_boundary_of_row`: `stage_op_boundary` with its per-record inverse-row hypothesis
-discharged by the frozen `ResetRowStatement` (StagePhaseRowInput.lean).
+discharged by `ResetRowStatement` (StagePhaseRowInput.lean).
 -/
 
 noncomputable section
@@ -18,7 +18,7 @@ open AndersonAC.S78
 variable {d : ℕ}
 
 /-- **The stage operation of the schedule produces the next stage boundary** (inverse-row
-input as the frozen sub-contract). -/
+input as a separate hypothesis). -/
 theorem stage_op_boundary_of_row (hd : 3 ≤ d) (hrow : ResetRowStatement d) (CA cA PA : ℝ)
     (hCA : 1 ≤ CA) (hcA : 0 < cA) (hPA : 0 ≤ PA) :
     ∃ Cmin : ℝ, 1 ≤ Cmin ∧ ∀ C : ℝ, Cmin ≤ C → ∃ t₀ : ℝ, 0 < t₀ ∧

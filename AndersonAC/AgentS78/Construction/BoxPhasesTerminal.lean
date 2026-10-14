@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.Construction.BoxPhasesTermClear
 import AndersonAC.AgentS78.Construction.BoxPhasesTrue
 
 /-!
-# Every site is terminal at the final record (agent-s78box)
+# Every site is terminal at the final record
 
 `runAllTerminal_proof : RunAllTerminalStatement d`, with the index bookkeeping of
 BoxPhasesCore.lean (`boxInv_closed`) for the sets

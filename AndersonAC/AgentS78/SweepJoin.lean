@@ -3,7 +3,7 @@ import AndersonAC.AgentS78.PadNorm
 import AndersonAC.AgentS78.StageStep
 
 /-!
-WP10 sweep join: the conclusion of `S45.ordinary_sweep_endpoint` (affine inverse-form
+certificate construction sweep join: the conclusion of `S45.ordinary_sweep_endpoint` (affine inverse-form
 mixture and `K` increment, on `State (Fin n)`) for the active blocks of two damped
 S78 endpoints gives the `StageStep` fields `sw_affine` and `sw_K` at `t' = θ t`.
 -/

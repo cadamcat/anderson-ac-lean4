@@ -5,7 +5,7 @@ import AndersonAC.S45.GammaProof
 import AndersonAC.S78Moment.Geometry
 
 /-!
-# WP10 active-block Combes--Thomas estimate
+# the active-block Combes--Thomas estimate
 
 Transport the torus active block to a finite-index graph, apply the proved S45 locality
 estimate, and transfer its collapsed-distance bounds back to the physical torus metric.
@@ -884,7 +884,7 @@ private theorem ct_dampedActive_reindex {d m : ℕ} (E : ℝ) (x : RunRecord d m
   unfold AndersonAC.S45.dampedActive
   rw [hSchurFin'', hQ, hTarget, smul_sub]
 
-/-- **Terminal-distance Combes--Thomas decay on the torus active block** (05:62--90,
+/-- **Terminal-distance Combes--Thomas decay on the torus active block** (05-local-sweeps.tex:62–90,
 Lemma `locality`, `eq:local-ct`): the S45 locality estimate transported to the torus; the
 collapsed walk distance dominates the list-path terminal distance. -/
 theorem terminalCT_proof (d : ℕ) : TerminalCTStatement d := by
@@ -1103,7 +1103,7 @@ theorem terminalCT_proof (d : ℕ) : TerminalCTStatement d := by
         mul_le_mul (div_le_div_of_nonneg_right (le_max_right _ _) hsq) hexp
           (Real.exp_pos _).le (div_nonneg (le_trans zero_le_one (le_max_left _ _)) hsq)
 
-/-- **Active-block Combes--Thomas decay in the physical distance** (05:62--100, Lemma
+/-- **Active-block Combes--Thomas decay in the physical distance** (05-local-sweeps.tex:62–100, Lemma
 `locality` with `eq:local-physical-decay` and the split at distance `t^{-2}`). -/
 theorem activeCT_proof (d : ℕ) (hd : 3 ≤ d) : ActiveCTStatement d := by
   intro c₀ C₀ hc₀ hc₀C

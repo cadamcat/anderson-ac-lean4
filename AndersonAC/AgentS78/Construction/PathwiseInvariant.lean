@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.RunChain
 
 /-!
-# WP10 construction, C5b glue: pathwise invariants along the actual run
+# pathwise invariants along the actual run
 
 `runState_inv` / `blockPrestate_mem` propagate record invariants over *all* answers. Some
 invariants of the run hold only along the answers of the sample `ω` itself, e.g. that the

@@ -2,9 +2,9 @@ import AndersonAC.AgentS78.Construction.TileStartLift
 import AndersonAC.AgentS78.Construction.TileStartPortFacts
 
 /-!
-# WP10 tile phase: `D₀ ≍ W` on the live ports (04:118–121, 05:328)
+# `D₀ ≍ W` on the live ports (04:118–121, 05:328)
 
-agent-s78start (2026-10-14). The duplicated energy is
+ . The duplicated energy is
 `D₀(f) = D^phys(f̄) + Σ_x p_i² k_x⁴ (f_x − f̄_i)²` (eq:sweep-duplicate-energy). Given the
 physical comparison `c₁ W^phys ≤ D^phys ≤ c₂ W^phys` (S78 `spatialEnergy` over the active
 set, `initial_comparison_of_stageBounds`), the live port energy is comparable with the

@@ -2,25 +2,17 @@ import AndersonAC.AgentS78.Construction.RunOpsCut
 import AndersonAC.AgentS78.Construction.TrueValues
 
 /-!
-# WP10 construction: the block run of the schedule
+# Block run of the schedule
 
-`blockRun_of_runOps`: the schedule `scheduleBlocks (runOp P ts₀ cl₀ clr)` (tile blocks,
-transitions, clearing attempts `clr`) with order sizes `tileOrderSize P` is a `BlockRun`
-(BlockRun.lean) as soon as
+`blockRun_of_runOps` constructs a `BlockRun` (BlockRun.lean) for
+`scheduleBlocks (runOp P ts₀ cl₀ clr)` from the tile and clearing blocks. Its inputs
+include their measurability and query disciplines, tile diameters bounded by
+`Ch 4^{(8+ν)j}`, almost-sure reachability, a pathwise invariant and first-trial bound,
+the snapshot dichotomy, and the final certificate data. The invariant is maintained
+off `exceptionalSet` on records with the true values of `ω`.
 
-* the tile block satisfies the frozen tile disciplines (TileDisciplines.lean: marking, query,
-  pattern, abort; luna-s78tdisc) and the plan's tiles have diameter `≤ Ch 4^{(8+ν)j}`;
-* the clearing block (muse-s78clear) is measurable, issues no order/auxiliary query, reads
-  its pattern only, and satisfies the marking, abort, query and pattern disciplines;
-* every block is reached a.s. (C4d: tile halting bound, clearing halts);
-* a record invariant `Inv` holds initially and is kept by every block off the null
-  `exceptionalSet`, on records with the true values of `ω` (route R2), `TrueValues` is kept
-  likewise, and the first-trial bound holds on `Inv` (C4a, C4b, the deterministic induction
-  re-cut per block);
-* the snapshot dichotomy holds at the end of each clearing stage, and the final record gives
-  the certificate data (C5c, C5d).
-
-Everything else is proved: `blockRun_of_disciplines` with `runOps_*`.
+`blockRun_of_disciplines` supplies the schedule fields such as slots, scales, pending
+sets, labels, late slots, exceptional set, and success event.
 -/
 
 open MeasureTheory
@@ -41,7 +33,7 @@ theorem blockRun_of_runOps (P : TilePlan d m) (E Cr cp cg Ch c : ℝ) (hu : 0 < 
     (clr : ℕ → Torus d m → Block (Torus d m) (RunRecord d m) (RunRecord d m × ClSc))
     (clrPat : ℕ → Torus d m → RunRecord d m → FreshPattern (Torus d m))
     (rec₀ : RunRecord d m) (hpend₀ : rec₀.pending = ∅) (hrec₀ : rec₀.aborted = false)
-    -- tile disciplines (frozen, TileDisciplines.lean) and tile diameters
+    -- tile discipline statements (TileDisciplines.lean) and tile diameters
     (htmark : TileMarkingStatement) (htquery : TileQueryStatement)
     (htpat : TilePatternStatement) (htabort : TileAbortStatement)
     (hdiam : ∀ j (T : Fin (P.cover j).cover.count), ∀ y ∈ tileSites (P.cover j) T,
@@ -81,10 +73,10 @@ theorem blockRun_of_runOps (P : TilePlan d m) (E Cr cp cg Ch c : ℝ) (hu : 0 < 
           (localState (tileOrderSize P) (clr j y) x k' ω)))
     (hcpat : ∀ j y x, (∀ z ∈ (clrPat j y x).signs, z ∈ declaredFresh x) ∧
       (clrPat j y x).orders = ∅)
-    -- C4d: halting
+    -- block reachability: halting
     (hfinite : ∀ n, ∀ᵐ ω ∂sourcesLaw (Torus d m) (tileOrderSize P),
       blockStart (tileOrderSize P) (scheduleBlocks (runOp P ts₀ cl₀ clr)) rec₀ n ω ≠ ⊤)
-    -- C5b + C4: invariant and first-trial bounds (route R2: the invariant is kept only off the
+    -- run invariant and first-trial bounds (route R2: the invariant is kept only off the
     -- null `exceptionalSet`, on records with the true values of `ω`, jointly with those)
     (Inv : ℕ → Set (RunRecord d m)) (hInv0 : rec₀ ∈ Inv 0)
     (hInv : ∀ n x k (ω : RandomSources (Torus d m) (tileOrderSize P)),
@@ -110,7 +102,7 @@ theorem blockRun_of_runOps (P : TilePlan d m) (E Cr cp cg Ch c : ℝ) (hu : 0 < 
     (hbound : ∀ n, ∀ x ∈ Inv n, sourcesLaw (Torus d m) (tileOrderSize P)
       (localFirstFail (tileOrderSize P) (scheduleBlocks (runOp P ts₀ cl₀ clr) n) x) ≤
         ENNReal.ofReal (birthBound c (slotScaleOf d m n)))
-    -- C5c: snapshot dichotomy at the end of each clearing stage
+    -- stage dichotomy: snapshot dichotomy at the end of each clearing stage
     (hdich : ∀ j x (ω : RandomSources (Torus d m) (tileOrderSize P)), P.n₀ < j →
       clearingScheduled j m →
       blockStart (tileOrderSize P) (scheduleBlocks (runOp P ts₀ cl₀ clr)) rec₀
@@ -123,7 +115,7 @@ theorem blockRun_of_runOps (P : TilePlan d m) (E Cr cp cg Ch c : ℝ) (hu : 0 < 
         (∀ y ∈ S, y ∈ (blockPrestate (tileOrderSize P) (scheduleBlocks (runOp P ts₀ cl₀ clr))
           rec₀ (stageStartIdx d m (j + 1)) ω).pending) ∧
         (∀ y ∈ S, physicalDistance d m x y ≤ Ch * (4 : ℝ) ^ ((8 + nu d) * (j : ℝ))))
-    -- C5d: the final record
+    -- installed values: the final record
     (hfinal : ∀ ω : RandomSources (Torus d m) (tileOrderSize P),
       ω ∉ exceptionalSet (d := d) (m := m) P.n₀ P.u E (tileOrderSize P) →
       blockStart (tileOrderSize P) (scheduleBlocks (runOp P ts₀ cl₀ clr)) rec₀

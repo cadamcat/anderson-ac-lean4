@@ -2,7 +2,7 @@ import AndersonAC.S2.Binary
 import AndersonAC.S2.Scales
 import AndersonAC.Prob.Binary
 
-/-! Coupling, normalization and moment transports of the accepted WP04 law. -/
+/-! Coupling, normalization and moment transports of the accepted probability package law. -/
 
 noncomputable section
 open MeasureTheory ProbabilityTheory

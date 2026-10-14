@@ -3,18 +3,17 @@ import AndersonAC.AgentS78.Construction.TileStartComparison
 import AndersonAC.AgentS78.Construction.TileStartPortFacts
 
 /-!
-# WP10 tile phase: the algebraic duplicated stage start on the live ports (proposal v3)
+# Algebraic duplicated stage start on the live ports
 
-agent-s78start (2026-10-14). Proposal for the live-subtype form of `StartClauses`
-(INTERFACE-ISSUES, agent-s78start → agent-s78tphase, agent-s78con3): the frozen
-`StartClauses` is stated on the ambient all-ports state and is false whenever a site is
-inactive (`startClauses_active_univ`). Here the clauses that follow from Lemma `duplication`
-(04:73–123) and the stage-boundary bounds (05:320–337) are stated on the live state
+`StartClauses` is stated on the ambient all-ports state, which fails when a site is
+inactive (`startClauses_active_univ`). This file states the algebraic clauses on the
+live state that follow from Lemma `duplication` (04-sweep.tex:73–123) and the
+stage-boundary bounds (05-local-sweeps.tex:320–337):
 `a.state (portR θ r) : S45.State a.live` and proved (`tileStartAlgebraic_proof`) under the
 stage bounds at `j − 1`, the damped identity of the endpoint and the cover facts
 (`b = t_{n₀} t`, energy `Λ`, site `Prod.fst`). The decay clauses (`start_decay`,
 `start_far_decay`, `prefix_decay`) are not part of this file: they need the locality of the
-endpoint matrix (Combes–Thomas, 05:62–80), see INTERFACE-ISSUES.
+endpoint matrix (Combes–Thomas, 05-local-sweeps.tex:62–80).
 -/
 
 noncomputable section
@@ -35,9 +34,9 @@ variable (C : ℝ) (P : TilePlan d m) (j : ℕ)
 def liveStartState (a : S45.LiveState (Port d m)) (r : Torus d m → ℂ) : S45.State a.live :=
   a.state (portR (sweepTheta P.u m j) r)
 
-/-- **Algebraic duplicated stage-start clauses on the live ports** (proposal v3 of the
+/-- **Algebraic duplicated stage-start clauses on the live ports** for the
 `start_prestate`, `start_lag`, `start_comparison`, `start_rows`, `start_reserve_rows` clauses
-of `StartClauses`; 04:73–123, 05:320–337). -/
+of `StartClauses`; –123, 05:320–337). -/
 structure StartAlgebraicLive (a : S45.LiveState (Port d m)) (r : Torus d m → ℂ) : Prop where
   start_prestate : ∃ Λplus Wstar : S45.Form a.live,
     S45.Prestate (sweepScale P.u m j) C Λplus Wstar (liveStartState P j a r) ∧
@@ -61,9 +60,8 @@ structure StartAlgebraicLive (a : S45.LiveState (Port d m)) (r : Torus d m → �
 
 end Defs
 
-/-- **Proposed contract (v3, algebraic part).** As `TileStartStatement`, with the damped
-identity of the endpoint and the cover site as extra hypotheses (INTERFACE-ISSUES (2), (3)),
-the conclusion on the live ports, and uniform in every constant `C ≥ C'`. -/
+/-- Algebraic stage-start clauses on the live ports, assuming the endpoint's damped
+identity and the stated cover energy and site map, uniformly for `C ≥ C'`. -/
 def TileStartAlgebraicStatement (d : ℕ) : Prop :=
   ∀ cP CP cL CL C₀ : ℝ, 0 < cP → cP ≤ CP → 0 < cL → 0 < CL → 0 < C₀ →
   ∃ C' ≥ 1, ∃ t0 > 0, ∀ C ≥ C', ∀ (m n₀ : ℕ) (u : ℝ) (P : TilePlan d m) (j : ℕ)

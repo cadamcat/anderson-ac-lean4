@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.TileCoverBox
 
 /-!
-# WP10 construction: the §5 tile covers — the cube tiling of the torus
-
-agent-s78cover (2026-10-14). Tiles of side `L` (`L ∣ N`, `5L ≤ N`, `N = sideLength m`), the
+# the §5 tile covers — the cube tiling of the torus. Tiles of side `L` (`L ∣ N`, `5L ≤ N`, `N = sideLength m`), the
 concentric cubes `Q` (side `3L`) and `Q'` (side `5L`) and the cutoff `χ` of 05:240–245, in
 offset coordinates relative to the corner of `Q'`.
 -/

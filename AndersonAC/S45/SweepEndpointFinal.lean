@@ -2,7 +2,7 @@ import AndersonAC.S45.EndpointAssembly
 import AndersonAC.S45.FormDualityProof
 
 /-! Unconditional `ordinary_sweep_endpoint`: the last input, `schur_dual_transport`, is
-proved in `FormDualityProof` (argon-s45dual 26c8442, continuing luna-s45dual). -/
+proved in `FormDualityProof` (continuing). -/
 
 namespace AndersonAC.AgentS45
 

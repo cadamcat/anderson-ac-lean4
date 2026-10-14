@@ -12,7 +12,7 @@ set_option maxHeartbeats 5000000
 Proof of the transformed lag increment bound (Lemma 4.6).
 
 The finite-array estimates below are arranged around the coordinatewise
-square-sum used by `arrayA2sq`; no section statement module is imported here.
+square-sum used by `arraymonitor boundssq`; no section statement module is imported here.
 -/
 
 noncomputable section

@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.StageDichotomy
 
 /-!
-# WP10 construction: the stage dichotomy with the schedule's eligibility threshold
+# the stage dichotomy with the schedule's eligibility threshold
 
 The schedule attempts the snapshot components with `|B| ≤ t_j^{-ν}`, `t_j = stageScale u j m`
 (07-assembly.tex:18–34), while the dichotomy of `BlockRun` counts large components against

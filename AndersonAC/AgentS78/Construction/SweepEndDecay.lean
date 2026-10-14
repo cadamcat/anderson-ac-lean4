@@ -1,14 +1,12 @@
 import AndersonAC.AgentS78.Construction.SweepEnd
 
 /-!
-# The Combes–Thomas decay of the post-sweep endpoint
-
-agent-s78send (2026-10-14). The field `resolventDecay` of `ClearPhaseData.ofSweep'` at the sweep
+# The Combes–Thomas decay of the post-sweep endpoint. The field `resolventDecay` of `ClearPhaseData.ofSweep'` at the sweep
 end reduces to one Combes–Thomas statement on the torus active block in the **terminal
-distance** (`TerminalCTStatement`, 05:62–100: S45 Lemma `locality`, `AgentS45.locality_proof`,
+distance** (`TerminalCTStatement`, –100: S45 Lemma `locality`, `AgentS45.locality_proof`,
 transported to the torus, decay `exp(−a t d_T)` with `d_T` the collapsed/terminal distance of
-the terminal set). It is the same transport as agent-s78start's `ActiveCTStatement`
-(luna-s78actct) before its conversion to the physical distance, and it is what
+the terminal set). It is the same transport as `ActiveCTStatement`
+ before its conversion to the physical distance, and it is what
 `AssemblyInput.resolventDecay` needs: with the metric clause of the stage bounds,
 `d_T ≥ dist/2 − t^{-1.03}`.
 -/

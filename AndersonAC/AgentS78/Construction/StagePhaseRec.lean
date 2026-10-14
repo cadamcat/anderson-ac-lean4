@@ -1,18 +1,16 @@
 import AndersonAC.AgentS78.Construction.StagePhaseTrace
 
 /-!
-# The record clauses of the clearing phase along the clearing attempts
-
-agent-s78phase2. `ClearRecPos … j r x anchor` is `ClearRec` (StagePhaseDone.lean) plus two
+# The record clauses of the clearing phase along the clearing attempts. `ClearRecPos … j r x anchor` is `ClearRec` (StagePhaseDone.lean) plus two
 clauses about the components not yet reached by the anchor scan (every site of rank `≥ r`):
 they are still pending, and pending sites outside them lie farther than `R_j − ℓ_j/2`
 (07-assembly.tex:200–209; the form of `ClearingGoodAt.separated` that survives failed
-clearings, see StagePhaseSepDefect.lean at 4818b1d; resolved by 06976a5). At the clearing index `opIndex j 2 y` the scan
+clearings). At the clearing index `opIndex j 2 y` the scan
 position is `r = rank y`.
 
 * `clearRecPos_fail`: a FAIL exit keeps it (position `r + 1`);
 * `clearRecPos_done`: a DONE exit keeps it with the anchors extended by `y`, given the Schur
-  support of the committed matrix (`ClearingDoneHopsStatement`, frozen, mechanical);
+  support of the committed matrix (`ClearingDoneHopsStatement`);
 * `ClearPhaseR`: clearing-phase data with these clauses, the scale-radius window and the broad
   damping; `clearingBlockR_keeps` and `clearOpR_hInv` (schedule form, kind 2).
 -/

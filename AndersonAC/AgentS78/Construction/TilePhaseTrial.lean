@@ -1,15 +1,13 @@
 import AndersonAC.AgentS78.Construction.TilePhase
 
 /-!
-# WP10 construction, tile phase (b): one tile block keeps the tile-phase invariant
-
-agent-s78tphase (2026-10-14). The states of the tile block of `T` reached from a record `x`
+# one tile block keeps the tile-phase invariant. The states of the tile block of `T` reached from a record `x`
 (for **any** answers, `BlockReach`) satisfy `ReachInv`: while running, the record is `x` up to
 pending/latest marks (`markTile`, 05:512–514), and the scratch prefix extends `x.sweep` by
 `S45.StepRel` deletions of active bit ports of `T`, each tested by `trialOk` (05:466–504):
 valid at every new length, with the trial's local budget; when halted, the exit is aborted or
 the commit of such a prefix (`CommitGood`). Combined with the completeness of the accepted
-trial (every active bit port of `T` deleted; `TileAcceptComplete`, see INTERFACE-ISSUES 01:05:
+trial (every active bit port of `T` deleted; `TileAcceptComplete`,
 true on real answers, false for arbitrary ones), the exit satisfies the invariant with `T`
 processed: `tileBlock_keeps`.
 -/
@@ -541,7 +539,7 @@ theorem reach_of_aborted (hab : x.aborted = true) (s : RunRecord d m × TileScra
     rw [ih] at hh
     simp [tileBlock, hab] at hh
 
-/-- **Completeness of an accepted trial** (the isolated hypothesis; INTERFACE-ISSUES 01:05):
+/-- Completeness of an accepted trial:
 an accepted exit has deleted the bit port of every active site of `T`. -/
 def TileAcceptComplete (P : TilePlan d m) (j : ℕ) (T : Fin (P.cover j).cover.count)
     (x y : RunRecord d m) : Prop :=
@@ -701,7 +699,7 @@ end Keeps
 
 end AndersonAC.AgentS78
 
-/-! ## The scalar bound `|ξ| ≤ 2√t` from the scales (04:36–41, 05:349–359) -/
+/-! ## The scalar bound `|ξ| ≤ 2√t` from the scales (–41, 05:349–359) -/
 
 namespace AndersonAC.AgentS78
 

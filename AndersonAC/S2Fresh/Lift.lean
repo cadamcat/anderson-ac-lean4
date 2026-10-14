@@ -636,7 +636,7 @@ theorem aeTime_aux {Q : ℕ → RandomSources ι M → Query ι}
   rw [hLrw, hRrw]
   exact hEqUnion
 
--- The frozen helper, assembled from the two lifts.
+-- The stopped-freshness lift assembled from the two component lifts.
 theorem StoppedFreshnessLift_proof : StoppedFreshnessLift where
   natTime := fun _ _ _ _ _ hQ hFresh τ hτ D hD s a O b =>
     natTime_aux _ hQ hFresh τ hτ D hD s a O b

@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.MachineDef
 
 /-!
-# WP10 random construction, C3a′: proof of the explicit machine run
+# proof of the explicit machine run
 
 The carried query list is the finite trace of `machineQ`. Its count of each
 `nextOrder` query therefore agrees with `S2.orderCount`, which identifies each
@@ -249,7 +249,7 @@ end
 
 end MachineRunProof
 
-/-- The explicit machine run satisfies the frozen `MachineRunStatement`. -/
+/-- The explicit machine run satisfies `MachineRunStatement`. -/
 theorem machineRun_proof : MachineRunStatement := by
   intro ι hι hιdec M St hSt next hnext update hupdate
   classical

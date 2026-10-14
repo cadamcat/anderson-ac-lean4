@@ -1072,7 +1072,7 @@ private theorem norm_integral_indicator_ofReal {d : ℕ} (s : Set (Frequency d))
     · simp [Set.indicator_of_notMem hk])]
   rw [integral_indicator hs]
 
-/-- Lemma 3.5 follows from the frozen one-dimensional ray and polar contracts. -/
+/-- Lemma 3.5 follows from the one-dimensional ray and polar statements. -/
 theorem bottomResolvent_of_helpers (hRay : RayEstimatesStatement)
     (hPolar : PolarRayBoundStatement) : BottomResolventStatement := by
   intro d hd β₁ β₂ hβ₁ hβ₁₂ hβ₂

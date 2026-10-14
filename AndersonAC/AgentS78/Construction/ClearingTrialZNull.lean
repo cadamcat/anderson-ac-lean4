@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.ClearingTrialZ
 
 /-!
-# WP10 construction, C4b off a null set: tools
+# tools
 
 * `flipClosure`: a measurable null superset of a null set, invariant under the site and
   single-digit sign flips (countable union of preimages under finite words of flips);

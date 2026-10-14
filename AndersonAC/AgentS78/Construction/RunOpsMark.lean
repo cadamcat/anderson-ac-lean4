@@ -4,11 +4,11 @@ import AndersonAC.AgentS78.Construction.TileDisciplines
 import AndersonAC.AgentS78.Construction.Assembly
 
 /-!
-# WP10 construction: marking discipline of the schedule
+# marking discipline of the schedule
 
 The `hmark` hypothesis of `blockRun_of_disciplines` for `scheduleBlocks (runOp …)`, from the
-tile marking discipline (`TileMarkingStatement`, luna-s78tdisc), the tile diameter of the plan,
-and the clearing marking discipline (a hypothesis until the clearing block is delivered). The
+tile marking discipline (`TileMarkingStatement`), the tile diameter of the plan,
+and the clearing marking discipline. The
 query-free operations keep pending sites and labels (`KeepsMarks`). Also: the blocks before
 stage `n₀ + 1` are empty (`hempty`).
 -/

@@ -5,17 +5,17 @@ import AndersonAC.AgentS78.Construction.TileBlockFacts
 import AndersonAC.AgentS78.Construction.TorusMetric
 
 /-!
-# WP10 construction: the clearing-block facts of `RunOpsInputs` (lead, agent-s78con3)
+# Clearing-block facts for `RunOpsInputs`
 
-For `clr j y := clearingBlock n₀ j u y` (muse-s78clear, ClearingBlock.lean):
+For `clr j y := clearingBlock n₀ j u y` (ClearingBlock.lean):
 
 * `clr_reach`: along `BlockReach` the record is the entering record, the scratch core is
   `theCore j u y x`, and `coreLeft ⊆ core`;
 * `clr_comp` (`hccomp`), `clr_abort` (`hcabort`), `clr_pat` (`hcpat`), `clr_query`
   (`hcquery`).
 
-The marking facts `hcmark`, `hcrelabel`, `hckeep` use correction (6) (guarded failure
-candidates, radius clause in `eligibleCand`) and live in a later section.
+The marking facts `hcmark`, `hcrelabel`, and `hckeep` use guarded failure
+candidates and the radius clause in `eligibleCand`.
 -/
 
 open MeasureTheory
@@ -402,12 +402,12 @@ theorem theCore_eq_of_unique (x : RunRecord d m) {Bc : Finset (Torus d m)}
 
 /-! ## The marking facts, from guarded inspections and a core radius -/
 
-/-- Every inspected site of a reachable state passes the pivot guard (correction (6)). -/
+/-- Every inspected site of a reachable state passes the pivot guard. -/
 def ClrGuarded (n₀ j : ℕ) (u : ℝ) (y : Torus d m) : Prop :=
   ∀ x s, BlockReach (clearingBlock (d := d) (m := m) n₀ j u y) x s →
     ∀ p ∈ s.2.inspected, guardHolds (d := d) (m := m) j s.2.core (coupledActive x) x.terminal p
 
-/-- `ClrGuarded` from the guard of the failure candidates (correction (6)(a)): heat pivots
+/-- `ClrGuarded` from the guard of the failure candidates : heat pivots
 carry their guard evidence. -/
 theorem clrGuarded_of_fail
     (hfail : ∀ (rc : RunRecord d m) (sc : ClearScratch d m) (p : Torus d m),

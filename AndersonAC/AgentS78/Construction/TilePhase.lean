@@ -4,11 +4,10 @@ import AndersonAC.AgentS78.Construction.ResetBlock
 import AndersonAC.AgentS78.Construction.PhysicalIdentity
 
 /-!
-# WP10 construction: the tile-phase record invariant (the sweep into stage `j`)
+# the tile-phase record invariant (the sweep into stage `j`)
 
-agent-s78tphase (2026-10-14), request of agent-s78con2 (DISPATCH-REQUESTS 00:38:25, "Tile-phase
-invariant"). Paper (authoritative): 04-sweep.tex:60–100 (duplication, the swept ports),
-05-local-sweeps.tex:320–560 (stage start, trials, records, validity), cited `04:`/`05:`.
+The invariant is described in 04-sweep.tex:60–100 (duplication and swept ports) and
+05-local-sweeps.tex:320–560 (stage start, trials, records, and validity).
 
 The sweep into stage `j` processes the tiles of `P.cover j` in anchor order. Between two tile
 blocks the committed record satisfies `TileSweepInv … done`, where `done` is the set of tiles
@@ -19,7 +18,7 @@ already processed:
 * `plan`, `start` — the plan facts and the duplicated stage-start clauses (05:320–337); they
   depend only on `x.sweep.state 0` and `x.r`, which the tile blocks never change;
 * `start_live` — **adapter clause (TileGoodCore v3)**: the sweep starts from the ports of the
-  active sites, `liveStart x` (luna-s78reset's `sweepStartLiveState`);
+  active sites, `liveStart x` (`sweepStartLiveState`);
 * the committed prefix: well formed, valid at every `k`, bit pivots with `|ξ| ≤ 2√t`;
 * `blocks` — the accepted tile records (05:399–419, 452–462) with their local budgets; tiles
   outside `done` own no step;
@@ -30,7 +29,7 @@ already processed:
 
 `TileSweepCore … done x` with `T ∉ done` gives every clause of `TileGoodCore` for `T` except
 the v3-dependent `start_live`/`tile_live`, which hold through the adapters
-`tileGoodCore_of_sweep` (current d1c53f9 form, under `x.endpoint.active = univ`).
+`tileGoodCore_of_sweep` (under `x.endpoint.active = univ`).
 -/
 
 open MeasureTheory
@@ -50,7 +49,7 @@ variable {d m : ℕ}
 section Defs
 variable (C : ℝ) (P : TilePlan d m) (j : ℕ)
 
-/-- The live ports at the start of a sweep: both ports of every active site (luna-s78reset's
+/-- The live ports at the start of a sweep: both ports of every active site (
 `sweepStartLiveState`; the intended v3 live set). -/
 def liveStart (x : RunRecord d m) : Finset (Port d m) :=
   Finset.univ.filter fun p : Port d m => p.1 ∈ x.endpoint.active
@@ -86,7 +85,7 @@ def startV3 (e : Endpoint (Torus d m)) (r : Torus d m → ℂ) :
 theorem stageStartV3_eq (x : RunRecord d m) : stageStartV3 P j x = startV3 P j x.endpoint x.r :=
   rfl
 
-/-- **Duplicated stage-start clauses, TileGoodCore v3** (lane/agent-s78 4e3f317; 05:320–337):
+/-- **Duplicated stage-start clauses, TileGoodCore** (05-local-sweeps.tex:320–337):
 the `start_*` clauses on the active-site ports `startV3 P j e r` and `prefix_decay` on the
 sweeps from the start state `a`. Adapter: only this structure follows later changes of the
 v3 start clauses. -/
@@ -166,7 +165,7 @@ structure TileSweepCore (n₀ : ℕ) (u E : ℝ) (ρ : ℂ) (Cb : ℝ)
   start : StartClauses C P j x.endpoint x.r (x.sweep.state 0)
   /-- Adapter clause (v3): the sweep starts from the ports of the active sites. -/
   start_live : (x.sweep.state 0).live = liveStart x
-  /-- The sweep starts from the duplicated committed endpoint (04:67–80; luna-s78reset's
+  /-- The sweep starts from the duplicated committed endpoint (–80;
   `sweepStartLiveState`), which the tile blocks do not change. -/
   start_lift : x.sweep.state 0 = sweepStartLiveState (sweepTheta P.u m j) x
   wellFormed : x.sweep.wellFormed (sweepScale P.u m j) (portR (sweepTheta P.u m j) x.r)
@@ -179,7 +178,7 @@ structure TileSweepCore (n₀ : ℕ) (u E : ℝ) (ρ : ℂ) (Cb : ℝ)
   pivots_some : ∀ k < x.sweep.length, x.sweep.pivot k ≠ none
   /-- Physical identity of the sweep-start record (02-state.tex:231–247): the installed values
   minus this sweep's increments match the committed `M` (which records the increments only at
-  the sweep end, agent-s78con3 01:28). -/
+  the sweep end). -/
   physical : PhysicalIdentity E
     { x with installed := fun i => x.installed i - sweepIncrement (sweepTheta P.u m j) x.sweep i }
   blocks : SweepBlocks P j done x
@@ -262,7 +261,7 @@ theorem TileSweepCore.distinct (h : TileSweepCore C P j n₀ u E ρ Cb done x) :
   subst this
   exact pivot_injective h.wellFormed hk hl hy hy'
 
-/-- **Adapter (TileGoodCore v3.1, lane/agent-s78 1f79d9d).** The invariant gives `TileGoodCore`
+/-- The invariant gives `TileGoodCore`
 for every unprocessed tile. -/
 theorem tileGoodCore_of_sweep (h : TileSweepCore C P j n₀ u E ρ Cb done x)
     {T : Fin (P.cover j).cover.count} (hT : T ∉ done) : TileGoodCore C P j T x where

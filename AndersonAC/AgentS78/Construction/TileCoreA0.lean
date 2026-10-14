@@ -4,9 +4,7 @@ import AndersonAC.AgentS78.Construction.MachineRunProof
 import AndersonAC.AgentS78.Construction.TileTrialHalt
 
 /-!
-# WP10 construction, C4a core, piece A0: the first trial is the slot recursion
-
-agent-s78trial (2026-10-14). `tileSlotDescription_proof : TileSlotDescriptionStatement`:
+# the first trial is the slot recursion. `tileSlotDescription_proof : TileSlotDescriptionStatement`:
 the block-local run of `tileBlock` from a non-aborted record, while in its first trial,
 reveals the order `π_{j,T,0}` slot by slot and performs exactly the steps of `slotSeq`
 (TileCore.lean); it fails iff `slotSeq` fails, and the exposed sites are distinct.
@@ -432,7 +430,7 @@ theorem phase_all (hM : TileOrderSizes P j T M) (x : RunRecord d m) (hab : x.abo
 
 end Run
 
-/-- **A0.** -/
+/-- **slot recursion.** -/
 theorem tileSlotDescription_proof : TileSlotDescriptionStatement := by
   intro d m P j T M x hM hab
   refine ⟨?_, fun k hk ω => tileRemaining_card P j T M hM k hk ω⟩

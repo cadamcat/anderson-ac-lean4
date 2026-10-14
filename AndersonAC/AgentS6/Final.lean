@@ -4,7 +4,7 @@ import AndersonAC.S2.WardPackage
 import AndersonAC.S6Heat.HeatCount
 
 /-! Proposition 6.6 (06-clearing.tex:826–850) from: the §2 Ward input, Lemma 6.5
-(`HeatCountStatement`), and the two frozen concentration failure modes
+(`HeatCountStatement`), and the two concentration failure modes
 (`BudgetTailStatement`, `CapTailStatement`). The heat-limit mode is proved here. -/
 
 noncomputable section
@@ -32,7 +32,7 @@ theorem preparation_of_small_component_of (hWard : AndersonAC.Blueprint.WardInpu
     (hBudget Ω d hd c K Cloc cConc hc hK hCloc hConc μ qlag ε hqlag hε hεpos)
     (hCap Ω d hd c K Cloc cConc hc hK hCloc hConc μ qlag ε hqlag hε hεpos)
 
-/-- The same with the proved §2 Ward package (WP03, `main`). -/
+/-- The same with the proved §2 Ward package (Ward package, `main`). -/
 theorem preparation_of_small_component_of_tails
     (hHC : AndersonAC.SolS6.HeatCountStatement.{u})
     (hBudget : BudgetTailStatement.{u}) (hCap : CapTailStatement.{u})
@@ -47,7 +47,7 @@ theorem preparation_of_small_component_of_tails
   preparation_of_small_component_of AndersonAC.Blueprint.Packages.ward hHC hBudget hCap
     d hd c K Cloc cConc hc hK hCloc hConc μ qlag ε hqlag hε hεpos
 
-/-- The same with the proved Lemma 6.5 (luna-s6heat) and Ward package: only the two frozen
+/-- The same with the proved Lemma 6.5 and Ward package: only the two
 concentration failure modes remain as hypotheses. -/
 theorem preparation_of_small_component_of_concentration_tails
     (hBudget : BudgetTailStatement.{u}) (hCap : CapTailStatement.{u})

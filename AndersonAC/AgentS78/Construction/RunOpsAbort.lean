@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.RunOpsMark
 
 /-!
-# WP10 construction: abort discipline of the schedule
+# abort discipline of the schedule
 
 The `habort` hypothesis of `blockRun_of_disciplines` for `scheduleBlocks (runOp …)`: a block
 exits aborted from a non-aborted record only if it is a tile block after the cutoff whose

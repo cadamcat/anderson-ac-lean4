@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.SweepJoin
 import AndersonAC.AgentS78.ResetJoin
 
 /-!
-WP10: one `StageStep` from the three section results.
+certificate construction: one `StageStep` from the three section results.
 
 * sweep: the two conclusions of `S45.ordinary_sweep_endpoint` for the active blocks of
   the stage-start endpoint `old` and the post-sweep endpoint `sw` (`sweep_step`);

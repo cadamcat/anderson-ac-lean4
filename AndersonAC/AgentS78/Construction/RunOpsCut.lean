@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.Construction.RunOpsFresh
 import AndersonAC.AgentS78.Construction.RunChain
 
 /-!
-# WP10 construction: from the cutoff to the end of stage `⌊m/2⌋`
+# from the cutoff to the end of stage `⌊m/2⌋`
 
 The blocks from the cutoff operation `cutoffIndex` to the first block of stage `⌊m/2⌋ + 1`
 are stage operations (`k = 3`), which keep the pending sites. Hence the pending set entering

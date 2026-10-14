@@ -3,7 +3,7 @@ import AndersonAC.AgentS6.RidgeStep
 import AndersonAC.S6RidgeInit.RidgeInitial
 
 /-! At the trial start every leverage is at most `2 l_*` (06-clearing.tex:680–688, 996–1001:
-"at initialization ... its leverage was at most `2l_*`"): the start ridge `l_*^{-2}` gives
+"at initialization... its leverage was at most `2l_*`"): the start ridge `l_*^{-2}` gives
 `m_* ≤ l_*² < 2l_*`, and a lowering stops at `2l_*`. -/
 
 noncomputable section

@@ -5,7 +5,7 @@ import AndersonAC.S6.Statements
 predictable event where the residual has conditional mean `0`, conditional second moment
 `t - η`, and `|ξ| ≤ C√t`, with predictable `ρ = r_x`, `γ = g_xx` bounded by `C`,
 `‖E[c_x | F] - √t (γ - ρ)‖ ≤ (C² + C³ + 16C⁵) t`. Proof by the second-order expansion of
-`c_x` (opus-l64 `norm_hc_sub_le`), linearity and pull-out; no regular conditional law. -/
+`c_x` (`norm_hc_sub_le`), linearity and pull-out; no regular conditional law. -/
 
 noncomputable section
 open MeasureTheory

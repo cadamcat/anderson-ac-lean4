@@ -2,9 +2,9 @@ import AndersonAC.S9.Core
 import AndersonAC.S9.OwnSite
 import AndersonAC.S9.Statements
 
-/-! Exact helper contracts for the Phase 2 dispatcher. Definitions are
+/-! Exact helper contracts for the phase dispatcher. Definitions are
 propositions, not assumed proofs. Keep each contract unchanged after its
-dispatch; return a theorem with the corresponding `_proof` name. -/
+; return a theorem with the corresponding `_proof` name. -/
 
 noncomputable section
 
@@ -13,8 +13,8 @@ open scoped Topology ENNReal
 
 namespace AndersonAC.SolS9
 
-/-- Required by the frozen AveragingInput, which accepts any supplied
-resolution, rather than only WP01's selected constructed resolution. -/
+/-- Required by `AveragingInput`, which accepts any supplied
+resolution, rather than only spectral package's selected constructed resolution. -/
 def ResolutionTransformInput : Prop :=
   ∀ (d : ℕ) (T : StateSpace d →L[ℂ] StateSpace d), IsSelfAdjoint T →
     ∀ S : SpectralResolution T, ∀ (v : StateSpace d) (z : ℂ), 0 < z.im →

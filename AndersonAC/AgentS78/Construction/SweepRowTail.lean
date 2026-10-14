@@ -2,14 +2,14 @@ import AndersonAC.AgentS78.Construction.FinalSweep
 import AndersonAC.AgentS78.Construction.SweepReserveRowTools
 
 /-!
-# Row tails of the committed sweep (agent-s78resrow)
+# Row tails of the committed sweep
 
-Proves `AndersonAC.AgentS78.sweepRowTail_proof : SweepRowTailStatement d` (contract frozen by
-agent-s78send, SweepEndReserve.lean:150 on lane/agent-s78send a8b131e; consumer
-`sweepReserveRow_of_tails`). Paper: 05-local-sweeps.tex:155–239 (Lemma `local-prospective`, the
+`AndersonAC.AgentS78.sweepRowTail_proof : SweepRowTailStatement d` uses the statement
+in `SweepEndReserve.lean:150` and is consumed by `sweepReserveRow_of_tails`.
+Paper: 05-local-sweeps.tex:155–239 (Lemma `local-prospective`, the
 scalar row tails), used in 05:568–577.
 
-**Route.** A3b's row-step bound (argon-s78transfer f602b00 `poly_row_step_bound`, copied as
+**Proof.** The row-step bound (`poly_row_step_bound`, copied as
 `row_step_bound` in SweepReserveRowTools.lean, generic port type) at every committed step of
 `x.sweep` on the ambient ports `Port d m`. Its inputs at step `k`:
 
@@ -46,7 +46,7 @@ section Tail
 variable {C : ℝ} {P : TilePlan d m} {j n₀ : ℕ} {u E : ℝ} {ρ : ℂ} {Cb : ℝ}
   {done : Finset (Fin (P.cover j).cover.count)} {x : RunRecord d m}
 
-/-- **Per-step row tail of the committed sweep** (05:155–239 through A3b's row-step bound):
+/-- **Per-step row tail of the committed sweep** (05:155–239 through sweep transfer's row-step bound):
 `|stepRow cols k i| ≤ A t^{-(4+3d)} exp(−c t³ dist(i, x_k))` with `A` depending on `d, C, c`. -/
 theorem step_row_tail (hx : TileSweepCore C P j n₀ u E ρ Cb done x) (hC : 1 ≤ C)
     (ht : 0 < sweepScale P.u m j) (ht1 : sweepScale P.u m j ≤ 1)
@@ -152,7 +152,7 @@ theorem sweepRowTailFull_proof (d : ℕ) : SweepRowTailFullStatement d := by
         mul_le_mul_of_nonneg_right hAt (Real.rpow_nonneg ht.le _)
     _ = power t (-(5 + 3 * (d : ℝ))) := by rw [power_mul' ht]; ring_nf
 
-/-- The digit form (agent-s78send's frozen contract). -/
+/-- The digit form. -/
 theorem sweepRowTail_proof (d : ℕ) : SweepRowTailStatement d :=
   (sweepRowTailFull_proof d).digit
 

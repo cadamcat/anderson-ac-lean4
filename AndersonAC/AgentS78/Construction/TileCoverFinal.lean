@@ -4,11 +4,11 @@ import AndersonAC.AgentS78.Construction.TorusKernel
 import AndersonAC.AgentS78.Construction.GridPoincare
 
 /-!
-# WP10 construction: the §5 tile covers — unconditional
+# Unconditional §5 tile covers
 
-agent-s78cover (2026-10-14). `tileCover_proof : ∀ d, TileCoverStatement d` (frozen statement,
-lane/agent-s78 65ea2ce) and `tilePlan_exists`, the tile plans with the `TileGoodCore` cover
-clauses, tile diameters and restrictions (TileCoverPlan.lean).
+`tileCover_proof : ∀ d, TileCoverStatement d` and `tilePlan_exists` provide tile
+plans with the `TileGoodCore` cover clauses, tile diameters, and restrictions
+(`TileCoverPlan.lean`).
 -/
 
 noncomputable section

@@ -3,13 +3,13 @@ import AndersonAC.AgentS78.Construction.Record
 import AndersonAC.AgentS78.Construction.PrefixInductionInitial
 
 /-!
-# WP10 construction, C5b: the stage-boundary invariant of the run
+# the stage-boundary invariant of the run
 
 `BoundaryInv n₀ u E ρ C k x`: the committed endpoint and damping of `x` end a stage history
 from the §3 initial endpoint (damping `ρ`) up to stage `k`: one `StageStep` per stage `n < k`
 (sweep, committed clearings, reset: `stage_step_of_sections`) and the boundary facts at each
-stage `n ≤ k`. This is the hypothesis list of `prefix_of_steps`. With the frozen prefix
-induction `PrefixStageBoundsStatement` (luna-s78prefix) it gives the stage bounds of the
+stage `n ≤ k`. This is the hypothesis list of `prefix_of_steps`. With prefix
+induction `PrefixStageBoundsStatement` it gives the stage bounds of the
 committed endpoint (`stageBounds_of_boundaryInv`), the standing input of the next sweep.
 The stage-end block must extend the history by one stage (a separate package).
 -/
@@ -70,7 +70,7 @@ theorem stageBounds_of_boundaryInv {e₂ C : ℝ} (hC : 1 ≤ C)
   rw [← hk1, ← hk2]
   exact this
 
-/-- `stageBounds_of_boundaryInv` with the prefix induction proved (luna-s78prefix). -/
+/-- `stageBounds_of_boundaryInv` with the prefix induction proved. -/
 theorem stageBounds_of_boundaryInv' {e₂ C : ℝ} (hd : 3 ≤ d) (he₂ : e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100))
     (hC : 1 ≤ C) :
     type_of% (stageBounds_of_boundaryInv (d := d) hC (prefixStageBounds_proof d hd e₂ he₂

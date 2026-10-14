@@ -858,7 +858,7 @@ end LagFinal
 
 open LagFinal in
 /-- Lemma 4.6 (`refs/tex/04-sweep.tex:791-1092`), with the exact type of the
-frozen `AndersonAC.S45.lag_bounds`. -/
+`AndersonAC.S45.lag_bounds`. -/
 theorem lag_bounds_proof : ∀ (C : ℝ), 1 ≤ C → ∃ C' > 0, ∃ t0 > 0,
     ∀ (P Ω : Type) [Fintype P] [DecidableEq P] [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (t : ℝ) (s : State P)

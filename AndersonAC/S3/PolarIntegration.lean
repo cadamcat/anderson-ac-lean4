@@ -4,7 +4,7 @@ import Mathlib
 General polar integration for the shell and patch arguments in §3.
 
 The `polar_lintegral` proof is adapted from OpenAI's Apache-2.0 library,
-openai/math adc7f124, OAI/Probability/Perceptron/Variational/NormSquareBand.lean,
+openai/math, OAI/Probability/Perceptron/Variational/NormSquareBand.lean,
 lines 281–306. That module has no built olean in the shared dependency set;
 this standalone helper uses the existing Mathlib theorem directly and does
 not import or rebuild that OAI module. Source license: Apache-2.0.

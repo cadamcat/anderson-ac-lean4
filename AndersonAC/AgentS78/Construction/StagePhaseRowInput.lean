@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.StagePhaseReset
 
 /-!
-# Frozen sub-contract: the inverse-row bound at the reset (07-assembly.tex:1017–1019)
+# sub-contract: the inverse-row bound at the reset (07-assembly.tex:1017–1019)
 
 "The committed endpoint has `‖K‖ < 1/2` once the total summable increments are chosen small.
 Lemma inverse-row, applied with its lag and the terminal metric, gives
@@ -11,7 +11,7 @@ Lemma inverse-row, applied with its lag and the terminal metric, gives
 committed state has `‖K‖ ≤ 1/2` and lag `≤ t^{.36δ}` on its active sites, then
 `ResetRowBound CR` holds for its active block, with `CR, t₀` depending only on `d` and the
 constants. Intended route: transport the active block to `S45.State (Fin n)` (`toS45`,
-S45Join.lean) and apply `AgentS45.inverse_row_proof` (lane/luna-s45loc d1e2547) with the
+S45Join.lean) and apply `AgentS45.inverse_row_proof` with the
 physical distance on the active sites (`ShellBounds`), the Ward identity of a damped endpoint
 (`ward_of_damped`, WardDamped.lean), the entry bound and far decay from
 `AssemblyInput.resolventDecay` at the last state, and `logFactor t ≤ 2 log(1/t)` for small `t`.

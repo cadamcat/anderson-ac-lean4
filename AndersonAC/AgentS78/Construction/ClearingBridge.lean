@@ -5,10 +5,9 @@ import AndersonAC.AgentS6.CapTelescope
 import AndersonAC.S6.Ridge
 
 /-!
-# The clearing block's bridge to §6's stopped trial, sample by sample (agent-s78cbridge)
+# Clearing bridge to §6's stopped trial
 
-Pointwise form decided at INTERFACE-ISSUES 2026-10-14 03:57:19 (option (a) of agent-s78clrbound,
-03:54:15): for a fixed entering record and a stopped trial `q` on its active sites, at every
+For a fixed entering record and a stopped trial `q` on its active sites, at every
 sample `ω` whose running residuals are the true residuals and whose running pivots pass the
 guard, `ω` is a block-local first failure iff the trial fails at `ω`.
 
@@ -21,8 +20,7 @@ revealed residual, and stop for the same reason.
 **Record hypothesis.** The block reads the committed matrix `rec0.endpoint.M`, while the trial's
 initial real matrix is fixed only through `initial_inverse` (its damped inverse is
 `trialG0 rec0`). The statement therefore carries the damped identity of the entering record,
-`IsDampedEndpoint rec0.endpoint rec0.r (stageScale u j m)`, which ties the two together
-(consumer: agent-s78clrbound has it as `hgeo … hgood.2`).
+`IsDampedEndpoint rec0.endpoint rec0.r (stageScale u j m)`, which ties the two together.
 -/
 
 open MeasureTheory Filter
@@ -996,9 +994,9 @@ open AndersonAC.S2 (RandomSources Query Answer)
 open AndersonAC.AgentS78cbridge
 open Classical
 
-/-- **The clearing bridge, sample by sample** (agent-s78clrbound's `ClearingBridgeAtStatement`,
-lane/agent-s78clrbound 5d1e5ad ClearingBound.lean:78, plus the damped identity of the entering
-record after the disjointness hypothesis). -/
+/-- The sample-by-sample clearing bridge, corresponding to
+`ClearingBridgeAtStatement` in `ClearingBound.lean:78`, with the damped identity
+of the entering record. -/
 def ClearingBridgeAtDStatement (d m : ℕ) : Prop :=
   ∀ (n₀ j : ℕ) (u : ℝ) (x : Torus d m) (M : ℕ → ℕ) (rec0 : RunRecord d m)
     (B : Finset (ActiveSite rec0)),
@@ -1020,9 +1018,9 @@ def ClearingBridgeAtDStatement (d m : ℕ) : Prop :=
     (ω ∈ localFirstFail M (clearingBlock (d := d) (m := m) n₀ j u x) rec0 ↔
       q.outcome ω = AndersonAC.S6.TrialOutcome.fail)
 
-/-- (4) **Bridge to §6, sample by sample** (INTERFACE-ISSUES 03:57:19, option (a)): for a
+/-- **Bridge to §6, sample by sample**: for a
 fixed entering record with an eligible core `B` of active sites, and a stopped trial `q` on the
-active sites with the frozen data, at every sample `ω` whose running residuals are the true
+active sites with fixed data, at every sample `ω` whose running residuals are the true
 residuals and whose running pivots pass the guard, `ω` is a block-local first failure iff the
 trial fails at `ω`. -/
 theorem clearingBlock_bridge {d m : ℕ} (n₀ j : ℕ) (u : ℝ) (x : Torus d m)

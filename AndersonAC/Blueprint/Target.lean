@@ -1,11 +1,11 @@
 import OAI.MathematicalPhysics.Anderson.Certificates
 
 /-!
-Proposed target, not frozen. No theorem in this file assumes the preprint.
+Statement of Simon's target problem. No theorem in this file assumes the preprint.
 The real spectral set uses `spectrum ℂ`, with real energies embedded in ℂ.
 OAI's spectral resolution has countably additive orthogonal projections,
 finite scalar measures, compact support, and all moments tied to the operator.
-WP01 must construct it from a bounded PVM, rather than postulate its fields.
+The spectral package constructs it from a bounded PVM and supplies its fields.
 -/
 
 noncomputable section
@@ -27,7 +27,7 @@ def greenOperator {d : ℕ} (T : Operator d) (z : ℂ) : Operator d :=
 def borelTransform (μ : Measure ℝ) (z : ℂ) : ℂ :=
   ∫ t : ℝ, ((t : ℂ) - z)⁻¹ ∂μ
 
-/-- Constructed from WP01's bounded PVM; the extra field is needed by §9. -/
+/-- Constructed from spectral package's bounded PVM; the extra field is needed by §9. -/
 structure ResolvedOperator {d : ℕ} (T : Operator d) where
   spectral : SpectralResolution T
   resolvent_eq : ∀ (v : StateSpace d) (z : ℂ), 0 < z.im →
@@ -134,7 +134,7 @@ def translateWindow (c : ℝ) (I : Set ℝ) : Set ℝ :=
 The energy interval `(E₁, E₂)` depends on the center, not on the positive width.
 The existential bound proves that the directly defined operator is bounded.
 No spectral or iid hypothesis is hidden inside its construction.
-(Coordinator, 2026-10-13: the window is a nonempty open interval, as in the paper.) -/
+(The window is a nonempty open interval, as in the paper.) -/
 def SimonProblem : Prop :=
   ∀ d : ℕ, 3 ≤ d → ∃ widthBound E₁ E₂ : ℝ, 0 < widthBound ∧ E₁ < E₂ ∧
     ∀ a b : ℝ, a < b → b - a < widthBound →

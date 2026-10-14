@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.TileTrial
 
 /-!
-# WP10 construction, tile phase: sequence facts
-
-agent-s78tphase (2026-10-14). Generic facts on `S45.Sequence` used by the tile-phase record
+# sequence facts. Generic facts on `S45.Sequence` used by the tile-phase record
 invariant (TilePhase.lean):
 
 * `SeqExtends q q'`: `q'` extends `q` (same states up to `q.length`, same pivots and scalars

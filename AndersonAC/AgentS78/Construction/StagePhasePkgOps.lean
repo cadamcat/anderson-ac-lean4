@@ -4,20 +4,17 @@ import AndersonAC.AgentS78.Construction.BoxPhasesSweepEnd
 import AndersonAC.AgentS78Geo.PhysicalBridge
 
 /-!
-# Clearing-phase package: the sets and the per-operation facts
-
-agent-s78phase2 (DISPATCH 04:08:18).
+# Clearing-phase package: the sets and the per-operation facts.
 
 * `TraceSet`, `RunG`, `gIdx`, `pkgXg` — the run-level part `Xg` of `ClearingBoxFacts`: every site
   is active or terminal, pending sites are active, and a Lemma 7.2 trace of index `≤ k` has the
   terminal set as its edits (`k = j − 1` during the tile phase of stage `j`, `k = j` from the sweep
   end on);
 * `pkgXc` — the clearing-phase part `Xc j r := ClearPhaseR … j r` on clearing stages;
-* `ClearingDonePhysHyp` — the physical identity after a DONE clearing (named hypothesis,
-  INTERFACE-ISSUES 04:2x: false pathwise for the current block at singular real pivots;
-  correction (9) proposed);
+* `ClearingDonePhysHyp` — the physical identity after a DONE clearing. At singular
+  real pivots this identity is used almost surely;
 * `ClearingBoundR` — the clearing first-failure bound on `ClearPhaseR` records (`hB`, in the
-  `ClearingBoxFacts.hbound` shape; agent-s78clrbound's frozen statement replaces it);
+  `ClearingBoxFacts.hbound` shape; statement replaces it);
 * `clrOp_keeps` (`hClr`), `clrOp_bound` (`hbound`), `sweepEnd_clear` (`hXcE`).
 -/
 

@@ -1,6 +1,6 @@
 import AndersonAC.AgentS78.Construction.ClearingBlock
 
-/-! Type audit for the clearing-attempt block (muse-s78clear).
+/-! Type audit for the clearing-attempt block.
 Exact-shape checks against the `BlockRun` consumer fields
 (`RunOpsData`: `clr j y`, `clrPat j y`; `BlockRun`: measurability,
 orders/aux with `orderSet = auxSet = ∅`, pattern, `fail_local`). -/

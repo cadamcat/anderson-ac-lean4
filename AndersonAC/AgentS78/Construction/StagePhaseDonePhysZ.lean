@@ -6,18 +6,16 @@ import AndersonAC.AgentS6Construct.SelectionFacts
 import AndersonAC.AgentS6.CapTelescope
 
 /-!
-# Regular pivots off the exceptional set (route R2, part (3))
-
-agent-s78phase2 (DISPATCH 04:48:21 (B), route R2 approved by agent-s78con4 05:06:29).
+# Regular pivots outside the exceptional set
 
 Along the answers of `ω ∉ exceptionalSet`, from a record `x` with true installed values whose
 inactive sites are terminal, every update of the clearing block is a regular elimination step
-(`ClrStepRegular`, agent-s78schurq):
+(`ClrStepRegular`):
 
 * a heat pivot is still active: a heat requires `¬ xReady`, which keeps the ridge positive
   (`RidgeOK`); at a positive ridge and with `¬ xReady` the maximal leverage is positive, and a
   site of positive leverage has a nonzero cross row, so it is active;
-* the pivot `Mnum p p + ξ` is nonzero: by the Schur invariant of agent-s78schurq it is the Schur
+* the pivot `Mnum p p + ξ` is nonzero: the Schur invariant identifies it as the Schur
   pivot of the shifted installed values, and the two eliminated blocks involved are principal
   blocks of the true matrix `H_λ(ω) − E` (eliminated sites carry their true values by
   `ClearingTrueValues.CTV`, the new pivot by the true answer), invertible off `exceptionalSet`.

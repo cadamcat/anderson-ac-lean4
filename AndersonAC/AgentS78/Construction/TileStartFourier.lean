@@ -4,9 +4,7 @@ import AndersonAC.S3.ChargeEstimate
 import AndersonAC.S3Circ.Circulant
 
 /-!
-# WP10 tile phase: Fourier and volume clauses of the duplicated stage start
-
-agent-s78start (2026-10-14). `Λ⁺_Σ(y) = Λ⁺(y_Σ)` on neutral live port charges obeys the
+# Fourier and volume clauses of the duplicated stage start. `Λ⁺_Σ(y) = Λ⁺(y_Σ)` on neutral live port charges obeys the
 §3 charge estimate `Λ⁺(y_Σ) ≤ C ‖y‖₁^{4/3} ‖y‖₂^{2/3}` (Lemma 3.2, two ports per site), and
 the live port count is at least `t^{-(1+δ+κ)}` (the `Prestate.volume` clause).
 -/

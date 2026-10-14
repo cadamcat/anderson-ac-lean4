@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.Construction.StagePhaseStage
 import AndersonAC.AgentS78.Construction.StagePhaseResetFix
 
 /-!
-# WP10 construction: the diagonal reset on the active block, at the record level
+# the diagonal reset on the active block, at the record level
 
 `resetMap` (ResetBlock.lean) inverts the full torus matrix and therefore does not produce a
 damped endpoint once the active set is proper (`resetMap_not_damped`,

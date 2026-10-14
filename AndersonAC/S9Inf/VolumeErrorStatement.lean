@@ -1,6 +1,6 @@
 import OAI.MathematicalPhysics.Anderson.Certificates
 
-/-! Frozen scalar asymptotic needed after finite/infinite volume comparison. -/
+/-! scalar asymptotic needed after finite/infinite volume comparison. -/
 
 noncomputable section
 

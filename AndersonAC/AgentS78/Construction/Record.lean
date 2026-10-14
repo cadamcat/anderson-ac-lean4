@@ -2,9 +2,9 @@ import AndersonAC.AgentS78.Construction.BlockRun
 import AndersonAC.S45.Definitions
 
 /-!
-# WP10 random construction, C3b: the committed record of the run
+# The committed record of the run
 
-Design (agent-s78con, 2026-10-13). The committed record handed from block to block
+The committed record passed from block to block
 (02-state.tex:96–125, 05-local-sweeps.tex:338–420, 07-assembly.tex:18–34):
 
 * `stage` — the stage whose operations are under way;
@@ -16,13 +16,13 @@ Design (agent-s78con, 2026-10-13). The committed record handed from block to blo
   validity test `S45.Sequence.valid`;
 * `installed`, `prefixLength` — partial potential values and their binary prefix lengths;
   `terminal`, `pending`, `latest` — site states and latest birth labels;
-* `components` — the frozen snapshot components of the current clearing stage;
+* `components` — the snapshot components of the current clearing stage;
 * `aborted`.
 
 The measurable structure is the comap of an encoding into real/complex/Boolean
 coordinates (finite sets as indicator functions); every field is discrete or a finite
-array, so measurable decisions are the expected ones. Changes to this record are made by
-agent-s78con only; block packages propose them in INTERFACE-ISSUES.
+array, so measurable decisions are the expected ones. Schedule operations update the
+record according to the block rules.
 -/
 
 open MeasureTheory

@@ -1,7 +1,7 @@
 import AndersonAC.Blueprint.FiniteInputs
 
 /-!
-Provisional exact interfaces for Anderson paper §§4–5 (2026-09-23).
+Exact interfaces for Anderson paper §§4–5.
 Definition-only base. No theorem placeholders or new axioms occur here.
 Quantitative statement constants are quantified before finite index sizes.
 Real forms suffice; `complexForm` extends them to complex charges/potentials.
@@ -357,7 +357,7 @@ end Sequence
 
 
 /-! §5 geometry. `G` is the actual finite hopping graph; the torus shell
-and cube inequalities are inputs to be supplied by the lattice lane. -/
+and cube inequalities are inputs to be supplied by the lattice module. -/
 
 def walkCost {I : Type*} [DecidableEq I] (G : SimpleGraph I) (T : Finset I)
     {i j : I} : G.Walk i j → ℕ
@@ -460,8 +460,7 @@ structure TileCover {P I : Type*} [Fintype P] [Fintype I] [DecidableEq P] [Decid
   coords : ∀ T, LocalCoordinates (cube T) b (dim T)
   /-- The local potential energy is the cube gradient energy `‖∇v‖²_{Q'}`
   (05-local-sweeps.tex:249-256), so its conductances are symmetric; this makes
-  `qform (laplacian edge)` invariant under constant shifts (added 2026-10-13,
-  luna-s45ltl interface defect). -/
+  `qform (laplacian edge)` is invariant under constant shifts. -/
   edge_symm : ∀ T, ((cube T).edge).IsSymm
   cutoff_one : ∀ T, ∀ i ∈ inner T, (cube T).cutoff ((cube T).site i) = 1
   same_site : ∀ T, (cube T).site = site
@@ -628,8 +627,8 @@ def QueryHistory.failedTile {I : Type*} (q : QueryHistory I) (T : Set I)
 
 
 
-/-! Architect interfaces are imported and aliased, not copied.
-The aliases preserve Phase 1 internal names while using Blueprint contracts. -/
+/-! Interfaces from the blueprint are exposed under the §4–5 names used by these
+theorems. -/
 
 abbrev opNorm {P : Type*} [Fintype P] [DecidableEq P] (A : CMat P) : ℝ :=
   AndersonAC.Blueprint.opNorm A

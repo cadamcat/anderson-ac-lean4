@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.TileBlock
 
 /-!
-# WP10 random construction, C3b: query discipline and locality of the tile block
+# query discipline and locality of the tile block
 
 * `tileBlock_orders`, `tileBlock_aux`: the `orders` / `aux` fields of `BlockRun` for the
   index sets `tileOrderSet j T`, `tileAuxSet d m j T` (each order `π_{j,T,a}` is read at most

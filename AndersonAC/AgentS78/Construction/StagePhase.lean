@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.Construction.BoundaryExtend
 import AndersonAC.AgentS78.StageFromSections
 
 /-!
-# WP10 construction: the clearing-phase invariant of a stage
+# the clearing-phase invariant of a stage
 
 Stage `j` (post-sweep index, `n₀ < j`) runs: tiles of the sweep into `j`, the sweep end, the
 clearing attempts (`j ≤ ⌊m/2⌋`), the stage operation `guardMap (stageMap P j)` (reset at
@@ -24,7 +24,7 @@ At the sweep end of a stage the invariant holds with `k = 0` (`I` has the single
 a non-clearing stage (`⌊m/2⌋ < j ≤ m`) keeps `k = 0` until its stage operation. A DONE
 clearing extends `I` by one state; a FAIL keeps the endpoint.
 
-The clearing good set of agent-s78clrtrial is added on top in `StagePhaseGood.lean`.
+`StagePhaseGood.lean` adds the clearing good-set condition.
 -/
 
 open scoped BigOperators

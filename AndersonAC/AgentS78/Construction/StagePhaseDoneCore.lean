@@ -5,9 +5,7 @@ import AndersonAC.S6Compl.CompletionBounds
 import AndersonAC.AgentS78.ResetJoin
 
 /-!
-# The DONE exit of a clearing attempt: core completion on the scratch data
-
-agent-s78donea. Proof of the frozen sub-statement `DoneCoreStatement` (Lemma 6.1,
+# The DONE exit of a clearing attempt: core completion on the scratch data. Proof of the sub-statement `DoneCoreStatement` (Lemma 6.1,
 06-clearing.tex:82–182, applied at the core-phase snapshot, 07-assembly.tex:399–413).
 
 With `G` the snapshot inverse on `A`, `g'` the final inverse on `A' = A \ core` and

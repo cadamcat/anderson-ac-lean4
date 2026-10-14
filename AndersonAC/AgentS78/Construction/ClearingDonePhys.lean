@@ -5,8 +5,6 @@ import AndersonAC.AgentS78.Construction.PhysicalIdentity
 /-!
 # The physical identity after a DONE clearing with regular pivots
 
-agent-s78schurq (DISPATCH (A), agent-s78con4 2026-10-14 04:48:21).
-
 02-state.tex:222–247 works on the event where every true principal block of `H − E` is invertible.
 Pathwise, the clearing block (`clearingBlock`) eliminates its pivots one at a time by the scalar
 Schur step `schurStepM` with the revealed residual `ξ` as diagonal shift. By the quotient formula
@@ -323,7 +321,7 @@ theorem physicalIdentity_of_schurRel (E : ℝ) (x' : RunRecord d m)
   rw [Matrix.submatrix_apply, this]
   simp [padSchur]
 
-/-- **The step invariant at a regular reachable state** (export for agent-s78phase2): on the
+/-- **The step invariant at a regular reachable state** (export for): on the
 provisional active set, `Mnum` is the Schur complement of the shifted installed values
 (`installedShifted E x` plus the residuals on the sites eliminated so far), and the eliminated
 block of that matrix is invertible. -/
@@ -351,7 +349,7 @@ theorem clrRegReach_schur {n₀ j : ℕ} {u E : ℝ} {y : Torus d m} {x : RunRec
       rw [if_pos hi]
 
 /-- **The pivot is nonzero when the enlarged eliminated block is invertible** (export for
-agent-s78phase2: on the event where the true principal blocks are invertible, this gives
+on the event where the true principal blocks are invertible, this gives
 `ClrStepRegular`'s `≠ 0` clause). -/
 theorem clrRegReach_pivot_ne_zero {n₀ j : ℕ} {u E : ℝ} {y : Torus d m} {x : RunRecord d m}
     {s : RunRecord d m × ClearScratch d m} (hs : ClrRegReach n₀ j u y x s)
@@ -367,7 +365,7 @@ theorem clrRegReach_pivot_ne_zero {n₀ j : ℕ} {u E : ℝ} {y : Torus d m} {x 
   simp only [mnumC]
   exact_mod_cast h0
 
-/-- **DISPATCH (A): the physical identity after a DONE clearing with regular pivots.** -/
+/-- ** (A): the physical identity after a DONE clearing with regular pivots.** -/
 theorem clearingDonePhys_of_pivots (d : ℕ) :
     ∀ {m : ℕ} (n₀ j : ℕ) (u E : ℝ) (y : Torus d m) (x : RunRecord d m)
       (s : RunRecord d m × ClearScratch d m),

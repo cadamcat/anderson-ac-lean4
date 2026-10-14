@@ -1,15 +1,15 @@
 import AndersonAC.AgentS78.Construction.RunOpsAbort
 
 /-!
-# WP10 construction: read patterns and query discipline of the schedule
+# read patterns and query discipline of the schedule
 
 The read pattern of operation `(j, k, y)` (`runPattern`): the tile pattern of the tile block,
 the clearing pattern (a parameter) of the clearing block, the empty pattern otherwise. Proved
 for `scheduleBlocks (runOp …)`: pattern measurability, locality of the first-trial failure
 (`hlocal`), the query discipline against `declaredFresh` (`hquery`) and the pattern
 discipline (`hpat`) of `blockRun_of_disciplines`, from the tile statements
-(`TileQueryStatement`, `TilePatternStatement`; luna-s78tdisc), the delivered
-`tileBlock_fail_local`, and the corresponding clearing hypotheses.
+(`TileQueryStatement`, `TilePatternStatement`), `tileBlock_fail_local`, and the
+corresponding clearing hypotheses.
 -/
 
 open MeasureTheory

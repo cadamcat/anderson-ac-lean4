@@ -2,12 +2,12 @@ import AndersonAC.AgentS78.Construction.RunOps
 import AndersonAC.AgentS78.Construction.BlocksProof
 
 /-!
-# WP10 construction: order and auxiliary disciplines of the schedule
+# order and auxiliary disciplines of the schedule
 
 The block sequence `scheduleBlocks (runOp …)` with the order sizes `tileOrderSize P` and the
 index sets `runOrderSet`, `runAuxSet` satisfies the order and auxiliary disciplines of
 `BlockRun` (`BlocksProof.HOrders`, `HAux`), given that the clearing blocks issue no order or
-auxiliary query (muse-s78clear's `clearingBlock_orders`/`clearingBlock_aux`, for every target
+auxiliary query (`clearingBlock_orders`/`clearingBlock_aux`, for every target
 set).
 -/
 

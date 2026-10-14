@@ -1,10 +1,10 @@
 import AndersonAC.AgentS78.Construction.BoxSplit
 
 /-!
-# WP10 construction: the clearing-block facts of correction (6) (lead, agent-s78con3)
+# Clearing-block facts
 
-`clearingFailGuarded_proof`, `clearingCoreRadius_proof`, `clearingEligibleIntro_proof`: the three
-Props of BoxAssembly.lean hold for the clearing block with correction (6) applied.
+`clearingFailGuarded_proof`, `clearingCoreRadius_proof`, and `clearingEligibleIntro_proof`
+establish the three clearing-block properties used by `BoxAssembly.lean`.
 -/
 
 noncomputable section
@@ -62,9 +62,8 @@ theorem clearingEligibleIntro_proof (d m : ℕ) : ClearingEligibleIntro d m := b
   intro j u y B hy hmin hcard hrad
   exact ⟨hy, ⟨hy, hmin⟩, hcard, hrad⟩
 
-/-- **WP10 finish line** with correction (6) discharged: the remaining inputs are the tile
-disciplines, the clearing-block measurability, the C4a one-trial contract and the kind-split
-run invariant packages. -/
+/-- Uniform certificate input from the tile disciplines, clearing-block
+measurability, tile-trial bound, and kind-split run-invariant packages. -/
 theorem uniformCertificateInput_of_boxInvariantsK' (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
     (htmark : TileMarkingStatement) (htquery : TileQueryStatement)
     (htpat : TilePatternStatement) (htabort : TileAbortStatement)

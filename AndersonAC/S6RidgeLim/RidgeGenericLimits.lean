@@ -10,7 +10,7 @@ open scoped Matrix ComplexConjugate Matrix.Norms.L2Operator
 
 namespace AndersonAC.SolS6
 
-/-- The exact frozen contract, expanded here so the proof does not import its
+/-- The exact contract, expanded here so the proof does not import its
 sorry-carrying statement module. -/
 theorem ridgeGenericLimits_proof :
     ∀ (B R : Type*) [Fintype B] [DecidableEq B] [Fintype R] [DecidableEq R]

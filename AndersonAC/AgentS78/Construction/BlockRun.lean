@@ -3,14 +3,13 @@ import AndersonAC.AgentS78.Construction.BlocksProof
 import AndersonAC.AgentS78.Construction.MachineRunProof
 
 /-!
-# WP10 random construction, layer D: a run given by its blocks
+# A run represented by its blocks
 
-`BlockRun` is what the run designer supplies: the measurable blocks of the run (one per
-schedule operation, C3c) with their query discipline, and per block the fresh pattern and
-frozen first-trial bound (C4), the run invariants (C5: freshness at block starts, good
-prestates, marking rules, success and certificate). `queryRun_of_blockRun` builds a
-`QueryRun` from it, using the frozen contracts `MachineRunStatement` (C3a′, luna-s78machine)
-and `BlockCompositionStatement` (C3c). The slot of a block is its schedule index.
+`BlockRun` consists of measurable blocks, one per schedule operation, with query
+disciplines, fresh patterns, first-trial bounds, and run invariants for freshness,
+prestates, marking, success, and certificates. `queryRun_of_blockRun` builds a
+`QueryRun` using `MachineRunStatement` and `BlockCompositionStatement`. Each block's
+slot is its schedule index.
 -/
 
 open scoped BigOperators ENNReal
@@ -52,27 +51,27 @@ structure BlockRun (d m n₀ : ℕ) (u E Cr cp cg Ch c Clate : ℝ) where
   slot : BirthLabel (Torus d m) → ℕ
   slot_injective : Function.Injective slot
   slot_scale : ∀ a, slotScale (slot a) = a.scale
-  /-- C4d: every block is reached almost surely (retries terminate). -/
+  /-- block reachability: every block is reached almost surely (retries terminate). -/
   start_finite : ∀ n, ∀ᵐ ω ∂sourcesLaw (Torus d m) M, blockStart M blocks rec₀ n ω ≠ ⊤
   pattern : ℕ → Rec → FreshPattern (Torus d m)
   pattern_measurable : ∀ n, Measurable (pattern n)
   /-- the first trial reads only its pattern. -/
   fail_local : ∀ n x, DependsOnly (Torus d m) (pattern n x) (localFirstFail M (blocks n) x)
-  /-- C5a: the pattern is unqueried when the block is entered. -/
+  /-- freshness: the pattern is unqueried when the block is entered. -/
   fresh : ∀ n, ∀ᵐ ω ∂sourcesLaw (Torus d m) M,
     AgentS78.UnqueriedAt (Torus d m) (runQ M blocks rec₀)
       ((blockStart M blocks rec₀ n ω).untopD 0) (pattern n (blockPrestate M blocks rec₀ n ω)) ω
   good : ℕ → Set Rec
-  /-- C5b: entering records satisfy the trial hypotheses (deterministic induction). -/
+  /-- run invariant: entering records satisfy the trial hypotheses (deterministic induction). -/
   prestate_good : ∀ n, ∀ᵐ ω ∂sourcesLaw (Torus d m) M, blockPrestate M blocks rec₀ n ω ∈ good n
-  /-- C4: the frozen first-trial bound. -/
+  /-- The probability bound for a block's first trial. -/
   product_bound : ∀ n, ∀ x ∈ good n, sourcesLaw (Torus d m) M (localFirstFail M (blocks n) x) ≤
     ENNReal.ofReal (birthBound c (slotScale n))
   pending : ℕ → Torus d m → Set (RandomSources (Torus d m) M)
   latest : ℕ → Torus d m → RandomSources (Torus d m) M → BirthLabel (Torus d m)
   pending_measurable : ∀ j x, MeasurableSet (pending j x)
   before : ∀ j x, j ≤ n₀ → pending j x = ∅
-  /-- C5c: status/marking rule. -/
+  /-- stage dichotomy: status/marking rule. -/
   step : ∀ j x ω, n₀ ≤ j → ω ∈ pending (j + 1) x →
     (ω ∈ pending j x ∧ latest (j + 1) x ω = latest j x ω) ∨
     ((latest (j + 1) x ω).scale = j + 1 ∧
@@ -91,11 +90,11 @@ structure BlockRun (d m n₀ : ℕ) (u E Cr cp cg Ch c Clate : ℝ) where
   exceptional : Set (RandomSources (Torus d m) M)
   exceptional_null : sourcesLaw (Torus d m) M exceptional = 0
   success : Set (RandomSources (Torus d m) M)
-  /-- C5d: the two abort rules. -/
+  /-- installed values: the two abort rules. -/
   failure_cover : successᶜ ⊆ (⋃ x, pending (m / 2) x) ∪
     (⋃ n ∈ late, {ω | blockStart M blocks rec₀ n ω ≠ ⊤ ∧
       ω ∈ localFirstFail M (blocks n) (blockPrestate M blocks rec₀ n ω)}) ∪ exceptional
-  /-- C5d: the final certificate. -/
+  /-- installed values: the final certificate. -/
   certificate : success ⊆ trueConfig ⁻¹' boundedCertificateEvent d n₀ m u E Cr cp cg
 
 attribute [instance] BlockRun.mRec BlockRun.mSt
@@ -180,8 +179,8 @@ theorem queryRun_of_blockRun (hmach : MachineRunStatement) (hcomp : BlockComposi
   exact hbirth n
 
 /-- **Reduction of `UniformCertificateInput` to block runs with uniform constants**,
-conditional only on the frozen contract C3a′ (`MachineRunStatement`); C3c is
-`blockComposition_proof` (agent-s78blocks). -/
+conditional only on the contract machine run (`MachineRunStatement`); block composition is
+`blockComposition_proof`. -/
 theorem uniformCertificateInput_of_blockRuns
     (hmach : MachineRunStatement)
     (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
@@ -197,7 +196,7 @@ theorem uniformCertificateInput_of_blockRuns
       exact queryRun_of_blockRun hmach (blockComposition_proof hmach) R)
 
 /-- **Unconditional reduction of `UniformCertificateInput` to block runs with uniform
-constants** (`machineRun_proof`, luna-s78mrun). -/
+constants** (`machineRun_proof`). -/
 theorem uniformCertificateInput_of_blockRuns'
     (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
     (Cr cp cg Ch c Clate : ℝ) (hcp : 0 < cp) (hcg : 0 < cg) (hCh : 1 ≤ Ch) (hc : 0 < c)

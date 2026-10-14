@@ -51,8 +51,8 @@ def AssemblyAnchorTailInput : Prop :=
           Real.exp (-(c / 4) * t * (physicalDistance d m i (I.anchor a) +
             physicalDistance d m j (I.anchor a)))
 
-/-- The remaining analytic error-summation output led in this lane. The
-matrix estimates and finite Schur algebra are separate proved dependencies. -/
+/-- Analytic error summation for the assembly. Matrix estimates and finite Schur
+algebra are separate inputs. -/
 def AssemblyEnergyBounds : Prop :=
   ∀ (d : ℕ), 3 ≤ d → ∀ (C c P : ℝ), 1 ≤ C → 0 < c → 0 ≤ P →
     ∃ t₀ : ℝ, 0 < t₀ ∧

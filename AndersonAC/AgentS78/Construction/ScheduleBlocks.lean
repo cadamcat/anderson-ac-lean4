@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.Construction.Schedule
 import AndersonAC.AgentS78.Construction.Blocks
 
 /-!
-# WP10 construction: the block sequence of the schedule
+# the block sequence of the schedule
 
 Block index `n` is the operation `opIndex d m j k y` (Schedule.lean) with `j = decodeJ n`,
 `k = decodeK n < 4`, `y = decodeY n`; `opIndex_decode` and `decode_opIndex` make this a

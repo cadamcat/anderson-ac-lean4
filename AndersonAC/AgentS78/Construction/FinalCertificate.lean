@@ -2,14 +2,14 @@ import AndersonAC.S78.PhysicalCertificate
 import AndersonAC.AgentS78.Construction.Record
 
 /-!
-# WP10 construction, C5d glue: the certificate from the final record
+# the certificate from the final record
 
 08-history.tex:370–394. After the final residual sweep the active potentials are the true
 ones, so the committed matrix is the Schur complement of the true `H_m − E` onto the active
 set (`TrueSchurIdentity`), its inverse is the damped endpoint at the final damping
 `η = scaleHeight m u`, and the terminal block is invertible off a null set.
 `certificate_of_final_record` gives membership in the bounded certificate event, through
-sol-s78's `bounded_certificate_of_final_endpoint`: the damping term `η diag_A r` only
+ `bounded_certificate_of_final_endpoint`: the damping term `η diag_A r` only
 changes the active block, so the active Schur complement of the certificate matrix is the
 committed matrix minus `η diag r`.
 -/

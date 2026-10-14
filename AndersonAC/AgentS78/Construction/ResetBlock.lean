@@ -335,8 +335,7 @@ open Classical in
 /-- The physical increment installed at site `i` by a sweep (04:198–228): deleting the bit
 port `(i, false)` with port scalar `ξ` installs `ζ = √w ξ`, `w = 1 − θ` (TileBlock.scalarStep
 stores `ξ = ζ / √w`). Summed over the steps of the sweep whose pivot is that bit port.
-(lead decision 2026-10-14 on agent-s78tphase's defect "the sweep never updates
-`endpoint.M`".) -/
+The sweep records this increment in `endpoint.M`. -/
 def sweepIncrement {d m : ℕ} (θ : ℝ) (q : Sequence (initialPorts (Torus d m)))
     (i : Torus d m) : ℝ :=
   Real.sqrt (1 - θ) *

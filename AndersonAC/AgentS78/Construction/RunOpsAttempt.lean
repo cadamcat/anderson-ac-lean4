@@ -2,10 +2,10 @@ import AndersonAC.AgentS78.Construction.RunOpsDich
 import AndersonAC.AgentS78.Construction.SnapshotComponents
 
 /-!
-# WP10 construction: attempt and locality facts of a clearing stage
+# attempt and locality facts of a clearing stage
 
 The hypotheses `hatt`, `hloc` of `runOps_dich`, from three properties of the clearing block
-`clr j z` (to be proved for muse-s78clear's block):
+`clr j z`:
 * `hcomp`: it keeps the snapshot components;
 * `hrelabel`: from a non-aborted record, every site of the eligible component anchored at `z`
   that is pending at exit carries the label `⟨j, clearing, z⟩` (FAIL marks the core; DONE

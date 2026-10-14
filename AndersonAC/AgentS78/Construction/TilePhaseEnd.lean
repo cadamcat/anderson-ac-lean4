@@ -4,22 +4,20 @@ import AndersonAC.AgentS78.Construction.FinalRecord
 import AndersonAC.AgentS78.Construction.TilePhasePhysical
 
 /-!
-# WP10 construction, tile phase (c): the sweep end hands over to the clearing phase
+# The sweep end transfers the tile invariant to the clearing phase
 
-agent-s78tphase (2026-10-14). After the last tile of the sweep into a digit stage `j ≤ m` the
-record satisfies `TileSweepInv … Finset.univ` (`doneUpTo_all`). The sweep-end operation
-`(j, 1, site₀)` is `guardMap (endMap P j)`: the sweep end `sweepEndMapTheta θ_j` (and the
-snapshot at a clearing stage, which changes only the components). Its exit carries the
-clearing-phase invariant of agent-s78phase (`ClearPhase`, via `ClearPhaseData.ofSweep'`) once
-the post-sweep endpoint satisfies the analytic sweep conclusions:
+After the last tile of a sweep into a digit stage `j ≤ m`, the record satisfies
+`TileSweepInv … Finset.univ` (`doneUpTo_all`). The sweep-end operation
+`(j, 1, site₀)` is `guardMap (endMap P j)`, applying `sweepEndMapTheta θ_j` and,
+at a clearing stage, the snapshot that changes only the components. Its exit carries
+`ClearPhase` via `ClearPhaseData.ofSweep'` when the post-sweep endpoint satisfies:
 
 * `SweepEndStatement` (contract): from `TileSweepCore … univ` the hypotheses `sweep`,
   `physical`, `resolventDecay`, `initialComparison`, `initialRows`, `initialLag` of
   `ClearPhaseData.ofSweep'` for `old = x.endpoint`, `sw = (sweepEndMapTheta θ_j x).endpoint`,
   `rOld = x.r` (05:338–560, 04:190–228, Proposition 4.9 = `ordinary_sweep_endpoint`).
-  **Caveat:** `physical` (IsDampedEndpoint of `sw`) needs the run to record the swept
-  increments in `endpoint.M` (INTERFACE-ISSUES 01:13); until then the contract is stated for
-  the intended record.
+  `physical` (the damped identity of `sw`) requires the swept increments to be
+  recorded in `endpoint.M`, so the contract states the identity explicitly.
 * `sweepEnd_keeps` (proved): the structural reduction to it.
 -/
 
@@ -59,7 +57,7 @@ theorem TileSweepCore.sweepIncrement_inactive {C Cb : ℝ} {P : TilePlan d m} {j
   exact hi (Finset.mem_filter.mp h0).2
 
 /-- **The physical identity after the sweep end** (02-state.tex:231–247): the committed `M`
-records the swept increments (agent-s78con3 3c09f7f) and `installed` carries them. -/
+records the swept increments and `installed` carries them. -/
 theorem TileSweepCore.physical_end {C Cb : ℝ} {P : TilePlan d m} {j n₀ : ℕ} {u E : ℝ}
     {ρ : ℂ} {x : RunRecord d m} (h : TileSweepCore C P j n₀ u E ρ Cb Finset.univ x) :
     PhysicalIdentity E (sweepEndMapTheta (sweepTheta P.u m j) x) := by
@@ -72,13 +70,9 @@ theorem TileSweepCore.physical_end {C Cb : ℝ} {P : TilePlan d m} {j n₀ : ℕ
   · funext i; simp [sweepEndMapTheta]
   · exact fun i hi => h.sweepIncrement_inactive _ i hi
 
-/-- **The analytic sweep end (contract).** Amended 2026-10-14 (INTERFACE-ISSUES 02:05:30, agreed
-by agent-s78tphase 02:19:51; written by agent-s78send): the stage bounds of the old endpoint at
-`j − 1` (the S45 join needs ‖r‖, Im r, ‖K‖ ≤ 1/3 and the constant kernel; the run invariant has
-them from `stageBounds_of_hist`) and the physical identity of the post-sweep record (the
-Combes–Thomas decay needs `M` to be a terminal Schur complement) are hypotheses; every step has
-a pivot is the TileSweepCore clause `pivots_some`. Proved (from the transport, reserve-row and
-Combes–Thomas contracts) by `sweepEnd_proof` (SweepEnd.lean). -/
+/-- The analytic sweep-end statement assumes stage bounds for the old endpoint,
+the physical identity of the post-sweep record, and a pivot at every committed
+step. The physical identity makes the Combes–Thomas estimate applicable. -/
 def SweepEndStatement (d : ℕ) (C Cb CA cA cP CP cL CL C₀ : ℝ) : Prop :=
   ∃ t0 > 0, ∀ (m n₀ : ℕ) (u E : ℝ) (ρ : ℂ) (P : TilePlan d m) (j : ℕ) (x : RunRecord d m),
     P.n₀ = n₀ → P.u = u → u ∈ Set.Ioc (1 / 4 : ℝ) 1 → n₀ < j → j ≤ m →
@@ -143,11 +137,11 @@ open AndersonAC.S78
 
 variable {d m : ℕ}
 
-/-- **The analytic end of the final residual sweep (contract).** After the last tile of the
-final sweep (θ = 1/2, `t = t_m`, 04:40–41, 08:340–368), the committed endpoint after the sweep
+/-- The analytic end of the final residual sweep. After the last tile of the
+final sweep (θ = 1/2, `t = t_m`, –41, 08:340–368), the committed endpoint after the sweep
 end is a damped endpoint at `η = s_m` with the final-record bounds, and the physical identity
-holds once it held for the record (the run records the swept increments in `endpoint.M`,
-INTERFACE-ISSUES 01:13). -/
+holds when it held for the input record and the run records the swept increments in
+`endpoint.M`. -/
 def FinalSweepStatement (d : ℕ) (C Cb Cr cp cg : ℝ) : Prop :=
   ∃ t0 > 0, ∀ (m n₀ : ℕ) (u E : ℝ) (ρ : ℂ) (P : TilePlan d m) (x : RunRecord d m),
     P.n₀ = n₀ → P.u = u → u ∈ Set.Ioc (1 / 4 : ℝ) 1 → n₀ ≤ m →

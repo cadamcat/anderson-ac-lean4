@@ -1,6 +1,6 @@
 import AndersonAC.BoundaryFinite.BoundaryFinite
 
-/-! Sorry-free proof of the frozen WP02 package interface. -/
+/-! Proof of the boundary package interface. -/
 
 namespace AndersonAC.Blueprint.Packages
 

@@ -257,7 +257,7 @@ def boundedCertificateEvent (d n₀ m : ℕ) (u E Cr cp cg : ℝ) :
     OAI.Anderson.certificateMatrix n₀ m u E ω A r * G = 1 ∧
     G * OAI.Anderson.certificateMatrix n₀ m u E ω A r = 1 ∧ (∀ i ∈ A, cg ≤ (G i i).im)}
 /-- Completion of Proposition 2.1, exposed as a true-variable probability
-hypothesis until the earlier construction lanes supply their endpoints. -/
+hypothesis until the construction modules supply their endpoints. -/
 
 def UniformCertificateInput (d : ℕ) (e₂ : ℝ) : Prop :=
   ∃ cutoff : ℕ, ∃ Cr cp cg : ℝ, 0 < cp ∧ 0 < cg ∧

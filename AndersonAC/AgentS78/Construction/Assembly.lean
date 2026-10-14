@@ -6,15 +6,12 @@ import AndersonAC.AgentS78.Construction.Schedule
 import AndersonAC.AgentS78.Construction.PathwiseInvariant
 
 /-!
-# WP10 construction, layer E: a `BlockRun` from the per-block disciplines
+# A `BlockRun` from per-block disciplines
 
-`blockRun_of_disciplines` assembles one finite-volume `BlockRun` (BlockRun.lean) on the
-committed records `RunRecord d m` from the per-block properties of a block family:
-measurability and the order/auxiliary disciplines (C3), halting a.s. (C4d), the read pattern
-and its locality, the query discipline against `declaredFresh` (C5a), a propagated record
-invariant with the frozen first-trial bound on it (C4, C5b), the marking discipline with the
-schedule labels `opLabel` (C5c), the per-stage snapshot dichotomy at the stage ends (C5c),
-the abort discipline (late failures and the cutoff, C5d) and the final-record facts (C5d).
+`blockRun_of_disciplines` assembles a finite-volume `BlockRun` (BlockRun.lean) on
+`RunRecord d m` from block measurability, order and auxiliary-query bounds, halting,
+read-pattern locality, query discipline against `declaredFresh`, an invariant with
+first-trial bounds, marking, stage dichotomies, abort rules, and final-record facts.
 Every other field is computed here: slots and scales from the schedule (`slotIndex`,
 `slotScaleOf`), pending sets and labels read at the stage starts `stageStartIdx`, the late
 slots `lateSlots`, the exceptional set (singular true principal blocks, or the final block
@@ -61,13 +58,13 @@ theorem blockRun_of_disciplines {d m : ℕ} (n₀ : ℕ) (u E Cr cp cg Ch c : �
     (hdisj : Pairwise fun n n' => Disjoint (orderSet n) (orderSet n'))
     (hauxdisj : Pairwise fun n n' => Disjoint (auxSet n) (auxSet n'))
     (horders : BlocksProof.HOrders M blocks orderSet) (haux : BlocksProof.HAux M blocks auxSet)
-    -- C4d: every block is reached almost surely
+    -- block reachability: every block is reached almost surely
     (hfinite : ∀ n, ∀ᵐ ω ∂sourcesLaw (Torus d m) M, blockStart M blocks rec₀ n ω ≠ ⊤)
     -- read patterns
     (pattern : ℕ → RunRecord d m → FreshPattern (Torus d m))
     (hpatm : ∀ n, Measurable (pattern n))
     (hlocal : ∀ n x, DependsOnly (Torus d m) (pattern n x) (localFirstFail M (blocks n) x))
-    -- C5a: query discipline against the declared-fresh signs
+    -- freshness: query discipline against the declared-fresh signs
     (hquery : ∀ n x k (ω : RandomSources (Torus d m) M),
       (∀ k' < k, (blocks n).halted (localState M (blocks n) x k' ω) = false) →
       (blocks n).halted (localState M (blocks n) x k ω) = true →
@@ -77,7 +74,7 @@ theorem blockRun_of_disciplines {d m : ℕ} (n₀ : ℕ) (u E Cr cp cg Ch c : �
     (hpat : ∀ n x, (∀ z ∈ (pattern n x).signs,
         z ∈ declaredFresh x ∨ ∃ a ∈ auxSet n, z = Sum.inr a) ∧
       ∀ o ∈ (pattern n x).orders, o ∈ orderSet n)
-    -- C5b + C4: invariant and first-trial bound
+    -- run invariant and first-trial bound
     -- (route R2: kept only off the null `exceptionalSet`, on records in the companion set
     -- `TV ω` — `TrueValues n₀ u ω` in the run, which is kept jointly)
     (Inv : ℕ → Set (RunRecord d m)) (hInv0 : rec₀ ∈ Inv 0)
@@ -95,7 +92,7 @@ theorem blockRun_of_disciplines {d m : ℕ} (n₀ : ℕ) (u E Cr cp cg Ch c : �
       (blocks n).exit (localState M (blocks n) x k ω) ∈ TV ω)
     (hbound : ∀ n, ∀ x ∈ Inv n, sourcesLaw (Torus d m) M (localFirstFail M (blocks n) x) ≤
       ENNReal.ofReal (birthBound c (slotScaleOf d m n)))
-    -- C5c: marking discipline with the schedule labels
+    -- stage dichotomy: marking discipline with the schedule labels
     (hmark : ∀ n x s, BlockReach (blocks n) x s → (blocks n).halted s = true →
       ∀ y ∈ ((blocks n).exit s).pending,
         (y ∈ x.pending ∧ ((blocks n).exit s).latest y = x.latest y) ∨
@@ -106,7 +103,7 @@ theorem blockRun_of_disciplines {d m : ℕ} (n₀ : ℕ) (u E Cr cp cg Ch c : �
     -- before the run proper
     (hempty : ∀ n < stageStartIdx d m (n₀ + 1), blocks n = simpleBlock sc₀ id)
     (hpend₀ : rec₀.pending = ∅)
-    -- C5c: the snapshot dichotomy at the end of a clearing stage
+    -- stage dichotomy: the snapshot dichotomy at the end of a clearing stage
     (hdich : ∀ j x (ω : RandomSources (Torus d m) M), n₀ < j → clearingScheduled j m →
       blockStart M blocks rec₀ (stageStartIdx d m (j + 1)) ω ≠ ⊤ →
       x ∈ (blockPrestate M blocks rec₀ (stageStartIdx d m (j + 1)) ω).pending →
@@ -114,7 +111,7 @@ theorem blockRun_of_disciplines {d m : ℕ} (n₀ : ℕ) (u E Cr cp cg Ch c : �
       ∃ S : Finset (Torus d m), x ∈ S ∧ stageScale 1 j m ^ (-nu d) < (S.card : ℝ) ∧
         (∀ y ∈ S, y ∈ (blockPrestate M blocks rec₀ (stageStartIdx d m (j + 1)) ω).pending) ∧
         (∀ y ∈ S, physicalDistance d m x y ≤ Ch * (4 : ℝ) ^ ((8 + nu d) * (j : ℝ))))
-    -- C5d: abort discipline (late first failures, the cutoff block `ncut`)
+    -- installed values: abort discipline (late first failures, the cutoff block `ncut`)
     (hrec₀ : rec₀.aborted = false) (ncut : ℕ)
     (habort : ∀ n x s, BlockReach (blocks n) x s → (blocks n).halted s = true →
       ((blocks n).exit s).aborted = true → x.aborted = true ∨
@@ -124,7 +121,7 @@ theorem blockRun_of_disciplines {d m : ℕ} (n₀ : ℕ) (u E Cr cp cg Ch c : �
       blockStart M blocks rec₀ ncut ω ≠ ⊤ →
       (blockPrestate M blocks rec₀ ncut ω).pending ⊆
         (blockPrestate M blocks rec₀ (stageStartIdx d m (m / 2 + 1)) ω).pending)
-    -- C5d: the final record (after the final residual sweep, stage `m + 1`)
+    -- installed values: the final record (after the final residual sweep, stage `m + 1`)
     (hfinal : ∀ ω : RandomSources (Torus d m) M,
       ω ∉ exceptionalSet (d := d) (m := m) n₀ u E M →
       blockStart M blocks rec₀ (stageStartIdx d m (m + 2)) ω ≠ ⊤ →

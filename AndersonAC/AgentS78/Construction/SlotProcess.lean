@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.RunLaw
 
 /-!
-# WP10 random construction, layer B: chronological birth slots
+# chronological birth slots
 
 08-history.tex:37–99. All possible birth labels are listed in one deterministic
 chronological order of *slots*; the retained history just before slot `n` is the stopped

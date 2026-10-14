@@ -1,9 +1,8 @@
 import AndersonAC.S45.Concentration
 import AndersonAC.S45.Ville
 
-/-! WP06 assembly: `ConcentrationInput` from Golden–Thompson and the five
-deterministic trace facts. Ville's inequality is proved (`ville_proof`, muse-s45ville).
-Once `GTStatement` (muse-gt) and `TraceHelpers` (luna-s45trace) are proved,
+/-! Concentration package assembly: `ConcentrationInput` from Golden–Thompson and the five
+deterministic trace facts. Ville's inequality is proved (`ville_proof`).
 `Packages.concentration_proof` is `concentrationInput_of gt_proof trace_proof`. -/
 
 namespace AndersonAC.OpusS45

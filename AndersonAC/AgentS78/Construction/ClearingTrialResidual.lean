@@ -3,7 +3,7 @@ import AndersonAC.S2.SignResampling
 import AndersonAC.S2.BinaryDecoder
 
 /-!
-# WP10 construction, C4b: the residual law of the clearing trial
+# the residual law of the clearing trial
 
 07-assembly.tex:200–236 ("The true residual at a selected pivot"): the pivot of a running
 heat is predictable and distinct from the earlier pivots, so every event of the trial's
@@ -616,7 +616,7 @@ theorem near_coupled {d m n₀ : ℕ} {cP CP : ℝ} {qlag : ℝ → ℝ} {u : �
   rw [Finset.mem_filter] at hz
   exact hsep z hz.1 hz.2 y' hy'
 
-/-- **C4b residual sub-contract, proved.** -/
+/-- **clearing trial bound residual sub-contract, proved.** -/
 theorem clearingResidual_proof (d : ℕ) (cP CP : ℝ) (qlag : ℝ → ℝ)
     (geo : ∀ {m : ℕ}, ℕ → ℝ → ℕ → Set (RunRecord d m)) :
     ClearingResidualStatement d (ClearingGood d cP CP qlag geo) := by
@@ -720,7 +720,7 @@ end AndersonAC.AgentS78.Residual
 
 namespace AndersonAC.AgentS78
 
-/-- **C4b: the clearing first-trial bound (query-history variant)**, conditional only on the
+/-- **clearing trial bound: the clearing first-trial bound (query-history variant)**, conditional only on the
 uniform Proposition 6.6, the uniform drift contract, the blueprint concentration input and
 the geometry sub-contract. Transport and residual law are proved. -/
 theorem clearingTrialH_of_geometry {d : ℕ} (hd : 3 ≤ d)

@@ -2,9 +2,7 @@ import AndersonAC.AgentS78.Construction.TilePhaseEnd
 import AndersonAC.AgentS78.Construction.Assembly
 
 /-!
-# WP10 construction, tile phase: the schedule indices of stage `j`
-
-agent-s78tphase (2026-10-14). In the schedule (`opIndex d m j k y = (4j + k)·N + rank y`,
+# the schedule indices of stage `j`. In the schedule (`opIndex d m j k y = (4j + k)·N + rank y`,
 `N = siteCount d m`), the tile operations of stage `j` are the indices
 `stageStartIdx d m j + r`, `r < N`, and the sweep end is `stageStartIdx d m j + N`. The run
 invariant on these indices is `TileSweepInv … (doneUpTo P j r)`:
@@ -12,7 +10,7 @@ invariant on these indices is `TileSweepInv … (doneUpTo P j r)`:
 * `tileOps_hInv`: index `stageStartIdx d m j + r` maps `doneUpTo P j r` to `doneUpTo P j (r+1)`
   (the `hInv` shape of `blockRun_of_runOps`);
 * `sweepEndOp_hInv`: index `stageStartIdx d m j + N` maps `TileSweepInv … (doneUpTo P j N)`
-  into agent-s78phase's `ClearPhase … j` (digit stages `j ≤ m`).
+  into `ClearPhase … j` (digit stages `j ≤ m`).
 -/
 
 noncomputable section

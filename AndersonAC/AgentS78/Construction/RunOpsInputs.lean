@@ -4,15 +4,15 @@ import AndersonAC.AgentS78.Construction.RunOpsFinite
 import AndersonAC.AgentS78.Construction.RunOpsFiniteTV
 
 /-!
-# WP10 construction: the remaining per-box inputs, with the dichotomy discharged
+# Per-box run inputs after discharging the dichotomy
 
 `RunOpsInputs` is `RunOpsData` with (i) the almost-sure reaching `hfinite` replaced by halting
 bounds on the invariant, tile halting patterns, and deterministic halting of the clearing
 blocks by step `Kc` (`runOps_finite_det`), and (ii) the snapshot dichotomy
 `hdich` replaced by three properties of the clearing block (keeps the components; relabels or clears the eligible
 component it attempts; keeps every other pending site and its label), through `runOps_dich`,
-`runOps_att` and `runOps_loc`. `uniformCertificateInput_of_runOpsInputs` is the WP10 finish
-line with this smaller frontier.
+`runOps_att` and `runOps_loc`. `uniformCertificateInput_of_runOpsInputs` assembles
+these conditions into a uniform certificate input.
 -/
 
 open MeasureTheory
@@ -25,7 +25,7 @@ namespace AndersonAC.AgentS78
 open AndersonAC.S78
 open AndersonAC.S2 (Query RandomSources sourcesLaw querySigns)
 
-/-- **The remaining inputs for one box** (dichotomy discharged). -/
+/-- Per-box run inputs after discharging the schedule dichotomy. -/
 structure RunOpsInputs (d m n₀ : ℕ) (u E Cr cp cg Ch c : ℝ) where
   P : TilePlan d m
   hu : 0 < P.u

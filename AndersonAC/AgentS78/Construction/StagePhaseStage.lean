@@ -3,7 +3,7 @@ import AndersonAC.AgentS78.Construction.StagePhaseRows
 import AndersonAC.S78.Statements
 
 /-!
-# WP10 construction: the stage operation turns the clearing-phase invariant into the next
+# the stage operation turns the clearing-phase invariant into the next
 # stage boundary
 
 `stage_end_core` (07-assembly.tex:1012–1030, proof of Proposition 7.5; Proposition 7.4 on the
@@ -12,11 +12,11 @@ solution of the diagonal reset equation on the active block in the ball of radiu
 `t_j^{.35δ}`, then the reset endpoint `resetEndpoint x.endpoint x.r ζ t_j` with damping
 `x.r + ζ` ends a stage history up to `j` (`BoundaryHist … j`). Inputs used:
 
-* `S78.committed_assembly` (sol-s78, unconditional) at the last committed state;
+* `S78.committed_assembly` (unconditional) at the last committed state;
 * `SolS78.reset_variation_proof` (row, kernel and form changes of a reset fixed point) with
   `Blueprint.Packages.ward`;
 * `reset_step` (ResetJoin.lean) for the reset half of the `StageStep`;
-* `BoundaryHist.extend` (the frozen consumer).
+* `BoundaryHist.extend`.
 
 The constants: `Cmin` depends only on `d, CA, cA, PA`; the scale threshold `t₀` only on these
 and on the stage-history constant `C ≥ Cmin` (uniform in `m, n₀, j, u, E`).

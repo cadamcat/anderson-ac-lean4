@@ -1,6 +1,6 @@
 import AndersonAC.S9Inf.HelperStatements
 
-/-! Raw, definitionally exact form of the frozen volume comparison. -/
+/-! Raw, definitionally exact form of the volume comparison. -/
 
 noncomputable section
 

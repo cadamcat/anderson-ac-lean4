@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.StagePhaseRec
 
 /-!
-# The record clauses of the clearing phase right after the snapshot
-
-agent-s78phase2. `clearRecPos_snapshot`: after `snapshotMap j` (components := the snapshot
+# The record clauses of the clearing phase right after the snapshot. `clearRecPos_snapshot`: after `snapshotMap j` (components := the snapshot
 components of the pending sites at radius `R_j`, Transitions.lean), the component clauses of
 `ClearRecPos … j 0` hold by construction (components are pending, `R_j`-separated, of diameter at
 most `|C| R_j`, and every pending site outside a component is farther than `R_j` from it). The

@@ -17,7 +17,7 @@ open scoped Matrix.Norms.L2Operator MatrixOrder BigOperators
 namespace AndersonAC.AgentS45
 
 /-- Exact local copy of `AndersonAC.S45.analytic_prestate`'s proposition.
-The check module verifies that this remains definitionally the frozen type. -/
+The check module verifies that this remains definitionally the same type. -/
 def analyticPrestateHypothesis : Prop :=
   ∀ (C : ℝ), 1 ≤ C → ∃ C' > 0, ∃ t0 > 0,
     ∀ (n : ℕ) (t : ℝ) (s : AndersonAC.S45.State (Fin n))

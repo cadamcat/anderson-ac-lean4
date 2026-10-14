@@ -3,9 +3,8 @@ import AndersonAC.Blueprint.FiniteInputs
 import AndersonAC.Challenge
 
 /-!
-Phase-1 package interfaces. Every hole that this file once held is now proved
-in its package module and imported by `Main`; the file keeps only the shared
-imports. See BLUEPRINT.md for the package map.
+Shared imports for the package interfaces. The corresponding statements and proofs
+are defined in their respective modules.
 -/
 
 noncomputable section

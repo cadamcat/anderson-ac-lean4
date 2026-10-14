@@ -1,7 +1,7 @@
 import AndersonAC.S3.HelperStatements
 
 /-!
-Frozen statement (lead agent-s3) for the circulant calculus on the discrete torus
+Statements for the circulant calculus on the discrete torus
 used by the inverse-form comparators of Proposition 3.6 (§3, lines 690–735):
 quadratic forms, Parseval, inverses, the mean projection, the Laplacian and the
 squared-modulus Green kernel are all diagonalized by the (unnormalized) Fourier

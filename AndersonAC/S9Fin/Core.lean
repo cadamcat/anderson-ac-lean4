@@ -1,6 +1,6 @@
 import AndersonAC.S9.Core
 
-/-! Finite §9 definitions copied verbatim from the frozen inventory. -/
+/-! Finite §9 definitions copied verbatim from the definitions. -/
 
 noncomputable section
 

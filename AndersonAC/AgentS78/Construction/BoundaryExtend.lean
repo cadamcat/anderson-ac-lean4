@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.BoundaryInv
 
 /-!
-# WP10 construction: extending the stage-boundary invariant by one stage
+# extending the stage-boundary invariant by one stage
 
 `BoundaryHist.extend`: if the previous boundary endpoint `old` (with damping `rOld`) ends a
 stage history up to `k` (the stage's phase invariants must carry this witness, since the

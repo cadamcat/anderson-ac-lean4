@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.Construction.NoEarlyAbort
 import AndersonAC.AgentS78.Construction.StageDichotomyK
 
 /-!
-# WP10 construction: the snapshot dichotomy of the schedule
+# the snapshot dichotomy of the schedule
 
 `hdich` of `blockRun_of_runOps` from `stage_dichotomy`, along the actual chain of entering
 records `r n = blockPrestate … n ω` of a clearing stage `j`, from the block after the snapshot
@@ -12,7 +12,7 @@ records `r n = blockPrestate … n ω` of a clearing stage `j`, from the block a
 (or clears) the sites of every small snapshot component (`hatt`), and no block of the stage
 touches a site of a component above the schedule's threshold `⌊t_j^{-ν}⌋`,
 `t_j = stageScale u j m` (`hloc`; `stage_dichotomy_K`); they follow from the clearing block's semantics
-(muse-s78clear) and the snapshot.
+ and the snapshot.
 -/
 
 open MeasureTheory

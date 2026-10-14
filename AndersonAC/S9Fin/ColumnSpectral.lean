@@ -8,7 +8,7 @@ namespace AndersonAC.SolS9
 
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
--- Adapted from the checked S9Cut/Spectral support in luna-s9cut.
+-- Unitary maps preserve Euclidean column norms for finite matrices.
 lemma column_unitary_norm_map (U : unitary (Matrix n n ℂ))
     (x : EuclideanSpace ℂ n) :
     ‖Matrix.toEuclideanCLM (n := n) (𝕜 := ℂ) (U : Matrix n n ℂ) x‖ = ‖x‖ := by

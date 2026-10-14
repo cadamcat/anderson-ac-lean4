@@ -1,8 +1,8 @@
 import Mathlib
 
 /-!
-Frozen target (coordinator, 2026-10-13). Independent restatement of Simon's Problem 1 (Simon 2000, Example 2.1 and Problem 1, p. 284)
-in Mathlib vocabulary only. Bridged from `AndersonAC.Blueprint.SimonProblem` by package WP15.
+Independent restatement of Simon's Problem 1 (Simon 2000, Example 2.1 and Problem 1,
+p. 284) in Mathlib vocabulary. The package `challengeBridge` derives it from `AndersonAC.Blueprint.SimonProblem`.
 
 Model (Example 2.1): on ℓ²(ℤ^ν), (h_ω u)(n) = Σ_{|j|=1} u(n+j) + V_ω(n) u(n), with V_ω(n) i.i.d. uniform on [a, b].
 Problem 1: for ν ≥ 3 and suitable values of b − a, purely absolutely continuous spectrum in some energy range.
@@ -25,11 +25,12 @@ def IsSpectralMeasure {d : ℕ} (T : lp (fun _ : Fin d → ℤ => ℂ) 2 →L[�
   IsFiniteMeasure μ ∧ ∀ k : ℕ, Integrable (fun t : ℝ => t ^ k) μ ∧
     ∫ t, t ^ k ∂μ = (inner ℂ v ((T ^ k) v)).re
 
-/-- Simon's Problem 1, in the strong form proved by Theorem 1.1 of the OpenAI manuscript: in every dimension
+/-- Simon's Problem 1, in a strong form that is a consequence of Theorem 1.1 of the OpenAI manuscript: in every dimension
 `d ≥ 3` there is a width bound `δ > 0` such that for all `a < b` with `b - a < δ` there is a nonempty open energy
 interval `I = (E₁, E₂)` such that almost surely `I ⊆ σ(h_ω)`, every spectral measure of `h_ω` is absolutely
 continuous on `I`, and some vector has nonzero spectral weight in `I`. The potentials are any i.i.d. family of
-uniform random variables on `[a, b]` on any probability space. -/
+uniform random variables on `[a, b]` on any probability space. The interval may depend on `a` and `b`; the
+proof takes Theorem 1.1's fixed interval translated by `(a + b)/2` (`AndersonAC.Blueprint.SimonProblem`). -/
 def Statement : Prop :=
   ∀ d : ℕ, 3 ≤ d → ∃ δ : ℝ, 0 < δ ∧ ∀ a b : ℝ, a < b → b - a < δ →
     ∃ E₁ E₂ : ℝ, E₁ < E₂ ∧

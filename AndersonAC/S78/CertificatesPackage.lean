@@ -1,10 +1,10 @@
 import AndersonAC.AgentS78.Construction.TileCoreA2Bounds
 import AndersonAC.AgentS78.Construction.WP10Join
 
-/-! WP10: the certificates package. The C4a one-trial bound is assembled from the slot
-description (A0), the slot law (A1), the monitor bounds (A2, input constant 2) and the
-transfer step (A3b); the random multiscale construction then gives the uniform certificate
-input, and `certificates_of_uniform_input` the frozen package type. -/
+/-! certificate construction: the certificates package. The tile trial one-trial bound is assembled from the slot
+description (slot recursion), the slot law (tile slot law), the monitor bounds (monitor bounds, input constant 2) and the
+transfer step (sweep transfer); the random multiscale construction then gives the uniform certificate
+input, and `certificates_of_uniform_input` the package type. -/
 set_option autoImplicit false
 noncomputable section
 

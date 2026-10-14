@@ -11,7 +11,7 @@ import AndersonAC.S45.PrefixPrestateProof
 import AndersonAC.S45.DuplicationComparisonProof
 
 /-!
-# WP10 C4a: monitored tile increments (A2)
+# monitored tile increments (monitor bounds)
 
 The adapter from the ordinary S45 increment table to the four padded tile monitors.
 -/
@@ -1132,7 +1132,7 @@ end RunningWellFormed
 
 `TileMonitorBoundsStatement` in `TileCore.lean:256` uses the same existential constant `C'` both
 as the output monitor factor and in the input scalar bounds (`MomentLaw (ρ y) t C' id`,
-`|z y| ≤ C' √t`, `|z| ≤ C' √t`), whereas `TileSlotLawStatement` (A1) supplies `UniformSlotLaw`
+`|z y| ≤ C' √t`, `|z| ≤ C' √t`), whereas `TileSlotLawStatement` (tile slot law) supplies `UniformSlotLaw`
 with input scalar constant `2` (`|tileXi| ≤ 2 √t`). In `S45.FamilyTable`, the output constant
 grows polynomially of degree ≥ 2 in the input scalar constant with zero `t`-slack against
 `monitorBias / logFactor`, `monitorVariance / logFactor`, and `monitorJump`.
@@ -1353,7 +1353,7 @@ theorem ordered_raw_bounds_in_out {Ω : Type*} [mΩ : MeasurableSpace Ω]
       exact Matrix.PosSemidef.one.smul hc
   · exact HEq.rfl
 
-/-- **A2 (repaired input scalar constant `2` matching `TileSlotLawStatement`).** -/
+/-- **monitor bounds (repaired input scalar constant `2` matching `TileSlotLawStatement`).** -/
 def TileMonitorBoundsStatement2 (d : ℕ) (C : ℝ) : Prop :=
   ∃ C' ≥ 2, ∃ t0 > 0, ∀ (m : ℕ) (P : TilePlan d m) (j : ℕ) (T : Fin (P.cover j).cover.count)
     (M : ℕ → ℕ) (x : RunRecord d m),
@@ -1384,7 +1384,7 @@ def TileMonitorBoundsStatement2 (d : ℕ) (C : ℝ) : Prop :=
     (∀ i k, k < N → ∀ ω, run k ω = true → ∀ y ∈ remaining k ω,
       ∀ z, |z| ≤ 2 * Real.sqrt t → ‖eval i k ω y z‖ ≤ C' * S45.monitorJump t (kind i))
 
-/-- **Assembly of the C4a core from `TileMonitorBoundsStatement2`.** -/
+/-- **Assembly of the tile trial core from `TileMonitorBoundsStatement2`.** -/
 theorem tileCrossing_of_pieces2 (d : ℕ) (C : ℝ) (hA0 : TileSlotDescriptionStatement)
     (hA1 : TileSlotLawStatement) (hA2 : TileMonitorBoundsStatement2 d C)
     (hA3 : TileFailCrossingStatement d C) : TileCrossingStatement d C := by

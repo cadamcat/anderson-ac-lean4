@@ -1,7 +1,7 @@
 import AndersonAC.S45.TrialInputsProof
 import AndersonAC.S45.MatrixProbProof
 
-/-! `ordered_trial_inputs` made unconditional with luna-s45prob's
+/-! `ordered_trial_inputs` made unconditional with
 `conditionalCenteringFixed_proof`. -/
 
 noncomputable section

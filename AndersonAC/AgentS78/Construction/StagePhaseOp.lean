@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.Construction.StagePhaseReset
 import AndersonAC.AgentS78.Construction.RunOps
 
 /-!
-# WP10 construction: the stage operation of the schedule on the clearing-phase invariant
+# the stage operation of the schedule on the clearing-phase invariant
 
 `stageMapA P j` is `stageMap P j` (RunOps.lean) with the active-block reset `resetMapA` in place
 of `resetMap` (see StagePhaseResetDefect.lean). `stage_op_boundary`: for a non-aborted record
@@ -26,7 +26,7 @@ def stageMapA (P : TilePlan d m) (j : ℕ) : RunRecord d m → RunRecord d m :=
   sweepStartMap (sweepTheta P.u m (j + 1)) (sweepScale P.u m (j + 1)) ∘
     (if j = m / 2 then cutoffMap else id) ∘ resetMapA (stageScale P.u j m)
 
-/-- Since the switch of 2026-10-14 the schedule's stage operation is `stageMapA`. -/
+/-- The schedule's stage operation is `stageMapA`. -/
 theorem stageMapA_eq_stageMap (P : TilePlan d m) (j : ℕ) : stageMapA P j = stageMap P j := rfl
 
 theorem stageMapA_endpoint_r (P : TilePlan d m) (j : ℕ) (x : RunRecord d m) :

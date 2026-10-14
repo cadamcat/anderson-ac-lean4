@@ -1,7 +1,6 @@
 import AndersonAC.S6.Statements
 
-/-! Frozen independent algebra/stopping helpers for Section 6.
-These are propositions, not assumed theorem declarations. -/
+/-! Independent algebra and stopping propositions for Section 6. -/
 noncomputable section
 open MeasureTheory ProbabilityTheory
 open scoped Matrix ComplexConjugate Matrix.Norms.L2Operator

@@ -3,13 +3,13 @@ import AndersonAC.AgentS78.Construction.SnapshotComponents
 import AndersonAC.AgentS78.Construction.Dichotomy
 
 /-!
-# WP10 construction: the attempted snapshot component is the clearing core (lead)
+# The snapshot component is the clearing core
 
 On a record whose components are the snapshot components of a pending set, the eligible
 component anchored at `y` is the unique candidate, hence `theCore` (`theCore_snapshot`), and
 a snapshot component with `N` sites lies within `N · R` of each of its sites
-(`snapComp_radius`, from `component_radius`). Inputs of `hcrelabel` and of the radius clause of
-correction (6).
+(`snapComp_radius`, from `component_radius`). These facts supply the inputs to
+`hcrelabel` and the radius clause of `eligibleCand`.
 -/
 
 noncomputable section

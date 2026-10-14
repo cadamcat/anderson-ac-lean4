@@ -1,9 +1,9 @@
 import AndersonAC.AgentS78.Construction.StagePhaseReset
 
 /-!
-# WP10 construction: measurability of the active-block reset
+# measurability of the active-block reset
 
-(Split by agent-s78con3 from luna-s78resetA's StagePhaseOpMeas.lean so that RunOps can use it.)
+This module isolates active-block reset measurability from `StagePhaseOpMeas.lean`.
 
 `resetMapA t x` is, definitionally, `resetFixedA t x.endpoint.active x`, where
 `resetFixedA t A` performs the active-block reset on a *fixed* finset `A`. Each `resetFixedA t A`

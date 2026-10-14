@@ -106,7 +106,7 @@ lemma middle_difference (M : Matrix ι ι ℂ) (r z w : ι → ℂ) (t c a : ℝ
       rw [heq, heq']
       nlinarith
 
-/-- The exact frozen uniform Taylor statement, with explicit constants. -/
+/-- Uniform Taylor bound with explicit constants. -/
 theorem reset_taylor_proof (c C : ℝ) (hc : 0 < c) (hC : 1 ≤ C) :
     ∃ C' a₀ : ℝ, 0 < C' ∧ 0 < a₀ ∧
       ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (M : Matrix ι ι ℂ) (r : ι → ℂ) (t : ℝ),

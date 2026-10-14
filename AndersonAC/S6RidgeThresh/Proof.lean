@@ -213,7 +213,7 @@ private theorem maxWeight_ridge_bound {B R : Type*}
   intro i hi
   exact Real.toNNReal_le_toNNReal (hPoint i)
 
-/-- The scalar portion of the frozen ridge threshold contract. -/
+/-- The scalar portion of the ridge-threshold statement. -/
 theorem ridgeThreshold_scalar_proof :
     ∀ (B R : Type*) [Fintype B] [DecidableEq B] [Fintype R] [DecidableEq R]
       (C : Matrix R B ℂ) (l : ℝ) (hl : 0 < l)

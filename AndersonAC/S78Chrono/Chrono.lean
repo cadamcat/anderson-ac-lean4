@@ -2,10 +2,9 @@ import AndersonAC.S78Chrono.Defs
 
 /-! Reverse chronological induction for the finite birth-product bound.
 
-Lead request: prove the exact finite deterministic-label product bound from
-the filtration conditional-indicator bounds and event adaptedness, using the
-conditional set integral and reverse chronological induction, not independence.
-All binders and hypotheses are retained. -/
+The theorem proves the finite deterministic-label product bound from the
+filtration's conditional-indicator bounds and event adaptedness, using conditional
+set integrals and reverse chronological induction. It does not assume independence. -/
 
 open scoped BigOperators ENNReal Topology MeasureTheory
 open MeasureTheory Filter

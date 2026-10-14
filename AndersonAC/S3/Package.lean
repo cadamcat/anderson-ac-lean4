@@ -10,9 +10,8 @@ import AndersonAC.S3.Comparators
 import AndersonAC.S3.SmallSymbol
 
 /-!
-WP05 package join (conditional form). `Packages.initialization` follows from the
-helper statements below; once every helper `_proof` is integrated the hypotheses
-are discharged and `initialization_proof` is stated with exactly the package type.
+The initialization package follows from the helper statements below. The hypotheses
+are the corresponding Fourier, grid, resolvent, and symbol estimates.
 
 Dependency map of the hypotheses:
 * `TorusFourierStatement` — helper S3-fourier;
@@ -33,7 +32,7 @@ namespace AndersonAC.S3
 theorem jointShellX_of_convexShell (hshell : ConvexShellStatement) : JointShellXStatement :=
   jointShellX_of_helpers slabSlice_proof hshell
 
-/-- WP05 from the intermediate helper statements. -/
+/-- initialization package from the intermediate helper statements. -/
 theorem initialization_of_helpers (hF : TorusFourierStatement)
     (hQ : PeriodicGridQuadratureStatement) (hB : BottomResolventStatement)
     (hS : SmallSymbolStatement) (hL : LargeSymbolStatement) :
@@ -45,8 +44,8 @@ helpers integrated). -/
 theorem jointShellK_proof : JointShellKStatement :=
   jointShellK_of_X_proof (jointShellX_of_convexShell convexShell_proof)
 
-/-- WP05 with the integrated helpers discharged; remaining inputs: the bottom-of-band
-continuum bounds and the two symbol statements. -/
+/-- Initialization input from the bottom-of-band continuum bounds and the two
+symbol statements. -/
 theorem initialization_of_remaining (hB : BottomResolventStatement)
     (hS : SmallSymbolStatement) (hL : LargeSymbolStatement) :
     ∃ e₂ : ℝ, e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100) ∧ AndersonAC.Blueprint.InitializationInput e₂ :=
@@ -60,15 +59,15 @@ theorem initializationInput_of_remainingW (hB : BottomResolventStatement)
   initializationInput_of_gridBoundsW torusFourier_proof
     (gridBoundsW_of_helpers periodicGridQuadrature_proof hB hS (largeSymbolW_of_decayW hLD)) he
 
-/-- `InitializationInput e₂` for every `e₂`, remaining inputs: bottom resolvent and the
-large-frequency decay. -/
+/-- `InitializationInput e₂` for each `e₂`, assuming the bottom-resolvent and
+large-frequency decay estimates. -/
 theorem initializationInput_of_BR_decay (hB : BottomResolventStatement)
     (hLD : LargeSymbolDecayWStatement) {e₂ : ℝ} (he : e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100)) :
     AndersonAC.Blueprint.InitializationInput e₂ :=
   initializationInput_of_remainingW hB
     (smallSymbolW_of_helpers torusFourier_proof periodicGridQuadrature_proof hB) hLD he
 
-/-- WP05 (`e₂ = 1/200`) with only the bottom resolvent and the large-frequency symbol left. -/
+/-- initialization package (`e₂ = 1/200`) with only the bottom resolvent and the large-frequency symbol left. -/
 theorem initialization_of_BR_large (hB : BottomResolventStatement) (hL : LargeSymbolStatement) :
     ∃ e₂ : ℝ, e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100) ∧ AndersonAC.Blueprint.InitializationInput e₂ :=
   initialization_of_remaining hB

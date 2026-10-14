@@ -2,9 +2,9 @@ import AndersonAC.AgentS78Geo.Geo
 import AndersonAC.AgentS78.Construction.ClearingTrialZResidual
 
 /-!
-# WP10 construction, C4b off a null set: the geometry for every trial
+# the geometry for every trial
 
-`AgentS78Geo.clearingGeometry_proof` (opus-s78geo) does not use its query-history and residual
+`AgentS78Geo.clearingGeometry_proof` does not use its query-history and residual
 hypotheses. `clearingGeometryQ_proof` is the same proof with those hypotheses dropped, so that
 it applies to the composed trial `compTrial φ q` and to trials whose residual identity holds
 only off a null set.
@@ -23,7 +23,7 @@ open AndersonAC.S2 (RandomSources sourcesLaw)
 variable {d m : ℕ}
 
 /-- `ClearingGeometryStatement` without the query-history and residual hypotheses, which its
-proof (`clearingGeometry_proof`, opus-s78geo) does not use: the geometric local input holds for
+proof (`clearingGeometry_proof`) does not use: the geometric local input holds for
 every stopped trial on the active sites, at every sample. -/
 def ClearingGeometryStatementQ (d : ℕ)
     (good : ∀ {m : ℕ}, ℕ → ℝ → ℝ → ℕ → Set (RunRecord d m)) (cP CP : ℝ) : Prop :=

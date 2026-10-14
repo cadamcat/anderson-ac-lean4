@@ -2,9 +2,7 @@ import AndersonAC.AgentS78.Construction.StagePhaseSnap
 import AndersonAC.AgentS78.Construction.StagePhaseOp
 
 /-!
-# The Lemma 7.2 trace across the stage transitions
-
-agent-s78phase2. `TraceInv Ctr n₀ u j x`: a trace `T` of successful clearing groups of index
+# The Lemma 7.2 trace across the stage transitions. `TraceInv Ctr n₀ u j x`: a trace `T` of successful clearing groups of index
 `≤ j` whose edits are the terminal set of `x` and whose hop structure holds for `x.endpoint.M` on
 the active set (the `trace` clause of `ClearRec`, without the stage-`j` freshness). It is kept by
 the transitions between clearing phases:

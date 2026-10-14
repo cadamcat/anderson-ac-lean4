@@ -2,9 +2,7 @@ import AndersonAC.AgentS78.Construction.StagePhaseDone
 import AndersonAC.AgentS78.Construction.ClearingSix
 
 /-!
-# The Lemma 7.2 trace after a DONE clearing
-
-agent-s78phase2. A DONE exit of the clearing attempt anchored at `y` adds one group to the trace
+# The Lemma 7.2 trace after a DONE clearing. A DONE exit of the clearing attempt anchored at `y` adds one group to the trace
 of `ClearRec` (`AgentS78Geo.extendTrace`): index `j`, core `B = theCore j u y x`, edits the
 removed set `O = active \ active'` (= core ∪ inspected sites). `done_trace` gives the extended
 trace with: its edits are the new terminal set, its index-`j` cores are farther than `R_j` from

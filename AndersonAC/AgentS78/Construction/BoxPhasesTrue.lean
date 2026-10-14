@@ -1,11 +1,11 @@
 import AndersonAC.AgentS78.Construction.BoxPhases
 
 /-!
-# WP10 construction: installed values at the final record (agent-s78box)
+# installed values at the final record
 
 `runTrueValues_of_parts`: `RunTrueValuesStatement d` (BoxPhases.lean) from
 
-* `TileTrueValuesStatement` (TrueValues.lean, frozen; luna-s78truev): tile blocks keep
+* `TileTrueValuesStatement` (TrueValues.lean): tile blocks keep
   `TrueValues` along the answers of `ω`, given the stage prefix length on the coupled active sites
   of the tile — supplied here by `RunBasics` (`SweepProps.undone`);
 * `ClearingTrueValuesStatement` (new): clearing blocks keep `TrueValues` along the answers of `ω`

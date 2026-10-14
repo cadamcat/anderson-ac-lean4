@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.TileCoverStatement
 
 /-!
-# WP10 construction: a `TilePlan` from the tile-cover statement
-
-agent-s78cover (2026-10-14). From `TileCoverStatement d`: for every box (`n₀ ≥ 1`,
+# a `TilePlan` from the tile-cover statement. From `TileCoverStatement d`: for every box (`n₀ ≥ 1`,
 `u ∈ (1/4, 1]`) a `TilePlan` whose stage covers are the restrictions along `id` (all ports,
 energy `Λ`, distance `pullDist id`, `b = t_{n₀} t`), with the cover clauses of `TileGoodCore`
 (`cover_b`, `cover_C`, `shell`, `tile_card`, `inner_card`), the tile diameters of
@@ -141,8 +139,8 @@ structure StageCoverFacts (C Ch u : ℝ) (n₀ j : ℕ) (S : StageCover d m (swe
           (∀ T x, x ∈ cov.inner T ↔ ι x ∈ S.cover.inner (e T)) ∧
           (∀ T, ((cov.inner T).card : ℝ) ≤ C * S45.power (sweepScale u m j) (-6 * (d : ℝ)))
 
-/-- **A tile plan for every box**, from the tile-cover statement (design (ii) of
-INTERFACE-ISSUES 00:20:11 (b); `restrict` gives design (i)). -/
+/-- A tile plan for every box. `restrict` gives the corresponding cover on an
+embedded port family. -/
 theorem exists_tilePlan (hTC : TileCoverStatement d) :
     ∃ C : ℝ, 1 ≤ C ∧ ∀ (m n₀ : ℕ) (u : ℝ), 1 ≤ n₀ → n₀ ≤ m → 1 / 4 < u → u ≤ 1 →
       ∃ P : TilePlan d m, P.n₀ = n₀ ∧ P.u = u ∧

@@ -3,8 +3,8 @@ import AndersonAC.AgentS78.Construction.StagePhaseOpRow
 import AndersonAC.AgentS78.Construction.RunBasicsInit
 
 /-!
-# WP10 construction, global run invariant: sweep ends, stage operations, initial record
-(agent-s78box)
+# sweep ends, stage operations, initial record
+
 
 Per box (`P`, energy `E`, initial damping `ρ`, history constant `Cb`, assembly constants
 `CA cA PA`, damping window `[cA, CA]`), with the run-level set `RB n = RunBasics P n ∩ Xg n`:

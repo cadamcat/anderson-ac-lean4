@@ -1,14 +1,12 @@
 import AndersonAC.AgentS78.Construction.RunAssembly
 
 /-!
-# WP10 construction: the remaining per-box inputs, and UniformCertificateInput from them
+# Per-box inputs for a uniform certificate
 
-`RunOpsData d m n₀ u E Cr cp cg Ch c` collects, for one box, exactly the hypotheses of
-`blockRun_of_runOps` that are not yet proved (tile and clearing disciplines, halting, the run
-invariant with the first-trial bounds, the snapshot dichotomy and the final record; see
-agent-s78/NOTES.md for their owners). `uniformCertificateInput_of_runOpsData`:
-S78.UniformCertificateInput follows from such data for all large boxes with uniform constants.
-This is the WP10 finish line in one structure.
+`RunOpsData d m n₀ u E Cr cp cg Ch c` collects the hypotheses of `blockRun_of_runOps`
+for one box: tile and clearing disciplines, halting, the run invariant and first-trial
+bounds, the snapshot dichotomy, and the final record. `uniformCertificateInput_of_runOpsData`
+assembles these data for all sufficiently large boxes with uniform constants.
 -/
 
 open MeasureTheory
@@ -21,7 +19,7 @@ namespace AndersonAC.AgentS78
 open AndersonAC.S78
 open AndersonAC.S2 (Query RandomSources sourcesLaw querySigns)
 
-/-- **The remaining inputs for one box.** -/
+/-- Inputs for one box in the finite-volume construction. -/
 structure RunOpsData (d m n₀ : ℕ) (u E Cr cp cg Ch c : ℝ) where
   P : TilePlan d m
   hu : 0 < P.u

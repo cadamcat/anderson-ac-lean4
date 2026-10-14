@@ -2,13 +2,11 @@ import AndersonAC.AgentS78.Construction.SweepEndDecay
 import AndersonAC.AgentS78.Construction.SweepEndRows
 
 /-!
-# The final reserve rows of a digit sweep
-
-agent-s78send (2026-10-14). `SweepReserveRowStatement` (SweepEnd.lean) reduces, through the
+# The final reserve rows of a digit sweep. `SweepReserveRowStatement` (SweepEnd.lean) reduces, through the
 generic reserve-row transfer `AgentS78send.reserveRow_transfer` applied to the committed sweep
 on `Port d m` (live start = the ports of the active sites), to the **row tails of every
 committed step** (`SweepRowTailStatement`, the `rows` field of S45 `TraceTails` for the
-reserve columns; 05:155–239 Lemma `local-prospective`, as argon-s78transfer's A3b for a tile
+reserve columns; 05:155–239 Lemma `local-prospective`, as sweep transfer for a tile
 candidate). The start facts (zero start lag, start reserve rows `≤ θ² rowCap`) are proved here
 from the v3 stage-start clauses on `startV3` by reindexing the duplicated start along the
 equivalence between the live start ports and the ports of the active sites.
@@ -143,10 +141,10 @@ theorem TileSweepCore.start_ambient_reserve_rows (h : TileSweepCore C P j n₀ u
 /-- **Row tails of the committed sweep (contract, hard; 05:155–239).** Every committed step of a
 finished digit sweep changes the reserve fourth rows only near its pivot:
 `|stepRow reserves k i| ≤ t^{-Ct} exp(−ct t³ dist(i, x_k))` (the reserve part of the `rows`
-field of S45 `TraceTails`). Route: argon-s78transfer's A3b (`traceTails_of_slotSeq`:
+field of S45 `TraceTails`). Route: sweep transfer (`traceTails_of_slotSeq`:
 `step_delete_inverse_decay`, poly tail helpers) at every committed prefix, with the prefix
 bounds (‖K‖ ≤ 3/4, rawLag) from the cumulative Schur identity of the sweep restricted to the
-active ports (luna-s78live) and the prefix decay `TileSweepCore.start.prefix_decay`. -/
+active ports and the prefix decay `TileSweepCore.start.prefix_decay`. -/
 def SweepRowTailStatement (d : ℕ) : Prop :=
   ∀ cP CP cL CL C₀ : ℝ, 0 < cP → cP ≤ CP → 0 < cL → 0 < CL → 0 < C₀ → ∀ C : ℝ, 1 ≤ C →
   ∃ Ct ≥ (1 : ℝ), ∃ ct > (0 : ℝ), ∃ t0 > (0 : ℝ), ∀ (m n₀ : ℕ) (u E : ℝ) (ρ : ℂ)

@@ -1,9 +1,8 @@
 import AndersonAC.S78.Statements
 import AndersonAC.Blueprint.Interfaces
 
-/-! The frozen WP10 package type with the remaining construction input explicit.
-The construction owner supplies UniformCertificateInput uniformly in dimension
-and in each admissible energy parameter. -/
+/-! The certificate package type with its construction input explicit.
+`UniformCertificateInput` is required uniformly in dimension and admissible energy. -/
 set_option autoImplicit false
 noncomputable section
 

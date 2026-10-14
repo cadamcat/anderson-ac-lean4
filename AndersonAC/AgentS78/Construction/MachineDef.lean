@@ -1,10 +1,10 @@
 import AndersonAC.AgentS78.Construction.Machine
 
 /-!
-# WP10 random construction, C3a′: the explicit machine run
+# the explicit machine run
 
-Frozen sub-contract (agent-s78con, 2026-10-13), the definitional form of C3a used by the
-run machine and by the frozen-trial events of `QueryRun` (which need joint measurability in
+sub-contract, the definitional form of machine run used by the
+run machine and by the trial events of `QueryRun` (which need joint measurability in
 the starting state). `machineRun` carries the list of earlier queries, so the answer at
 step `q` (`localAnswer`, the same formula as `S2.answer` with `orderCount` replaced by the
 count in that list) is defined without circularity.
@@ -56,7 +56,7 @@ def machineQ {St : Type} (init : St) (next : St → Query ι) (update : St → A
 
 end
 
-/-- **C3a′ (frozen contract).** The explicit run is the S2 run of its strategy, is
+/-- **machine run (contract).** The explicit run is the S2 run of its strategy, is
 retained-measurable, and is jointly measurable in a parametrized initial state. -/
 def MachineRunStatement : Prop :=
   ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (M : ℕ → ℕ) (St : Type) [MeasurableSpace St]

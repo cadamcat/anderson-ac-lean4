@@ -3,7 +3,7 @@ import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 import Mathlib.MeasureTheory.Measure.Regular
 import Mathlib.Topology.MetricSpace.Thickening
 
--- Adapted from luna-s9pois commit e756c2f; only the import and final contract name change.
+-- Poisson domination for finite-volume spectral measures.
 noncomputable section
 
 open MeasureTheory Filter

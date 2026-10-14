@@ -2,15 +2,14 @@ import AndersonAC.AgentS78.Construction.TileStartAlgebraic
 import AndersonAC.AgentS78.Construction.PhysicalIdentity
 
 /-!
-# WP10 tile phase: the decay clauses of the duplicated stage start (contract, v3 proposal)
+# Decay clauses of the duplicated stage start
 
-agent-s78start (2026-10-14). The three decay clauses of `StartClauses` (`start_decay`,
+The three decay clauses of `StartClauses` (`start_decay`,
 `start_far_decay`, `prefix_decay`), stated on the live ports. They are Combes–Thomas bounds
-(05:62–100, Lemma `locality`; 05:458–462 for the prefixes) and need the locality of the endpoint
+(–100, Lemma `locality`; 05:458–462 for the prefixes) and need the locality of the endpoint
 matrix: `PhysicalIdentity E z` (02-state:231–247, the real part of `M` on the active set is the
 terminal Schur complement of the nearest-neighbour `H − E + installed`), and the cover distance
-`pullDist id` (physical distance of the sites). Not derivable from `StageBounds` alone
-(INTERFACE-ISSUES agent-s78start (4)). Requested as a separate package.
+`pullDist id` (physical distance of the sites). These clauses require more than `StageBounds`.
 -/
 
 noncomputable section
@@ -24,7 +23,7 @@ open AndersonAC.S78
 
 variable {d m : ℕ}
 
-/-- **Decay clauses of the duplicated stage start on the live ports** (v3 proposal). -/
+/-- Decay clauses of the duplicated stage start on the live ports. -/
 structure StartDecayLive (C : ℝ) (P : TilePlan d m) (j : ℕ) (a : S45.LiveState (Port d m))
     (r : Torus d m → ℂ) : Prop where
   start_decay : ∀ p q : a.live,
@@ -73,18 +72,18 @@ namespace AndersonAC.AgentS78
 
 open AndersonAC.S78
 
-/-! ## Sub-contracts of the decay clauses (DISPATCH, agent-s78start) -/
+/-! ## Sub-contracts of the decay clauses -/
 
-/-- The physical damping factor `ϑ_i` at a prefix (04:46–55): `θ` once the bit port of `i` is
+/-- The physical damping factor `ϑ_i` at a prefix (–55): `θ` once the bit port of `i` is
 deleted, `1` before. -/
 noncomputable def prefixVartheta {d m : ℕ} (θ : ℝ) (L : Finset (Port d m)) (i : Torus d m) : ℝ :=
   haveI := Classical.dec
   if ((i, false) : Port d m) ∈ L then 1 else θ
 
-/-- **(P1) The prefix Schur identity** (04:46–80, eq:sweep-physical-prefix): along a
+/-- **(P1) The prefix Schur identity** (–80, eq:sweep-physical-prefix): along a
 well-formed bit-pivot sequence from the start lift of a damped endpoint, every prefix state is
 the port lift of the inverse of `M_A + diag ζ − t diag(ϑ r)` for some real `ζ` (the inserted
-increments). This is the invariant of `sweepSchur_proof` (lane/agent-s78schur 009e745),
+increments). This is the invariant of `sweepSchur_proof`,
 stated at every prefix. -/
 def PrefixPhysStatement : Prop :=
   ∀ (d m : ℕ) (t θ : ℝ) (x : RunRecord d m) (q : S45.Sequence (Port d m)),
@@ -103,7 +102,7 @@ def PrefixPhysStatement : Prop :=
         (q.state k).g p p' = ((S45.splitPorts (Torus d m) θ).weight p : ℂ) *
           ((S45.splitPorts (Torus d m) θ).weight p' : ℂ) * G p.1 p'.1
 
-/-- **(P2) Combes–Thomas on the torus active block** (05:62–100, Lemma `locality` with the
+/-- **(P2) Combes–Thomas on the torus active block** (–100, Lemma `locality` with the
 metric input and `physical_decay`): if the real part of the endpoint matrix is the active Schur
 complement of the nearest-neighbour `H − E + installed` (`PhysicalIdentity`), then for every real
 diagonal shift `D` and damping `c₀ t ≤ τ ≤ C₀ t` the inverse of `M_A + diag(D − iτ)` decays in the

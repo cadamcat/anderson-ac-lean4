@@ -3,13 +3,11 @@ import AndersonAC.AgentS78.PadNorm
 import AndersonAC.S45.MatrixProbProof
 
 /-!
-# WP10 construction, C4a core, piece A3: a failed first trial crosses a monitored budget
-
-agent-s78trial (2026-10-14). A3a: along the slot recursion the partial sums of the stopped
+# a failed first trial crosses a monitored budget. budget crossinga: along the slot recursion the partial sums of the stopped
 monitored records (`tileRaw`) are the padded trial records since the trial start
 (`partialSum_tileRaw`), and their norms dominate the four quantities of `S45.localBudget`
 (`monitorOf_norm_*`). Hence a failure whose candidate violates a local budget is a crossing.
-A3b (`TileTransferStatement`, TileTransfer.lean) excludes every other failure (05:844–860).
+sweep transfer (`TileTransferStatement`, TileTransfer.lean) excludes every other failure (05:844–860).
 `tileFailCrossing_of_transfer : TileTransferStatement d C → TileFailCrossingStatement d C`.
 -/
 
@@ -381,7 +379,7 @@ theorem first_failure (x : RunRecord d m) (ω : RandomSources (Torus d m) M) :
 
 end Mon
 
-/-- **A3 from A3b.** -/
+/-- **budget crossing from sweep transfer.** -/
 theorem tileFailCrossing_of_transfer (d : ℕ) (C : ℝ) (h : TileTransferStatement d C) :
     TileFailCrossingStatement d C := by
   obtain ⟨t0, ht0, h⟩ := h

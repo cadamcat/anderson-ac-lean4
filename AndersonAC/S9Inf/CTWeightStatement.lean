@@ -1,6 +1,6 @@
 import AndersonAC.S9Inf.HelperStatements
 
-/-! Frozen scalar weight bounds for infinite-lattice Combes–Thomas. -/
+/-! scalar weight bounds for infinite-lattice Combes–Thomas. -/
 
 noncomputable section
 

@@ -1,10 +1,9 @@
 import AndersonAC.AgentS78.Construction.PhysicalIdentity
 
 /-!
-# WP10 construction, tile phase: the physical identity under installed increments
+# Physical identity after installing sweep increments
 
-agent-s78tphase (2026-10-14), prepared for the `endpoint.M` fix (INTERFACE-ISSUES 01:13): when
-an accepted trial installs increments `v` supported on the active set and records them in
+When an accepted trial installs increments `v` supported on the active set and records them in
 both `installed` and `endpoint.M`, the physical identity (02-state.tex:231–247) is kept, since
 the Schur complement onto the active set commutes with adding a diagonal supported on it.
 -/

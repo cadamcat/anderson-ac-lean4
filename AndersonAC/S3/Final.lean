@@ -7,8 +7,9 @@ import AndersonAC.S3H.BottomResolvent
 import AndersonAC.S3H.Ray
 
 /-!
-§3 endpoints with all integrated helpers discharged. Remaining hypotheses are exactly
-the helper statements not yet delivered (bottom resolvent; large-frequency symbol).
+The §3 endpoints assemble the helper estimates into the initialization result.
+Bottom-resolvent and large-frequency estimates appear explicitly as hypotheses
+where they are needed.
 -/
 
 noncomputable section
@@ -42,11 +43,11 @@ theorem initialization_normalized_of_BR_decay (hB : BottomResolventStatement)
       (smallSymbolW_of_helpers torusFourier_proof periodicGridQuadrature_proof hB)
       (largeSymbolW_of_decayW hLD)) hLD hd e₂ he₂
 
-/-- Lemma 3.5 in the lead's form, unconditional. -/
+/-- Lemma 3.5, the unconditional bottom-resolvent estimate. -/
 theorem bottomResolvent_proof : BottomResolventStatement :=
   bottomResolvent_of_helpers rayEstimates_proof polarRayBound_proof
 
-/-- WP05 (`e₂ = 1/200`) with only the large-frequency symbol left. -/
+/-- The initialization input at `e₂ = 1/200` from the large-frequency symbol bound. -/
 theorem initialization_of_large (hL : LargeSymbolStatement) :
     ∃ e₂ : ℝ, e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100) ∧ AndersonAC.Blueprint.InitializationInput e₂ :=
   initialization_of_BR_large bottomResolvent_proof hL

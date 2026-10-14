@@ -39,8 +39,8 @@ lemma torusReadout_nonneg (d m : ℕ) (coupling E η ε : ℝ) (hη : 0 < η)
     (scalarQ_nonneg _ (periodicHamiltonian_isHermitian_proof d m coupling ω) E η hη i)
 
 set_option maxHeartbeats 800000 in
-/-- The only inputs left open are the deterministic comparison and cutoff
-rank measurability. The event is integrated under the true unconditioned law. -/
+/-- The estimate assumes the deterministic comparison and cutoff-rank measurability.
+It integrates the event under the true unconditioned law. -/
 theorem finite_truncated_average_of_inputs (hRank : WindowRankMeasurableStatement.{0,0})
     (d m : ℕ) (coupling E η ε : ℝ)
     (hcoupling : 0 < coupling) (hη : 0 < η) (hε : ε ∈ Set.Ioc (0 : ℝ) 1)

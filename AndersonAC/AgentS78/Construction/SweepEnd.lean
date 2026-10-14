@@ -7,37 +7,22 @@ import AndersonAC.S45.DuplicationProof
 import AndersonAC.AgentS78.Construction.SweepEndCompare
 
 /-!
-# WP10 construction, tile phase (c): the analytic sweep end
+# Analytic sweep end
 
-agent-s78send (2026-10-14), DISPATCH-REQUESTS 01:59:25 (agent-s78tphase). Target: the sweep-end
-contract `SweepEndStatement` (TilePhaseEnd.lean:41) — the hand-over from the tile phase to the
-clearing phase. Paper: 04-sweep.tex:190–228 (the duplicated-port identity), 05:536–600 (local
-transfer), Proposition 4.9 (`S45.ordinary_sweep_endpoint`).
+This proves the sweep-end statement in `TilePhaseEnd.lean:41`, which connects the
+tile phase to the clearing phase. The argument uses the duplicated-port identity
+(04-sweep.tex:190–228), local transfer (05-local-sweeps.tex:536–600), and
+Proposition 4.9 (`S45.ordinary_sweep_endpoint`).
 
-**Interface (INTERFACE-ISSUES 02:05:30, agreed 02:19:51).** The first frozen contract lacked
-the stage bounds of the old endpoint (the S45 join needs ‖r‖, Im r, ‖K‖ ≤ 1/3, constant kernel),
-that every committed step has a pivot (now the TileSweepCore clause `pivots_some`) and the
-physical identity of the post-sweep record (for the Combes–Thomas decay). `SweepEndStatement`
-in TilePhaseEnd.lean is now the amended form; the conclusion is unchanged.
+The hypotheses include stage bounds for the old endpoint, a pivot at every committed
+step, and the physical identity of the post-sweep record. The first two support the
+S45 endpoint estimate; the physical identity is needed for Combes–Thomas decay.
 
-Structure of the proof:
-
-* `IsDampedEndpoint` of the post-sweep endpoint: agent-s78schur's `sweepEndMapTheta_isDamped`
-  (from `sweepSchur_proof`, lane/agent-s78schur 009e745; endpoint.M update of 3c09f7f);
-* `SweepReserveRowStatement` (contract, hard): the final reserve-row cap on the record
-  (`local_transfer` on the whole sweep record);
-* `SweepS45Facts` / `SweepTransportStatement` (contract, mechanical): the committed sweep,
-  transported to the ports of `Fin n ≃ active`, satisfies the structural sequence hypotheses of
-  `ordinary_sweep_endpoint` and validity at every prefix;
-* `AgentS78send.seq_step_positive` (SweepEndPositive.lean): per-step positivity from validity
-  (cumulative Schur identity) — proved;
-* `sweepEnd_core`: SweepFacts, IsDampedEndpoint, initial rows and lag, from the two contracts
-  above, the stage bounds and `sweep_from_S45` — proved;
-* `sweep_initialComparison` (SweepEndCompare.lean): initialComparison from StageBounds and
-  SweepFacts — proved;
-* `SweepEndResolventStatement` (contract): resolventDecay (Combes–Thomas at `t_j`, needs the
-  physical identity of the post-sweep record) — split off (new analysis);
-* `sweepEnd_proof`: `SweepEndStatement` (amended form, TilePhaseEnd.lean) from the three contracts — proved.
+`sweepEndMapTheta_isDamped` gives the post-sweep damping. `SweepReserveRowStatement`
+provides the final reserve-row bound. `SweepS45Facts` and `SweepTransportStatement`
+give the sequence hypotheses and prefix validity. The cumulative Schur identity gives
+per-step positivity. These facts yield `SweepFacts`, the initial comparison, and the
+resolvent decay used by `sweepEnd_proof`.
 -/
 
 noncomputable section
@@ -100,7 +85,7 @@ end Scales
 /-! ## The stage history gives the damped identity of the old endpoint
 
 `BoundaryHist.damped` (identical statement) is now declared in TilePhaseRun.lean
-(agent-s78tphase f8448d4); the duplicate was removed here at the merge (agent-s78final). -/
+; the duplicate was removed here at the merge. -/
 
 /-! ## The active set after the sweep -/
 
@@ -149,8 +134,8 @@ def SweepS45Facts (C t θ : ℝ) (x : RunRecord d m) : Prop :=
 /-- **The final reserve rows (contract, hard: 05:536–600, `local_transfer`).** At the end of a
 digit sweep the reserve-port fourth rows of the committed state are at most
 `(θ² + Crow t^{δ/2000}) rowCap t` (the last conclusion of `AgentS45.local_transfer_proof` on the
-whole sweep record, blocks = the accepted tiles, `TraceTails` built as in argon-s78transfer's
-A3b). Stated on the record itself (ambient ports), so that the transport is mechanical. -/
+whole sweep record, blocks = the accepted tiles, `TraceTails` built as in
+sweep transfer). Stated on the record itself (ambient ports), so that the transport is mechanical. -/
 def SweepReserveRowStatement (d : ℕ) : Prop :=
   ∀ cP CP cL CL C₀ : ℝ, 0 < cP → cP ≤ CP → 0 < cL → 0 < CL → 0 < C₀ → ∀ C : ℝ, 1 ≤ C →
   ∃ Crow ≥ (1 : ℝ), ∃ t0 > (0 : ℝ), ∀ (m n₀ : ℕ) (u E : ℝ) (ρ : ℂ) (P : TilePlan d m) (j : ℕ)
@@ -166,7 +151,7 @@ def SweepReserveRowStatement (d : ℕ) : Prop :=
         S45.rowCap (sweepScale u m j)
 
 /-- **The transport (contract, mechanical).** At the end of a digit sweep, the committed sweep
-restricted to the ports of the active sites (luna-s78live's `Sequence.restrictLive`) and
+restricted to the ports of the active sites (`Sequence.restrictLive`) and
 reindexed along some `e : Fin n ≃ active` satisfies `SweepS45Facts`: reindex of `wellFormed`,
 start (`start_lift`, `start_live`), end (`live_end`), per-step symmetry/Ward (from the start by
 `wellFormed_symm_ward`), validity at every prefix (`TileSweepCore.valid`; `stageD0` restricted to

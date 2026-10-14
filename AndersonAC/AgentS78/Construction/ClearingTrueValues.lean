@@ -2,14 +2,12 @@ import AndersonAC.AgentS78.Construction.BoxPhasesTrue
 import AndersonAC.AgentS78.Construction.StagePhaseClr
 
 /-!
-# WP10 construction: clearing blocks keep the true installed values
-
-agent-s78runinv (2026-10-14), DISPATCH-REQUESTS 04:27:17 (agent-s78box):
+# clearing blocks keep the true installed values,
 `clearingTrueValues_proof : ClearingTrueValuesStatement` (BoxPhasesTrue.lean).
 
 Along the block-local run on the answers of `ω` the record is unchanged (`CTV.fst`); every heat
 pivot `p` gets `resids p = binarySuffix λ (prefixLength p)` of its true digits and every queried
-core site `y` gets `resids y = λ V_y − installed y` (`residOfAnswer_true`, correction (9)); with
+core site `y` gets `resids y = λ V_y − installed y` (`residOfAnswer_true`); with
 `binaryPrefix + binarySuffix = binaryValue λ = λ V` and the coupled clause of `TrueValues` at the
 (guarded, coupled, non-terminal) pivots, DONE commits `installed + resids = λ V` on
 `core ∪ inspected`; FAIL only adds `core ∪ inspected` to `pending`.
@@ -39,7 +37,7 @@ theorem lamV_eq_ctv {M : ℕ → ℕ} (n₀ : ℕ) (u : ℝ) (ω : RandomSources
   rw [binaryValue_coupling_ctv]; rfl
 
 /-- Heat and core residuals are true suffixes on the actual answer to `trueSuffix y h`
-(`residOfAnswer` after correction (9)). -/
+(`residOfAnswer` after). -/
 theorem residOfAnswer_true (M : ℕ → ℕ) (L : List (Query (Torus d m)))
     (ω : RandomSources (Torus d m) M) (lam : ℝ) (y : Torus d m) (h : ℕ) :
     residOfAnswer lam y h (localAnswer (Torus d m) M L (Query.trueSuffix y h) ω) =
@@ -105,7 +103,7 @@ theorem clearingUpdate_shape_ctv (s : RunRecord d m × ClearScratch d m) (ans : 
 
 end ClearShape
 
-/-! ## Clearing blocks keep `TrueValues` (correction (9)) -/
+/-! ## Clearing blocks keep `TrueValues` -/
 
 section ClearTV
 variable (n₀ j : ℕ) (u : ℝ) (yy : Torus d m) {M : ℕ → ℕ} (ω : RandomSources (Torus d m) M)

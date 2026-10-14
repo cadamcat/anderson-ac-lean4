@@ -1,6 +1,6 @@
 import AndersonAC.S9Inf.Model
 
-/-! Frozen covariance helper for the invariant positive-site event. -/
+/-! covariance helper for the invariant positive-site event. -/
 
 noncomputable section
 

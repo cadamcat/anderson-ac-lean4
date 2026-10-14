@@ -1,13 +1,12 @@
 import AndersonAC.S45.LocalTransferProof
 
 /-!
-# Sweep reserve rows: generic tools (agent-s78resrow)
+# Sweep reserve rows: generic tools
 
 Generic sequence lemmas for `AndersonAC.AgentS78.sweepReserveRow_proof`
-(SweepReserveRow.lean). The row-step tail (`row_step_bound`) and its helpers are copies of the
-private lemmas `poly_*`, `amb_*`, `stepRel_amb_h_update`, `poly_row_step_bound` of
-argon-s78transfer's A3b (lane/argon-s78transfer f602b00, TileCoreA3b.lean), which are not
-exported there. New here: `gamma_le_of_entry` (the deletion coefficient is bounded by the row cap
+(`SweepReserveRow.lean`). The row-step tail (`row_step_bound`) uses `poly_row_step_bound`
+and the ambient-port update identities. The supplementary fact `gamma_le_of_entry`
+(the deletion coefficient is bounded by the row cap
 alone, without the cumulative Schur identity) and `row_telescope` (the row half of
 `scalar_records`, without its lag hypothesis).
 -/
@@ -247,7 +246,7 @@ theorem gamma_le_of_entry {ι : Type*} [Fintype ι] [DecidableEq ι] (t Cr : ℝ
     _ ≤ 2 * (2 + Cr) * (Real.sqrt t * ‖1 + a * s.g x x‖) :=
         mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_left hden hs.le) (by linarith)
 
-/-! ## The row-step tail (A3b `poly_row_step_bound`) -/
+/-! ## The row-step tail (sweep transfer `poly_row_step_bound`) -/
 
 theorem row_step_bound {d : ℕ}
     {q : Sequence P} {t B G c : ℝ} {r : P → ℂ} {dist : P → P → ℝ}

@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.BoxPhasesClear
 
 /-!
-# Clearing blocks: sites leaving the active set become terminal (agent-s78box)
+# Clearing blocks: sites leaving the active set become terminal
 
 `clear_exit_inactive`: if every inactive site of the entering record is terminal, so is every
 inactive site of the exit of a clearing block (DONE removes `core` from the active set and makes

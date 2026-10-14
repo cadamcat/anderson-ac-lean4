@@ -3,7 +3,7 @@ import AndersonAC.AgentS78.Construction.ReachedInv
 import AndersonAC.AgentS78.Construction.ReachedEv
 
 /-!
-# WP10 construction: every block of the schedule is reached almost surely
+# every block of the schedule is reached almost surely
 
 The `hfinite` input of `blockRun_of_runOps` from `all_blocks_reached_of_inv`, with the halting
 patterns of the schedule (`scheduleHaltPattern`: `tileHaltPattern` for tile blocks, a

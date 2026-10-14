@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.Construction.Freshness
 import AndersonAC.AgentS78.Construction.Transitions
 
 /-!
-# WP10 construction: the per-block disciplines of query-free blocks
+# the per-block disciplines of query-free blocks
 
 For a query-free block `simpleBlock sc₀ f` the only reachable state is the entering one,
 and it halts at once with exit record `f x`. Hence it satisfies the marking discipline of

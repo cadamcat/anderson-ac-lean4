@@ -1,13 +1,13 @@
 import AndersonAC.AgentS78.Construction.TileCoreA2Transfer
 
 /-!
-# WP10 C4a: A2 monitor bounds (`TileMonitorBoundsStatement2`)
+# monitor bounds monitor bounds (`TileMonitorBoundsStatement2`)
 
 At a running slot the included prefix `q` is valid; `prestate_and_forms_of_slotSeq` gives the
 S45 prestate and the local-pullback comparisons of the current live state, so Proposition 4.8
 (`AgentS45.ordinary_increment_estimates_proof`) gives the increment table. The monitored
 increments of `tileEval` are fixed real-linear images (padding, dilation, compression,
-pull-back) of the table's increments (`TileCoreA2Transfer`), which transfers mean, square and
+pull-back) of the table's increments (`TileCoremonitor boundsTransfer`), which transfers mean, square and
 jump bounds (05-local-sweeps.tex:795–842).
 -/
 
@@ -982,7 +982,7 @@ theorem slot_bounds_a2 (C4 Cfam C' : ℝ) (hC4 : 2 ≤ C4) (hCfam : 0 < Cfam) (h
 
 end Assembly
 
-/-! ## The A2 theorem -/
+/-! ## The monitor bounds theorem -/
 
 section Main
 
@@ -1041,7 +1041,7 @@ theorem prestate_mono_a2 {P : Type*} [Fintype P] [DecidableEq P] {t C C' : ℝ}
     linarith [h.dual_fourier y hy]
   volume := h.volume.trans (mul_le_mul_of_nonneg_right hCC (power_nonneg_a2 h.scale.1.le _))
 
-/-- **A2 (monitored increment bounds), approved input-constant-`2` form.** -/
+/-- Monitored increment bounds with input constant `2`. -/
 theorem tileMonitorBounds2_proof : ∀ d (C : ℝ), 1 ≤ C → TileMonitorBoundsStatement2 d C := by
   intro d C hC
   obtain ⟨C_row, hC_row, t0_pre, ht0_pre, ht0_pre_le, hPF⟩ :=

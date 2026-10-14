@@ -34,6 +34,8 @@ lake exe cache get
 
 The first command fetches the compiled Mathlib cache. The script builds the library and prints the axioms of the final theorem and of each package theorem ([Verification/Axioms.lean](Verification/Axioms.lean)). It fails if any of them uses `sorryAx` or an axiom other than the three above.
 
+[Verification/NonVacuity.lean](Verification/NonVacuity.lean) checks that the statement is not vacuous. For every `d` and `a < b`, an i.i.d. family uniform on `[a, b]` exists. For `d ≥ 3`, the theorem then yields a potential, an operator, a vector and a spectral measure of it with nonzero mass on the interval. Run it after the build with `lake env lean Verification/NonVacuity.lean`.
+
 ## Layout
 
 [Blueprint/Main.lean](AndersonAC/Blueprint/Main.lean) assembles the final theorem from the package theorems `AndersonAC.Blueprint.Packages.*`, whose statements are in the [Blueprint](AndersonAC/Blueprint) directory. Directory names `S2` to `S9` follow the sections of the manuscript; directories named `Agent…` hold further parts of the same proofs.

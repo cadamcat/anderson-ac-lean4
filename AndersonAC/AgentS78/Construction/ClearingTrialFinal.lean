@@ -4,12 +4,12 @@ import AndersonAC.S6.UniformPreparation
 import AndersonAC.AgentS6Lev2.Final
 
 /-!
-# C4b: the clearing first-trial bound, joined
+# the clearing first-trial bound, joined
 
-`clearingTrialH_of_geometry` (agent-s78clrtrial) with its remaining inputs discharged:
-the geometry by `AgentS78Geo.clearingGeometry_proof` (opus-s78geo, `geo := clearingGeo d Ctr`),
-the uniform Proposition 6.6 by `S6.preparationUniform_proof` (luna-s6unif) and the uniform
-drift contract by `AgentS6.leverageDriftUniform_proof` (muse-s6lev2, at universe 0).
+`clearingTrialH_of_geometry` with its inputs supplied:
+the geometry by `AgentS78Geo.clearingGeometry_proof` (`geo := clearingGeo d Ctr`),
+the uniform Proposition 6.6 by `S6.preparationUniform_proof` and the uniform
+drift contract by `AgentS6.leverageDriftUniform_proof` (at universe 0).
 The blueprint `ConcentrationInput` stays a hypothesis.
 -/
 
@@ -35,7 +35,7 @@ theorem preparationUniform_proof : PreparationUniformStatement :=
 theorem leverageDriftUniform_proof : LeverageDriftUniformStatement :=
   leverageDriftUniform_of_AgentS6 AndersonAC.AgentS6.leverageDriftUniform_proof.{0}
 
-/-- **C4b: the clearing first-trial bound (query-history variant)** for the geometry
+/-- **clearing trial bound: the clearing first-trial bound (query-history variant)** for the geometry
 `clearingGeo d Ctr`, conditional only on the blueprint concentration input. -/
 theorem clearingTrialH_proof (d : ℕ) (hd : 3 ≤ d)
     (hconc : AndersonAC.Blueprint.ConcentrationInput)
@@ -46,13 +46,13 @@ theorem clearingTrialH_proof (d : ℕ) (hd : 3 ≤ d)
     cP CP qlag hqlag (clearingGeo d Ctr)
     (AndersonAC.AgentS78Geo.clearingGeometry_proof hd cP CP hcP qlag Ctr hCtr)
 
-/-- `ClearingTrialStatementH` is the frozen `ClearingTrialStatement` (after 240e704 both carry
+/-- `ClearingTrialStatementH` extends `ClearingTrialStatement` so both carry
 the query-history hypothesis). -/
 theorem clearingTrial_of_H (d : ℕ) (good : ∀ {m : ℕ}, ℕ → ℝ → ℝ → ℕ → Set (RunRecord d m)) :
     ClearingTrialStatementH d good → ClearingTrialStatement d good :=
   fun h => h
 
-/-- **C4b (frozen contract form).** -/
+/-- **clearing trial bound (contract form).** -/
 theorem clearingTrial_proof (d : ℕ) (hd : 3 ≤ d)
     (hconc : AndersonAC.Blueprint.ConcentrationInput)
     (cP CP : ℝ) (qlag : ℝ → ℝ) (hcP : 0 < cP) (hqlag : Tendsto qlag (𝓝[>] 0) (𝓝 0))

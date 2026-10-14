@@ -2,11 +2,11 @@ import AndersonAC.AgentS78.Construction.StagePhaseStage
 import AndersonAC.AgentS78.Construction.ClearingTrialH
 
 /-!
-# The clearing-phase invariant with the C4b good set
+# The clearing-phase invariant with the clearing trial bound good set
 
 `ClearPhaseG … j x`: the clearing-phase data (StagePhase.lean) and, on non-aborted records,
-the clearing good set `ClearingGood d cP CP qlag geo n₀ u E j` of agent-s78clrtrial
-(ClearingTrialH.lean, lane/agent-s78clrtrial 0cfb85f), which is the hypothesis of the clearing
+the clearing good set `ClearingGood d cP CP qlag geo n₀ u E j` of
+`ClearingTrialH.lean`, which is the hypothesis of the clearing
 first-trial bound.
 
 `clearPhase_goodAt_analytic`: the analytic clauses `broad`, `fourth` and `lag` of
@@ -30,7 +30,7 @@ open AndersonAC.S78
 
 variable {d m : ℕ}
 
-/-- **The clearing-phase invariant with the C4b good set.** -/
+/-- **The clearing-phase invariant with the clearing trial bound good set.** -/
 def ClearPhaseG (cP CP : ℝ) (qlag : ℝ → ℝ) (geo : ∀ {m : ℕ}, ℕ → ℝ → ℕ → Set (RunRecord d m))
     (n₀ : ℕ) (u E : ℝ) (ρ : ℂ) (C CA cA PA : ℝ) (j : ℕ) (x : RunRecord d m) : Prop :=
   ClearPhase n₀ u E ρ C CA cA PA j x ∧
@@ -53,7 +53,7 @@ theorem phaseQlag_tendsto (hd : 3 ≤ d) (C' : ℝ) :
   rw [mul_zero] at this
   exact this
 
-/-- **The analytic clauses of the C4b good set** on clearing-phase records. -/
+/-- **The analytic clauses of the clearing trial bound good set** on clearing-phase records. -/
 theorem clearPhase_goodAt_analytic (hd : 3 ≤ d) (CA cA PA : ℝ) (hCA : 1 ≤ CA) (hcA : 0 < cA)
     (hPA : 0 ≤ PA) :
     ∃ C' t₀ : ℝ, 0 < C' ∧ 0 < t₀ ∧

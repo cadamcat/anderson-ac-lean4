@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.MarkingRule
 
 /-!
-# WP10 construction: the chain of entering records of a reached block
+# the chain of entering records of a reached block
 
 If block `b` is reached, every earlier block was reached, and the entering records of
 consecutive blocks are related by the earlier block: the later one is the exit record of a

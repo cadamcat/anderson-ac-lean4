@@ -1,9 +1,9 @@
 import AndersonAC.AgentS78.Construction.MachineDef
 
 /-!
-# WP10 random construction, C3c: the run as a composition of blocks
+# the run as a composition of blocks
 
-Design (agent-s78con, 2026-10-13). The run of one finite box is a list of *blocks*, one per
+Design. The run of one finite box is a list of *blocks*, one per
 bookkeeping slot / schedule operation (tile trial with its retries, clearing attempt,
 snapshot, reset, cutoff, final-sweep tile; 02-state.tex:349–362, 07-assembly.tex:18–34,
 08-history.tex:52–63). A block is a measurable sub-machine on a common internal state type
@@ -15,7 +15,7 @@ tile/clearing slot, a late failure after the cutoff).
 
 The block-local run (`localState`) is the same sub-machine run on its own; it reads true
 and auxiliary signs exactly as the global run does, and orders with fresh counts.
-`BlockCompositionStatement` (frozen contract) says that, when blocks use pairwise
+`BlockCompositionStatement` (contract) says that, when blocks use pairwise
 disjoint order indices and never reuse an auxiliary sign or exhaust an order, the global
 run is an admissible strategy, block starts are retained stopping times, the entering
 records are measurable at those times, the global first-trial failure of block `n` is the
@@ -107,7 +107,7 @@ def localFirstFail (B : Block ι Rec St) (x : Rec) : Set (RandomSources ι M) :=
 
 end Composition
 
-/-- **C3c (frozen contract).** Composition of blocks: skeleton of a `QueryRun`. -/
+/-- **block composition (contract).** Composition of blocks: skeleton of a `QueryRun`. -/
 def BlockCompositionStatement : Prop :=
   ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (M : ℕ → ℕ) (Rec St : Type)
     [MeasurableSpace Rec] [MeasurableSpace St]

@@ -243,7 +243,7 @@ theorem ridgeSelection_of_threshold (hscalar : RidgeThresholdStatement.{u, v}) :
   refine ⟨⟨measurable_ridgeThreshold_of hscalar l hl, measurable_rangeProjection⟩, ?_⟩
   exact fun C hlarge => hscalar B R C l hl hlarge
 
-/-- The frozen ridge selection contract, including both measurable matrix functions. -/
+/-- Ridge-selection statement, including both measurable matrix functions. -/
 theorem ridgeSelection_proof : RidgeSelectionStatement.{u, v} :=
   ridgeSelection_of_threshold ridgeThreshold_proof
 

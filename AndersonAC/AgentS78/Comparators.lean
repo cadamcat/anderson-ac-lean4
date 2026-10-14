@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.InitialComparison
 import AndersonAC.AgentS78.ResetJoin
 
 /-!
-WP10: the `W*` comparison `c W* ≤ X ≤ C W*` required by `initial_comparison`, from the
+certificate construction: the `W*` comparison `c W* ≤ X ≤ C W*` required by `initial_comparison`, from the
 stage comparators `X ≥ cL b Λ⁺`, `X ≤ C₀ |y|² + CL b Λ⁺` and the bound `D ≤ 2K |f|²`
 (02-state.tex:346–350: bounded weighted row sums give `X ≥ c Id`).
 -/

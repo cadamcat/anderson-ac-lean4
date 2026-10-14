@@ -1,6 +1,6 @@
 import AndersonAC.S9Inf.RootCouplingLaw
 
-/-! The frozen root-coupling record, copied verbatim from the inventory,
+/-! The root-coupling record, copied verbatim from the inventory,
 and its construction from the proved law helper. -/
 
 noncomputable section

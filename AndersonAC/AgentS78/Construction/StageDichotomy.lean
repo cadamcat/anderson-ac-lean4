@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.Construction.Dichotomy
 import AndersonAC.AgentS78.Construction.Record
 
 /-!
-# WP10 construction, C5c: the snapshot rule over the clearings of one stage
+# the snapshot rule over the clearings of one stage
 
 07-assembly.tex:18–34, 08-history.tex:119–125. Let `r a, …, r b` be the committed records
 between the snapshot of stage `j` and the end of the stage, consecutive ones related by

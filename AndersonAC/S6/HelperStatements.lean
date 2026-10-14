@@ -1,6 +1,6 @@
 import AndersonAC.S6.Projection
 
-/-! Frozen independent helper contracts for full-range clearing.
+/-! independent helper contracts for full-range clearing.
 Each helper proves a `_proof` theorem with exactly one of these propositions.
 There are no new axioms or planning holes here. -/
 noncomputable section

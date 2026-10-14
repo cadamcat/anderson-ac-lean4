@@ -7,20 +7,19 @@ import AndersonAC.S2.WardPackage
 import AndersonAC.S78.Statements
 
 /-!
-# WP10 construction, C4b: the clearing first-trial bound from Proposition 6.6
+# the clearing first-trial bound from Proposition 6.6
 
 `ClearingGood` (the deterministic trial hypotheses of a clearing attempt at stage
 `j ≤ ⌊m/2⌋`) and the reduction of the clearing first-trial bound to
 
-* Proposition 6.6, `S6.preparation_of_small_component` (proved, sol-s6 0415bba/aaf6984),
+* Proposition 6.6, `S6.preparation_of_small_component`,
   applied with `μ = sourcesLaw` and trial-start σ-algebra `⊥` (06-clearing.tex:826–850);
 * the pivot location of the stopped trial, `AgentS6.trial_pivots_located`
   (06-clearing.tex:772–784, 07-assembly.tex:200–216) and
   `S78.localized_pivot_excludes_old_marks` (07-assembly.tex:200–216);
 * the vector concentration input, from the blueprint `ConcentrationInput` through
   `AgentS6.vectorConcentrationBridge_proof`;
-* the frozen drift contract `AgentS6.LeverageDriftDischargeStatement` (muse-s6lev2, not yet
-  delivered: a named hypothesis here);
+* the drift input `AgentS6.LeverageDriftDischargeStatement`;
 * two sub-contracts on the clearing trial indexed by the active sites:
   `ClearingGeometryStatement` (the geometric fields of `S6.TrialLocalInput`,
   06-clearing.tex:757–771 and Lemma 7.2, 07-assembly.tex:96–200) and
@@ -28,10 +27,10 @@ import AndersonAC.S78.Statements
 * `TrialReindexStatement`: transport of a stopped trial and its local input along an
   equivalence `ι ≃ Fin n` (Proposition 6.6 is stated for `Fin n`).
 
-The frozen `ClearingTrialStatement` does not record that the trial's filtration is its
-query history; Proposition 6.6 needs it (residual mean/variance given `q.history k`). The
-variant `ClearingTrialStatementH` adds `∀ k, q.history k = queryHistory ⊥ q.pivot q.residual k`
-(which `S6.construct_stopped_trial` provides). See INTERFACE-ISSUES (agent-s78clrtrial).
+`ClearingTrialStatementH` records that the trial's filtration is its query history,
+as required for Proposition 6.6's residual mean and variance conditional on
+`q.history k`. The condition is `∀ k, q.history k = queryHistory ⊥ q.pivot q.residual k`,
+provided by `S6.construct_stopped_trial`.
 -/
 
 open MeasureTheory Filter
@@ -83,8 +82,7 @@ def ClearingTrialStatementH (d : ℕ)
   (02-state.tex:96–103, 104–113: "at a stage boundary this prefix has `n − n₀` digits");
 * (separation of the attempted core from the other pending sites, 07-assembly.tex:200–209, is
   a hypothesis on the core `B` in the trial statements, not a record clause: after a failed
-  clearing the inspected exterior sites of that component are pending within `ℓ_j/2` of it;
-  agent-s78phase2 03:43:17, decision agent-s78con4);
+  clearing the inspected exterior sites of that component are pending within `ℓ_j/2` of it; decision);
 * `coreBall`: a snapshot component lies in a ball of radius `|C| R_j` about one of its points
   (07-assembly.tex:181–183: diameter at most `(r_* − 1) R_j`);
 * `geo`: the record-level clearing geometry consumed by `ClearingGeometryStatement`
@@ -102,7 +100,7 @@ structure ClearingGoodAt {d m : ℕ} (cP CP : ℝ) (qlag : ℝ → ℝ) (n₀ : 
   coreBall : ∀ C ∈ x.components, ∃ a, ∀ y ∈ C,
     physicalDistance d m a y ≤ (C.card : ℝ) * separationRadius j
 
-/-- The C4b good set: `ClearingGoodAt` and the geometry parameter `geo`. -/
+/-- The clearing trial bound good set: `ClearingGoodAt` and the geometry parameter `geo`. -/
 def ClearingGood (d : ℕ) (cP CP : ℝ) (qlag : ℝ → ℝ)
     (geo : ∀ {m : ℕ}, ℕ → ℝ → ℕ → Set (RunRecord d m)) {m : ℕ} (n₀ : ℕ) (u _E : ℝ)
     (j : ℕ) : Set (RunRecord d m) :=
@@ -334,8 +332,9 @@ def TrialReindexStatement : Prop :=
         AndersonAC.S6.TrialLocalInput q' μ d c K Cloc (fun a b => dist (e.symm a) (e.symm b))
           (fun k ω a b => collapsed k ω (e.symm a) (e.symm b)) ell
 
-/-! ## Uniform forms of Proposition 6.6 and of the drift contract (requested from sol-s6 and
-muse-s6lev2; the frozen forms choose `t0`, `ε` after the space and the law) -/
+/-! ## Uniform forms of Proposition 6.6 and the drift estimate
+
+The uniform statements choose `t0` and `ε` after the probability space and law. -/
 
 open AndersonAC.S6 in
 /-- Proposition 6.6 (06-clearing.tex:826–850) with `t0` chosen before the probability space:

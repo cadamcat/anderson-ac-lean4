@@ -3,7 +3,7 @@ import AndersonAC.AgentS78.Construction.PrefixInductionProof
 import AndersonAC.AgentS78.Construction.TrueValues
 
 /-!
-# WP10 construction: the initial record and stage bounds along the run
+# the initial record and stage bounds along the run
 
 * `initialRecord`: the committed record before stage `n₀ + 1` (02-state.tex:96–125): the §3
   initial endpoint with damping `ρ`, the stage-start lift `sweepStartMap θ t` of the first
@@ -12,7 +12,7 @@ import AndersonAC.AgentS78.Construction.TrueValues
 * `boundaryHist_initial`: the one-stage history at `n₀` from the damped endpoint and the
   stage bounds of the initial stage (`initial_stage_unconditional`).
 * `stageBounds_of_hist`: every stage history from such an initial endpoint satisfies the
-  stage bounds at its last stage (`prefix_deterministic_induction_ge`, luna-s78prefix), with
+  stage bounds at its last stage (`prefix_deterministic_induction_ge`), with
   the same `ρ` as the initial stage.
 -/
 

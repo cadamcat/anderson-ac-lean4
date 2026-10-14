@@ -1,7 +1,7 @@
 import AndersonAC.S78.Definitions
 
 /-!
-WP10: `PendingHistory` from the per-stage status and marking rules (02-state.tex:96–113,
+certificate construction: `PendingHistory` from the per-stage status and marking rules (02-state.tex:96–113,
 08-history.tex:101–131). The construction only has to supply, stage by stage:
 
 * initially (end of stage `n₀`, and before) no site is pending;

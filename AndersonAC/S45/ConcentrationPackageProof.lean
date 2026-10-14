@@ -2,9 +2,9 @@ import AndersonAC.S45.ConcentrationFinal
 import AndersonAC.GT.Interface
 import AndersonAC.Blueprint.Interfaces
 
-/-! WP06: `Packages.concentration`. Golden–Thompson from muse-gt
-(`AndersonAC.MuseGT.goldenThompson_proof`); Lemma 5.6 with c = 1/4 from
-`AgentS45.concentration_of_gt` (Ville from muse-s45ville, trace facts from luna-s45trace). -/
+/-! `Packages.concentration` follows from Golden–Thompson and Lemma 5.6 with
+`c = 1/4`; `AgentS45.concentration_of_gt` supplies the deterministic trace facts
+and Ville's inequality. -/
 
 theorem AndersonAC.Blueprint.Packages.concentration :
     AndersonAC.Blueprint.ConcentrationInput :=

@@ -9,7 +9,7 @@ import AndersonAC.AgentS6.LeverageFacts
 import AndersonAC.S2.Binary
 
 /-!
-# WP10 random construction, C3b-clear: the clearing-attempt block
+# the clearing-attempt block
 
 The clearing attempt of one snapshot component (`AgentS78.clearingBlock`),
 for the schedule slot `opIndex d m j 2 x` (`Schedule.lean`: kind 2 is
@@ -61,7 +61,7 @@ Design decisions and their TeX sources:
 - The bridge to §6 (`clearingBlock_bridge`): for a fixed good record,
   the block-local first failure is `{q.outcome = .fail}` for the S6
   `StoppedTrial` of the frozen data on `(RandomSources, sourcesLaw)`
-  with `F0 = ⊥`, so C4b is `S6.preparation_of_small_component` there.
+  with `F0 = ⊥`, so clearing trial bound is `S6.preparation_of_small_component` there.
   The probability bound itself is not proved here.
 -/
 
@@ -137,13 +137,13 @@ theorem coupledActive_not_pending {d m : ℕ} (rec : RunRecord d m)
 def isAnchor {d m : ℕ} (B : Finset (Torus d m)) (x : Torus d m) : Prop :=
   x ∈ B ∧ ∀ y ∈ B, (siteRank d m x).val ≤ (siteRank d m y).val
 
-/-- Radius of an eligible component around its anchor (correction (6)(b), agent-s78con3):
-`t_j^{-ν} R_j`, which every snapshot component with at most `t_j^{-ν}` sites satisfies
-(`Dichotomy.component_radius`). -/
+/-- Radius bound for an eligible component around its anchor: `t_j^{-ν} R_j`.
+Every snapshot component with at most `t_j^{-ν}` sites satisfies it
+(`Dichotomy.component_radius`). This is the radius clause of `ClearingGood`. -/
 def clearRadius (d m j : ℕ) (u : ℝ) : ℝ := stageScale u j m ^ (-nu d) * separationRadius j
 
-/-- Eligibility candidate predicate for one set (`07-assembly.tex:18-34`), with the radius
-clause of correction (6)(b). -/
+/-- Eligibility candidate predicate for one set (`07-assembly.tex:18–34`), including
+the radius bound. -/
 def eligibleCand {d m : ℕ} (j : ℕ) (u : ℝ) (x : Torus d m)
     (B : Finset (Torus d m)) : Prop :=
   x ∈ B ∧ isAnchor (d := d) (m := m) B x ∧
@@ -167,14 +167,13 @@ def clearingEligible {d m : ℕ} (j : ℕ) (u : ℝ) (x : Torus d m)
     x ∈ B ∧ isAnchor (d := d) (m := m) B x ∧
       eligibleCore d B (stageScale u j m)
 
-/-- The λ coupling of the installed potential (`PhysicalIdentity.lean`,
-`OAI.Anderson.scaleCoupling`; lead correction (2)). -/
+/-- The λ coupling of the installed potential (`OAI.Anderson.scaleCoupling`). -/
 def clearingLam (n₀ : ℕ) (u : ℝ) : ℝ :=
   OAI.Anderson.scaleCoupling n₀ u
 
 /-- Read pattern of the clearing block: the coupled active sites at
 their prefix heights, no auxiliary signs, no orders
-(`02-state.tex:96-113`, `Freezing.lean`; lead correction (3): empty when
+(`02-state.tex:96–113`, `Freezing.lean`): empty when
 the record is aborted or when no eligible core exists, and terminal
 sites excluded so the pattern ⊆ `declaredFresh`). -/
 def clearingPattern {d m : ℕ} (n₀ j : ℕ) (u : ℝ) (x : Torus d m)
@@ -257,8 +256,8 @@ def guardHolds {d m : ℕ} (j : ℕ) (B : Finset (Torus d m))
 
 /-- Residual recorded from a `trueSuffix` answer: the binary suffix of
 the revealed digits (`S2.answer` reveals exactly the queried signs),
-with coupling λ (lead correction (2)). `binarySuffix lam h a` reads `a (h + k)`, so the digit
-function is indexed by the absolute digit position (lead correction (9), agent-s78runinv). -/
+with coupling λ. `binarySuffix lam h a` reads `a (h + k)`, so the digit
+function is indexed by the absolute digit position. -/
 def residOfAnswer {d m : ℕ} (lam : ℝ) (y : Torus d m) (h : ℕ)
     (ans : Answer (Torus d m)) : ℝ :=
   AndersonAC.S2.binarySuffix lam h
@@ -292,8 +291,8 @@ def elimStep {d m : ℕ} (t : ℝ) (r : Torus d m → ℂ)
     else sc.hatG i j
   (Mfull, hatG')
 
-/-- A failure candidate is marked only if it passes the pivot guard (correction (6)(a),
-agent-s78con3; 07-assembly.tex:31–33 marks inspected exterior sites, which are guarded). -/
+/-- A failure candidate is marked only if it passes the pivot guard. Inspected
+exterior sites are guarded (07-assembly.tex:31–33). -/
 def guardedCand {d m : ℕ} (j : ℕ) (rec : RunRecord d m) (sc : ClearScratch d m)
     (o : Option (Torus d m)) : Option (Torus d m) :=
   o.bind fun p => if guardHolds (d := d) (m := m) j sc.core (coupledActive rec) rec.terminal p
@@ -384,8 +383,8 @@ def clearInitScratch {d m : ℕ} (j : ℕ) (u : ℝ) (x : Torus d m)
 /-! ## The block -/
 
 /-- `next`: HEAT queries are `trueSuffix` at the record's prefix
-height (coupled sites, lead correction (2)); CORE queries are
-`trueSuffix y 0` (full true value, lead correction (4):
+height (coupled sites); CORE queries are
+`trueSuffix y 0` (full true value,
 `07-assembly.tex:26-27, 246-252`; pending core sites may carry aux
 digits so the suffix from `prefixLength` is not exact); anything else
 is the information-free `decision`. In particular no order and no
@@ -403,9 +402,8 @@ def clearingNext {d m : ℕ} (n₀ j : ℕ) (u : ℝ)
 phase, advance heats with the revealed residual, or advance core
 elimination. Halted states are fixed. The committed record is never
 modified mid-block (restore/commit happen in `exit`).
-Heat residuals use coupling λ from `prefixLength` (lead correction (2));
-core residuals use the full true value minus installed
-(lead correction (4)). -/
+Heat residuals use coupling λ from `prefixLength`; core residuals use the full true
+value minus the installed value. -/
 def clearingUpdate {d m : ℕ} (n₀ j : ℕ) (u : ℝ)
     (s : RunRecord d m × ClearScratch d m)
     (ans : Answer (Torus d m)) : RunRecord d m × ClearScratch d m :=
@@ -466,17 +464,17 @@ def clearingFailExit {d m : ℕ} (j : ℕ) (x : Torus d m)
 
 /-- DONE exit: commit core + heat pivots as terminal with revealed
 values; the provisional survivor data become the endpoint.
-Lead correction (5) (`02-state.tex:109-110`, `07-assembly.tex:26-31`):
-cleared sites leave the pending class; `components` is kept (later
-attempts of the stage read the snapshot). With correction (4),
-`installed + resids = λ·V` on core ∪ pivots. -/
+Cleared sites leave the pending class, and `components` is kept so later
+attempts of the stage read the snapshot (02-state.tex:109–110,
+07-assembly.tex:26–31). The installed values and residuals satisfy
+`installed + resids = λ·V` on the core and pivots. -/
 def clearingDoneExit {d m : ℕ}
     (rec : RunRecord d m) (sc : ClearScratch d m) : RunRecord d m :=
   { rec with
     endpoint := { rec.endpoint with
       active := sc.active \ sc.core,
       M := sc.Mnum.map Complex.ofReal,
-      -- correction (8) (agent-s78phase): zero off the committed active set
+      -- zero off the committed active set
       g := fun i k => if i ∈ sc.active \ sc.core ∧ k ∈ sc.active \ sc.core then sc.hatG i k
         else 0 },
     terminal := rec.terminal ∪ sc.core ∪ sc.inspected,
@@ -502,7 +500,7 @@ def clearingFirstFail {d m : ℕ} (s : RunRecord d m × ClearScratch d m) : Bool
 
 /-- The clearing-attempt block for slot `opIndex d m j 2 x`
 (`07-assembly.tex:18-34`). `n₀` is the initial stage (coupling
-`λ = scaleCoupling n₀ u`, lead correction (2)). -/
+`λ = scaleCoupling n₀ u`). -/
 def clearingBlock {d m : ℕ} (n₀ j : ℕ) (u : ℝ) (x : Torus d m) :
     Block (Torus d m) (RunRecord d m)
       (RunRecord d m × ClearScratch d m) where
@@ -3188,7 +3186,7 @@ theorem fibSet_heat (p₀ : Torus d m) :
     subst hc
     subst ha
     exact Iff.rfl
-    -- NOTE: after `subst`, both sides are `¬ xReady ... p.2 ... p.1`. The `subst`
+    -- NOTE: after `subst`, both sides are `¬ xReady... p.2... p.1`. The `subst`
     -- handles the dependent `restrictM`/`xCross` types (variable motive), unlike
     -- `rw` on projections.
   have h9 : MeasurableSet {a : ↥(scratchFiber (d := d) (m := m) p.1 p.2) |
@@ -5817,7 +5815,7 @@ theorem activeInverse_corr (A : Finset (Torus d m)) (A' : Finset (ActiveSite rec
 
 end BridgeCorr
 
-/-! (4) The bridge to §6 (`clearingBlock_bridge`, pointwise form of INTERFACE-ISSUES 03:57:19)
-is stated and proved in `ClearingBridge.lean` (agent-s78cbridge). -/
+/-! The bridge to §6 (`clearingBlock_bridge`, sample-by-sample form)
+is stated and proved in `ClearingBridge.lean`. -/
 
 end AndersonAC.AgentS78

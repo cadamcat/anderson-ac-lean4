@@ -1,13 +1,11 @@
 import AndersonAC.AgentS78.Construction.StagePhasePkgOps
 
 /-!
-# Clearing-phase package: clearing operations and the sweep-end hand-over
-
-agent-s78phase2 (DISPATCH 04:08:18).
+# Clearing-phase package: clearing operations and the sweep-end hand-over.
 
 * `runOp_clear_exit`: a clearing operation of a clearing stage exits by the clearing block;
 * `clrOp_keeps` (`ClearingBoxFacts.hClr`): `boxCL … j (rank y) → boxCL … j (rank y + 1)`,
-  from `clearingBlockR_keeps` (analytic DONE statement), the frozen damping, and the physical
+  from `clearingBlockR_keeps` (analytic DONE statement), the stage damping, and the physical
   identity (FAIL/empty: unchanged; DONE: `ClearingDonePhysHyp`);
 * `sweepEnd_clear` (`ClearingBoxFacts.hXcE`): the sweep end of a clearing stage enters
   `ClearPhaseR … j 0`: the sweep-end facts (`SweepEndStatement`) with the scale radius

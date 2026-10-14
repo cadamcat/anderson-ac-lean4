@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.Construction.HugePiece
 import AndersonAC.S78.Statements
 
 /-!
-# WP10 construction, C5c: the clearing-stage dichotomy from the snapshot rule
+# the clearing-stage dichotomy from the snapshot rule
 
 08-history.tex:119–125 and 07-assembly.tex:18–34. After the clearings of stage `j`, a
 pending site either carries a label of stage `j`, or it was pending at the snapshot and its

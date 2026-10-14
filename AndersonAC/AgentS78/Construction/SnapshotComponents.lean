@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.Transitions
 
 /-!
-# WP10 construction: the snapshot components partition the pending sites
+# the snapshot components partition the pending sites
 
 `snapshotComponents P R` (Transitions.lean) lists the connected components of the snapshot
 graph on the pending set `P` (07-assembly.tex:18–24). Here: the component of a pending site

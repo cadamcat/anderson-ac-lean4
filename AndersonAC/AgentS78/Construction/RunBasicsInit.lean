@@ -3,9 +3,9 @@ import AndersonAC.AgentS78.Construction.InitialRecord
 import AndersonAC.AgentS78.Construction.TilePhaseComplete
 
 /-!
-# WP10 construction: `RunBasics` without hypotheses; the initial record (hInv0)
+# `RunBasics` without hypotheses; the initial record (hInv0)
 
-agent-s78runinv (2026-10-14).
+ .
 -/
 
 noncomputable section
@@ -24,7 +24,7 @@ theorem initialRecord_runBasics (P : TilePlan d m) (n₀ : ℕ) (u E : ℝ) (ρ 
     (lab : BirthLabel (Torus d m)) : initialRecord n₀ u E ρ θ t lab ∈ RunBasics P 0 :=
   runBasics_zero_of_start P θ t _ (fun i _ => Finset.notMem_empty i) rfl (fun _ _ => rfl)
 
-/-- The completeness input of `runBasics_closed`: agent-s78tphase's `tileComplete_proof`. -/
+/-- The completeness input of `runBasics_closed`: `tileComplete_proof`. -/
 theorem runTileComplete : RunTileCompleteStatement :=
   fun d m P j T M x k ω h1 h2 h3 h4 h5 => tileComplete_proof d m P j T M x k ω h1 h2 h3 h4 h5
 

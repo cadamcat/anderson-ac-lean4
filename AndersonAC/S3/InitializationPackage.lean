@@ -4,7 +4,7 @@ import AndersonAC.S3H.LayerCake
 import AndersonAC.Blueprint.Interfaces
 
 /-!
-WP05: `Packages.initialization`, proved with every §3 helper discharged, and the
+initialization package: `Packages.initialization`, proved with every §3 helper discharged, and the
 normalized §3 endpoint (planned `initialization_normalized`) unconditionally.
 -/
 

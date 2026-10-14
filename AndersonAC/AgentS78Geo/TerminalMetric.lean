@@ -70,7 +70,7 @@ theorem pathCost_reverse (T : Finset ι) : ∀ xs : List ι, pathCost T xs.rever
     have hrev : (x :: y :: ys).reverse = (y :: ys).reverse ++ [x] := by simp
     rw [hrev, pathCost_cons_cons']
     have ih := pathCost_reverse T (y :: ys)
-    -- (y :: ys).reverse = ys.reverse ++ [y]
+    -- (y ys).reverse = ys.reverse ++ [y]
     have h2 : (y :: ys).reverse = ys.reverse ++ [y] := by simp
     rw [h2] at ih ⊢
     have hj := pathCost_join T y ys.reverse [x]
@@ -156,7 +156,7 @@ theorem terminalDistance_triangle {G : SimpleGraph ι} (hG : G.Connected) (T : F
   obtain ⟨xs, h1, h2, h3, h4⟩ := exists_optimal_chain hG T u v
   obtain ⟨ys, k1, k2, k3, k4⟩ := exists_optimal_chain hG T v w
   rw [← h4, ← k4]
-  -- write xs = xs' ++ [v], ys = v :: ys'
+  -- write xs = xs' ++ [v], ys = v ys'
   obtain ⟨xs', rfl⟩ : ∃ xs', xs = xs' ++ [v] := by
     have hne : xs ≠ [] := by rintro rfl; simp at h2
     refine ⟨xs.dropLast, ?_⟩

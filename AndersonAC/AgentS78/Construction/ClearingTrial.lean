@@ -3,7 +3,7 @@ import AndersonAC.AgentS78.Construction.TrueSpace
 import AndersonAC.S6.Definitions
 
 /-!
-# WP10 construction, C4b: the clearing first-trial bound (frozen contract)
+# the clearing first-trial bound (contract)
 
 The clearing attempt of an eligible snapshot component `B` (07-assembly.tex:18–34) runs the
 §6 stopped heat trial (06-clearing.tex:757–857) on the **active sites of the entering
@@ -13,16 +13,15 @@ heat pivot `p` its whole true residual: the binary suffix, with coupling
 digits of `p` from height `prefixLength p` (02-state.tex:96–103).
 
 `ClearingTrialStatement good` says: on entering records in `good` (deterministic trial
-hypotheses, to be defined by the C4b lane and maintained by the deterministic induction),
+hypotheses, to be defined by the clearing trial bound module and maintained by the deterministic induction),
 (a) every heat pivot is a coupled active site within `inspectionRadius j / 2` of `B`
 (S78.clearing_locality; so the clearing block's guard never fires and its read pattern is
 the coupled active sites), and (b) the trial fails with probability at most `birthBound c j`
 under `sourcesLaw` (Proposition 6.6, `S6.preparation_of_small_component`, with the query
-history from `F₀ = ⊥`, since the record is fixed (amended 23:31 UTC at agent-s78clrtrial's
-request: an arbitrary filtration breaks the residual martingale input); `t_j ≍ 4^{-j}`, `S78.stage_scale_comparison`).
+history from `F₀ = ⊥`, since the record is fixed (an arbitrary filtration breaks the residual martingale input); `t_j ≍ 4^{-j}`, `S78.stage_scale_comparison`).
 
 Consumer: `BlockRun.product_bound` for the clearing slots, through the bridge
-`localFirstFail (clearingBlock …) x = {q.outcome = fail}` (muse-s78clear) and
+`localFirstFail (clearingBlock …) x = {q.outcome = fail}` and
 `S6.construct_stopped_trial` for the existence of `q`.
 -/
 
@@ -50,8 +49,8 @@ abbrev ActiveSite (x : RunRecord d m) := {i // i ∈ x.endpoint.active}
 def trialG0 (x : RunRecord d m) : Matrix (ActiveSite x) (ActiveSite x) ℂ :=
   x.endpoint.g.submatrix Subtype.val Subtype.val
 
-/-- **C4b (frozen contract).** The clearing first-trial bound and pivot locality on good
-entering records. `good n₀ u E j` is the C4b lane's deterministic hypothesis set. -/
+/-- **clearing trial bound (contract).** The clearing first-trial bound and pivot locality on good
+entering records. `good n₀ u E j` is the clearing trial bound module's deterministic hypothesis set. -/
 def ClearingTrialStatement (d : ℕ)
     (good : ∀ {m : ℕ}, ℕ → ℝ → ℝ → ℕ → Set (RunRecord d m)) : Prop :=
   ∃ c : ℝ, 0 < c ∧ ∃ N : ℕ, ∀ n₀ m : ℕ, N ≤ n₀ → 4 * n₀ ≤ m →

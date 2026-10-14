@@ -2,9 +2,7 @@ import AndersonAC.AgentS78.Construction.StagePhaseHInv
 import AndersonAC.AgentS78Geo.Geo
 
 /-!
-# The DONE exit of a clearing attempt: frozen statements
-
-agent-s78phase2. A DONE exit of `clearingBlock n₀ j u y` from a record `x` carrying
+# The DONE exit of a clearing attempt. A DONE exit of `clearingBlock n₀ j u y` from a record `x` carrying
 clearing-phase data `D` commits one clearing: `ClearingStepFacts D.I exit.endpoint y`
 (07-assembly.tex:390–433: §6 DONE output, Lemma 6.1 core completion, Lemma 7.2 clearing
 geometry, Lemma locality / Corollary core-decay, Combes–Thomas).
@@ -51,7 +49,7 @@ structure ClearRec (Ctr : ℝ) (n₀ : ℕ) (u : ℝ) (j : ℕ) (x : RunRecord d
   trace : ∃ l, ∃ T : ClearingGeometry d m n₀ j l u Ctr, ClearingTraceOf x T ∧
     geometryTerminals T = x.terminal ∧ ∀ a, ∃ b, T.index b = j ∧ T.anchor b = anchor a
 
-/-- **Schur support of the committed matrix after a DONE clearing** (frozen sub-statement,
+/-- **Schur support of the committed matrix after a DONE clearing** (sub-statement,
 mechanical): the hop structure of `ClearingTraceOf.hops` persists with the new terminal set. -/
 def ClearingDoneHopsStatement (d : ℕ) : Prop :=
   ∀ {m : ℕ} (n₀ j : ℕ) (u : ℝ) (y : Torus d m) (x : RunRecord d m)
@@ -68,7 +66,7 @@ def ClearingDoneHopsStatement (d : ℕ) : Prop :=
         (clearingDoneExit x s.2).endpoint.M a b ≠ ((J a b : ℝ) : ℂ) →
         terminalDistance (nnGraph d m) (clearingDoneExit x s.2).terminal a b = 0
 
-/-- **The DONE step facts** (frozen; 07-assembly.tex:390–433). -/
+/-- The DONE step facts (07-assembly.tex:390–433). -/
 def ClearingDoneStatement (d : ℕ) : Prop :=
   ∀ cP CP : ℝ, 0 < cP → cP ≤ CP → ∀ Ctr : ℝ, 2 ≤ Ctr →
   ∃ CA₀ cA₀ PA₀ : ℝ, 1 ≤ CA₀ ∧ 0 < cA₀ ∧ 0 ≤ PA₀ ∧
@@ -86,7 +84,7 @@ def ClearingDoneStatement (d : ℕ) : Prop :=
       s.2.core ≠ ∅ → s.2.failed = false → s.2.done = true →
       ClearingStepFacts D.I (clearingDoneExit x s.2).endpoint y
 
-/-- **The analytic part of the DONE step facts** (frozen; hard sub-statement): Combes–Thomas
+/-- The analytic part of the DONE step facts: Combes–Thomas
 decay of the committed endpoint and the distortion/decay bounds of the committed clearing
 (07-assembly.tex:390–433), given the structural facts `physical`, the new terminal metric and the
 hop structure of the committed matrix (`ClearingTraceOf.hops` for the new terminal set). -/
@@ -125,7 +123,7 @@ def ClearingDoneAnalyticStatement (d : ℕ) : Prop :=
         (max (distanceTo (physicalDistance d m) (s₀.active \ s'.active) i - CA * t ^ (-1.03 : ℝ)) 0 +
          max (distanceTo (physicalDistance d m) (s₀.active \ s'.active) k - CA * t ^ (-1.03 : ℝ)) 0)))
 
-/-- `ClearingDoneFacts` (the hypothesis of `clearOp_hInv`) from the frozen DONE statement. -/
+/-- `ClearingDoneFacts` (the hypothesis of `clearOp_hInv`) from the DONE statement. -/
 theorem clearingDoneFacts_of_statement {cP CP Ctr CA cA PA : ℝ} {N : ℕ} {t₀ : ℝ}
     (h : ∀ {m : ℕ} (n₀ j : ℕ) (u E : ℝ) (ρ : ℂ) (C : ℝ) (y : Torus d m) (x : RunRecord d m)
       (D : ClearPhaseData n₀ u E ρ C CA cA PA j x),

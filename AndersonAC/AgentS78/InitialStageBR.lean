@@ -4,9 +4,8 @@ import AndersonAC.S3H.Ray
 import AndersonAC.S3H.Polar
 
 /-!
-WP10 initial stage with the §3 bottom-resolvent input discharged
-(luna-s3bottom f1e0fe2, muse-s3ray 55ae4ad, muse-s3polar 531e79d, via lane/agent-s3).
-The only remaining hypothesis is `S3.LargeSymbolDecayWStatement` (luna-s3symlarge).
+The initial stage with the §3 bottom-resolvent estimate follows from the ray and
+polar estimates. The theorem assumes `S3.LargeSymbolDecayWStatement`.
 -/
 
 namespace AndersonAC.AgentS78

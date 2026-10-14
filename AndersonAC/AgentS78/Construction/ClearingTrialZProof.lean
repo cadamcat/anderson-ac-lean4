@@ -2,9 +2,9 @@ import AndersonAC.AgentS78.Construction.ClearingTrialZGeo
 import AndersonAC.AgentS78.Construction.ClearingTrialFinal
 
 /-!
-# WP10 construction, C4b off a null set: `clearingTrialZ_proof`
+# `clearingTrialZ_proof`
 
-`ClearingTrialStatementZ` (frozen by agent-s78con4, ClearingTrialZ.lean): the trial's residuals
+`ClearingTrialStatementZ` (`ClearingTrialZ.lean`): the trial's residuals
 are the true ones only off a flip-invariant null set `Z`. Route: `Z₂ = flipClosure Z` is a
 measurable flip-invariant null superset; for a sample `ω₁ ∉ Z` the trial `q₁ = compTrial ψ q`,
 `ψ = ω₁` on `Z₂` and `id` elsewhere, repeats at every sample the data of a sample off `Z`, so
@@ -26,7 +26,7 @@ open AndersonAC.S2 (RandomSources sourcesLaw)
 open AndersonAC.AgentS78Geo (clearingGeo)
 open AndersonAC.AgentS78.ResidualZ (flipClosure compTrial)
 
-/-- **C4b off a null set.** -/
+/-- **clearing trial bound off a null set.** -/
 theorem clearingTrialZ_proof (d : ℕ) (hd : 3 ≤ d)
     (hconc : AndersonAC.Blueprint.ConcentrationInput)
     (cP CP : ℝ) (qlag : ℝ → ℝ) (hcP : 0 < cP) (hqlag : Tendsto qlag (𝓝[>] 0) (𝓝 0))

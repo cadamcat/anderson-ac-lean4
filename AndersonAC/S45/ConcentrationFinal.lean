@@ -1,9 +1,8 @@
 import AndersonAC.S45.OneTrialProof
 import AndersonAC.S45.TraceHelpersProof
 
-/-! Lemma 5.6 and its consumers with the deterministic trace facts discharged
-(`OpusS45.traceHelpers_proof`, luna-s45trace). The only remaining input is
-Golden–Thompson (muse-gt). -/
+/-! Lemma 5.6 and its consumers from the deterministic trace facts and
+Golden–Thompson. -/
 
 noncomputable section
 open Matrix MeasureTheory ProbabilityTheory
@@ -13,8 +12,7 @@ namespace AndersonAC.AgentS45
 
 open AndersonAC.S45
 
-/-- `ConcentrationInput` from Golden–Thompson alone. Once muse-gt delivers
-`gt_proof : OpusS45.GTStatement`, `Packages.concentration_proof := concentration_of_gt gt_proof`. -/
+/-- Builds `ConcentrationInput` from `OpusS45.GTStatement` and the trace helpers. -/
 theorem concentration_of_gt (hGT : AndersonAC.OpusS45.GTStatement) :
     AndersonAC.Blueprint.ConcentrationInput :=
   AndersonAC.OpusS45.concentrationInput_of hGT AndersonAC.OpusS45.traceHelpers_proof

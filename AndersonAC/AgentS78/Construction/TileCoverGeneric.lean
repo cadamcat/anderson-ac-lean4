@@ -3,9 +3,7 @@ import AndersonAC.S45.FormDualityProof
 import AndersonAC.S45.LocalTransferLProof
 
 /-!
-# WP10 construction: the §5 tile covers — the generic restriction
-
-agent-s78cover (2026-10-14). From a torus tiling satisfying `TilingAxioms` (partition, nesting,
+# the §5 tile covers — the generic restriction. From a torus tiling satisfying `TilingAxioms` (partition, nesting,
 buffer, bounded overlap of the outer cubes, cardinalities, a cutoff with values in `[0,1]`, one
 on `Q`, zero off `Q'`, Lipschitz along edges, and a Poincaré inequality on `Q'` balancing the
 Lipschitz constant), the restriction along every injective port family is an `S45.TileCover`

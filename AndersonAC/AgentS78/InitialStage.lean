@@ -4,15 +4,14 @@ import AndersonAC.AgentS78.TorusGradient
 import AndersonAC.AgentS78.EmptyTerminal
 
 /-!
-WP10 construction, initial stage (02-state.tex:300–360, 03-initialization.tex
+the construction, initial stage (02-state.tex:300–360, 03-initialization.tex
 Proposition 3.6): the §3 normalized initialization endpoint, transported to the
 §§7–8 torus `Torus d m` (L = sideLength m) and real charge forms, gives the
 initial damped endpoint, the stage invariant `StageBounds` at n = n₀, and the
 `‖K‖ ≤ 1/4` hypothesis of `deterministic_induction`.
 
-Upstream hypotheses (exact §3 statements, not yet proved on lane/agent-s3):
-`S3.BottomResolventStatement` (luna-s3bottom) and
-`S3.LargeSymbolDecayWStatement` (luna-s3symlarge).
+The two §3 hypotheses are `S3.BottomResolventStatement` and
+`S3.LargeSymbolDecayWStatement`.
 -/
 
 open scoped BigOperators
@@ -173,7 +172,7 @@ theorem matrix_one_inst {A : Type} [Fintype A] (i1 i2 : DecidableEq A) :
     @OfNat.ofNat (Matrix A A ℂ) 1 (@One.toOfNat1 _ (@Matrix.one A ℂ i2 _ _)) := by
   cases Subsingleton.elim i1 i2; rfl
 
-/-- **WP10 initial stage.** From the §3 normalized initialization endpoint
+/-- **certificate construction initial stage.** From the §3 normalized initialization endpoint
 (conditional on the two named §3 helper statements), the initial endpoint at
 `t = stageScale u n₀ m` is a damped real terminal-Schur endpoint satisfying the
 full stage invariant `StageBounds` at `n = n₀` and the `‖K‖ ≤ 1/4` hypothesis of

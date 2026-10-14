@@ -22,7 +22,7 @@ noncomputable def resolventSymbol {d : ℕ}
       exact (ne_of_gt hz) him)⟩
 
 /-- The continuous functional calculus of the scalar resolvent symbol is the
-operator inverse used by the frozen blueprint. -/
+operator inverse used by the spectral interface. -/
 theorem cfc_resolvent_eq_greenOperator {d : ℕ}
     (T : AndersonAC.Blueprint.Operator d) (hT : IsSelfAdjoint T)
     (z : ℂ) (hz : 0 < z.im) :
@@ -154,8 +154,8 @@ end AndersonAC.LunaPvm
 
 namespace AndersonAC.Blueprint.Packages
 
-/-- WP01: every bounded self-adjoint operator has a constructed OAI resolution
-whose scalar resolvent transform has the frozen sign convention. -/
+/-- The spectral package: every bounded self-adjoint operator has a constructed OAI resolution
+whose scalar resolvent transform has the standard sign convention. -/
 theorem spectral : AndersonAC.Blueprint.SpectralInput := by
   intro d T hT
   refine ⟨{ spectral := AndersonAC.Spectral.spectralResolution T hT, resolvent_eq := ?_ }⟩

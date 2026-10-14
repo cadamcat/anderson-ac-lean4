@@ -32,7 +32,7 @@ import AndersonAC.S78Geom.Geometry
 import AndersonAC.S78.AssemblyEndpoints
 
 /-! Results for §§7–8 with their explicit hypotheses. Concrete definitions
-are in Definitions.lean. See PLAN.md for construction obligations. -/
+are in Definitions.lean. for construction obligations. -/
 open scoped BigOperators ENNReal Topology
 open MeasureTheory Filter
 set_option autoImplicit false

@@ -1,6 +1,6 @@
 import AndersonAC.S6.Definitions
 
-/-! Transfer weighted full-range estimates through the frozen positive damping. -/
+/-! Transfer weighted full-range estimates through fixed positive damping. -/
 noncomputable section
 open scoped BigOperators Matrix ComplexConjugate Matrix.Norms.L2Operator
 

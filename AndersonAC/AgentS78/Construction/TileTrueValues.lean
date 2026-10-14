@@ -3,7 +3,7 @@ import AndersonAC.AgentS78.Construction.RunBasics
 import AndersonAC.S2.Binary
 
 /-!
-# WP10 construction: true values along a tile block
+# true values along a tile block
 
 The tile block adds either the next true digit or the true binary suffix. This module
 connects those increments to the `TrueValues` record invariant.
@@ -997,7 +997,7 @@ private theorem binaryValue_scale (c : ℝ) (a : ℕ → Bool) :
   intro k
   ring
 
-/-! ## Assembly (agent-s78runinv, takeover of luna-s78truev 2026-10-14) -/
+/-! ## Assembly -/
 
 /-- A scalar slot halts only by aborting. -/
 private theorem scalarStep_halt_abort (P : TilePlan d m) (j : ℕ)
@@ -1054,7 +1054,7 @@ private theorem tile_halt_commit (P : TilePlan d m) (j : ℕ) (T : Fin (P.cover 
     · rfl
     · rw [hsite] at hh; simp [hrun0] at hh
 
-/-- **Tile true-values discipline** (frozen contract `TileTrueValuesStatement`). -/
+/-- **Tile true-values discipline** (contract `TileTrueValuesStatement`). -/
 theorem tileTrueValues_proof : TileTrueValuesStatement := by
   classical
   intro d m P j T M ω x k hj1 hj2 hpre hx hrun hh

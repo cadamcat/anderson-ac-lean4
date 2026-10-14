@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.StagePhasePkgClr
 
 /-!
-# Clearing-phase package: the run-level set is closed along the schedule
-
-agent-s78phase2 (DISPATCH 04:08:18). `pkgXg_closed` (`ClearingBoxFacts.hXg`): every block keeps
+# Clearing-phase package: the run-level set is closed along the schedule. `pkgXg_closed` (`ClearingBoxFacts.hXg`): every block keeps
 `pkgXg` (cover, pending ⊆ active, a trace whose edits are the terminal set) given `RunBasics` and,
 at clearing indices, the clearing-phase set: tile blocks keep the endpoint and (off the final
 sweep) the terminal set and only add active sites to the pending set (`tile_reach`); the sweep end

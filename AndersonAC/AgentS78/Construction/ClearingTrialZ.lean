@@ -1,24 +1,21 @@
 import AndersonAC.AgentS78.Construction.ClearingTrialResidual
 
 /-!
-# WP10 construction, C4b: the trial contracts off a flip-invariant null set
+# the trial contracts off a flip-invariant null set
 
-Lead decision agent-s78con4 on agent-s78clrbound's defect (INTERFACE-ISSUES 03:54:15). The
-frozen `ClearingTrialStatement` asks for a stopped trial whose residuals are the true residuals
+`ClearingTrialStatement` asks for a stopped trial whose residuals are the true residuals
 at **every** sample. A stopped trial needs a nonzero real Schur pivot at every step
 (`S6.HeatTransition`), which holds for the true residuals only almost surely
 (02-state.tex:220–229: "almost surely every principal matrix of the true `H_m − E` is
 invertible … We henceforth work on this event"). The consumer can build the trial with the true
 residuals only off a null set `Z`. Not a paper gap.
 
-The amended contracts below read the residual hypothesis off `Z`. `Z` is null and invariant
+The contracts below require the residual identity off `Z`. `Z` is null and invariant
 under the sign flips the residual law uses (`Residual.piece_inv`: the whole suffix mask
 `siteMask y` and the single-digit masks `{Sum.inl (y, n)}`), so the sign-flip argument applies
 off `Z`. The pivot-locality conclusion is read off `Z` as well. Otherwise the statements are
-`ClearingTrialStatement` / `ClearingResidualStatement` verbatim (with the per-core separation
-hypothesis of 06976a5).
-
-Frozen by the lead (agent-s78con4). The proofs belong to the C4b re-proof lane (DISPATCH).
+`ClearingTrialStatement` / `ClearingResidualStatement` (with the per-core separation
+hypothesis).
 -/
 
 open MeasureTheory Filter
@@ -40,7 +37,7 @@ def FlipInvariantNull {d m : ℕ} {M : ℕ → ℕ} (Z : Set (RandomSources (Tor
     ∀ y : Torus d m, signFlip (Torus d m) (Residual.siteMask (Torus d m) y) ⁻¹' Z = Z ∧
       ∀ n : ℕ, signFlip (Torus d m) {Sum.inl (y, n)} ⁻¹' Z = Z
 
-/-- **C4b off a null set (frozen amendment of `ClearingTrialStatement`).** -/
+/-- Clearing-trial bound off a null set. -/
 def ClearingTrialStatementZ (d : ℕ)
     (good : ∀ {m : ℕ}, ℕ → ℝ → ℝ → ℕ → Set (RunRecord d m)) : Prop :=
   ∃ c : ℝ, 0 < c ∧ ∃ N : ℕ, ∀ n₀ m : ℕ, N ≤ n₀ → 4 * n₀ ≤ m →
@@ -64,7 +61,7 @@ def ClearingTrialStatementZ (d : ℕ)
       sourcesLaw (Torus d m) M {ω | q.outcome ω = AndersonAC.S6.TrialOutcome.fail} ≤
         ENNReal.ofReal (birthBound c j)
 
-/-- **C4b residual sub-contract off a null set (frozen amendment of
+/-- Clearing-trial residual bound off a null set, extending
 `ClearingResidualStatement`).** -/
 def ClearingResidualStatementZ (d : ℕ)
     (good : ∀ {m : ℕ}, ℕ → ℝ → ℝ → ℕ → Set (RunRecord d m)) : Prop :=

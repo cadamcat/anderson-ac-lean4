@@ -6,13 +6,13 @@ import AndersonAC.AgentS78.Construction.TileCoreA3
 /-!
 # Per-step positivity along a valid sweep (generic port type)
 
-agent-s78send (2026-10-14). The hypothesis of `S45.ordinary_sweep_endpoint`
+ . The hypothesis of `S45.ordinary_sweep_endpoint`
 
   `∀ k < q.length, ∀ x live, 1 − K_xx ≠ 0 ∧ 0 < q_x − p_x F_xx`
 
 follows, for any sequence starting from all ports with `‖K₀‖ ≤ 1/2`, broad damping bounds and
 symmetric/Ward prefix states, from the validity of every prefix (05:155–239, the cumulative
-Schur identity of Lemma `cumulative-schur`; the same argument as argon-s78transfer's
+Schur identity of Lemma `cumulative-schur`; the same argument as
 `prefix_schur_and_bounds` for tile prefixes, here for an arbitrary port type, so that it
 applies to the transported sweep on `initialPorts (Fin n)`).
 -/

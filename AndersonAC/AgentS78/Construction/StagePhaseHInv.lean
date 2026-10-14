@@ -4,7 +4,7 @@ import AndersonAC.AgentS78.Construction.BoxAssembly
 /-!
 # The clearing phase in the schedule's `hInv` shape (kind 2)
 
-agent-s78phase2. Run invariant of `BoxInvariantK.hInv` (real local answers, BoxSplit.lean) on
+. Run invariant of `BoxInvariantK.hInv` (real local answers, BoxSplit.lean) on
 the indices `opIndex j 2 y` (clearing attempts) and `opIndex j 3 y` (stage operation at `site₀`,
 identity elsewhere):
 

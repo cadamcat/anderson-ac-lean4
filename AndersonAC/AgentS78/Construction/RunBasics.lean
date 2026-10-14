@@ -4,15 +4,13 @@ import AndersonAC.AgentS78.Construction.MarkingRule
 import AndersonAC.AgentS78.Construction.SimpleDisciplines
 
 /-!
-# WP10 construction: the run-level record invariant `RunBasics`
-
-agent-s78runinv (2026-10-14), request of agent-s78con3 (DISPATCH-REQUESTS 02:04:48 UTC).
+# Run-level record invariant `RunBasics`
 
 `RunBasics P n` is a set of records indexed by the block index `n` of
 `scheduleBlocks (runOp P ts₀ cl₀ (fun j y => clearingBlock n₀ j u y))`. On non-aborted records:
 
 1. no active site is terminal, up to the first tile slot of the final sweep (`finalStart`;
-   from the final sweep's commits on, consumed active sites are terminal, TileBlock 04437d8);
+   from the final sweep's commits on, consumed active sites are terminal, TileBlock);
 2. after the cutoff (`cutoffIndex < n`, or before any operation, `decodeJ n ≤ P.n₀`) no site
    is pending;
 3. a phase clause (`phaseOf`): during the tile operations of the sweep into stage `j`, with the
@@ -20,19 +18,19 @@ agent-s78runinv (2026-10-14), request of agent-s78con3 (DISPATCH-REQUESTS 02:04:
    sweep that are live are exactly those of the active sites, the bit ports of the active sites of
    unprocessed tiles are live, and every active non-pending site has consumed exactly its digits:
    `prefixLength i = j − 1 − n₀` (unprocessed) resp. `doneLength = j − n₀` (`m − n₀` for the
-   final sweep `j = m + 1`) (05:451–456, 08:11–13, 08:340–353); after the tile operations of
+   final sweep `j = m + 1`) (05:451–456, –13, 08:340–353); after the tile operations of
    stage `j` (`PostProps P j`) every active non-pending site has `doneLength`.
 
 `runBasics_closed` is closure under every block in the `hInv` shape of `blockRun_of_runOps`
 (block-local runs on the real answers of `ω`). The real answers enter only through the
-completeness of accepted tile trials (`RunTileCompleteStatement`, the body of agent-s78tphase's
+completeness of accepted tile trials (`RunTileCompleteStatement`, the body of
 `TileCompleteStatement`, discharged by `tileComplete_proof` in RunBasicsInit.lean, which gives
 the unconditional `runBasics_closed'`). The block kinds are isolated:
 `tile_exit` (tile block), `clear_exit` (clearing block, DONE/FAIL field updates only),
 `endMap_fields`, `stageWith_fields` (stage operation for any reset map keeping the fields:
 `resetMap` now, `resetMapA` after the switch to `stageMapA`).
 
-Projections in the hypothesis form of `tileSweepInv_start` (lane/agent-s78tphase 69cf872):
+The `tileSweepInv_start` hypothesis form projects to:
 `runBasics_sweepStart` and `runBasics_sweepStart_pre`.
 -/
 
@@ -106,7 +104,7 @@ def RBPhase.Holds : RBPhase → RunRecord d m → Prop
 def cutDone (n : ℕ) : Prop := cutoffIndex d m < n ∨ decodeJ d m n ≤ P.n₀
 
 /-- The first tile slot of the final residual sweep (stage `m + 1`). From the commits of the
-final sweep on, consumed active sites become terminal (luna-s78tdisc, TileBlock 04437d8). -/
+final sweep on, consumed active sites become terminal (TileBlock). -/
 def finalStart (d m : ℕ) : ℕ := opIndex d m (m + 1) 0 (site₀ d m)
 
 /-- **The run-level record invariant** at block index `n`. Clause (1) is required up to the
@@ -742,7 +740,7 @@ def KeepsBasics (f : RunRecord d m → RunRecord d m) : Prop :=
 theorem resetMap_keepsBasics (t : ℝ) : KeepsBasics (resetMap (d := d) (m := m) t) :=
   fun _ => ⟨rfl, rfl, rfl, rfl, rfl⟩
 
-/-- The active-block reset of agent-s78phase (used by `stageMap` since lane/agent-s78 f7d1952). -/
+/-- The active-block reset used by `stageMap`. -/
 theorem resetMapA_keepsBasics (t : ℝ) : KeepsBasics (resetMapA (d := d) (m := m) t) := by
   intro x
   obtain ⟨-, -, -, hpre, hterm, hpend, -, -, hab, hact⟩ := resetMapA_preserves t x
@@ -962,9 +960,9 @@ end RBPhase
 /-! ## Closure under the blocks of the schedule -/
 
 /-- **Completeness of accepted tile trials on real answers** — the body of
-`TileCompleteStatement` (agent-s78tphase, TilePhaseRun.lean; `TileOrderSizes` and
-`TileAcceptComplete` unfolded), proved there as `tileComplete_proof` (lane/agent-s78tphase
-5df2dae). After merging that branch, `fun … => tileComplete_proof …` gives this statement. -/
+`TileCompleteStatement` (TilePhaseRun.lean; `TileOrderSizes` and
+`TileAcceptComplete` unfolded), proved as `tileComplete_proof`. Then
+`fun … => tileComplete_proof …` gives this statement. -/
 def RunTileCompleteStatement : Prop :=
   ∀ (d m : ℕ) (P : TilePlan d m) (j : ℕ) (T : Fin (P.cover j).cover.count) (M : ℕ → ℕ)
     (x : RunRecord d m) (k : ℕ) (ω : RandomSources (Torus d m) M),
@@ -1195,7 +1193,7 @@ end Main
 /-- **`RunBasics` is closed under every block of the schedule**, in the `hInv` shape of
 `blockRun_of_runOps` (block-local runs along the answers of `ω`), for the clearing block
 `clearingBlock n₀ j u y`. The only input is the completeness of accepted tile trials
-(`RunTileCompleteStatement`, agent-s78tphase's `tileComplete_proof`). -/
+(`RunTileCompleteStatement`, `tileComplete_proof`). -/
 theorem runBasics_closed (hcomp : RunTileCompleteStatement) (P : TilePlan d m) (n₀ : ℕ) (u : ℝ)
     (ts₀ : TileScratch d m) (cl₀ : ClearScratch d m) (n : ℕ) (x : RunRecord d m) (k : ℕ)
     (ω : RandomSources (Torus d m) (tileOrderSize P)) (hx : x ∈ RunBasics P n)

@@ -4,21 +4,16 @@ import AndersonAC.AgentS78.Construction.ClearingHalt
 import AndersonAC.AgentS78.Construction.TileCoverFinal
 
 /-!
-# WP10 construction: the per-box assembly with the clearing block (lead, agent-s78con3)
+# Per-box assembly with the clearing block
 
-`RunOpsInputs` is built for `clr j y := clearingBlock n₀ j u y` (muse-s78clear) and the tile
-plan of `tilePlan_exists` (agent-s78cover). The clearing fields are discharged by
-ClearingFacts / ClearingHalt / ClearingSnap; what remains is
+`RunOpsInputs` uses `clr j y := clearingBlock n₀ j u y` and the plan from
+`tilePlan_exists`. `ClearingFacts`, `ClearingHalt`, and `ClearingSnap` provide the
+clearing-block facts. The assembly combines the tile disciplines, clearing-block
+measurability and geometry, and the per-box `BoxInvariant` for the run, trial bounds,
+halting, and final record.
 
-* the tile disciplines (`TileMarkingStatement`, `TileQueryStatement`, `TilePatternStatement`,
-  `TileAbortStatement`, `TileHaltPatternStatement`; luna-s78tdisc),
-* the measurability of the clearing block and the two facts of correction (6)
-  (`ClearingFailGuarded`, `ClearingCoreRadius`, `ClearingEligibleIntro`; muse-s78clear),
-* per box, the **run invariant package** `BoxInvariant` (record invariant closed along the
-  schedule off the null `exceptionalSet` jointly with `TrueValues` (route R2), first-failure
-  bounds C4a/C4b, halting bounds, final good record; phase lanes).
-
-`uniformCertificateInput_of_boxInvariants` is the WP10 finish line in this form.
+`uniformCertificateInput_of_boxInvariants` assembles these hypotheses into a uniform
+certificate input.
 -/
 
 open MeasureTheory
@@ -38,18 +33,18 @@ abbrev clrOf (n₀ : ℕ) (u : ℝ) : ℕ → Torus d m → Block (Torus d m) (R
     (RunRecord d m × ClearScratch d m) :=
   fun j y => clearingBlock (d := d) (m := m) n₀ j u y
 
-/-- Correction (6)(a): a failure candidate is marked only if it passes the pivot guard. -/
+/-- : a failure candidate is marked only if it passes the pivot guard. -/
 def ClearingFailGuarded (d m : ℕ) : Prop :=
   ∀ (j : ℕ) (u : ℝ) (rc : RunRecord d m) (sc : ClearScratch d m) (p : Torus d m),
     actionOf (d := d) (m := m) j u rc sc = .fail (some p) →
       guardHolds (d := d) (m := m) j sc.core (coupledActive rc) rc.terminal p
 
-/-- Correction (6)(b): the core lies within `t_j^{-ν} R_j` of its anchor. -/
+/-- : the core lies within `t_j^{-ν} R_j` of its anchor. -/
 def ClearingCoreRadius (d m : ℕ) : Prop :=
   ∀ (j : ℕ) (u : ℝ) (y : Torus d m) (x : RunRecord d m), ∀ v ∈ theCore (d := d) (m := m) j u y x,
     physicalDistance d m v y ≤ stageScale u j m ^ (-nu d) * separationRadius j
 
-/-- Correction (6)(b), converse: an anchored component with at most `t_j^{-ν}` sites inside
+/-- , converse: an anchored component with at most `t_j^{-ν}` sites inside
 that radius is an eligible candidate. -/
 def ClearingEligibleIntro (d m : ℕ) : Prop :=
   ∀ (j : ℕ) (u : ℝ) (y : Torus d m) (B : Finset (Torus d m)), y ∈ B →
@@ -188,10 +183,9 @@ theorem upow_le_four_pow (u : ℝ) (hu4 : 1 / 4 < u) : u ^ (-nu d) ≤ (4 : ℝ)
       one_div, inv_inv]
   linarith
 
-/-- **WP10 finish line, assembled form.** `S78.UniformCertificateInput d e₂` from the tile
-disciplines, the clearing-block measurability and correction (6), and, for the tile-cover
-constant `C` of `tilePlan_exists`, uniform constants with a run invariant package for every
-large box and every tile plan with the cover facts. -/
+/-- Assembles `S78.UniformCertificateInput d e₂` from the tile disciplines,
+clearing-block measurability, and uniform run-invariant packages for each large box
+and tile plan with the cover facts. -/
 theorem uniformCertificateInput_of_boxInvariants (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
     (htmark : TileMarkingStatement) (htquery : TileQueryStatement)
     (htpat : TilePatternStatement) (htabort : TileAbortStatement)

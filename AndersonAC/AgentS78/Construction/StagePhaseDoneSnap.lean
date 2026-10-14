@@ -2,14 +2,12 @@ import AndersonAC.AgentS78.Construction.StagePhaseDone
 import AndersonAC.AgentS78.Construction.StagePhaseClrExit
 
 /-!
-# The DONE exit of a clearing attempt: the core-phase snapshot
-
-agent-s78donea. Along every reachable state of `clearingBlock n₀ j u y` from `x`, once the core
+# The DONE exit of a clearing attempt: the core-phase snapshot. Along every reachable state of `clearingBlock n₀ j u y` from `x`, once the core
 phase has started (and no failure latched) there is a **snapshot** `sh` of the scratch state at
 the start of the core phase (06-clearing.tex:826–857, the DONE output of the stopped trial;
 07-assembly.tex:399–405):
 
-* the S6 heat budgets hold for `sh.hatG` against the frozen `g0 = x.endpoint.g` (they are checked
+* the S6 heat budgets hold for `sh.hatG` against the initial inverse `g0 = x.endpoint.g` (they are checked
   after every heat, `clearingUpdate`, and before every action, `actionOf`);
 * on `sh.active` the snapshot inverse is the damped inverse of the restricted `sh.Mnum`;
 * the core lies in `sh.active`, and the projection cap `xReady` holds there

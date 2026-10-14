@@ -3,7 +3,7 @@ import AndersonAC.AgentS78.Construction.TilePhaseSchedule
 import AndersonAC.AgentS78.Construction.TileStartPrefix
 
 /-!
-# WP10 construction, global run invariant: the tile-phase obligations (agent-s78box)
+# the tile-phase obligations
 
 The tile-phase set of the global invariant is
 `boxTS … j r = TileSweepInv C P j n₀ u E ρ Cb (doneUpTo P j r) ∩ Damp cA CA`,

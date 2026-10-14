@@ -1,7 +1,7 @@
 import Mathlib
 
 /-!
-# WP10 construction, C5c helper: a bounded piece of a huge component
+# a bounded piece of a huge component
 
 08-history.tex:119–125. A pending site that survives a clearing stage without a new label
 lies in a huge snapshot component (more than `t_j^{-ν}` sites). The dichotomy of

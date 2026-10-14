@@ -2,9 +2,7 @@ import AndersonAC.AgentS78.Construction.TorusShell
 import AndersonAC.AgentS78.Construction.TileCoverGeneric
 
 /-!
-# WP10 construction: the §5 tile covers — kernel energy on the torus
-
-agent-s78cover (2026-10-14; takeover of luna-s78torus). `torusKernel_proof : ∀ d,
+# the §5 tile covers — kernel energy on the torus. `torusKernel_proof : ∀ d,
 TorusKernelStatement d`: `Σ_{x,y} e^{-u dist(x,y)} (v_x - v_y)² ≤ C u^{-d-2} Λ(v)`, by
 translation invariance and a shortest walk (`Σ_x (v_x - v_{x+z})² ≤ 2 dist(0,z)² Λ(v)`) and the
 second shell moment.

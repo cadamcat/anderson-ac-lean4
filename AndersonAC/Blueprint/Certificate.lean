@@ -14,11 +14,11 @@ def windowThreshold (d : ℕ) (e₂ : ℝ) (k : ℕ) : Prop :=
       ∀ E : ℝ, E ∈ energyWindow d e₂ →
         (1 / 2 : ℝ≥0∞) ≤ torusLaw d m (certificateEvent d k n₀ m u E)
 
-/-- WP10's final true-variable endpoint, uniform in u, m, and E. -/
+/-- certificate construction's final true-variable endpoint, uniform in u, m, and E. -/
 def CertificateFamily (e₂ : ℝ) : Prop :=
   ∀ d : ℕ, 3 ≤ d → ∃ k : ℕ, windowThreshold d e₂ k
 
-/-- WP12 consumes only eventually-in-m certificates for each fixed energy.
+/-- readout package consumes only eventually-in-m certificates for each fixed energy.
 Bounds k and u are independent of energy. The full true-variable matrix and
 both inverse equalities are already part of `certificateEvent`. -/
 def WeakCertificates (d : ℕ) (coupling : ℝ) (I : Set ℝ) : Prop :=

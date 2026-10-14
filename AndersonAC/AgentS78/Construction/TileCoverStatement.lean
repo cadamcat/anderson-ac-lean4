@@ -1,18 +1,16 @@
 import AndersonAC.AgentS78.Construction.TileBlock
 
 /-!
-# WP10 construction: the §5 tile covers (statement)
+# The §5 tile-cover statement
 
-agent-s78cover (2026-10-14), request of agent-s78con2 (DISPATCH-REQUESTS 00:20:11 UTC,
-INTERFACE-ISSUES 00:20:11 (a), (b) and 00:14:36 (4)).
-Paper (authoritative): refs/tex/05-local-sweeps.tex:240–256 (tiles, cubes `Q, Q'`, cutoff
+Paper references: 05-local-sweeps.tex:240–256 (tiles, cubes `Q, Q'`, cutoff
 `χ`, local pair space and extension `B_T`), 05:338–343 (`M = L_tile^d` slots),
-02-state.tex:330–332 (`Λ`, the full-torus nearest-neighbour energy), 05:44–45 and 05:60–63
+02-state.tex:330–332 (`Λ`, the full-torus nearest-neighbour energy), –45 and –63
 (ports at one site have distance zero; the physical distance `dist`).
 
-## Design: one torus tiling, restricted to any injective family of ports
+## One torus tiling restricted to any injective family of ports
 
-The construction serves both designs of INTERFACE-ISSUES 00:20:11 (b):
+Two useful instances are:
 
 * `TorusTiling d m`: a deterministic tiling of the physical torus at scale `t` (it depends only
   on `d, m, t`): tiles (a partition of the sites), inner cubes `Q` and outer cubes `Q'` (as site
@@ -29,7 +27,7 @@ Hence (i) record-dependent covers are `ι = ` the inclusion of the stage-start a
 (ii) the record-independent `TilePlan` cover is `ι = id`, whose restriction to the active ports
 is again an instance with the same tile indices.
 
-Not part of this statement (separate obligations, see NOTES.md):
+Not part of this statement (separate obligations):
 * `start_comparison` (`D₀ ≍ W` with `W = spatialEnergy (ι ·).1 b Λ`, 05:328): this is the
   stage-boundary comparison `X ≍ W*` dualised (Lemma `dual-forms`, 02-state:356–383), which
   depends on the record, not on the cover; the cover only fixes `W` to the paper's form.
@@ -49,7 +47,7 @@ open AndersonAC.S78
 `|v_i - v_j|²` over unordered nearest-neighbour edges. -/
 def torusEnergy (d m : ℕ) : S45.Form (Torus d m) := gradientEnergy (nnGraph d m)
 
-/-- The distance of ports along `ι`: the physical distance of their sites (05:44–45, 05:60–63;
+/-- The distance of ports along `ι`: the physical distance of their sites (–45, –63;
 ports at one site have distance zero). -/
 def pullDist {d m : ℕ} {P : Type*} (ι : P → Port d m) : P → P → ℝ :=
   fun x y => physicalDistance d m (ι x).1 (ι y).1

@@ -3,9 +3,7 @@ import AndersonAC.AgentS78.Construction.StagePhaseSnoc
 import AndersonAC.S6.CoreSchur
 
 /-!
-# The clearing block along its reachable states: the structural invariant
-
-agent-s78phase2. For the clearing attempt `clearingBlock n₀ j u y` entered from a record `x`
+# The clearing block along its reachable states: the structural invariant. For the clearing attempt `clearingBlock n₀ j u y` entered from a record `x`
 whose endpoint is damped at `t = t_j` with `x.r` (the clearing-phase data give this), every
 reachable scratch state satisfies `ClrInv`:
 

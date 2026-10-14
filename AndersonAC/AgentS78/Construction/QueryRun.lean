@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.Construction.RunRules
 import AndersonAC.AgentS78.Construction.FreezingProof
 
 /-!
-# WP10 random construction, layer C: the run as an adaptive query strategy
+# the run as an adaptive query strategy
 
 `QueryRun` is the random multiscale construction on the §2 enlarged space
 `RandomSources (Torus d m) M` (law `sourcesLaw`, 02-state.tex:126–170):
@@ -22,7 +22,7 @@ import AndersonAC.AgentS78.Construction.FreezingProof
 * the stage-end pending sets, latest labels, late trials and success event are as in
   `SlotRun`, with births equal to the slot failures.
 
-`slotRun_of_queryRun` (proved; the conditional slot bound uses agent-s78freeze's
+`slotRun_of_queryRun` (proved; the conditional slot bound uses
 `freezing_proof : FreezingStatementNonneg`) gives a `SlotRun` and hence, with uniform constants,
 `UniformCertificateInput` (`uniformCertificateInput_of_queryRuns`).
 -/
@@ -112,7 +112,7 @@ def QueryRun.process {d m n₀ : ℕ} {u E Cr cp cg Ch c Clate : ℝ}
   scale := R.slotScale
   adapted n := R.birth_adapted n
 
-/-- **Coupling (history-birth).** The conditional slot bound from the frozen trial bound
+/-- **Coupling (history-birth).** The conditional slot bound from the trial bound
 (`freezing_proof`, Lemma 2.2 at the slot start). -/
 theorem QueryRun.conditional {d m n₀ : ℕ} {u E Cr cp cg Ch c Clate : ℝ}
     (R : QueryRun d m n₀ u E Cr cp cg Ch c Clate) (n : ℕ) :

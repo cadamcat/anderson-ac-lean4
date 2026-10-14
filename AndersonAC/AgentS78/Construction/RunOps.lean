@@ -8,16 +8,16 @@ import AndersonAC.AgentS78.Construction.SimpleDisciplines
 import AndersonAC.AgentS78.Construction.ResetAMeas
 
 /-!
-# WP10 construction: the operations of the schedule
+# the operations of the schedule
 
-The operation `(j, k, y)` of a box (Schedule.lean; NOTES.md "Schedule semantics"), for the
+The operation `(j, k, y)` of a box (`Schedule.lean`) for the
 stages `n₀ < j ≤ m + 1` (`j = m + 1`: the final residual sweep), on the common internal
 state `RunRecord × (TileScratch × ClSc)`:
 
 * `k = 0`: the tile block of the tile anchored at `y` (`tileAt`), if any;
 * `k = 1` (at the least site `site₀` only): the sweep end `sweepEndMapTheta θ_j` (θ of TileBlock.lean, `1/2` for the final
   sweep), followed by the snapshot `snapshotMap j` at a clearing stage `j ≤ ⌊m/2⌋`;
-* `k = 2`: at a clearing stage, the clearing attempt `clr j y` (muse-s78clear's block,
+* `k = 2`: at a clearing stage, the clearing attempt `clr j y` (a block,
   a parameter here);
 * `k = 3` (at `site₀` only): for `j ≤ m`, the diagonal reset at `t_j`, the cutoff at `j = ⌊m/2⌋`, and the
   stage-start lift `sweepStartMap` for the next sweep.
@@ -68,8 +68,8 @@ theorem tileAt_anchor (P : TilePlan d m) (j : ℕ) (y : Torus d m) (T : Fin (P.c
 def endMap (P : TilePlan d m) (j : ℕ) : RunRecord d m → RunRecord d m :=
   (if j ≤ m / 2 then snapshotMap j else id) ∘ sweepEndMapTheta (sweepTheta P.u m j)
 
-/-- Reset of stage `j`, cutoff at `⌊m/2⌋`, and the lift for the next sweep. Since 2026-10-14
-(agent-s78con3): the **active-block** reset `resetMapA` of agent-s78phase (the whole-torus
+/-- Reset of stage `j`, cutoff at `⌊m/2⌋`, and the lift for the next sweep. Since
+the **active-block** reset `resetMapA` (the whole-torus
 `resetMap` is not damped on proper active sets, `resetMap_not_damped`); so
 `stageMap = stageMapA` (StagePhaseOp.lean) by `rfl`. -/
 def stageMap (P : TilePlan d m) (j : ℕ) : RunRecord d m → RunRecord d m :=

@@ -1,9 +1,9 @@
 import AndersonAC.S2.SignResampling
 
 /-!
-# Clearing first-failure bound (agent-s78clrbound): flip-stable null sets
+# Clearing first-failure bound : flip-stable null sets
 
-The residual law of C4b (`Residual.clearingResidual_proof`, sign flips) compares a sample with
+The residual law of clearing trial bound (`Residual.clearingResidual_proof`, sign flips) compares a sample with
 its images under whole-site flips `signFlip (flipSiteMask y)` and single-digit flips
 `signFlip {inl (y, n)}`. If the trial's residuals are exact only off a null set `Z`, that
 argument still applies off `Z` when `Z` is stable under these flips. `flipSat Z` is the

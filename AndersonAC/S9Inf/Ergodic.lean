@@ -9,7 +9,7 @@ open MeasureTheory OAI.Anderson
 
 namespace AndersonAC.SolS9
 
-/-- The frozen §9 translation action is definitionally `Prob.shiftConfig`.
+/-- The §9 translation action is definitionally `Prob.shiftConfig`.
 The inline definition permits checking against the inventory without
 importing it into this proof module. -/
 theorem iid_translation_zero_one_proof (d : ℕ) (hd : 0 < d)

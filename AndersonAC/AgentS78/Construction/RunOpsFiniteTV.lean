@@ -2,13 +2,13 @@ import AndersonAC.AgentS78.Construction.RunOpsFinite
 import AndersonAC.AgentS78.Construction.TrueValues
 
 /-!
-# WP10 construction: blocks reached a.s. under an invariant kept off a null set (route R2)
+# blocks reached a.s. under an invariant kept off a null set (route R2)
 
 `all_blocks_reached_of_good_ev`: `all_blocks_reached_of_inv_ev` with the pathwise closure of the
 invariant replaced by its almost-sure validity at every reached block start.
 `runOps_finite_det_tv`: `runOps_finite_det` for an invariant `Inv` that each block keeps only for
-`ω ∉ exceptionalSet` and records in `TrueValues n₀ u ω` (agent-s78r2chain; INTERFACE-ISSUES
-2026-10-14 05:06:29 / 05:09:02, route R2); the joint induction with `TrueValues` gives the
+`ω ∉ exceptionalSet` and records in `TrueValues n₀ u ω`; the joint induction with
+`TrueValues` gives the
 almost-sure invariant (`blockPrestate_mem_joint`).
 -/
 

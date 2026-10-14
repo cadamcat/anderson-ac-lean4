@@ -1,6 +1,6 @@
 import AndersonAC.S6.Scattering
 
-/-! Exact WP08 package proof for coordinator integration. -/
+/-! Proof of the scattering package interface. -/
 namespace AndersonAC.Blueprint.Packages
 
 theorem scattering : ScatteringInput := by

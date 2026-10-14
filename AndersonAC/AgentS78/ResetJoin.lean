@@ -3,7 +3,7 @@ import AndersonAC.S78.InverseComparison
 import AndersonAC.S78FiniteForm.Proof
 
 /-!
-WP10 reset join (07-assembly.tex:806–928 consumed by Proposition 7.5): the S78
+certificate construction reset join (07-assembly.tex:806–928 consumed by Proposition 7.5): the S78
 `diagonal_reset` acts on the active block `M_A` (type `↥A`); its `ResetOutput`
 transports to the ambient endpoints `fin` (before) and `new` (after reset), giving the
 `StageStep` fields `new_K` and `new_inv` and the diagonal relation `g'_ii = r'_i`.

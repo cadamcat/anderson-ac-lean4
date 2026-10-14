@@ -1,7 +1,7 @@
 import AndersonAC.S9Fin.Core
 
-/-! Infinite readout definitions copied verbatim from the frozen inventory.
-The finite definitions are the finite lane's existing pure Core module. -/
+/-! Infinite readout definitions copied verbatim from the definitions.
+The finite definitions are the finite module's existing pure Core module. -/
 
 noncomputable section
 

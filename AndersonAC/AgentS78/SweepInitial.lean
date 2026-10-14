@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.SweepJoin
 
 /-!
-WP10: the `AssemblyInput` fields `initialRows` and `initialLag` for the post-sweep state
+certificate construction: the `AssemblyInput` fields `initialRows` and `initialLag` for the post-sweep state
 (`I.state 0 = sw`) from the lag and fourth-row conclusions of `S45.ordinary_sweep_endpoint`.
 -/
 

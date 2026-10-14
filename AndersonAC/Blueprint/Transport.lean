@@ -8,14 +8,14 @@ namespace AndersonAC.Blueprint
 def conjugate {d : ℕ} (U : StateSpace d ≃ₗᵢ[ℂ] StateSpace d) (T : Operator d) : Operator d :=
   U.toLinearIsometry.toContinuousLinearMap * T * U.symm.toLinearIsometry.toContinuousLinearMap
 
-/-- WP14a: affine image is iid uniform on [a,b]; embedding permits AE
+/-- An affine image is iid uniform on `[a,b]`; embedding permits almost-everywhere
 transport even before measurability of the AC spectral event is established. -/
 def LawTransportInput : Prop :=
   ∀ (d : ℕ) (a b : ℝ), a < b →
     MeasurableEmbedding (affineConfiguration (d := d) a b) ∧
     (disorderLaw d).map (affineConfiguration a b) = intervalLaw d a b
 
-/-- WP14b: parity unitary is the same for all intervals/configurations.
+/-- The parity unitary is the same for all intervals and configurations.
 The operator on the right is built directly from the transported potential. -/
 def SignTransportInput : Prop :=
   ∀ d : ℕ, ∃ U : StateSpace d ≃ₗᵢ[ℂ] StateSpace d,
@@ -24,7 +24,7 @@ def SignTransportInput : Prop :=
       simonHamiltonian (affineConfiguration a b ω) M hM hV =
         conjugate U (shiftedHamiltonian a b ω)
 
-/-- WP14c: scalar shift translates real spectrum, projections, and scalar
+/-- A scalar shift translates the real spectrum, projections, and scalar
 measures; unitary conjugation transports vectors and the AC subspace. -/
 def SpectralTransportInput : Prop :=
   ∀ (d : ℕ) (T : Operator d), IsSelfAdjoint T →

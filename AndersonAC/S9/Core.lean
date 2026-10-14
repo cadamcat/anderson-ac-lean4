@@ -1,7 +1,7 @@
 import AndersonAC.Blueprint.SpectralInputs
 
 /-! Shared §9 definitions for proof modules. This file has no proof
-placeholders and is independent of the Phase 1 statement inventory. -/
+placeholders and is independent of the phase statement inventory. -/
 
 noncomputable section
 
@@ -26,7 +26,7 @@ def siteVector {d : ℕ} (x : Site d) : StateSpace d := AndersonAC.Blueprint.del
 
 end AndersonAC.SolS9
 
-/- Compatibility aliases for the frozen section-worker records. They share
+/- Compatibility aliases for the section records. They share
    the actual Blueprint definitions and introduce no proof assumptions. -/
 namespace AndersonAC.S9
 abbrev borelTransform := AndersonAC.SolS9.borelTransform

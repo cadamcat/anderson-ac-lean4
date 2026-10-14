@@ -1,5 +1,4 @@
 import AndersonAC.Blueprint.Transport
 
-/-! Import-only compatibility module for §9 workers dispatched from
-5fa1175. It defines no copied Blueprint constants; the authoritative frozen
-interfaces are imported from main. -/
+/-! Import-only compatibility module for §9 spectral interfaces. It defines no
+copies of `Blueprint` constants; the package interfaces are imported directly. -/

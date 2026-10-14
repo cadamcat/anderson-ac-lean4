@@ -8,7 +8,7 @@ open scoped ENNReal lp Topology
 
 namespace AndersonAC.Blueprint
 
-/-- WP01: port bounded PVM and construct all OAI fields plus the resolvent weld. -/
+/-- Construct the bounded PVM, OAI fields, and resolvent identity. -/
 def SpectralInput : Prop :=
   ∀ (d : ℕ) (T : Operator d), IsSelfAdjoint T → Nonempty (ResolvedOperator T)
 
@@ -25,9 +25,9 @@ def BoundedBoundaryCriterion : Prop :=
     (∀ E ∈ S, ∃ w : ℂ, HasBoundary (borelTransform μ) E w) →
     μ.restrict S ≪ volume
 
-/-- WP02: Teschl 3.25, bounded-boundary criterion, and uniqueness for the
-difference of two scalar Borel transforms. Analytic uniqueness is only used
-after proving the off-diagonal transform is not identically zero. -/
+/-- Teschl 3.25, the bounded-boundary criterion, and uniqueness for differences of
+scalar Borel transforms. Analytic uniqueness is used after proving the off-diagonal
+transform is not identically zero. -/
 structure BoundaryInput : Prop where
   finite : ∀ μ : Measure ℝ, IsFiniteMeasure μ →
     ∀ᵐ E ∂(volume : Measure ℝ), ∃ w : ℂ, HasBoundary (borelTransform μ) E w
@@ -43,16 +43,16 @@ def diagonalGreen {d : ℕ} (coupling : ℝ) (ω : Configuration d)
     (x : Site d) (z : ℂ) : ℂ :=
   inner ℂ (delta x) (greenOperator (hamiltonian coupling ω) z (delta x))
 
-/-- Energy AE precedes configuration AE here. WP13 must reverse the order
-with Fubini and construct an exceptional set independent of the own-site value. -/
+/-- Energy almost everywhere precedes configuration almost everywhere here. Fubini
+reverses the order and gives an exceptional set independent of the own-site value. -/
 def BoundaryPositive (d : ℕ) (coupling : ℝ) (I : Set ℝ) : Prop :=
   ∀ᵐ E ∂(volume.restrict I), ∀ᵐ ω ∂disorderLaw d,
     ∀ x : Site d, FinitePositiveBoundary (diagonalGreen coupling ω x) E
 
-/-- WP11: spectral averaging for a rank-one site change. The supplied
-resolutions must satisfy all OAI fields; no averaging identity is assumed.
-Using a uniform interval avoids encoding an essential-supremum representative.
-The arbitrary T represents the fixed complementary operator and site coupling. -/
+/-- Spectral averaging for a rank-one site change. The supplied resolutions must
+satisfy all OAI fields; no averaging identity is assumed. A uniform interval avoids
+choosing an essential-supremum representative. The arbitrary `T` is the fixed
+complementary operator. -/
 def AveragingInput : Prop :=
   ∀ (d : ℕ) (T : Operator d), IsSelfAdjoint T →
     ∀ v : StateSpace d, ‖v‖ = 1 → ∀ a b : ℝ, a < b →
@@ -62,7 +62,7 @@ def AveragingInput : Prop :=
         (∫⁻ s : ℝ, (S s).vectorMeasure v B ∂uniformInterval a b) ≤
           (ENNReal.ofReal (b - a))⁻¹ * volume B
 
-/-- WP12: Proposition 9.2 through fixed-energy all-site positivity.
+/-- Proposition 9.2 through fixed-energy all-site positivity.
 Includes finite principal invertibility, rank cut, Wegner, Combes–Thomas,
 boundary nonvanishing, iid ergodicity, and rank-one propagation. -/
 def ReadoutInput : Prop :=
@@ -71,7 +71,7 @@ def ReadoutInput : Prop :=
       ∀ I : Set ℝ, IsOpen I → I.Nonempty → Bornology.IsBounded I →
         WeakCertificates d coupling I → BoundaryPositive d coupling I
 
-/-- WP13: the last §9 paragraphs, including own-site-independent null sets,
+/-- The §9 purity conclusions, including own-site-independent null sets,
 singular-mass removal, closed AC subspace, spectrum, and nonzero projection. -/
 def PurityInput : Prop :=
   SpectralInput → BoundaryInput → AveragingInput →

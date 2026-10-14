@@ -6,28 +6,16 @@ import AndersonAC.AgentS78.StageInduction
 import AndersonAC.AgentS78.Construction.SweepClosed
 
 /-!
-# WP10 construction: the global run invariant and the `BoxInvariantK` assembly (agent-s78box)
+# Global run invariant and `BoxInvariantK`
 
-DISPATCH 2026-10-14 02:58:56 (agent-s78con3). **`boxInvariantK_of_phases`** is exactly the
-`hbox` hypothesis of `uniformCertificateInput_of_boxInvariantsK'` (ClearingSix.lean), from the
-proved phase lemmas and the open contracts below (taken as explicit hypotheses):
+`boxInvariantK_of_phases` constructs the `hbox` hypothesis of
+`uniformCertificateInput_of_boxInvariantsK'` from the phase lemmas and the
+stage-start, sweep-end, clearing-phase, and true-value statements below.
 
-| contract | owner (status 03:1x) |
-|---|---|
-| `ActiveCTStatement d` (stage start, Combes–Thomas) | luna-s78actct |
-| `StartBridgeStatement` (`startClauses_of_live`, verbatim type) | luna-s78sbridge |
-| `SweepEndUniformStatement d` (= `sweepEnd_proof''` with `CA₀ cA₀` chosen before `Cb`) | agent-s78send / agent-s78stransp + luna-s78actct |
-| (final sweep: unconditional via `finalSweep_closed` + `finalSweep_good_SB`, lead agent-s78con4) | — |
-| `ClearingPhasePackage d` (run-level clauses, DONE step, clearing bound) | agent-s78phase2 + clearing-bound DISPATCH 02:51:56 |
-| `RunTrueValuesStatement d` (installed values at the final record, pathwise) | luna-s78truev + clearing true values |
-
-Proved and plugged in: the index bookkeeping and closure (`boxInv_closed`), RunBasics
-(`runBasics_closed` with `tileComplete_proof`), tile operations (`tileOp_keeps'`), sweep ends
-(`sweepEnd_keeps`, `finalSweep_good`), stage operations (`stage_op_boundary_of_row` with
-`resetRow_proof`, `tileSweepInv_start'`, `runBasics_afterStage_pre`), the stage start up to the
-two contracts (`tileStartAlgebraic_proof`, `tileStartDecay_of_parts prefixPhys_proof`), the
-initial stage (`initial_stage_unconditional`, `boundaryHist_initial`, `stageBounds_of_hist`),
-`hgoodT` (`tileGoodCore_of_sweep`), the initial physical identity (`initialPhysical_proof`), `hfinal` (pathwise prestate + `trueSchurIdentity_of_physical`).
+The proof establishes index bookkeeping and closure (`boxInv_closed`), run basics,
+tile operations, sweep ends, stage operations, the stage start, the initial stage,
+`hgoodT` (`tileGoodCore_of_sweep`), the initial physical identity, and `hfinal`
+from the pathwise prestate and `trueSchurIdentity_of_physical`.
 -/
 
 open MeasureTheory
@@ -40,9 +28,9 @@ namespace AndersonAC.AgentS78
 open AndersonAC.S78
 open AndersonAC.S2 (RandomSources sourcesLaw)
 
-/-! ## The open contracts -/
+/-! ## Phase hypotheses -/
 
-/-- **Stage-start bridge** (luna-s78sbridge, `startClauses_of_live`, verbatim type). -/
+/-- **Stage-start bridge** (`startClauses_of_live`, verbatim type). -/
 def StartBridgeStatement : Prop :=
   ∀ {d m : ℕ} (C : ℝ) (P : TilePlan d m) (j : ℕ) (z : RunRecord d m),
     StartAlgebraicLive C P j (sweepStartLiveState (sweepTheta P.u m j) z) z.r →
@@ -59,7 +47,7 @@ def SweepEndUniformStatement (d : ℕ) : Prop :=
   ∃ CA₀ > (0 : ℝ), ∃ cA₀ > (0 : ℝ), ∃ Cb₀ > (0 : ℝ), ∀ Cb ≥ Cb₀, ∀ CA ≥ CA₀, ∀ cA : ℝ,
     0 < cA → cA ≤ cA₀ → SweepEndStatement d C Cb CA cA cP CP cL CL C₀
 
-/-- **The final residual sweep** (agent-s78final) for some final constants. -/
+/-- **The final residual sweep** for some final constants. -/
 def FinalSweepUniformStatement (d : ℕ) : Prop :=
   ∀ C Cb : ℝ, 1 ≤ C → 1 ≤ Cb →
   ∃ Cr cp cg : ℝ, 0 < cp ∧ 0 < cg ∧ FinalSweepStatement d C Cb Cr cp cg
@@ -124,7 +112,7 @@ def RunTVClosureStatement (d : ℕ) : Prop :=
 /-- **The clearing phase of one box**: a run-level invariant `Xg` (closed under every block
 together with `RunBasics`), the record-level part `Xc j` of the clearing phase of stage `j`
 (entered at the sweep end, kept by the clearing operations), the DONE step, and the clearing
-first-failure bound on the clearing-phase set (C4b through the S6 bridge). The clearing-phase
+first-failure bound on the clearing-phase set (clearing trial bound through the S6 bridge). The clearing-phase
 set itself, `boxCL = ClearPhase ∩ Damp ∩ PhysSet ∩ Xc`, is kept by `boxCL_clearOp`
 (BoxPhasesClear.lean). -/
 structure ClearingBoxFacts {d m : ℕ} (P : TilePlan d m) (ts₀ : TileScratch d m)
@@ -155,7 +143,7 @@ structure ClearingBoxFacts {d m : ℕ} (P : TilePlan d m) (ts₀ : TileScratch d
       (boxCL P.n₀ P.u E ρ Cb CA cA PA cP CP Xc j (siteRank d m y)) (Xc j (siteRank d m y + 1))
   /-- On non-clearing stages the record part is monotone in the scan position. -/
   hXcId : ∀ j r, P.n₀ < j → m / 2 < j → j ≤ m → Xc j r ⊆ Xc j (r + 1)
-  /-- **The DONE step** (07-assembly.tex:390–433; agent-s78phase2's `ClearingDoneStatement`):
+  /-- **The DONE step** (07-assembly.tex:390–433; `ClearingDoneStatement`):
   the committed endpoint extends the stage assembly by one clearing, and the DONE record
   satisfies the physical identity (02-state.tex:231–247). Route R2: along the answers of
   `ω ∉ exceptionalSet`, from records with the true installed values. -/
@@ -184,7 +172,7 @@ structure ClearingBoxFacts {d m : ℕ} (P : TilePlan d m) (ts₀ : TileScratch d
       (localFirstFail (tileOrderSize P) (clearingBlock (d := d) (m := m) P.n₀ j P.u y) x) ≤
         ENNReal.ofReal (birthBound c j)
 
-/-- **The clearing-phase package** (agent-s78phase2 + the clearing-bound DISPATCH 02:51:56):
+/-- **The clearing-phase package** (with the clearing bound):
 the clearing facts of every large box, for assembly constants `CA ≥ CA₀`, `cA ≤ cA₀`,
 `PA ≥ PA₀` and history constants `Cb ≥ Cb₀`, uniformly in the boxes. -/
 def ClearingPhasePackage (d : ℕ) : Prop :=
@@ -279,7 +267,7 @@ theorem stageBounds_of_hist_unif {d : ℕ} (hd : 3 ≤ d) (cP CP cL CL C : ℝ) 
 
 /-! ## The assembly -/
 
-/-- **WP10: the per-box run invariant packages** (`hbox` of
+/-- **certificate construction: the per-box run invariant packages** (`hbox` of
 `uniformCertificateInput_of_boxInvariantsK'`), from the open contracts. -/
 theorem boxInvariantK_of_phases (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
     (he₂ : e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100))

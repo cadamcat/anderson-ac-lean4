@@ -3,7 +3,7 @@ import AndersonAC.AgentS6.Margins
 /-! Reduction of Proposition 6.6 (06-clearing.tex:826–850, proof 852–1123) to its three
 failure modes. `fail_reason` of `StoppedTrial` says a failing trial stopped at the heat limit,
 with a broken distortion budget, or with a leverage above `4 l_*` at the last heat ridge.
-Each mode is frozen below as a `ModeTail` proposition: it is contained in a measurable event
+Each mode is stated below as a `ModeTail` proposition: it is contained in a measurable event
 whose conditional probability given the trial-start history is at most a third of the target.
 The propositions are not assumed anywhere; `preparation_of_modes` consumes them explicitly.
 
@@ -20,9 +20,10 @@ open AndersonAC.S6
 
 variable {Ω : Type*} [MeasurableSpace Ω]
 
-/-! Weights restricted to the running event: `AndersonAC.S6.onRunning` (zero off the running
-event). Only running prestates are constrained by `StoppedTrial`, so the drift input is stated
-for these restricted weights (luna-s6lev's counterexample, INTERFACE-ISSUES; sol-s6 40e2248). -/
+/-! `AndersonAC.S6.onRunning` restricts weights to the running event and sets them to zero
+after stopping. `StoppedTrial` constrains only running prestates, so the drift input uses
+these restricted weights. Unrestricted integrability can fail because the ridge is
+unconstrained after stopping. -/
 
 theorem totalWeight_onRunning {ι : Type*} [Fintype ι] (run : ℕ → Set Ω) (w : ℕ → Ω → ι → ℝ)
     (k : ℕ) : (fun ω => totalWeight (onRunning run w k ω)) =
@@ -108,7 +109,7 @@ def capMode : TrialMode Ω := fun _ _ t r _ _ q ω =>
   4 * leverageScale t < maxWeight
     (trialWeights t (r ω) (q.state (q.stop ω) ω) (q.ridge (q.stop ω - 1) ω))
 
-/-- Frozen failure-mode tail: for all sufficiently small `t`, uniformly in the torus,
+/-- Failure-mode tail: for all sufficiently small `t`, uniformly in the torus,
 component and trial, the mode lies in a measurable event of conditional probability
 at most `exp(-t^{-κ_d})/3` given the trial-start history. -/
 def ModeTail (d : ℕ) (c K Cloc cConc : ℝ) (μ : Measure Ω) (qlag ε : ℝ → ℝ)
@@ -211,7 +212,7 @@ open AndersonAC.AgentS6
 
 variable {Ω : Type*} [MeasurableSpace Ω]
 
-/-- Proposition 6.6 from its three frozen failure-mode tails and the §2 Ward input. -/
+/-- Proposition 6.6 from its three failure-mode tails and the §2 Ward input. -/
 theorem preparation_of_modes (hWard : AndersonAC.Blueprint.WardInput)
     (d : ℕ) (hd : 3 ≤ d) (c K Cloc cConc : ℝ)
     (hc : 0 < c) (hK : 1 ≤ K) (hCloc : 0 ≤ Cloc) (hConc : 0 < cConc)

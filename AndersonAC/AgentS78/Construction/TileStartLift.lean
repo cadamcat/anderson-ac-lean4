@@ -5,12 +5,12 @@ import AndersonAC.S45.DuplicationProof
 import AndersonAC.S45.WardTransfer
 
 /-!
-# WP10 tile phase: the duplicated stage start on the live ports (setup)
+# the duplicated stage start on the live ports (setup)
 
-agent-s78start (2026-10-14). The start lift `sweepStartLiveState θ z` restricted to its live
+ . The start lift `sweepStartLiveState θ z` restricted to its live
 ports (`liveStart z`, both ports of every active site) is the S45 lift of the physical active
-state along an explicit `PortMap` (`livePortMap`), with port masses `1` (04:67–80). This is
-the form in which `S45.duplication` (04:73–88) applies.
+state along an explicit `PortMap` (`livePortMap`), with port masses `1` (–80). This is
+the form in which `S45.duplication` (–88) applies.
 -/
 
 noncomputable section
@@ -47,7 +47,7 @@ theorem mem_liveStart_iff {z : RunRecord d m} {p : Port d m} :
     p ∈ liveStart z ↔ p.1 ∈ z.endpoint.active := by
   simp [liveStart]
 
-/-- The port map from the live start ports to the enumerated active sites (04:67–71). -/
+/-- The port map from the live start ports to the enumerated active sites (–71). -/
 def livePortMap : S45.PortMap (liveStart z) (Fin z.endpoint.active.card) where
   site p := (actEquiv z).symm ⟨p.1.1, mem_liveStart_iff.mp p.2⟩
   weight p := (S45.splitPorts (Torus d m) θ).weight p.1
@@ -96,7 +96,7 @@ theorem livePortMap_site_eq_iff (p : liveStart z) (i : Fin z.endpoint.active.car
     apply Subtype.ext
     rw [livePortMap_site_val, h]
 
-/-- Port masses are one (04:67–69: `k_bit⁴ + k_res⁴ = w + θ = 1`). -/
+/-- Port masses are one (–69: `k_bit⁴ + k_res⁴ = w + θ = 1`). -/
 theorem livePortMap_mass (hθ0 : 0 ≤ θ) (hθ1 : θ ≤ 1) (i : Fin z.endpoint.active.card) :
     (livePortMap θ z).mass i = 1 := by
   classical

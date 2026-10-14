@@ -52,7 +52,7 @@ theorem prefix_stage_bounds_of_initial_unconditional {d : ℕ} (hd : 3 ≤ d) (e
     type_of% (prefix_stage_bounds_of_initial largeSymbolDecayW_proof hd e₂ he₂ C hC) :=
   prefix_stage_bounds_of_initial largeSymbolDecayW_proof hd e₂ he₂ C hC
 
-/-- The exact frozen WP10 contract for deterministic induction on history prefixes. -/
+/-- Certificate construction contract for deterministic induction on history prefixes. -/
 theorem prefixStageBounds_proof :
     ∀ (d : ℕ), 3 ≤ d → ∀ (e₂ : ℝ), e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100) →
       ∀ (C : ℝ), 1 ≤ C →

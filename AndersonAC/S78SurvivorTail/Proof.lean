@@ -505,7 +505,7 @@ theorem assemblySurvivorTailBounds_proof : AssemblySurvivorTailBounds := by
 
 end AndersonAC.S78SurvivorTail
 
-/-- Exact requested name for the lead integration. -/
+/-- Integration theorem for the survivor tail. -/
 theorem AndersonAC.SolS78.assemblySurvivorTailBounds_proof :
     AndersonAC.SolS78.AssemblySurvivorTailBounds :=
   AndersonAC.S78SurvivorTail.assemblySurvivorTailBounds_proof

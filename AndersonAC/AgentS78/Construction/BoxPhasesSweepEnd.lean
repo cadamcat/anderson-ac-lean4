@@ -3,12 +3,12 @@ import AndersonAC.AgentS78.Construction.SweepEndReserve
 import AndersonAC.AgentS78.Construction.SweepRowTail
 
 /-!
-# The sweep end with uniform assembly constants (agent-s78box)
+# The sweep end with uniform assembly constants
 
 `sweepEndUniform_of_parts`: `SweepEndUniformStatement d` (BoxPhases.lean) from the transport
 contract `SweepTransportStatement` and the terminal Combes–Thomas contract
 `TerminalCTStatement` (the row tails are proved, `sweepRowTail_proof`). The proofs are those of
-agent-s78send's `sweepEndResolvent_of_terminalCT` and `sweepEnd_proof` (SweepEndDecay.lean,
+ `sweepEndResolvent_of_terminalCT` and `sweepEnd_proof` (SweepEndDecay.lean,
 SweepEnd.lean) with the assembly constants chosen before the history constant `Cb`; they did
 not depend on `Cb`.
 -/
@@ -24,7 +24,7 @@ open scoped Matrix.Norms.L2Operator
 variable {d : ℕ}
 
 /-- `SweepEndResolventStatement` with `CA₀ cA₀ t0` chosen before `C Cb` (same proof as
-`sweepEndResolvent_of_terminalCT`, agent-s78send). -/
+`sweepEndResolvent_of_terminalCT`). -/
 theorem sweepEndResolventU_of_terminalCT (hCT : TerminalCTStatement d) :
   ∀ cP CP cL CL C₀ : ℝ, 0 < cP → cP ≤ CP → 0 < cL → 0 < CL → 0 < C₀ →
   ∃ CA₀ > (0 : ℝ), ∃ cA₀ > (0 : ℝ), ∃ t0 > (0 : ℝ), ∀ C Cb : ℝ, 1 ≤ C → 1 ≤ Cb →
@@ -185,7 +185,7 @@ theorem sweepEndUniform_of_parts (hT : SweepTransportStatement d)
   · refine (hcmp f).2.trans ?_
     exact mul_le_mul_of_nonneg_right hCA3 (hS0 f)
 
-/-- **WP10 per-box run invariant packages, sweep end reduced to its two open contracts.** -/
+/-- **certificate construction per-box run invariant packages, sweep end reduced to its two open contracts.** -/
 theorem boxInvariantK_of_phases' (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
     (he₂ : e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100))
     (hCT : ActiveCTStatement d) (hbridge : StartBridgeStatement)

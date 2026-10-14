@@ -4,13 +4,12 @@ import AndersonAC.AgentS78.Construction.TileCoreCheck
 import AndersonAC.AgentS78.Construction.TileCoreA3b
 
 /-!
-# WP10 construction: the finish line with the proved inputs plugged in (lead, agent-s78con3)
+# Certificate input from tile and run hypotheses
 
-`uniformCertificateInput_of_A1_A2_boxes`: S78.UniformCertificateInput d e₂ from the
-clearing-block measurability (muse-s78clear), the C4a pieces A1 (`TileSlotLawStatement`,
-muse-s78a1) and A2 (`TileMonitorBoundsStatement`, luna-s78a2), and the kind-split run invariant
-packages `BoxInvariantK`. Plugged in: the five tile disciplines (luna-s78tdisc), A0
-(`tileSlotDescription_proof`) and A3b (`tileTransfer_proof`, ported to v3.1 by agent-s78a3bv3).
+`uniformCertificateInput_of_A1_A2_boxes` assembles `S78.UniformCertificateInput d e₂`
+from clearing-block measurability, the tile slot law, monitor bounds, and the kind-split
+`BoxInvariantK` packages. The tile disciplines, slot recursion, and sweep transfer
+are supplied by their proofs.
 -/
 
 noncomputable section
@@ -20,13 +19,13 @@ namespace AndersonAC.AgentS78
 
 open AndersonAC.S78
 
-/-- C4a's one-trial contract from A1 and A2 (A0, A3b proved). -/
+/-- Tile-trial bound from the tile slot law and monitor bounds. -/
 theorem tileTrialBound_of_A1_A2 (d : ℕ) (C : ℝ) (hC : 1 ≤ C) (h1 : TileSlotLawStatement)
     (h2 : TileMonitorBoundsStatement d C) : TileTrialBoundStatement d C :=
   tileTrialBound_of_crossing d C (tileCrossing_of_pieces d C tileSlotDescription_proof h1 h2
     (tileFailCrossing_of_transfer d C (tileTransfer_proof d C hC)))
 
-/-- **WP10 finish line, current form.** -/
+/-- Uniform certificate input from the assembled box invariants. -/
 theorem uniformCertificateInput_of_A1_A2_boxes (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
     (hcmeas : ∀ (m n₀ j : ℕ) (u : ℝ) (y : Torus d m),
       (clearingBlock (d := d) (m := m) n₀ j u y).IsMeasurable)

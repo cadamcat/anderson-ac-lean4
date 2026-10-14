@@ -1,7 +1,7 @@
 import AndersonAC.S78.Contraction
 import AndersonAC.Blueprint.Interfaces
 
-/-! Compatibility witness for the frozen package type. Blueprint.Interfaces
+/-! Compatibility witness for the package type. Blueprint.Interfaces
 can import Contraction and use the body below without an import cycle. -/
 set_option autoImplicit false
 

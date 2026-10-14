@@ -4,9 +4,7 @@ import AndersonAC.AgentS78.Construction.MarkingRule
 import AndersonAC.AgentS78.Construction.SimpleDisciplines
 
 /-!
-# WP10 construction, tile phase: the operations `(j, 0, y)` of the schedule
-
-agent-s78tphase (2026-10-14). The tile operations of stage `j` run in the order of the site
+# the operations `(j, 0, y)` of the schedule. The tile operations of stage `j` run in the order of the site
 rank of `y`; operation `(j, 0, y)` is the block of the tile anchored at `y` (`tileAt`), or the
 identity. With `doneUpTo P j r` = tiles without sites or with anchor rank `< r`:
 

@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.Construction.Freshness
 import AndersonAC.AgentS78.Construction.Record
 
 /-!
-# WP10 construction, C5a: the declared-fresh true signs of a committed record
+# the declared-fresh true signs of a committed record
 
 02-state.tex:96–103: at a coupled site (active, not pending) the installed partial value is
 the true revealed prefix and no digit of its remaining suffix has been queried. The record

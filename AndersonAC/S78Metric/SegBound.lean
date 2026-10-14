@@ -266,7 +266,7 @@ theorem seg_lower_bound {G : SimpleGraph ι} (T : Finset ι) (O : κ → Finset 
             some (ys[repIdx O ys (grp ⟨j.val + 1, by omega⟩)]'h_lt) := by
           rw [hopt_eq, hrep_opt]
         -- S.getLast? = ys[q]? via hlast_eq? Actually hlast_eq states S.getLast? = ys[q]?
-        -- hlast_eq : S.getLast? = ys[q]? where q = orderEmb ... ⟨j.val+1,...⟩
+        -- hlast_eq : S.getLast? = ys[q]? where q = orderEmb... ⟨j.val+1,...⟩
         -- hys_opt : ys[q]? = some v, so S.getLast? = some v via transitivity
         have hS_last := hlast_eq.trans hys_opt
         exact ⟨_, h_mem, hS_last⟩

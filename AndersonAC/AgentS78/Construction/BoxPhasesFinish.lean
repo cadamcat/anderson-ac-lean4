@@ -4,11 +4,11 @@ import AndersonAC.AgentS78.Construction.BoxPhasesTerminal
 import AndersonAC.AgentS78.Construction.Finish
 
 /-!
-# WP10 finish line with the run invariant assembled (agent-s78box)
+# Uniform certificate input from the run invariant
 
-`uniformCertificateInput_of_phases`: `S78.UniformCertificateInput d e₂` for `d ≥ 3`,
-`e₂ ∈ (0, 1/100)`, from the clearing-block measurability, A1, A2 and the open phase contracts of
-`boxInvariantK_of_phases'`.
+`uniformCertificateInput_of_phases` assembles `S78.UniformCertificateInput d e₂` for
+`d ≥ 3` and `e₂ ∈ (0, 1/100)` from clearing-block measurability, tile bounds, and the
+phase contracts of `boxInvariantK_of_phases'`.
 -/
 
 noncomputable section
@@ -31,7 +31,7 @@ theorem uniformCertificateInput_of_phases (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
   uniformCertificateInput_of_A1_A2_boxes d hd e₂ hcmeas hA1 hA2
     (boxInvariantK_of_phases' d hd e₂ he₂ hCT hbridge hT hTCT hclr hRTV hAT)
 
-/-- **WP10 per-box packages with the final installed values reduced** to the tile and clearing
+/-- **certificate construction per-box packages with the final installed values reduced** to the tile and clearing
 true-value disciplines and the terminal completeness at the end. -/
 theorem boxInvariantK_of_phases'' (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
     (he₂ : e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100))
@@ -48,7 +48,7 @@ theorem boxInvariantK_of_phases'' (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
   boxInvariantK_of_phases' d hd e₂ he₂ hCT hbridge hT hTCT hclr
     (runTVClosure_of_parts hTT hCTV) hAT
 
-/-- **WP10 finish line, current form with the run invariant assembled.** -/
+/-- Uniform certificate input with the run invariant assembled. -/
 theorem uniformCertificateInput_of_phases' (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
     (he₂ : e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100))
     (hcmeas : ∀ (m n₀ j : ℕ) (u : ℝ) (y : Torus d m),
@@ -63,10 +63,7 @@ theorem uniformCertificateInput_of_phases' (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
   uniformCertificateInput_of_A1_A2_boxes d hd e₂ hcmeas hA1 hA2
     (boxInvariantK_of_phases'' d hd e₂ he₂ hCT hbridge hT hTCT hclr hTT hCTV hAT)
 
-/-- **WP10: the per-box run invariant packages** (`hbox` of
-`uniformCertificateInput_of_boxInvariantsK'`), current form: open are the stage-start
-Combes–Thomas and bridge, the sweep-end transport and terminal Combes–Thomas, the final sweep,
-the clearing-phase package, and the tile and clearing true-value disciplines. -/
+/-- Per-box invariant packages assembled from the phase and true-value hypotheses. -/
 theorem boxInvariantK_of_contracts (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
     (he₂ : e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100))
     (hCT : ActiveCTStatement d) (hbridge : StartBridgeStatement)
@@ -81,7 +78,7 @@ theorem boxInvariantK_of_contracts (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
   boxInvariantK_of_phases'' d hd e₂ he₂ hCT hbridge hT hTCT hclr hTT hCTV
     runAllTerminal_proof
 
-/-- **WP10 finish line, current form.** -/
+/-- Uniform certificate input from the assembled per-box invariants. -/
 theorem uniformCertificateInput_of_contracts (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
     (he₂ : e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100))
     (hcmeas : ∀ (m n₀ j : ℕ) (u : ℝ) (y : Torus d m),

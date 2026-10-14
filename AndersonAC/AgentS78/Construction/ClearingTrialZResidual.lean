@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.ClearingTrialZNull
 
 /-!
-# WP10 construction, C4b off a null set: the residual law with an exceptional set
+# the residual law with an exceptional set
 
 `Residual` (ClearingTrialResidual.lean) with the residual identity required only off a
 measurable null set `Z` invariant under the site and digit flips, on which the trial's data are

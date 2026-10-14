@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.StagePhaseTrace
 
 /-!
-# The Schur support of the committed matrix after a DONE clearing
-
-agent-s78phase2. `clearingDoneHops_proof : ClearingDoneHopsStatement d`. Along the block, with
+# The Schur support of the committed matrix after a DONE clearing. `clearingDoneHops_proof : ClearingDoneHopsStatement d`. Along the block, with
 `E = terminal ∪ (active ∖ provisional active)` (the sites eliminated so far), every entry of the
 provisional matrix `Mnum` between committed active sites differs from the lattice hop `J` only at
 zero terminal distance for `E`: an elimination at `p` changes `(a, b)` only through

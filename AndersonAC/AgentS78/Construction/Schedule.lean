@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.QueryRun
 
 /-!
-# WP10 random construction, C1: the deterministic chronological slot schedule
+# the deterministic chronological slot schedule
 
 08-history.tex:52–63. Every possible birth label gets one bookkeeping slot, ordered by
 increasing scale, then tile slots before clearing slots, then site order of the anchor

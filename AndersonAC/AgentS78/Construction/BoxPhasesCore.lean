@@ -4,9 +4,7 @@ import AndersonAC.AgentS78.Construction.PathwiseInvariant
 import AndersonAC.AgentS78.Construction.RunOpsDisc
 
 /-!
-# WP10 construction: the global run invariant, index bookkeeping (agent-s78box)
-
-DISPATCH 2026-10-14 02:58:56 (agent-s78con3). The run invariant of one box at block index `n`
+# the global run invariant, index bookkeeping. The run invariant of one box at block index `n`
 (`n = opIndex j k y`, decoded by `decodeJ/K/Y`) is a run-level set `RB n` (RunBasics) intersected
 with the set of the current **phase**:
 

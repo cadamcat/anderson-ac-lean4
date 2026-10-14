@@ -1,6 +1,6 @@
 import AndersonAC.S45.Definitions
 
-/-! Helper contracts frozen by agent-s45 (definitions only, no holes). -/
+/-! Auxiliary statements defined in terms of the §4–5 interfaces. -/
 
 noncomputable section
 open Matrix MeasureTheory ProbabilityTheory
@@ -8,7 +8,7 @@ open scoped Matrix.Norms.L2Operator MatrixOrder BigOperators ComplexOrder
 
 namespace AndersonAC.AgentS45
 
-/-- Corrected form of `AndersonAC.S45.conditional_centering`. In the Phase 1
+/-- Corrected form of `AndersonAC.S45.conditional_centering`. In the phase
 statement, `‹MeasurableSpace Ω›` and the measurability of `AEStronglyMeasurable B μ`
 resolve to the sub-σ-algebra `m` (the most recent local instance), so `hm` reads
 `m ≤ m` and `B` is assumed `m`-measurable: true but useless. Here the ambient
@@ -43,8 +43,8 @@ def StepLLaplacian : Prop :=
 open AndersonAC.S45 in
 /-- The energy-form part of Lemma 5.5 (local transfer), 05-local-sweeps.tex:603-650:
 same hypotheses as `AndersonAC.S45.local_transfer`, conclusion only the two-sided
-form bound of the accumulated Laplacian record. The lead proves the J, lag, row and
-validity parts of `local_transfer` from this. -/
+form bound of the accumulated Laplacian record. The J, lag, row, and validity
+estimates are the other parts of `local_transfer`. -/
 def LocalTransferL : Prop :=
   ∀ (d : ℕ) (C c : ℝ), 1 ≤ C → 0 < c →
     ∃ C' > 0, ∃ t0 > 0, ∀ (n m : ℕ) (t b θ : ℝ)

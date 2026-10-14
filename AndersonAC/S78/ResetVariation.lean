@@ -1,7 +1,7 @@
 import AndersonAC.S78.Definitions
 import AndersonAC.Blueprint.FiniteInputs
 
-/-! Frozen helper contract for the row and relative energy outputs of §7.4.
+/-! helper contract for the row and relative energy outputs of §7.4.
 This is a proposition to prove, not an axiom. WardInput is an explicit argument.
 -/
 set_option autoImplicit false

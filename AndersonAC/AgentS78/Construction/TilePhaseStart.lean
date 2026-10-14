@@ -2,17 +2,15 @@ import AndersonAC.AgentS78.Construction.TilePhaseTrial
 import AndersonAC.AgentS78.Construction.ResetBlock
 
 /-!
-# WP10 construction, tile phase (a): the invariant at the start of a sweep
-
-agent-s78tphase (2026-10-14). The record entering the first tile block of the sweep into
+# the invariant at the start of a sweep. The record entering the first tile block of the sweep into
 stage `j` is `y = sweepStartMap θ_j t_j z` (inside `guardMap (stageMap P (j−1))`): the sweep
 has length `0` and starts from the duplicated physical endpoint on the ports of the active
-sites (04:67–80). `tileSweepInv_start` gives `TileSweepInv … ∅` for it from
+sites (–80). `tileSweepInv_start` gives `TileSweepInv … ∅` for it from
 
 * the stage history `BoundaryHist … (j − 1)` of `z` (handed over by the clearing phase /
-  stage operation, agent-s78phase);
+  stage operation);
 * `StageStartInputs`: the plan facts and the analytic duplicated stage-start clauses
-  (04:73–88 Lemma `duplication`, 05:320–337) together with validity at `k = 0` — the
+  (–88 Lemma `duplication`, 05:320–337) together with validity at `k = 0` — the
   analytic contract of part (a), stated separately (`TileStartStatement`);
 * three run-level facts on unprocessed tiles (no terminal active site; at the final sweep no
   pending active site and consumed prefix `m − n₀`).

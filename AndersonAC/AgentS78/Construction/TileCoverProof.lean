@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.TileCoverMulti
 
 /-!
-# WP10 construction: the §5 tile covers — assembly
-
-agent-s78cover (2026-10-14). `TileCoverStatement d` from the analytic sub-statements of
+# the §5 tile covers — assembly. `TileCoverStatement d` from the analytic sub-statements of
 TileCoverParts.lean (grid Poincaré, torus connectivity, metric, shell and kernel bounds).
 Tile side `L = 4^k` with `k` least such that `t^{-6} ≤ 4^k` (so `L ≤ 64 t^{-6}` for `t ≤ 2`);
 the cube tiling when `5L ≤ N`, else one tile (then `N < 5L ≤ 320 t^{-6}`).

@@ -1,10 +1,9 @@
 import AndersonAC.Blueprint.Certificate
 
 /-!
-Concrete reusable finite/probabilistic inputs. Matrix norms here are explicitly
-Euclidean operator norms, never Mathlib's default entrywise sup norm.
-WP10 owns every remaining schedule/geometry/retained-history obligation;
-none is silently supplied by these deliberately smaller algebraic interfaces.
+Concrete reusable finite and probabilistic inputs. Matrix norms here are Euclidean
+operator norms, not Mathlib's entrywise sup norm. The finite-run construction must
+establish the schedule, geometry, and retained-history conditions separately.
 -/
 
 noncomputable section
@@ -22,8 +21,8 @@ def matrixImag {n : Type*} [Fintype n] [DecidableEq n] (A : Matrix n n ℂ) : Ma
 def twoSidedInverse {n : Type*} [Fintype n] [DecidableEq n]
     (A G : Matrix n n ℂ) : Prop := A * G = 1 ∧ G * A = 1
 
-/-- WP03: §2 Ward plus dissipativity. The Schur-complement identities already
-in Mathlib are separate raw inputs, listed in BLUEPRINT.md. -/
+/-- The §2 Ward identity and dissipativity. Schur-complement identities from Mathlib
+are separate inputs. -/
 def WardInput : Prop :=
   ∀ (N : ℕ) (M : Matrix (Fin N) (Fin N) ℂ), M.transpose = M →
     (∀ i j, (M i j).im = 0) → ∀ (t : ℝ), 0 < t →
@@ -42,9 +41,9 @@ def bitLaw : Measure BitSpace :=
 def binaryTail (h : ℕ) (ε : BitSpace) : ℝ :=
   ∑' n : ℕ, (if ε (n + h) then (1 : ℝ) else -1) / (2 : ℝ) ^ (n + h + 1)
 
-/-- WP04: uniform series law and independent untouched tails. Adaptive
-freshness after retained queries is NOT implied merely by this independence;
-the chronological query proof remains in WP10 and the S2/S45/S6/S78 lanes. -/
+/-- The uniform series law and independence of untouched tails. This independence
+alone does not imply adaptive freshness after retained queries; that requires the
+chronological query argument. -/
 def BinaryInput : Prop :=
   ∀ h : ℕ, Measurable (binaryTail h) ∧
     bitLaw.map (binaryTail h) = uniformInterval (-((2 : ℝ)⁻¹ ^ h)) ((2 : ℝ)⁻¹ ^ h) ∧
@@ -53,9 +52,8 @@ def BinaryInput : Prop :=
 def entrywiseSquare {n : Type*} (A : Matrix n n ℂ) : Matrix n n ℂ :=
   fun i j => A i j ^ 2
 
-/-- WP05: scalar self-consistency and the two startup smallness bounds in
-Proposition 3.6. Its Fourier/charge/cube inputs and inverse-form comparators
-are listed as work inside WP05; WP10 must import the latter from S3 too. -/
+/-- Scalar self-consistency and the two startup smallness bounds in Proposition 3.6.
+The Fourier, charge, cube, and inverse-form comparison estimates are separate inputs. -/
 def InitializationInput (e₂ : ℝ) : Prop :=
   ∀ d : ℕ, 3 ≤ d → ∃ (cutoff : ℕ) (c C : ℝ), 0 < c ∧ c ≤ C ∧
     ∀ n₀ m : ℕ, cutoff ≤ n₀ → 4 * n₀ ≤ m →
@@ -76,7 +74,7 @@ def matrixCondExp {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     Ω → Matrix (Fin N) (Fin N) ℂ :=
   fun ω i j => μ[fun ω => Y ω i j | m] ω
 
-/-- WP06: Golden–Thompson and the scalar predictable-envelope form of Lemma
+/-- concentration package: Golden–Thompson and the scalar predictable-envelope form of Lemma
 5.6. Positive J,V avoid the paper's separate zero-variance convention.
 `Y k` is the increment from time k to k+1; `v k` is ℱ k-measurable. -/
 structure ConcentrationInput : Prop where
@@ -103,10 +101,9 @@ structure ConcentrationInput : Prop where
           μ {ω | ∃ n : ℕ, a < opNorm (∑ k ∈ Finset.range n, Y k ω)} ≤
             ENNReal.ofReal (2 * (N : ℝ) * Real.exp (-c * min (a ^ 2 / V) (a / J)))
 
-/-- WP07's minimal algebraic join: exact one-site inverse update before the
-moment, lag, K, Laplacian, row-proxy, localization, and trial estimates.
-All those quantitative outputs remain part of WP07's assigned proof, then
-are consumed by WP10. This formula uses transpose, not conjugate transpose. -/
+/-- The exact one-site inverse update used before the moment, lag, K, Laplacian,
+row-proxy, localization, and trial estimates. This formula uses transpose, not
+conjugate transpose. -/
 def DeletionInput : Prop :=
   ∀ (N : ℕ) (A G : Matrix (Fin N) (Fin N) ℂ), twoSidedInverse A G →
     ∀ (x : Fin N) (v : ℂ), 1 + v * G x x ≠ 0 →
@@ -119,10 +116,9 @@ def scattering {N : ℕ} (t : ℝ) (r : Fin N → ℂ) (G : Matrix (Fin N) (Fin 
     (Matrix.diagonal (fun i => (Real.sqrt (r i).im : ℂ)) * G *
       Matrix.diagonal (fun i => (Real.sqrt (r i).im : ℂ)))
 
-/-- WP08's minimal algebraic join from §6.1. The full-range localization,
-ridge drift (Lemma 6.4), heat count, preparation trial, and deterministic
-completion are additional obligations INSIDE this package, not consequences
-claimed for this one identity. WP10's stub still owns their integration. -/
+/-- The algebraic scattering identity from §6.1. Full-range localization, ridge drift
+(Lemma 6.4), heat count, preparation trial, and deterministic completion are separate
+results; they do not follow from this identity. -/
 def ScatteringInput : Prop :=
   ∀ (N : ℕ) (M G : Matrix (Fin N) (Fin N) ℂ), M.transpose = M →
     (∀ i j, (M i j).im = 0) → ∀ t : ℝ, 0 < t →
@@ -131,9 +127,8 @@ def ScatteringInput : Prop :=
           (scattering t r G).transpose = scattering t r G ∧
           scattering t r G * (scattering t r G).conjTranspose = 1
 
-/-- WP09's exact reset existence contract at the contraction join. S78 must
-prove these mapping/contraction hypotheses from Proposition 7.4's estimates,
-and prove geometry/assembly before using the reset in WP10. -/
+/-- Reset existence contract at the contraction join. Proposition 7.4 supplies the
+mapping and contraction estimates; geometry and assembly are separate hypotheses. -/
 def ResetInput : Prop :=
   ∀ (N : ℕ) (F : (Fin N → ℂ) → Fin N → ℂ) (r : Fin N → ℂ) (ρ : ℝ), 0 < ρ →
     (∀ z, ‖z - r‖ ≤ ρ → ‖F z - r‖ ≤ ρ) →

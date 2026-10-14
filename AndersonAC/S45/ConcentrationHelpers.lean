@@ -1,8 +1,8 @@
 import AndersonAC.Blueprint.FiniteInputs
 
-/-! Frozen helper contracts for Lemma 5.6 (`ConcentrationInput.maximal`),
-lead opus-s45. Deterministic finite-matrix facts used by the trace-exponential
-supermartingale. Each is a `Prop`; a helper lane proves
+/-! Deterministic finite-matrix facts used by the trace-exponential
+supermartingale in Lemma 5.6 (`ConcentrationInput.maximal`). Each is a `Prop`;
+a helper module proves
 `AndersonAC.OpusS45.<name>_proof : <name>` without changing the statement.
 Matrix norms are Euclidean operator norms (`AndersonAC.Blueprint.opNorm`). -/
 

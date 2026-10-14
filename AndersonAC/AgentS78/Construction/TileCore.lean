@@ -1,24 +1,22 @@
 import AndersonAC.AgentS78.Construction.TileTrial
 
 /-!
-# WP10 construction, C4a core: the first tile trial as an ordered monitored process
+# the first tile trial as an ordered monitored process. Split of `TileCrossingStatement` (TileTrial.lean) into four
+pieces (05-local-sweeps.tex:766–870, Lemma `local-trial`):
 
-agent-s78trial (2026-10-14). Split of `TileCrossingStatement` (TileTrial.lean) into four
-frozen pieces (05-local-sweeps.tex:766–870, Lemma `local-trial`):
-
-* **A0** `TileSlotDescriptionStatement` — the first trial of `tileBlock` from a non-aborted
+* **slot recursion** `TileSlotDescriptionStatement` — the first trial of `tileBlock` from a non-aborted
   record is the slot recursion `slotSeq` driven by the first order `π_{j,T,0}` and a fixed
   site-value function of the signs: `localFirstFail = {slotSeq … N = none}`.
-* **A1** `TileSlotLawStatement` — `S45.UniformSlotLaw` for (run, remaining, slot, ξ) with the
+* **tile slot law** `TileSlotLawStatement` — `S45.UniformSlotLaw` for (run, remaining, slot, ξ) with the
   history filtration `tileFiltration` under `sourcesLaw`, for every predictable `run`.
-* **A2** `TileMonitorBoundsStatement` — the four monitored records (`tileEval`, padded to one
+* **monitor bounds** `TileMonitorBoundsStatement` — the four monitored records (`tileEval`, padded to one
   common space) satisfy the measurability / Hermitian / mean / stack / jump hypotheses of
   `S45.ordered_raw_bounds` at running slots.
-* **A3** `TileFailCrossingStatement` — a failed slot recursion crosses a monitored budget
+* **budget crossing** `TileFailCrossingStatement` — a failed slot recursion crosses a monitored budget
   (S45.local_transfer, Lemma `local-prospective`).
 
-The assembly `TileCrossingStatement` from A0–A3, `S45.ordered_raw_bounds` and
-`S45.ordered_trial_inputs` is `tileCrossing_of_pieces` (TileCoreAssembly.lean, agent-s78trial).
+The assembly `TileCrossingStatement` from slot recursion–budget crossing, `S45.ordered_raw_bounds` and
+`S45.ordered_trial_inputs` is `tileCrossing_of_pieces` (TileCoreAssembly.lean).
 
 Indexing. Sites are encoded in `Fin (siteCount d m)` by `siteRank` (the site type of
 `S45.ordered_raw_bounds`). `N = |T|` slots; slot `k < N` exposes the site at position
@@ -222,9 +220,9 @@ def tileEval (x : RunRecord d m) (i : Fin (monitorCount P j T)) (k : ℕ)
 
 end Core
 
-/-! ## The four frozen pieces -/
+/-! ## The four pieces -/
 
-/-- **A0 (slot-level description, deterministic).** The first trial of the tile block from a
+/-- **slot recursion (slot-level description, deterministic).** The first trial of the tile block from a
 non-aborted record fails exactly when the slot recursion fails; the first `k ≤ N` slots are
 distinct sites of the tile (`π_{j,T,0}` is a permutation of `|T|` entries). -/
 def TileSlotDescriptionStatement : Prop :=
@@ -234,7 +232,7 @@ def TileSlotDescriptionStatement : Prop :=
       {ω | slotSeq P j T M x (slotCount P j T) ω = none} ∧
     ∀ k ≤ slotCount P j T, ∀ ω, (tileRemaining P j T M k ω).card = slotCount P j T - k
 
-/-- **A1 (uniform slot law, probabilistic).** Under `sourcesLaw`, for every predictable
+/-- **tile slot law (uniform slot law, probabilistic).** Under `sourcesLaw`, for every predictable
 continuation flag, the exposed slot is conditionally uniform among the unexposed sites and its
 normalized scalar has conditional mean `0`, variance `t`, and `|ξ| ≤ 2√t`
 (05:776–785; Lemma `conditional-freshness` on the raw product space). -/
@@ -249,7 +247,7 @@ def TileSlotLawStatement : Prop :=
         (slotCount P j T) (sweepScale P.u m j) 2 run (tileRemaining P j T M)
         (tileSlotF P j T M) (tileXi P j T M x)
 
-/-- **A2 (monitored increment bounds, deterministic).** For each `C ≥ 1` there are `C' ≥ 2`
+/-- **monitor bounds (monitored increment bounds, deterministic).** For each `C ≥ 1` there are `C' ≥ 2`
 and `t0 > 0` such that the monitored increments of a good record satisfy the measurability,
 Hermitian, mean, stack and jump hypotheses of `S45.ordered_raw_bounds` with constant `C'`,
 at every running slot, and the continuation flag `tileRun` is predictable (05:795–842; Proposition `sweep-increments`, Lemma `local-pullback`). -/
@@ -291,7 +289,7 @@ def tileRaw {d m : ℕ} (P : TilePlan d m) (j : ℕ) (T : Fin (P.cover j).cover.
   | k + 1 => fun ω => if k < slotCount P j T ∧ tileRun P j T M x k ω = true then
       tileEval P j T M x i k ω (tileSlotF P j T M k ω) (tileXi P j T M x k ω) else 0
 
-/-- **A3 (failure crosses a budget, deterministic).** For each `C ≥ 1`, for small `t`, if the
+/-- **budget crossing (failure crosses a budget, deterministic).** For each `C ≥ 1`, for small `t`, if the
 slot recursion of a good record fails then some stopped monitored record exceeds its local
 budget (05:844–860: a failure without a budget crossing contradicts Lemma `local-transfer`,
 whose tails come from Lemma `local-prospective`). -/

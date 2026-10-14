@@ -2,9 +2,7 @@ import AndersonAC.AgentS78.Construction.StagePhaseDoneRange
 import AndersonAC.S6.CoreDecay
 
 /-!
-# The DONE exit of a clearing attempt: decay of the committed difference
-
-agent-s78donea. Proof of the frozen sub-statement `DoneDecayStatement`
+# The DONE exit of a clearing attempt: decay of the committed difference. Proof of the sub-statement `DoneDecayStatement`
 (07-assembly.tex:415–433). Instead of summing heat by heat (Lemma locality) and adding the core
 (Corollary 6.3), the whole committed operation is treated as one elimination of
 `O = A₀ \ A'` from the committed state `s₀ = x.endpoint`:

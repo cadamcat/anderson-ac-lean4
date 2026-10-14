@@ -3,9 +3,7 @@ import AndersonAC.AgentS78Geo.TrialSchur
 import AndersonAC.AgentS78Geo.Initial
 
 /-!
-# The DONE exit of a clearing attempt: Combes–Thomas decay of the committed endpoint
-
-agent-s78donea. The first conclusion of `ClearingDoneAnalyticStatement`
+# The DONE exit of a clearing attempt: Combes–Thomas decay of the committed endpoint. The first conclusion of `ClearingDoneAnalyticStatement`
 (07-assembly.tex:390–433; 06-clearing.tex:214–238): a damped endpoint `s` whose real matrix
 differs from the direct hops `J` only between active sites at zero terminal distance for the
 terminal set `univ \ s.active` obeys the Combes–Thomas bound in that terminal distance

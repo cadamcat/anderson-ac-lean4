@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.SweepPrestate
 import AndersonAC.AgentS78.InitialStage
 
 /-!
-WP10: `AssemblyInput.initialComparison` (07-assembly.tex, assembly initial data
+certificate construction: `AssemblyInput.initialComparison` (07-assembly.tex, assembly initial data
 `c W ≤ D ≤ C W`) from the inverse-form comparison `c W* ≤ X ≤ C W*` on neutral charges,
 by the §3 dual-form order reversal (`S3H.dual_comparison_order_proof`, Lemma 3.1),
 with sites as ports (π = inclusion of the active set) at L = sideLength m.

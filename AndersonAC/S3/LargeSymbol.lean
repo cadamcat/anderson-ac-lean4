@@ -529,8 +529,8 @@ private theorem gridAvgReal_mono {d L : ℕ} [NeZero L]
   exact mul_le_mul_of_nonneg_left (Finset.sum_le_sum fun k _ => h k) (by positivity)
 
 set_option maxHeartbeats 0
-/-- Window-uniform displacement decay for the absolute product, from the five
-frozen helper contracts. -/
+/-- Window-uniform displacement decay for the absolute product from the five
+helper statements. -/
 theorem largeSymbolDecayW_of_helpers
     (hF : TorusFourierStatement)
     (hQ : PeriodicGridQuadratureStatement)

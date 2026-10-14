@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.TileBlock
 
 /-!
-# WP10 construction: the order sizes `M` of the run
+# the order sizes `M` of the run
 
 Only tile blocks issue order queries (tag 0 in `tileOrderIndex`). The order of trial `a` of
 tile `T` in the sweep with post-sweep index `j` is a uniform order of the tile's sites

@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.RunChain
 
 /-!
-# WP10 construction, C5d glue: tracing an abort back to its cause
+# tracing an abort back to its cause
 
 02-state.tex:349–362, 05:519–521, 08:299–305: the run aborts only at a late first-trial
 failure (a tile trial after the cutoff, or of the final residual sweep) or at the cutoff when

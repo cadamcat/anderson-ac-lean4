@@ -6,7 +6,7 @@ import AndersonAC.S2.OrderResampling
 import AndersonAC.S2.OrderCompletion
 
 /-!
-# WP10 C4a piece A1: uniform slot law of the first tile trial (muse-s78a1).
+# uniform slot law of the first tile trial.
 
 Proves `AndersonAC.AgentS78.tileSlotLaw_proof : TileSlotLawStatement`.
 -/
@@ -554,7 +554,7 @@ theorem tileSlotF_measurable_comap {d m : ℕ} (P : TilePlan d m) (j : ℕ)
     funext ω
     unfold tileHist tileSlotF
     simp only [Function.comp]
-    -- (tileHist ... lk).1 = (slotF k).val, then % recovers
+    -- (tileHist... lk).1 = (slotF k).val, then % recovers
     have h1 : (((fun l : Fin (k + 1) => ((tileSlotF P j T M l.val ω : ℕ),
         tileXi P j T M x l.val ω)) lk).1) = (tileSlotF P j T M k ω).val := rfl
     have h2 : (tileSlotF P j T M k ω).val % siteCount d m =
@@ -568,7 +568,7 @@ theorem tileSlotF_measurable_comap {d m : ℕ} (P : TilePlan d m) (j : ℕ)
         Nat.mod_lt _ hpos⟩ : Fin (siteCount d m)) =
         tileSlotF P j T M k ω := Fin.ext hval_eq
     -- need to show lk.val = k? Since lk = ⟨k, ...⟩, val = k rfl, but fun uses l.val?
-    -- Actually (fun ... ) lk uses lk.val = k? Since lk = ⟨k, ...⟩, val = k rfl, good.
+    -- Actually (fun...) lk uses lk.val = k? Since lk = ⟨k, ...⟩, val = k rfl, good.
     -- Above h1 already uses that? h1 is rfl? Since lf.val = k? Good.
     exact h3.symm
   rw [heq]

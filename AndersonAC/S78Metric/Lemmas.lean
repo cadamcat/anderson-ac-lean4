@@ -66,7 +66,7 @@ theorem pathCost_append (T : Finset ι) (l₁ l₂ : List ι) :
         simp only [List.cons_append] at this
         exact this
       rw [ih']
-      -- bridgeCost (x::y::ys) l₂ = bridgeCost (y::ys) l₂ (same last)
+      -- bridgeCost (x:y:ys) l₂ = bridgeCost (y:ys) l₂ (same last)
       have hbridge : bridgeCost T (x :: y :: ys) l₂ = bridgeCost T (y :: ys) l₂ := by
         unfold bridgeCost
         simp [List.getLast?_cons_cons]

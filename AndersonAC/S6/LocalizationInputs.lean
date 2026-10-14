@@ -1,8 +1,7 @@
 import Mathlib
 
-/-! Frozen helper request: Schur row/column bound for the localization commutator.
-Paper: 06-clearing.tex, lines 226–234. The norm is the Euclidean operator norm.
-No new axiom or proof hole is introduced by this proposition. -/
+/-! Schur row and column bounds for the localization commutator.
+See 06-clearing.tex, lines 226–234. The norm is the Euclidean operator norm. -/
 noncomputable section
 open scoped BigOperators Matrix.Norms.L2Operator
 

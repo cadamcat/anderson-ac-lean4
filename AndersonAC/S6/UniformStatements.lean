@@ -87,10 +87,10 @@ def PreparationUniformFullStatement : Prop :=
           projectionReady t (r ω) (q.state (q.stop ω) ω) ∧
           ((q.state 0 ω).active \ (q.state (q.stop ω) ω).active).card = q.stop ω)
 
-/-- Proposition 6.6 (06-clearing.tex:826–850) with `t0` chosen before the probability space:
+/- Proposition 6.6 (06-clearing.tex:826–850) with `t0` chosen before the probability space:
 "the constants are independent of the torus volume and of the component".
-This is verbatim the consumer's `AndersonAC.AgentS78.PreparationUniformStatement`
-(lane/agent-s78clrtrial 0cfb85f, AgentS78/Construction/ClearingTrialH.lean:339). -/
+This matches `AndersonAC.AgentS78.PreparationUniformStatement`
+(`AgentS78/Construction/ClearingTrialH.lean:339`). -/
 def PreparationUniformStatement : Prop :=
   ∀ (d : ℕ) (_hd : 3 ≤ d) (c K Cloc cConc : ℝ) (_hc : 0 < c) (_hK : 1 ≤ K) (_hCloc : 0 ≤ Cloc)
     (_hConc : 0 < cConc) (qlag ε : ℝ → ℝ) (_hqlag : Tendsto qlag (𝓝[>] 0) (𝓝 0))

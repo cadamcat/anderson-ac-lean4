@@ -2,7 +2,7 @@ import AndersonAC.S3WCube.Weighted
 import AndersonAC.S78Local.WeightedLocalEnergy
 import AndersonAC.S78.AssemblyEstimates
 
-/-! Proof of the frozen `AndersonAC.SolS78.LocalCutoffInput`.
+/-! Proof of `AndersonAC.SolS78.LocalCutoffInput`.
 
 Route: on the embedded enlarged cube `Q = cube z (2R)` subtract a mean `μ`
 for which the cube Poincare inequality holds (transported from the proved

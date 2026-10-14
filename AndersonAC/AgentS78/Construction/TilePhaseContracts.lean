@@ -4,21 +4,19 @@ import AndersonAC.AgentS78.Construction.PhysicalIdentity
 import AndersonAC.AgentS78.Construction.TileCoverStatement
 
 /-!
-# WP10 construction, tile phase: the analytic contracts of (a) and (c)
+# Analytic sweep and stage-start statements
 
-agent-s78tphase (2026-10-14). Frozen statements for the remaining analytic pieces of the tile
-phase (requested in DISPATCH-REQUESTS):
+The tile phase uses two analytic statements:
 
 * `SweepSchurStatement` — the duplicated-port sweep identity (04:190–228): deleting every bit
   port of the active sites from the start lift of a damped endpoint `(M, g)` at `t`, with
   scalars `ξ`, leaves on the reserve ports `√θ (M + diag ζ − θt·r)⁻¹` on the active block,
   `ζ_i = √(1 − θ) ξ` the physical increment of site `i`. Pure linear algebra
   (Sherman–Morrison per step). It gives `IsDampedEndpoint` of the post-sweep endpoint once
-  the sweep records `M + diag ζ` (INTERFACE-ISSUES 01:13, the `endpoint.M` defect).
-* `TileStartStatement C` — the duplicated stage start (04:73–88 Lemma `duplication`,
+  the sweep records `M + diag ζ` in `endpoint.M`.
+* `TileStartStatement C` — the duplicated stage start (04-sweep.tex:73–88, Lemma `duplication`,
   05:320–337): from the stage history at `j − 1` the analytic start clauses and validity at
-  `k = 0` hold for the start lift (`StartClauses` is the adapter that follows TileGoodCore
-  v3).
+  `k = 0` hold for the start lift (`StartClauses` is the adapter that follows `TileGoodCore`).
 -/
 
 noncomputable section
@@ -48,8 +46,8 @@ def SweepSchurStatement : Prop :=
         (Real.sqrt θ : ℂ)
     B * G = 1 ∧ G * B = 1
 
-/-- **The duplicated stage start (contract, v3; amended 2026-10-14 after agent-s78start's
-audit of 01:50:07).** For all stage-bound constants there are `C' ≥ 1` and `t0 > 0` such that
+/-- The duplicated stage-start statement. For all stage-bound constants there are
+`C' ≥ 1` and `t0 > 0` such that
 the start lift of a record whose committed endpoint satisfies the stage bounds at `j − 1`, the
 damped identity at `t = t_{j−1}` and the physical identity, satisfies the v3 start clauses
 (`StartClauses`: on the active-site ports `startV3`, plus `prefix_decay`) with constant `C'`

@@ -2,9 +2,9 @@ import AndersonAC.S3.HelperStatements
 import AndersonAC.S3.HelperStatements2
 
 /-!
-Infrastructure for the WP05 grid bounds: Lipschitz bounds (sup metric on
+Infrastructure for the initialization grid bounds: Lipschitz bounds (sup metric on
 `Frequency d`) for the dispersions and their truncated resolvents, and the
-grid-average/integral comparison in the form used by the lead.
+grid-average/integral comparison.
 -/
 
 noncomputable section

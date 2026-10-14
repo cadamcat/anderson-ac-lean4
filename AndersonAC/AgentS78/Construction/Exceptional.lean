@@ -3,7 +3,7 @@ import AndersonAC.AgentS78.Construction.TrueSpace
 import AndersonAC.S2.PrincipalInvertibility
 
 /-!
-# WP10 construction, C5d: the null exceptional set
+# the null exceptional set
 
 02-state.tex:220–229: almost surely every principal matrix of the true `H_m − E` is
 invertible (S2 `true_principal_invertible`). On the enlarged space this is the null

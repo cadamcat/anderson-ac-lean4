@@ -1,6 +1,6 @@
 import AndersonAC.S2.Definitions
 
-/-! Frozen helper contract for the random-order part of Lemma 2.2.
+/-! helper contract for the random-order part of Lemma 2.2.
 The helper must prove `AndersonAC.SolS2.OrderCompletion_proof : OrderCompletion`.
 No sign-cylinder distribution is assumed in this contract. -/
 

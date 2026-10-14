@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.ClearingTrialH
 
 /-!
-# WP10 construction, C4b: proof of the clearing first-trial bound from its inputs
+# proof of the clearing first-trial bound from its inputs
 
 `clearingTrialH_of_inputs`: `ClearingTrialStatementH d (ClearingGood d cP CP qlag geo)` from
 the uniform Proposition 6.6, the uniform drift contract, the blueprint concentration input,
@@ -133,7 +133,7 @@ theorem exp_le_birthBound_clr {κ t : ℝ} {j : ℕ} (hκ : 0 < κ) (hj : 1 ≤ 
   rw [hlhs, hrhs]
   exact Real.rpow_le_rpow (by positivity) hinv hκ.le
 
-/-- **C4b reduction.** The clearing first-trial bound (variant with the query-history
+/-- **clearing trial bound reduction.** The clearing first-trial bound (variant with the query-history
 hypothesis) on `ClearingGood`, from the uniform Proposition 6.6, the uniform drift contract,
 the blueprint concentration input, the trial transport and the geometry and residual
 sub-contracts. -/

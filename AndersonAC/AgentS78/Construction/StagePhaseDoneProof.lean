@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.StagePhaseTrace
 
 /-!
-# The DONE step facts from their analytic part
-
-agent-s78phase2. `clearingDone_of_analytic : ClearingDoneAnalyticStatement d →
+# The DONE step facts from their analytic part. `clearingDone_of_analytic : ClearingDoneAnalyticStatement d →
 ClearingDoneStatement d` (d ≥ 3). The structural fields of `ClearingStepFacts` are proved here:
 
 * `physical`, `nested`, `removedNonempty`: the block invariant `ClrInv` (StagePhaseClr.lean);

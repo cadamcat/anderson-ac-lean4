@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.SweepJoin
 import AndersonAC.AgentS78.ResetJoin
 
 /-!
-WP10: the stage-start hypotheses of `S45.ordinary_sweep_endpoint` on `old : State (Fin n)`
+certificate construction: the stage-start hypotheses of `S45.ordinary_sweep_endpoint` on `old : State (Fin n)`
 from a damped S78 endpoint satisfying `StageBounds`: bounded diagonal, damping range,
 `g_ii = r_i`, symmetry, Ward, the S45 `constantKernel (D t)` and `‖K t‖ ≤ 1/3`.
 -/

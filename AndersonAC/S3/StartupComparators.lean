@@ -1,8 +1,8 @@
 import AndersonAC.S3.Comparators
 
 /-!
-The inverse-form comparators at any state delivered by `InitializationInput e₂`
-(WP10-facing adapter): if `G` inverts the startup matrix with constant diagonal `r`,
+The inverse-form comparators at any state satisfying `InitializationInput e₂`
+(certificate construction-facing adapter): if `G` inverts the startup matrix with constant diagonal `r`,
 `‖r‖ ≤ C'` and `c' ≤ Im r`, then `G` is the free Green matrix, `r` is a scalar fixed
 point in the rectangle `[c', C']`, and `initial_comparators` applies.
 -/

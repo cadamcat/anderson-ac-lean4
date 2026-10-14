@@ -1,9 +1,10 @@
 import AndersonAC.AgentS78.Construction.Freezing
 
 /-!
-# WP10 random construction, C3a: query strategies from measurable machines
+# Query strategies from measurable machines
 
-Frozen sub-contract (agent-s78con, 2026-10-13). 02-state.tex:136–160: "Before a query, its
+The machine statement formalizes the query measurability condition in
+02-state.tex:136–160: "Before a query, its
 type and source index are chosen measurably from the current history … numerical updates,
 choices, and failure decisions must be measurable from the information recorded by that
 time". The whole run is a machine: a state (control position, committed and provisional
@@ -12,7 +13,7 @@ choice of the next query, and a measurable update by the answer. `MachineStrateg
 says that every such machine defines an S2 query strategy whose states are measurable for
 the retained σ-fields.
 
-Consumer: the run machine of NOTES.md (design C3), which then supplies
+The run machine supplies
 `ObeysQueryRules` (first clause from this contract; the auxiliary-freshness and order-count
 clauses are run invariants) and the `prestate_measurable` field of `QueryRun`.
 Route: define the states with the list of earlier queries carried along, so that the answer
@@ -30,7 +31,7 @@ namespace AndersonAC.AgentS78
 
 open AndersonAC.S2
 
-/-- **C3a (frozen contract).** Measurable machines define admissible query strategies. -/
+/-- **machine run (contract).** Measurable machines define admissible query strategies. -/
 def MachineStrategyStatement : Prop :=
   ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (M : ℕ → ℕ) (St : Type) [MeasurableSpace St]
     (init : St) (next : St → Query ι) (_hnext : Measurable next)

@@ -1,31 +1,20 @@
 import AndersonAC.AgentS78.Construction.SweepEndReserve
 
 /-!
-# WP10 construction: the analytic end of the final residual sweep
+# Analytic end of the final residual sweep
 
-agent-s78final (2026-10-14), DISPATCH-REQUESTS 01:59:25 (agent-s78tphase), target
-`FinalSweepStatement` (TilePhaseEnd.lean), consumer `finalSweep_good` → `hfinal_of_finalGood`.
-Paper (authoritative): 04-sweep.tex:36–41 (the final residual sweep: `t = t_m = 2η`,
-`w = θ = 1/2`, the one-step estimates use only `θ ∈ [1/4, 5/8]`), 08-history.tex:340–368 (the
-final sweep consumes the whole residual; reserve normalization `√(θt) = √η`) and 08:375–386
-(final record: `|r_i| ≤ C`, `c ≤ Im r_i`, active diagonal from the endpoint diagonal-lag bound of
-the last ordinary sweep).
+This proves `FinalSweepStatement` in `TilePhaseEnd.lean`; `finalSweep_good` gives
+`hfinal_of_finalGood`. The manuscript describes this sweep in 04-sweep.tex:36–41
+(`t = t_m = 2η`, `w = θ = 1/2`) and 08-history.tex:340–368 (consuming the residual
+with reserve normalization `√(θt) = √η`), with the final record bounds in
+08-history.tex:375–386.
 
-The final sweep is the digit-sweep machinery of agent-s78send (`sweepEnd_core`) at `j = m + 1`:
-`sweepScale u m (m+1) = t_m`, `sweepTheta u m (m+1) = 1/2`, `θ t_m = s_m = η`.
-
-**Interface (posted to INTERFACE-ISSUES).** The frozen `FinalSweepStatement` lacks the stage
-bounds of the old endpoint at `m` (the same amendment as `SweepEndStatement`'s at `j − 1`):
-the open row-tail contract and `sweep_prestate` take them, and the damping clause of the final
-record is the first StageBounds clause. `FinalSweepStatementSB` is the amended form, and
-`finalSweep_good_SB` is `finalSweep_good` with the StageBounds hypothesis. The open contracts of
-agent-s78send are stated for digit sweeps (`j ≤ m`); `SweepTransportFullStatement` and
-`SweepRowTailFullStatement` are the same statements for `j ≤ m + 1` (they imply the digit forms,
-`…Full.digit`), so their owners can prove one statement for both.
-
-Proved here (from the two `Full` contracts): `finalSweep_core` (damped endpoint at `η` and lag
-`≤ CA η^{0.42δ}`), `finalSweep_proof` (`FinalSweepStatementSB` with `Cr = CP`, `cp = cP`,
-`cg = cP/2`), `finalSweep_exists`.
+The final sweep applies `sweepEnd_core` at `j = m + 1`, where
+`sweepScale u m (m+1) = t_m` and `sweepTheta u m (m+1) = 1/2`. The statement
+`FinalSweepStatementSB` also assumes stage bounds for the old endpoint at `m`.
+`finalSweep_good_SB` adds that hypothesis to `finalSweep_good`. The full transport
+and row-tail statements cover `j ≤ m + 1` and imply the digit-sweep cases `j ≤ m`.
+They yield a damped endpoint at `η` and lag at most `CA η^{0.42δ}`.
 -/
 
 noncomputable section
@@ -39,7 +28,7 @@ open scoped Matrix.Norms.L2Operator
 
 variable {d m : ℕ}
 
-/-! ## Scales of the final sweep (04:39–41) -/
+/-! ## Scales of the final sweep (–41) -/
 
 theorem sweepScale_final (u : ℝ) (m : ℕ) : sweepScale u m (m + 1) = stageScale u m m := by
   unfold sweepScale; rw [if_pos (show IsFinalSweep m (m + 1) by unfold IsFinalSweep; omega)]
@@ -47,7 +36,7 @@ theorem sweepScale_final (u : ℝ) (m : ℕ) : sweepScale u m (m + 1) = stageSca
 theorem sweepTheta_final (u : ℝ) (m : ℕ) : sweepTheta u m (m + 1) = 1 / 2 := by
   unfold sweepTheta; rw [if_pos (show IsFinalSweep m (m + 1) by unfold IsFinalSweep; omega)]
 
-/-- `θ t_m = s_m = η` (04:39–41, 08:351). -/
+/-- `θ t_m = s_m = η` (–41, 08:351). -/
 theorem finalSweep_height (u : ℝ) (m : ℕ) :
     sweepTheta u m (m + 1) * sweepScale u m (m + 1) = OAI.Anderson.scaleHeight m u := by
   rw [sweepTheta_final, sweepScale_final]
@@ -60,7 +49,7 @@ theorem sweepScale_pos {u : ℝ} (hu : u ∈ Set.Ioc (1 / 4 : ℝ) 1) (m j : ℕ
 
 /-! ## The open contracts of the sweep end, for every sweep `j ≤ m + 1` -/
 
-/-- `SweepTransportStatement` (agent-s78send, SweepEnd.lean) for every sweep including the
+/-- `SweepTransportStatement` (SweepEnd.lean) for every sweep including the
 final residual one (`j ≤ m + 1` instead of `j ≤ m`). -/
 def SweepTransportFullStatement (d : ℕ) : Prop :=
   ∀ (C Cb Crow : ℝ) (m n₀ : ℕ) (u E : ℝ) (ρ : ℂ) (P : TilePlan d m) (j : ℕ) (x : RunRecord d m),
@@ -78,7 +67,7 @@ theorem SweepTransportFullStatement.digit (h : SweepTransportFullStatement d) :
   fun C Cb Crow m n₀ u E ρ P j x hn hu' hu hnj hjm =>
     h C Cb Crow m n₀ u E ρ P j x hn hu' hu hnj (by omega)
 
-/-- `SweepRowTailStatement` (agent-s78send, SweepEndReserve.lean) for every sweep including
+/-- `SweepRowTailStatement` (SweepEndReserve.lean) for every sweep including
 the final residual one (`j ≤ m + 1` instead of `j ≤ m`). -/
 def SweepRowTailFullStatement (d : ℕ) : Prop :=
   ∀ cP CP cL CL C₀ : ℝ, 0 < cP → cP ≤ CP → 0 < cL → 0 < CL → 0 < C₀ → ∀ C : ℝ, 1 ≤ C →
@@ -156,7 +145,7 @@ theorem sweepReserveRowFull_of_tails (hTail : SweepRowTailFullStatement d) :
 /-! ## The final sweep core: damped endpoint at `η` and the endpoint lag -/
 
 /-- **The end of the final residual sweep** (θ = 1/2, `t = t_m`): the post-sweep endpoint is a
-damped endpoint at `η = s_m` (`sweepEndMapTheta_isDamped`, agent-s78schur), and its active
+damped endpoint at `η = s_m` (`sweepEndMapTheta_isDamped`), and its active
 diagonal lag is `≤ CA η^{0.42δ}` (Proposition 4.9 through `sweep_from_S45`, as in
 `sweepEnd_core`). -/
 theorem finalSweep_core (hT : SweepTransportFullStatement d)
@@ -277,11 +266,11 @@ theorem finalSweep_core (hT : SweepTransportFullStatement d)
   rw [hη] at hDs hlag
   exact ⟨hDs, hact, hlag⟩
 
-/-! ## The final sweep record (amended `FinalSweepStatement`) -/
+/-! ## The final sweep record with stage bounds -/
 
-/-- **`FinalSweepStatement` with the stage bounds of the old endpoint at `m`** (amendment
-proposed to agent-s78tphase/agent-s78con3, the analogue of `SweepEndStatement`'s StageBounds at
-`j − 1`; the run invariant has them from `stageBounds_of_hist`, `k = m`). Conclusions unchanged. -/
+/-- `FinalSweepStatementSB` adds stage bounds for the old endpoint at `m`, analogous
+to the StageBounds hypothesis at `j − 1` in `SweepEndStatement`. The run invariant
+provides them through `stageBounds_of_hist` with `k = m`. -/
 def FinalSweepStatementSB (d : ℕ) (C Cb Cr cp cg cP CP cL CL C₀ : ℝ) : Prop :=
   ∃ t0 > 0, ∀ (m n₀ : ℕ) (u E : ℝ) (ρ : ℂ) (P : TilePlan d m) (x : RunRecord d m),
     P.n₀ = n₀ → P.u = u → u ∈ Set.Ioc (1 / 4 : ℝ) 1 → n₀ ≤ m →
@@ -294,7 +283,7 @@ def FinalSweepStatementSB (d : ℕ) (C Cb Cr cp cg cP CP cL CL C₀ : ℝ) : Pro
     (∀ i ∈ y.endpoint.active, ‖y.r i‖ ≤ Cr ∧ cp ≤ (y.r i).im) ∧
     (∀ i ∈ y.endpoint.active, ‖y.endpoint.g i i - y.r i‖ ≤ cp - cg)
 
-/-- The amended statement implies the frozen one for records whose old endpoint satisfies the
+/-- The statement with stage bounds implies the base statement for records whose old endpoint satisfies the
 stage bounds at `m` (as a hypothesis on every record, which is how the run supplies it). -/
 theorem finalSweepStatement_of_SB {C Cb Cr cp cg cP CP cL CL C₀ : ℝ}
     (h : FinalSweepStatementSB d C Cb Cr cp cg cP CP cL CL C₀)

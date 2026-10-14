@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.InitialStage
 import AndersonAC.S78.Definitions
 
 /-!
-# WP10 construction: the deterministic induction on a history prefix (frozen contract)
+# the deterministic induction on a history prefix (contract)
 
 The run checks the stage bounds block by block: when stage `K` ends, only the history up to
 `K` exists. `PrefixStageInputs d m n₀ K u C` is `S78.PathwiseStageInputs` with every field
@@ -63,7 +63,7 @@ def PrefixStageInputs.ofPathwise {d m n₀ : ℕ} {u C : ℝ} (H : PathwiseStage
   metrics := H.metrics
   affineStep := H.affineStep
 
-/-- **Frozen contract.** `stage_bounds_of_initial_unconditional` (InitialStageFull.lean) for
+/-- **contract.** `stage_bounds_of_initial_unconditional` (InitialStageFull.lean) for
 history prefixes. -/
 def PrefixStageBoundsStatement (d : ℕ) (e₂ C : ℝ) : Prop :=
   ∃ (N : ℕ) (cP CP cL CL C₀ : ℝ), 0 < cP ∧ cP ≤ CP ∧ 0 < cL ∧ 0 < CL ∧ 0 < C₀ ∧

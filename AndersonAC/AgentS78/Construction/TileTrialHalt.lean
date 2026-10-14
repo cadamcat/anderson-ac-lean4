@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.TileTrialFirst
 
 /-!
-# WP10 construction, C4d (tile part): the tile block halts almost surely
+# the tile block halts almost surely
 
 05:872–905: each retry fails with probability at most `p = exp(−t^{−c}) < 1`, so a tile has
 infinitely many failures with probability zero; after the cutoff (`j > ⌊m/2⌋`, including the
@@ -11,7 +11,7 @@ final sweep) the block aborts at a first-trial failure and has no retry.
   slots) is running at local step `k`, its trial number `a` satisfies
   `k ≤ (2N + 2) a + 2N` (potential `Ψ = (2N+2) a + 2·(entries of π_{j,T,a} revealed) +
   [no exposed site]` grows by at least one per step); after the cutoff `a = 0`.
-* `tile_halting_bound`: from the frozen retry contract `TileRetryStatement`,
+* `tile_halting_bound`: from the retry estimates `TileRetryStatement`,
   `sourcesLaw (notHalted M (tileBlock P j T) x k) ≤ ε k` with
   `ε k = p^{⌊(k − 2N)/(2N+2)⌋} → 0`, uniformly in the good record `x` (the form consumed by
   `all_blocks_reached`, Reached.lean).
@@ -225,7 +225,7 @@ theorem notHalted_aborted {d m : ℕ} (P : TilePlan d m) (j : ℕ)
   refine ⟨0, Nat.zero_le _, ?_⟩
   simp [localState_zero, tileBlock, hab, initScratch]
 
-/-- **C4d (tile): the tile block halts.** For each `C ≥ 1`, given the frozen retry contract
+/-- **block reachability (tile): the tile block halts.** For each `C ≥ 1`, given the retry estimates
 `TileRetryStatement d C`, there is `N` such that for every box with `n₀ ≥ N`,
 `u ∈ (1/4, 1]`, plan, sweep index `n₀ < j ≤ m + 1`, tile and order sizes, there is
 `ε → 0` (independent of the record) with

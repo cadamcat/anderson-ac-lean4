@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.TileBlock
 
 /-!
-# WP10 random construction, C3b: measurability of the tile block
+# measurability of the tile block
 
 `TileScratch` carries the comap σ-algebra of its coordinate code (`TileScratch.code`), in the
 same format as `RunRecord.code` (Record.lean). `tileBlock_measurable` proves

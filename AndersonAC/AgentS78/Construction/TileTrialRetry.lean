@@ -5,9 +5,7 @@ import AndersonAC.AgentS78.Construction.BlockRun
 import AndersonAC.AgentS78.Construction.MachineRunProof
 
 /-!
-# WP10 construction, C4a: the retry bound from the one-trial bound
-
-agent-s78retry (2026-10-14), request of agent-s78trial (DISPATCH-REQUESTS 23:34:01 UTC).
+# Retry bound from the one-trial bound
 Paper: 05-local-sweeps.tex:940–961 (retries), 05:495–510 (rollback, marking, retry state).
 
 **`tileRetry_of_trialBound : TileTrialBoundStatement d C → TileRetryStatement d C`.**
@@ -957,8 +955,8 @@ theorem tileGoodCore_mark {C : ℝ} (x : RunRecord d m) (hnf : ¬ IsFinalSweep m
 
 end Final
 
-/-- **Retries (05-local-sweeps.tex:940–961).** The frozen one-trial contract implies the
-frozen retry contract: before the cutoff, the block of a non-aborted good record reaches trial
+/-- Retries (05-local-sweeps.tex:940–961). The one-trial bound implies the
+retry estimates: before the cutoff, the block of a non-aborted good record reaches trial
 `K` with probability at most `p^K`, `p = exp(−t^{−c})`, with the same `c, t0`. -/
 theorem tileRetry_of_trialBound :
     ∀ (d : ℕ) (C : ℝ), TileTrialBoundStatement d C → TileRetryStatement d C := by

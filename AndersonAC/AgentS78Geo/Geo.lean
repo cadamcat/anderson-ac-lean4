@@ -7,7 +7,7 @@ import AndersonAC.AgentS78Geo.Scale
 import AndersonAC.AgentS78Geo.Initial
 
 /-!
-# WP10 C4b: the geometric local input of the clearing trial
+# the geometric local input of the clearing trial
 
 The record hypothesis `geo := clearingGeo d Ctr` (deterministic, about the entering record
 only) and the proof of `ClearingGeometryStatement d (ClearingGood d cP CP qlag geo) cP CP`.
@@ -51,7 +51,7 @@ structure ClearingTraceOf {n₀ j l : ℕ} {u Ctr : ℝ} (x : RunRecord d m)
   fresh : ∀ a, T.index a = j → ∀ C ∈ x.components, (∃ y ∈ C, y ∈ x.endpoint.active) →
     ∀ z ∈ T.core a, ∀ y ∈ C, separationRadius j < physicalDistance d m z y
 
-/-- The record-level clearing geometry (`geo` of C4b). -/
+/-- The record-level clearing geometry (`geo` of clearing trial bound). -/
 structure ClearingGeoAt (Ctr : ℝ) (n₀ : ℕ) (u : ℝ) (j : ℕ) (x : RunRecord d m) : Prop where
   damped : IsDampedEndpoint x.endpoint x.r (stageScale u j m)
   trace : ∃ l, ∃ T : ClearingGeometry d m n₀ j l u Ctr, ClearingTraceOf x T
@@ -76,7 +76,7 @@ theorem localizationRate_le (d : ℕ) (c : ℝ) (hc : 0 < c) :
   have : c / (4 * (1 + 2 * (d : ℝ))) ≤ c := div_le_self hc.le (by nlinarith)
   linarith
 
-/-- **C4b geometry.** -/
+/-- **clearing trial bound geometry.** -/
 theorem clearingGeometry_proof (hd : 3 ≤ d) (cP CP : ℝ) (hcP : 0 < cP) (qlag : ℝ → ℝ)
     (Ctr : ℝ) (hCtr : 1 ≤ Ctr) :
     ClearingGeometryStatement d (ClearingGood d cP CP qlag (clearingGeo d Ctr)) cP CP := by

@@ -10,10 +10,11 @@ import AndersonAC.S45.LocalTransferProof
 /-!
 # The sweep transport (`SweepTransportStatement`)
 
-agent-s78stransp (2026-10-14). Proves `AndersonAC.AgentS78.sweepTransportFull_proof`
-(`SweepTransportFullStatement`, agent-s78final's FinalSweep.lean: every sweep `j ≤ m + 1`) and
-its digit form `AndersonAC.AgentS78.sweepTransport_proof`: at the end of a sweep the committed sweep, restricted to the start live set (the ports of the active
-sites, luna-s78live's `Sequence.restrictLive`) and reindexed along `e : Fin n ≃ active`
+`AndersonAC.AgentS78.sweepTransportFull_proof` proves
+`SweepTransportFullStatement` for every sweep `j ≤ m + 1`, with digit form
+`AndersonAC.AgentS78.sweepTransport_proof`. At the end of a sweep the committed
+sweep, restricted to the start live set (the ports of the active sites via
+`Sequence.restrictLive`) and reindexed along `e : Fin n ≃ active`
 (`Sequence.reindex`), satisfies `SweepS45Facts`.
 
 The composite restriction + reindexing is the pull-back of the sweep along the injective port
@@ -23,8 +24,7 @@ are submatrices along `ι` (the `L` Laplacian row sums lose only entries in dead
 start `D` is `stageD0` along `ι`, and the live states are reindexed live states. Validity
 transports with it (operator norm of a supported submatrix, quadratic forms of a submatrix are
 forms of the zero extension). Symmetry and Ward hold at every step from the start
-(argon-s78transfer / agent-s78a3bv3 `wellFormed_symm_ward`, copied here), the start being the
-v3 stage start `startV3` reindexed (StartClauses `start_prestate`).
+conditions `start_prestate` of `StartClauses`, transported along the reindexed stage start.
 -/
 
 noncomputable section
@@ -35,8 +35,7 @@ namespace AndersonAC.AgentS78stransp
 open AndersonAC.S45 Matrix
 open scoped Matrix.Norms.L2Operator
 
-/-! ## Symmetry and Ward along a well-formed sequence (copied from agent-s78a3bv3 445dd60,
-`TileCoreA3b.lean` Section 3) -/
+/-! ## Symmetry and Ward along a well-formed sequence -/
 
 section WellFormedProps
 variable {P_port : Type*} [Fintype P_port] [DecidableEq P_port]

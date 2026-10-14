@@ -5,7 +5,7 @@ import AndersonAC.AgentS78.Construction.TileBlockMeasurable
 import AndersonAC.AgentS78.Construction.MachineRunProof
 
 /-!
-# WP10 construction: the pathwise disciplines of the tile block (frozen contracts)
+# Pathwise disciplines of the tile block
 
 Consumers: `step_of_marking` (MarkingRule.lean, `hblock`, with `pend := RunRecord.pending`,
 `lab := RunRecord.latest`, `label n := ⟨j, .tile, tileAnchor⟩`; the distance clause follows
@@ -14,19 +14,17 @@ from `y ∈ tileSites` and the tile diameter of the plan) and `fresh_of_declared
 
 * `TileMarkingStatement`: a site pending at exit was pending at entry with the same label,
   or it is a site of the tile, labelled with the tile's birth label, and the first trial
-  failed (05:512–514, 08:41–47).
+  failed (05:512–514, –47).
 * `TileQueryStatement`: the declared-fresh set only shrinks, and no sign declared fresh at
   exit was queried during the block (02-state.tex:96–113).
 * `TilePatternStatement`: the pattern's true signs are declared fresh at entry; its
   auxiliary signs and orders lie in the tile's own index sets.
 
-Known adjustments needed in TileBlock.lean for these to hold (agent-s78con, 2026-10-13):
-(1) final residual sweep: its `trueSuffix` query reveals the whole suffix, so the committed
-site must become terminal (`declaredFresh` excludes terminal sites); (2) terminal sites are
-skipped (05:343): `activeIn` also requires `i ∉ x.terminal`, and the pattern's sites exclude
-terminal sites (since 2026-10-13 23:58 `declaredFresh` no longer mentions the active set: its
-sites are the non-pending, non-terminal ones); (3) on an aborted entering record the pattern is empty (the block halts at
-once; `declaredFresh` of an aborted record is empty).
+The block rules ensure that the final residual sweep's `trueSuffix` query reveals the
+whole suffix, so the committed site becomes terminal. Terminal sites are skipped
+(05-local-sweeps.tex:343): `activeIn` requires `i ∉ x.terminal`, and the pattern's
+sites are non-pending and non-terminal. An aborted entering record has an empty
+pattern because the block halts immediately.
 -/
 
 noncomputable section
@@ -39,7 +37,7 @@ open AndersonAC.S2 (RandomSources Query Answer querySigns SignIndex)
 
 variable {d m : ℕ}
 
-/-- **Tile marking discipline (frozen contract).** -/
+/-- **Tile marking discipline (contract).** -/
 def TileMarkingStatement : Prop :=
   ∀ (d m : ℕ) (P : TilePlan d m) (j : ℕ) (T : Fin (P.cover j).cover.count)
     (x : RunRecord d m) (s : RunRecord d m × TileScratch d m),
@@ -170,7 +168,7 @@ theorem tileMarkingStatement_proof : TileMarkingStatement := by
   have hy' := hinv y (by simpa [tileBlock] using hy)
   simpa [tileBlock] using hy'
 
-/-- **Tile query discipline (frozen contract).** -/
+/-- **Tile query discipline (contract).** -/
 def TileQueryStatement : Prop :=
   ∀ (d m : ℕ) (P : TilePlan d m) (j : ℕ) (T : Fin (P.cover j).cover.count) (M : ℕ → ℕ)
     (x : RunRecord d m) (k : ℕ) (ω : RandomSources (Torus d m) M),
@@ -181,7 +179,7 @@ def TileQueryStatement : Prop :=
       ∀ k' < k, ∀ z ∈ declaredFresh ((tileBlock P j T).exit (localState M (tileBlock P j T) x k ω)),
         z ∉ querySigns (Torus d m) ((tileBlock P j T).next (localState M (tileBlock P j T) x k' ω))
 
-/-- **Tile pattern discipline (frozen contract).** -/
+/-- **Tile pattern discipline (contract).** -/
 def TilePatternStatement : Prop :=
   ∀ (d m : ℕ) (P : TilePlan d m) (j : ℕ) (T : Fin (P.cover j).cover.count) (x : RunRecord d m),
     (∀ z ∈ (tilePattern P j T x).signs,
@@ -218,7 +216,7 @@ theorem tilePatternStatement_proof : TilePatternStatement := by
     have heq : o = tileOrderIndex j T 0 := Finset.mem_singleton.mp ho'
     exact ⟨0, heq⟩
 
-/-- **Tile abort discipline (frozen contract, added 2026-10-14 00:00 UTC).** A tile block
+/-- Tile abort discipline. A tile block
 aborts only at a first-trial failure after the cutoff (05:519–521): consumer
 `blockRun_of_disciplines.habort` (late slots). -/
 def TileAbortStatement : Prop :=
@@ -317,7 +315,7 @@ open Classical in
 /-- The read pattern of the first `k + 1` states of a tile block (all trials up to number
 `k`): the non-pending, non-terminal active sites of the tile from their prefix lengths, the
 auxiliary families `a ≤ k` of the tile's sites, and the orders `π_{j,T,a}`, `a ≤ k`
-(added 2026-10-14 00:20 UTC; consumer `all_blocks_reached_of_inv`, ReachedInv.lean). -/
+(consumer `all_blocks_reached_of_inv`, ReachedInv.lean). -/
 def tileHaltPattern {d m : ℕ} (P : TilePlan d m) (j : ℕ) (T : Fin (P.cover j).cover.count)
     (k : ℕ) (x : RunRecord d m) : FreshPattern (Torus d m) :=
   if x.aborted then ⟨∅, x.prefixLength, ∅, ∅⟩ else
@@ -327,7 +325,7 @@ def tileHaltPattern {d m : ℕ} (P : TilePlan d m) (j : ℕ) (T : Fin (P.cover j
       (fun p => tileAuxIndex (d := d) (m := m) j T p.1 p.2)
     orders := (Finset.range (k + 1)).image (tileOrderIndex j T) }
 
-/-- **Tile halting-pattern discipline (frozen contract, added 2026-10-14 00:20 UTC).** The
+/-- Tile halting-pattern discipline. The
 event "the tile block has not halted within its first `k + 1` states" depends only on
 `tileHaltPattern … k x`, which is measurable in the record. -/
 def TileHaltPatternStatement : Prop :=
@@ -888,7 +886,7 @@ theorem tileTrueQuery_fail_pending (P : TilePlan d m) (j : ℕ)
       ((tileBlock P j T).next (localState M (tileBlock P j T) x (m0 - 1) ω)) ω)
     i hprevRun hprevFalse ha0Prev hts hactPrev
   rw [← hm0eq] at hsu
-  -- `hsu : localState m0 = update ...`; rewrite the step outcome to `m0`
+  -- `hsu : localState m0 = update...`; rewrite the step outcome to `m0`
   rw [← hsu] at hstep
   rcases hstep with hkeep | hmark
   · -- kept false contradicts first-true at `m0`

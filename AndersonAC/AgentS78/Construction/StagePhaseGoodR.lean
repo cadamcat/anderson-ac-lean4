@@ -2,13 +2,11 @@ import AndersonAC.AgentS78.Construction.StagePhaseRecOp
 import AndersonAC.AgentS78.Construction.StagePhaseGood
 
 /-!
-# The C4b hypotheses from the clearing-phase invariant
-
-agent-s78phase2. On a record entering the clearing index `opIndex j 2 y` with
+# The clearing trial bound hypotheses from the clearing-phase invariant. On a record entering the clearing index `opIndex j 2 y` with
 `ClearPhaseR … j (rank y)`, every clause of `ClearingGoodAt` holds except `separated`, which holds
 for the components not yet reached by the anchor scan (in particular for the attempted component
-`theCore j u y x`, the only one C4b uses, ClearingTrialProof.lean:250); and the record is in
-`clearingGeo d Ctr` (opus-s78geo).
+`theCore j u y x`, the only one clearing trial bound uses, ClearingTrialProof.lean:250); and the record is in
+`clearingGeo d Ctr`.
 -/
 
 noncomputable section
@@ -21,7 +19,7 @@ open AndersonAC.AgentS78Geo (ClearingTraceOf ClearingGeoAt clearingGeo)
 
 variable {d m : ℕ}
 
-/-- **The C4b hypotheses on a record entering a clearing index.** -/
+/-- **The clearing trial bound hypotheses on a record entering a clearing index.** -/
 theorem clearPhaseR_good (hd : 3 ≤ d) (CA cA PA : ℝ) (hCA : 1 ≤ CA) (hcA : 0 < cA)
     (hPA : 0 ≤ PA) :
     ∃ C' t₀ : ℝ, 0 < C' ∧ 0 < t₀ ∧

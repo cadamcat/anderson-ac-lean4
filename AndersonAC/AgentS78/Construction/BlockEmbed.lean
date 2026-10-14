@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.Invariant
 
 /-!
-# WP10 construction: blocks on a common internal state
+# blocks on a common internal state
 
 `BlockRun` needs one internal state type for all blocks, while the tile block runs on
 `RunRecord × TileScratch` and the clearing block on `RunRecord × ClearScratch`. A block is

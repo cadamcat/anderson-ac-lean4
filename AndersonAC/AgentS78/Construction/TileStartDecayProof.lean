@@ -2,9 +2,7 @@ import AndersonAC.AgentS78.Construction.TileStartDecay
 import AndersonAC.AgentS78.Construction.TileStartV3
 
 /-!
-# WP10 tile phase: the decay clauses from the prefix Schur identity and Combes–Thomas
-
-agent-s78start (2026-10-14). `tileStartDecay_of_parts : PrefixPhysStatement →
+# the decay clauses from the prefix Schur identity and Combes–Thomas. `tileStartDecay_of_parts : PrefixPhysStatement →
 ActiveCTStatement d → TileStartDecayStatement d`: at every prefix (and at the start, the empty
 prefix) the live state is the port lift of the inverse of `M_A + diag ζ − t diag(ϑ r)`, whose
 damping `t ϑ Im r` lies between `t cP/4` and `t CP`; Combes–Thomas gives the decay, the port

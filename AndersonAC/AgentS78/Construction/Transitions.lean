@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.SimpleBlocks
 
 /-!
-# WP10 construction, C3b-trans: snapshot and cutoff operations
+# snapshot and cutoff operations
 
 07-assembly.tex:18–24 (snapshot): freeze the graph on the pending sites with edges at
 physical distance ≤ R_j = 4^{8j}; its connected components are recorded in

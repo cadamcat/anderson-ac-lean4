@@ -1,11 +1,9 @@
 import AndersonAC.AgentS78.Construction.TileCoverStatement
 
 /-!
-# WP10 construction: the §5 tile covers — frozen sub-statements
-
-agent-s78cover (2026-10-14). The analytic inputs of `TileCoverStatement`
+# Sub-statements for the §5 tile covers. The analytic inputs of `TileCoverStatement`
 (TileCoverStatement.lean) that do not depend on the tiling. Each is a closed `Prop`; helper
-lanes prove `theorem <name>_proof : <Statement>` in their own files.
+modules prove `theorem <name>_proof : <Statement>` in their own files.
 
 * `GridPoincareStatement`: the Poincaré inequality on the grid box `Fin d → Fin K`
   (05:285–291 "cube Poincaré inequality"), with nearest-neighbour edges and no wrap-around.

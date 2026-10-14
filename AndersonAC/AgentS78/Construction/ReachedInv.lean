@@ -3,14 +3,14 @@ import AndersonAC.AgentS78.Construction.Invariant
 import AndersonAC.AgentS78.Construction.PathwiseInvariant
 
 /-!
-# WP10 construction, C4d glue: all blocks are reached, with goodness from an invariant
+# all blocks are reached, with goodness from an invariant
 
 `all_blocks_reached` takes the goodness of the entering records and the freshness of the
 halting patterns almost surely for every block. Both are only available for reached blocks
 (`blockPrestate_mem`, `fresh_of_declared_aux`). `all_blocks_reached_of_inv` runs the same
 induction and derives them at block `n` from "block `n` is reached a.s." (the induction
 hypothesis), with goodness from a record invariant kept by every block along its runs with the
-answers of the sample (`blockPrestate_mem_pathwise`; since 01:15 UTC, at agent-s78tphase's
+answers of the sample (`blockPrestate_mem_pathwise`; since, at
 request: an invariant closed under arbitrary answers cannot reach the sweep end).
 -/
 

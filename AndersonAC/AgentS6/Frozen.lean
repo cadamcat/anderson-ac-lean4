@@ -1,7 +1,7 @@
 import AndersonAC.AgentS6.Decomposition
 
-/-! Frozen helper contracts of lane agent-s6 for Proposition 6.6 (06-clearing.tex:826–1123).
-Each is a proposition, never an assumed theorem. A helper proves exactly one of them as
+/-! Helper propositions for Proposition 6.6 (06-clearing.tex:826–1123).
+Each declaration states an input, not a theorem. A helper proves one of them as
 `AndersonAC.AgentS6.<name>_proof : <Name>Statement` in its own module, with only
 `propext`, `Classical.choice`, `Quot.sound`. -/
 
@@ -42,13 +42,13 @@ def CapTailStatement : Prop :=
 /-- Conditional form of Lemma 6.4 for the stopped trial: discharge `LeverageDriftInput` from
 `AndersonAC.L64.leverage_drift`, applied pointwise to the regular conditional law of the
 queried residual given `q.history k` (Mathlib `condExp_prod_ae_eq_integral_condDistrib`
-with `X = id : Ω → (Ω, q.history k)`), see opus-l64 REPORT.md "sol-s6 alignment".
+with `X = id : Ω → (Ω, q.history k)`).
 The prestate hypotheses of Lemma 6.4 at running prestates come from the budgets and the start
 slack (`Planned.prestate_from_budgets`), `running_cap`, `pivot_max`, the core bound, and the
 residual inputs of `TrialLocalInput` after the pivot-location step (Lemma 6.2 with the §2 Ward
 input and `metric`/`range_geometry`). The uniform `ε` comes from Lemma 6.4.
 The weights are restricted to the running event (`onRunning`): after the stop the trial's
-ridge is unconstrained, so unrestricted integrability can fail (luna-s6lev, 3d63b8e). -/
+ridge is unconstrained, so unrestricted integrability can fail. -/
 def LeverageDriftDischargeStatement : Prop :=
   ∀ (Ω : Type u) [MeasurableSpace Ω] (_hWard : AndersonAC.Blueprint.WardInput)
     (d : ℕ) (_hd : 3 ≤ d) (c K Cloc : ℝ) (_hc : 0 < c) (_hK : 1 ≤ K) (_hCloc : 0 ≤ Cloc)
@@ -69,9 +69,9 @@ def LeverageDriftDischargeStatement : Prop :=
         (onRunning (fun k => {ω | k < q.stop ω})
           (fun k ω => trialWeights t (r ω) (q.state (k + 1) ω) (q.ridge k ω)))
 
-/-- Vector Lemma 5.6 from the blueprint matrix inequality (sol-s6 PLAN "Architecture
-correspondence": Hermitian dilation and conditionalization), with a uniform constant. Needed by
-WP10 to supply the `VectorConcentrationInput` hypothesis of Proposition 6.6. Route: Hermitian
+/-- Vector Lemma 5.6 from the matrix inequality via Hermitian dilation and
+conditionalization, with a uniform constant. It supplies the
+`VectorConcentrationInput` hypothesis of Proposition 6.6. The proof uses Hermitian
 dilation `𝒟(z) = [[0, z*], [z, 0]]` of size `D+1` (opNorm `‖z‖`, `𝒟(z)² ≤ ‖z‖² I`),
 truncation after `N`, and conditioning on `F 0` by applying `maximal` to the normalized
 restrictions `μ(· ∩ A)/μ(A)`, `A ∈ F 0`, then `μ(E ∩ A) ≤ B μ(A)` for all such `A` gives the

@@ -467,11 +467,11 @@ theorem fin_invertible : ∀ (k : ℕ) (K : Matrix (Fin k) (Fin k) ℂ) (couplin
         (p := fun s tail => IsUnit (matOf K coupling ((splitEquiv k).symm (s, tail))))
         hmeas_comm
       -- hcomm : (∀ᵐ s, ∀ᵐ tail, p s tail) ↔ ∀ᵐ tail, ∀ᵐ s, p s tail
-      -- We have tail-outer, need head-outer, so use .mpr? Check direction:
+      -- We have tail-outer, need head-outer, so use.mpr? Check direction:
       -- ae_ae_comm : (∀ᵐ x ∂μ, ∀ᵐ y ∂ν, p x y) ↔ ∀ᵐ y ∂ν, ∀ᵐ x ∂μ, p x y
       -- Here μ=head, ν=tail, so LHS = ∀ᵐ s, ∀ᵐ tail, RHS = ∀ᵐ tail, ∀ᵐ s.
-      -- We have RHS (htail_outer), need LHS, so use .mpr? Actually .mp goes LHS→RHS,
-      -- .mpr goes RHS→LHS. We have RHS, need LHS, so .mpr.
+      -- We have RHS (htail_outer), need LHS, so use.mpr? Actually.mp goes LHS→RHS,
+      -- .mpr goes RHS→LHS. We have RHS, need LHS, so.mpr.
       exact hcomm.mpr htail_outer
     -- Joint ae on product via ae_prod_iff
     have hprod : ∀ᵐ p : SingleSite × (Fin k → SingleSite)
@@ -483,16 +483,16 @@ theorem fin_invertible : ∀ (k : ℕ) (K : Matrix (Fin k) (Fin k) ℂ) (couplin
           IsUnit (matOf K coupling ((splitEquiv k).symm p)))
         hmeas_joint
       -- hiff : (∀ᵐ p ∂prod, Q p) ↔ ∀ᵐ s, ∀ᵐ tail, Q (s, tail)
-      -- Q (s, tail) = IsUnit (matOf ... (e.symm (s, tail)))? Need to relate to hhead_outer
-      -- hhead_outer is ∀ᵐ s, ∀ᵐ tail, IsUnit (matOf ... (e.symm (s, tail)))
+      -- Q (s, tail) = IsUnit (matOf... (e.symm (s, tail)))? Need to relate to hhead_outer
+      -- hhead_outer is ∀ᵐ s, ∀ᵐ tail, IsUnit (matOf... (e.symm (s, tail)))
       -- which is ∀ᵐ s, ∀ᵐ tail, Q (s, tail) with Q (s,tail)=...? Since Q (s,tail) as
-      -- Q applied to (s,tail) : Q (s,tail) = IsUnit (matOf ... (e.symm (s,tail)))? Yes.
+      -- Q applied to (s,tail) : Q (s,tail) = IsUnit (matOf... (e.symm (s,tail)))? Yes.
       rw [hiff]
       -- Need to convert hhead_outer (which is ∀ᵐ s, ∀ᵐ tail, P s tail) to
       -- ∀ᵐ s, ∀ᵐ tail, Q (s, tail) where Q (s,tail)=P s tail? They are same.
       -- hiff's RHS is ∀ᵐ s, ∀ᵐ tail, Q (s, tail) with Q (s,tail) = ...? Actually
       -- ae_prod_iff states RHS as ∀ᵐ x ∂μ, ∀ᵐ y ∂ν, p (x, y) where p : α×β→Prop,
-      -- here p = fun p => IsUnit ... (e.symm p), so p (s, tail) = IsUnit ... (e.symm (s,tail)).
+      -- here p = fun p => IsUnit... (e.symm p), so p (s, tail) = IsUnit... (e.symm (s,tail)).
       -- Good, matches hhead_outer (up to eta? (s,tail) as pair vs Prod.mk? Same.)
       exact hhead_outer
     -- Transfer back to pi via MeasurePreserving
@@ -514,7 +514,7 @@ theorem fin_invertible : ∀ (k : ℕ) (K : Matrix (Fin k) (Fin k) ℂ) (couplin
         hmp.aemeasurable
       have hiff := ae_map_iff hmeas_ae hmeas_joint
       -- hiff : (∀ᵐ y ∂map e pi, Q y) ↔ ∀ᵐ x ∂pi, Q (e x)
-      -- with Q y = IsUnit ... (e.symm y), so Q (e ω) = IsUnit ... (e.symm (e ω))
+      -- with Q y = IsUnit... (e.symm y), so Q (e ω) = IsUnit... (e.symm (e ω))
       rw [hiff] at hae_map
       exact hae_map
     -- e.symm (e ω) = ω

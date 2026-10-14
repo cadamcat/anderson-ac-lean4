@@ -1,7 +1,7 @@
 import AndersonAC.S78.Statements
 
 /-!
-# WP10 random construction, layer A: the law of one finite-volume run
+# the law of one finite-volume run
 
 `RunLaw d m n₀ u E …` records, for one fixed finite volume `m`, starting index `n₀`,
 coupling parameter `u` and energy `E`, exactly what §8 uses from the random multiscale

@@ -3,9 +3,7 @@ import AndersonAC.AgentS78.Construction.Reached
 import AndersonAC.AgentS78.Construction.ResetBlock
 
 /-!
-# WP10 construction, C4a: the trial hypotheses `TileGood` and the frozen trial contracts
-
-agent-s78trial (2026-10-14), request of agent-s78con (DISPATCH-REQUESTS 22:42 UTC).
+# Tile trial hypotheses and bounds
 Paper (authoritative): refs/tex/05-local-sweeps.tex, cited as `05:<lines>`.
 
 * `TileGood C P j T` — the deterministic hypotheses on the record entering the tile block of
@@ -13,9 +11,8 @@ Paper (authoritative): refs/tex/05-local-sweeps.tex, cited as `05:<lines>`.
   `local-trial`) and 05:872–905 (retries) prove the trial bounds. Every clause is documented
   with its TeX lines. There is no probabilistic content: each clause is a property of the
   committed record, the tile plan and the constant `C`.
-* `TileTrialBoundStatement` (frozen analytic core, the one-trial lemma on the frozen tile
-  trial) and `TileRetryStatement` (frozen analytic core, the retry estimate on the frozen
-  tile block). The block-level bounds `tile_first_trial_bound` and `tile_halting_bound`
+* `TileTrialBoundStatement` (the one-trial estimate) and `TileRetryStatement` (the retry
+  estimate). The block-level bounds `tile_first_trial_bound` and `tile_halting_bound`
   (TileTrialFirst.lean, TileTrialHalt.lean) are proved from them.
 * `TileCrossingStatement`, the S45 route to `TileTrialBoundStatement`: a `TrialInputs` on
   `(RandomSources, sourcesLaw)` whose crossing event contains the first-trial failure;
@@ -24,7 +21,7 @@ Paper (authoritative): refs/tex/05-local-sweeps.tex, cited as `05:<lines>`.
 
 Scales: `t = sweepScale P.u m j`, `θ = sweepTheta P.u m j` (TileBlock.lean: the digit sweep
 into stage `j ≤ m` is the paper's sweep at scale `n = j − 1`; `j = m + 1` is the final
-residual sweep, 04:36–41).
+residual sweep, –41).
 -/
 
 open MeasureTheory
@@ -44,8 +41,9 @@ variable {d m : ℕ} (C : ℝ) (P : TilePlan d m) (j : ℕ) (T : Fin (P.cover j)
 def stageStart (x : RunRecord d m) : S45.State (Port d m) :=
   (x.sweep.state 0).ambient (portR (sweepTheta P.u m j) x.r)
 
-/-- **v3 (frozen 2026-10-14, agent-s78con3).** The duplicated stage start on the ports of the
-**active** sites, `initialPorts {i // i ∈ x.endpoint.active}` (05:320–333, 04:67–80): the S45
+/-- The duplicated stage start on the ports of the **active** sites,
+`initialPorts {i // i ∈ x.endpoint.active}` (05-local-sweeps.tex:320–333,
+04-sweep.tex:73–80): the S45
 lift `(splitPorts θ).liftState` of the committed endpoint inverse and damping restricted to
 the active sites. This is the object of `S45.ordinary_sweep_endpoint` / `prestate_of_prefix`
 (after `Fintype.equivFin`), and it does not depend on the sweep record. -/
@@ -80,7 +78,7 @@ def AcceptedTiles (x : RunRecord d m) : Prop :=
 
 /-- **The trial hypotheses on a non-aborted entering record** (05:320–337, 338–359,
 399–475, 466–475, 538–548, 766–772). With `t = sweepScale P.u m j`,
-`θ = sweepTheta P.u m j`, `r = portR θ x.r` (the frozen port damping, 04:73–80),
+`θ = sweepTheta P.u m j`, `r = portR θ x.r` (the fixed port damping),
 `s₀ = stageStart P j x`, `D₀ = stageD0 P j x`. -/
 structure TileGoodCore (x : RunRecord d m) : Prop where
   /-- Constants: `1 ≤ C`. -/
@@ -89,7 +87,7 @@ structure TileGoodCore (x : RunRecord d m) : Prop where
   tile cover's scale `0 < b ≤ t` and its constant at most `C`. -/
   cover_b : 0 < (P.cover j).b ∧ (P.cover j).b ≤ sweepScale P.u m j
   cover_C : (P.cover j).C ≤ C
-  /-- The shell bounds of the cover distance (05:92–100, Lemma `inverse-row`; 05:600–612). -/
+  /-- The shell bounds of the cover distance (–100, Lemma `inverse-row`; 05:600–612). -/
   shell : S45.ShellBounds d C (P.cover j).dist
   /-- `M = L_tile^d ≍ t^{-6d}` slots (05:342–343, 05:778–779). -/
   tile_card : ((tileSites (P.cover j) T).card : ℝ) ≤
@@ -98,15 +96,15 @@ structure TileGoodCore (x : RunRecord d m) : Prop where
   (05:860–864, dimension count of the monitored tests). -/
   inner_card : (((P.cover j).cover.inner T).card : ℝ) ≤
     C * S45.power (sweepScale P.u m j) (-6 * (d : ℝ))
-  /-- The included prefix is a well-formed sequence of `S45.StepRel` updates with the frozen
-  port damping (05:385–398, 04:190–228). -/
+  /-- The included prefix is a well-formed sequence of `S45.StepRel` updates with fixed
+  port damping (05:385–398, 04-sweep.tex:190–228). -/
   wellFormed : x.sweep.wellFormed (sweepScale P.u m j) (portR (sweepTheta P.u m j) x.r)
-  /-- **v3.** The sweep's state 0 is the stage-start lift installed by `sweepStartMap`
+  /-- The sweep's state 0 is the stage-start lift installed by `sweepStartMap`
   (05:385–392): live ports = both ports of every active site, `g` = the split-port lift of
   `x.endpoint.g` (ResetBlock.sweepStartLiveState). -/
   start_live : x.sweep.state 0 = sweepStartLiveState (sweepTheta P.u m j) x
-  /-- **v3.** Duplicated stage start (05:320–333) on the active-site ports `stageStartV3`: the
-  complete stage-boundary bounds as the S45 prestate (broad frozen `r, p`, symmetry, Ward, `K`
+  /-- Duplicated stage start (05-local-sweeps.tex:320–333) on the active-site ports `stageStartV3`:
+  the complete stage-boundary bounds as the S45 prestate (uniform bounds on `r, p`, symmetry, Ward, `K`
   cap, invertibility, constant kernel, fourth-power row cap, transformed-lag cap, the
   comparator `X₀ ≤ (1+t^κ) diag(p^{-2}) + C t Λ⁺`, Fourier/dual bounds, volume). -/
   start_prestate : ∃ Λplus Wstar : S45.Form (S45.initialPorts {i // i ∈ x.endpoint.active}),
@@ -133,7 +131,7 @@ structure TileGoodCore (x : RunRecord d m) : Prop where
       sweepTheta P.u m j ^ 2 * S45.rowCap (sweepScale P.u m j)
   /-- **v3.** Stage-boundary decay of the normalized inverse at the duplicated start, in the
   cover distance (05:320; hypotheses of Lemma `local-prospective`, 05:155–170, and Lemma
-  `inverse-row`, 05:92–100). -/
+  `inverse-row`, –100). -/
   start_decay : ∀ a b, ‖(stageStartV3 P j x).h (sweepScale P.u m j) a b‖ ≤
     C / Real.sqrt (sweepScale P.u m j) *
       Real.exp (-(sweepScale P.u m j) ^ 3 * (P.cover j).dist (activePort x a) (activePort x b) / C)
@@ -142,8 +140,8 @@ structure TileGoodCore (x : RunRecord d m) : Prop where
     ‖(stageStartV3 P j x).h (sweepScale P.u m j) a b‖ ≤
       C / Real.sqrt (sweepScale P.u m j) *
         Real.exp (-(sweepScale P.u m j) * (P.cover j).dist (activePort x a) (activePort x b) / C)
-  /-- **Prefix-state decay** (amendment 2026-10-14, argon-s78transfer audit (1); Lemma
-  `locality` 05:51–90 at every prefix state, Lemma `local-prospective` 05:155–220,
+  /-- **Prefix-state decay** (amendment, audit (1); Lemma
+  `locality` –90 at every prefix state, Lemma `local-prospective` 05:155–220,
   05:458–466): the `t³` and far `t` decay of the normalized inverse at every valid prefix of
   every well-formed bit-pivot sequence from the stage start. Depends only on the stage start
   and `r`, so tile blocks keep it; the stage-boundary invariant must provide it. -/
@@ -162,8 +160,8 @@ structure TileGoodCore (x : RunRecord d m) : Prop where
         ‖((q.state k).state (portR (sweepTheta P.u m j) x.r)).h (sweepScale P.u m j) a b‖ ≤
           C / Real.sqrt (sweepScale P.u m j) *
             Real.exp (-(sweepScale P.u m j) * (P.cover j).dist a.1 b.1 / C))
-  /-- Committed scalars are bounded (amendment 2026-10-14, argon-s78transfer audit (2);
-  05:25–36, 05:349–359): `|ξ| ≤ 2√t` for the included steps. -/
+  /-- Committed scalars are bounded (amendment, audit (2);
+  –36, 05:349–359): `|ξ| ≤ 2√t` for the included steps. -/
   scalar_bound : ∀ k < x.sweep.length, |x.sweep.scalar k| ≤ 2 * Real.sqrt (sweepScale P.u m j)
   /-- Every included update has a valid prestate, and the included prefix is valid
   (05:443–462 `eq:local-validity`, 05:538–548). -/
@@ -177,7 +175,7 @@ structure TileGoodCore (x : RunRecord d m) : Prop where
   /-- The accepted earlier tiles and their local budgets (05:399–419, 05:452–462). -/
   accepted : AcceptedTiles P j T x
   /-- The bit ports of `T` are still live: `T` has not been processed in this sweep
-  (05:338–341, tiles processed in a fixed order). **v3.1** (agent-s78tphase 02:19): only for
+  (05:338–341, tiles processed in a fixed order). Only for
   the active sites of `T` (inactive sites have no port at the stage start). -/
   tile_live : ∀ i ∈ tileSites (P.cover j) T, i ∈ x.endpoint.active →
     ((i, false) : Port d m) ∈ (x.sweep.state x.sweep.length).live
@@ -205,10 +203,10 @@ def reachedAttempt (M : ℕ → ℕ) (x : RunRecord d m) (K : ℕ) :
 
 end Good
 
-/-! ## Frozen trial contracts (analytic cores) -/
+/-! ## trial estimates (analytic cores) -/
 
-/-- **Frozen contract C4a-core-1 (Lemma `local-trial`, 05:766–870).** For each `C ≥ 1`,
-the first trial of the frozen tile block from a non-aborted good record fails with
+/-- Tile trial bound (Lemma `local-trial`, 05-local-sweeps.tex:766–870). For each `C ≥ 1`,
+the first trial of `tileBlock` from a non-aborted good record fails with
 probability at most `exp(−t^{−c})`, uniformly in the box, the plan, the tile and the record,
 once the sweep scale `t` is small. -/
 def TileTrialBoundStatement (d : ℕ) (C : ℝ) : Prop :=
@@ -219,10 +217,10 @@ def TileTrialBoundStatement (d : ℕ) (C : ℝ) : Prop :=
     sourcesLaw (Torus d m) M (localFirstFail M (tileBlock P j T) x) ≤
       ENNReal.ofReal (Real.exp (-S45.power (sweepScale P.u m j) (-c)))
 
-/-- **The S45 route to C4a-core-1 (05:774–870).** A `TrialInputs` on the source space whose
+/-- S45 proof of the tile trial bound (05-local-sweeps.tex:774–870). A `TrialInputs` on the source space whose
 crossing event contains the first-trial failure; dimension parameter `2d + 1` since the
-monitors are padded to one common space of dimension `≲ t^{−6d}`, `≲ t^{−6d}` of them (stopped monitored records of the frozen
-trial: S45.ordered_raw_bounds with the uniform order and centred digits, then
+monitors are padded to one common space of dimension `≲ t^{−6d}`, with `≲ t^{−6d}`
+stopped monitored records. `S45.ordered_raw_bounds` uses the uniform order and centred digits, then
 S45.ordered_trial_inputs; FAIL ⊆ crossing by S45.local_transfer and
 S45.prospective_update). -/
 def TileCrossingStatement (d : ℕ) (C : ℝ) : Prop :=
@@ -234,7 +232,7 @@ def TileCrossingStatement (d : ℕ) (C : ℝ) : Prop :=
       (s : ℕ) (a : S45.TrialInputs (sourcesLaw (Torus d m) M) ℱ s (2 * d + 1) (sweepScale P.u m j) C'),
       localFirstFail M (tileBlock P j T) x ⊆ a.crossing
 
-/-- **Frozen contract C4a-core-2 (retries, 05:872–905).** For each `C ≥ 1`, at a digit sweep
+/-- **contract tile trial-core-2 (retries, 05:872–905).** For each `C ≥ 1`, at a digit sweep
 before the cutoff (`j ≤ ⌊m/2⌋`), the block of a non-aborted good record reaches trial number
 `K` with probability at most `p^K`, `p = exp(−t^{−c})`, uniformly, once `t` is small. -/
 def TileRetryStatement (d : ℕ) (C : ℝ) : Prop :=

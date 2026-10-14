@@ -1,6 +1,6 @@
 import AndersonAC.S9.Blueprint
 
-/-! Frozen helper contracts for WP12 part B. They assert no proofs. -/
+/-! Readout input propositions. -/
 
 noncomputable section
 

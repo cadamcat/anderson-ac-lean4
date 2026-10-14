@@ -3,11 +3,10 @@ import AndersonAC.AgentS78.Construction.SweepRowTail
 import AndersonAC.AgentS78.Construction.SweepEndReserve
 
 /-!
-# Sweep contracts with the proved transport and row tails plugged in (lead, agent-s78con4)
+# Sweep contracts from transport and row-tail bounds
 
 `finalSweep_closed`: the final residual sweep record, unconditional.
-`sweepEnd_of_terminalCT`: the digit sweep end, conditional only on `TerminalCTStatement`
-(luna-s78actct).
+`sweepEnd_of_terminalCT`: the digit sweep end, conditional only on `TerminalCTStatement`.
 -/
 
 noncomputable section

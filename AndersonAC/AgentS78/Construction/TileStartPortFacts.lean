@@ -2,9 +2,9 @@ import AndersonAC.S45.DuplicationProof
 import AndersonAC.S45.WardTransfer
 
 /-!
-# WP10 tile phase: prestate facts of a mass-one port lift (Lemma `duplication`, 04:73–123)
+# prestate facts of a mass-one port lift (Lemma `duplication`, –123)
 
-agent-s78start (2026-10-14). For a port map with masses one and positive weights, the lift of a
+ . For a port map with masses one and positive weights, the lift of a
 self-consistent physical state with the constant kernel keeps the Ward identity, symmetry,
 the vanishing lag, the constant kernel of `D`, the broad bounds and the fourth-row bounds.
 -/

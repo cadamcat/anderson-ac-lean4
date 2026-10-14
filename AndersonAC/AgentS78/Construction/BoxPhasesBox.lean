@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.BoxPhasesStage
 
 /-!
-# WP10 construction, global run invariant: `BoxInvariantK` of one box (agent-s78box)
+# `BoxInvariantK` of one box
 
 `boxInvariantK_of_box`: for one box (tile plan `P`, energy `E`, initial damping `ρ`) and fixed
 constants, the kind-split package `BoxInvariantK` with

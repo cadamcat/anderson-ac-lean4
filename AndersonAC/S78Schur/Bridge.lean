@@ -8,17 +8,14 @@ noncomputable section
 
 namespace AndersonAC.SolS78
 
-/-- Ward Dirichlet energy on a finite set.
-
-Verbatim copy of `AndersonAC.S78.wardEnergy`; this module must not import the
-lead's `sorry`-carrying `Statements` file, and the lead bridges by `rfl`. -/
+/-- Ward Dirichlet energy on a finite set, definitionally equal to
+`AndersonAC.S78.wardEnergy`. -/
 def wardEnergy {ι : Type} (A : Finset ι) (p : ι → ℝ) (h : Matrix ι ι ℂ)
     (f : ι → ℝ) : ℝ :=
   (1 / 2) * ∑ i ∈ A, ∑ j ∈ A, p i * p j * ‖h i j‖ ^ 2 * (f i - f j) ^ 2
 
-/-- Schur variational energy: infimum of `D` over extensions of `f` off `A`.
-
-Verbatim copy of `AndersonAC.S78.schurEnergy` (the lead bridges by `rfl`). -/
+/-- Schur variational energy: infimum of `D` over extensions of `f` off `A`,
+definitionally equal to `AndersonAC.S78.schurEnergy`. -/
 def schurEnergy {ι : Type} (A : Finset ι) (D : (ι → ℝ) → ℝ) (f : ι → ℝ) : ℝ :=
   sInf (D '' {F : ι → ℝ | ∀ i ∈ A, F i = f i})
 
@@ -60,7 +57,7 @@ theorem wardEnergy_mono_of_subset {ι : Type} [DecidableEq ι] (A B : Finset ι)
 
 /-- Variational Schur bridge inequality: the Schur minimum over extensions off
 `B` exceeds `D_B` by at most the crossing-edge energy of the constant
-extension. Has exactly the type of frozen `AndersonAC.S78.schur_bridge_trial`. -/
+extension. Has the same type as `AndersonAC.S78.schur_bridge_trial`. -/
 theorem schur_bridge_trial_proof {ι : Type} [Fintype ι] [DecidableEq ι]
     (A B : Finset ι) (hBA : B ⊆ A) (p : ι → ℝ) (hp : ∀ i ∈ A, 0 ≤ p i)
     (h : Matrix ι ι ℂ) (hsym : ∀ i j, h i j = h j i) (f : ι → ℝ) (c : ℝ) :

@@ -32,7 +32,7 @@ namespace AndersonAC.AgentS78
 
 open AndersonAC.S2
 
-/-- **C2, corrected.** `FreezingStatement` with the added hypothesis `0 ≤ p`. -/
+/-- **trial freezing, corrected.** `FreezingStatement` with the added hypothesis `0 ≤ p`. -/
 def FreezingStatementNonneg : Prop :=
   ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (M : ℕ → ℕ) (Q : ℕ → RandomSources ι M → Query ι)
     (hQ : ObeysQueryRules ι Q) (τ : RandomSources ι M → WithTop ℕ)
@@ -333,7 +333,7 @@ theorem map_pair_restrict (hfin : ∀ᵐ ω ∂sourcesLaw ι M, τ ω ≠ ⊤)
     rw [show X ⁻¹' s ∩ cyl s'' a O' b ∩ Dπ = (X ⁻¹' s ∩ Dπ) ∩ cyl s'' a O' b by
       ext ω; simp only [Set.mem_inter_iff]; tauto, h, mul_comm]
 
-/-- Step 4: the frozen bound on one pattern piece. -/
+/-- Step 4: the bound on one pattern piece. -/
 theorem piece_bound (hfin : ∀ᵐ ω ∂sourcesLaw ι M, τ ω ≠ ⊤)
     (hX : Measurable[hτ.measurableSpace] X) (hpat : Measurable pattern)
     (A : S → Set (RandomSources ι M))
@@ -429,7 +429,7 @@ end AndersonAC.AgentS78
 namespace AndersonAC.AgentS78
 open AndersonAC.S2
 
-/-- **C2 (corrected contract) proved.** -/
+/-- **trial freezing (corrected contract) proved.** -/
 theorem freezing_proof : FreezingStatementNonneg := by
   intro ι _ _ M Q hQ τ hτ hfin S _ X hX pattern hpat A hA hloc hfresh good hgood p hp0 hp
   set μ := sourcesLaw ι M

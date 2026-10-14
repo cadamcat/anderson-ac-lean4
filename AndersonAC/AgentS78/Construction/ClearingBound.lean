@@ -13,36 +13,33 @@ import AndersonAC.AgentS78Geo.Geo
 import AndersonAC.AgentS6Construct.Construct
 
 /-!
-# The clearing first-failure bound on good records (agent-s78clrbound)
+# The clearing first-failure bound on good records
 
-Target: the `hboundC` field of `BoxInvariantK` (BoxSplit.lean), request DISPATCH 02:51:56
-(agent-s78con3). For good entering records of the clearing block of `(j, y)`,
+This proves the `hboundC` field of `BoxInvariantK` (BoxSplit.lean). For good entering
+records of the clearing block of `(j, y)`,
 `sourcesLaw (localFirstFail (clearingBlock n₀ j u y) x) ≤ birthBound c j`.
 
 Route (06-clearing.tex:788–857, 07-assembly.tex:18–34, 02-state.tex:220–229):
 
-1. no core (or aborted record): the failure set is empty (`empty_firstFail_empty`);
-2. otherwise `B` := the core as a finset of active sites, the order of `siteRank`;
-3. the trial `q` of `S6.construct_stopped_trial` with `M₀` the real active block of
-   `x.endpoint.M`, `F₀ = ⊥`, and residuals the `λ`-coupled true residuals **modified on a null
-   set `Z`** (`clrTerminal_ae`, ClearingBoundNull.lean): its `hterminal` (invertibility of every
-   principal block) holds only almost surely;
-4. its initial inverse is `trialG0 x` (damped identity, `activeInverse_eq_trialG0`);
-5. C4b off a null set (`ClearingTrialStatementZ`, frozen by agent-s78con4, proved by
-   `clearingTrialZ_proof`); `Z` is taken flip-invariant (`flipSat`, ClearingBoundFlip.lean);
-6. muse-s78clear's bridge, sample by sample (`ClearingBridgeAtStatement`, the form adopted by
-   the lead 03:57:19; open, a named hypothesis here).
+1. If there is no core or the record is aborted, the failure set is empty
+   (`empty_firstFail_empty`). Otherwise let `B` be the core, ordered by `siteRank`.
+2. Apply `S6.construct_stopped_trial` with the real active block of `x.endpoint.M`,
+   initial history `F₀ = ⊥`, and the `λ`-coupled true residuals, modified on a null
+   set `Z` (`clrTerminal_ae`, `ClearingBoundNull.lean`). The modified residuals make
+   the terminal principal blocks invertible almost surely.
+3. The initial inverse is `trialG0 x` (`activeInverse_eq_trialG0`). The trial bound
+   `ClearingTrialStatementZ` holds off `Z`, with `Z` flip-invariant
+   (`flipSat`, `ClearingBoundFlip.lean`).
+4. `ClearingBridgeAtStatement` identifies trial failure with block-local first
+   failure sample by sample under the damped-record hypothesis.
 
-**Interface defect (INTERFACE-ISSUES 03:54:15, accepted 03:57:19).** The frozen
-`ClearingTrialStatement` and the frozen `clearingBlock_bridge` ask for `q.residual = trueResidual`
-at **every** sample. A `StoppedTrial` with exact residuals need not exist: `HeatTransition`
-requires `s.M x x + ξ ≠ 0`, and the run is forced, so at a sample where the forced pivot has a
-singular real Schur pivot no such trial exists. The consumer can only build the trial with
-residuals exact off a null set; hence the two amended forms above.
+Exact residuals at every sample may be impossible. `HeatTransition` requires
+`s.M x x + ξ ≠ 0`, and the forced run can encounter a singular real Schur pivot.
+In that case no stopped trial with exact residuals exists. The null-set formulation
+allows the residual modification above.
 
-Results: `clearingBound_of_contracts` (any geometry, C4b-Z and the bridge as hypotheses),
-`clearingBound_records` (C4b-Z discharged, record hypotheses explicit) and
-`clearingBound_clearPhaseR` (records of agent-s78phase2's `ClearPhaseR … j (rank y)`).
+The file proves `clearingBound_of_contracts`, `clearingBound_records`, and
+`clearingBound_clearPhaseR`, with the stated geometry, bridge, and record hypotheses.
 -/
 
 open MeasureTheory
@@ -57,12 +54,11 @@ open AndersonAC.S2 (RandomSources sourcesLaw)
 
 /-! ## The two contracts -/
 
-/-- The bridge **sample by sample** (lead decision 03:57:19, with the damped-record hypothesis
-approved 04:58:00): same data as muse-s78clear's frozen bridge plus
+/-- The sample-by-sample bridge under a damped-record hypothesis. It assumes
 `IsDampedEndpoint rec0.endpoint rec0.r t_j`, and at each sample `ω` whose running residuals are
 exact and whose running pivots pass the guard, `ω` is a block-local first failure iff the trial
-fails at `ω`. This is verbatim agent-s78cbridge's `ClearingBridgeAtDStatement d m`
-(INTERFACE-ISSUES 04:57:43), so `fun m => clearingBridgeAtD_proof d m` discharges it. -/
+fails at `ω`. This is `ClearingBridgeAtDStatement d m`, discharged by
+`fun m => clearingBridgeAtD_proof d m`. -/
 def ClearingBridgeAtStatement (d m : ℕ) : Prop :=
   ∀ (n₀ j : ℕ) (u : ℝ) (x : Torus d m) (M : ℕ → ℕ) (rec0 : RunRecord d m)
     (B : Finset (ActiveSite rec0)),
@@ -284,7 +280,7 @@ theorem stageScale_lt_one {u : ℝ} (hu : u ∈ Set.Ioc (1 / 4 : ℝ) 1) {j m : 
   linarith
 
 /-- The record hypotheses of the clearing bound at the clearing block of `(j, y)`: on a
-non-aborted record, the C4b good set, disjoint active and terminal sites, the core among the
+non-aborted record, the clearing trial bound good set, disjoint active and terminal sites, the core among the
 active sites, and the separation of the other pending sites from the core
 (07-assembly.tex:200–209). -/
 def ClearingBoundRecord (d : ℕ) {m : ℕ} (cP CP : ℝ) (qlag : ℝ → ℝ)
@@ -298,7 +294,7 @@ def ClearingBoundRecord (d : ℕ) {m : ℕ} (cP CP : ℝ) (qlag : ℝ → ℝ)
         separationRadius j - inspectionRadius j / 2 < physicalDistance d m z w
 
 /-- **The clearing first-failure bound from the two contracts.** For every geometry parameter
-`geo` whose records are damped endpoints at `t_j`, the C4b-Z constants give the bound on every
+`geo` whose records are damped endpoints at `t_j`, the clearing trial off a null set constants give the bound on every
 entering record satisfying `ClearingBoundRecord`. -/
 theorem clearingBound_of_contracts (d : ℕ) (hbr : ∀ m, ClearingBridgeAtStatement d m)
     (cP CP : ℝ) (hcP : 0 < cP) (qlag : ℝ → ℝ)
@@ -382,7 +378,7 @@ theorem clearingBound_of_contracts (d : ℕ) (hbr : ∀ m, ClearingBridgeAtState
         rw [hZ.1, add_zero]
     _ ≤ ENNReal.ofReal (birthBound c j) := hbound
 
-/-- **The clearing first-failure bound, C4b discharged** (`clearingTrialZ_proof` with
+/-- **The clearing first-failure bound, clearing trial bound discharged** (`clearingTrialZ_proof` with
 `concentrationInput_closed`): conditional only on the sample-by-sample bridge and the record
 hypotheses `ClearingBoundRecord` for the geometry `clearingGeo d Ctr`. -/
 theorem clearingBound_records (d : ℕ) (hd : 3 ≤ d) (hbr : ∀ m, ClearingBridgeAtStatement d m)
@@ -429,10 +425,10 @@ theorem stageScale_le_two_div {u : ℝ} (hu : u ∈ Set.Ioc (1 / 4 : ℝ) 1) {j 
   have : 2 / (4 : ℝ) ^ j = 1 / 4 ^ j + 1 / 4 ^ j := by ring
   linarith
 
-/-- **The clearing first-failure bound on the clearing-phase invariant** (`ClearPhaseR` of
-agent-s78phase2 at scan position `rank y`, the position at the clearing block of `(j, y)`):
-conditional only on the sample-by-sample bridge of muse-s78clear. The constants: `C'` and `t₀`
-of `clearPhaseR_good` (from `CA cA PA`), the C4b-Z constant `c` for the lag function
+/-- The clearing first-failure bound for `ClearPhaseR` at scan position `rank y`,
+the position of the clearing block of `(j, y)`. It assumes the sample-by-sample
+bridge. The constants `C'` and `t₀` come from `clearPhaseR_good`; `c` is the
+clearing-trial bound for the lag function
 `phaseQlag d C'`, and `N` large enough that `t_j < t₀` for `j > N`. -/
 theorem clearingBound_clearPhaseR (d : ℕ) (hd : 3 ≤ d) (hbr : ∀ m, ClearingBridgeAtStatement d m)
     (CA cA PA : ℝ) (hCA : 1 ≤ CA) (hcA : 0 < cA) (hPA : 0 ≤ PA)

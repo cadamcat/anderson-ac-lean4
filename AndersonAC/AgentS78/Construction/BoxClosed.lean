@@ -4,14 +4,11 @@ import AndersonAC.AgentS78.Construction.TileStartBridge
 import AndersonAC.AgentS78.Construction.ActiveCTProof
 
 /-!
-# WP10 finish line with the proved phase contracts plugged in (lead, agent-s78con4)
+# Uniform certificate input from phase contracts
 
-`boxInvariantK_closed` / `uniformCertificateInput_closed`: agent-s78box's assembly with the stage-start
-bridge (`startClauses_of_live`, luna-s78sbridge), the sweep transport
-(`sweepTransport_proof`, agent-s78stransp) and the final sweep (`finalSweep_closed`, inside
-`boxInvariantK_of_phases`) discharged. Open: ActiveCT, TerminalCT (agent-s78ct), the clearing
-phase package, the run true values, and the finish-line inputs (clearing-block measurability,
-A1, A2).
+`boxInvariantK_closed` and `uniformCertificateInput_closed` assemble the stage-start
+bridge, sweep transport, final sweep, and phase hypotheses into a uniform certificate
+input.
 -/
 
 noncomputable section
@@ -24,7 +21,7 @@ open AndersonAC.S78
 theorem startBridge_proof : StartBridgeStatement :=
   fun C P j z h1 h2 => startClauses_of_live C P j z h1 h2
 
-/-- **WP10 finish line, closed form.** -/
+/-- Uniform certificate input from the phase contracts. -/
 theorem uniformCertificateInput_closed (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
     (he₂ : e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100))
     (hcmeas : ∀ (m n₀ j : ℕ) (u : ℝ) (y : Torus d m),
@@ -36,9 +33,7 @@ theorem uniformCertificateInput_closed (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
   uniformCertificateInput_of_phases d hd e₂ he₂ hcmeas hA1 hA2 hCT startBridge_proof
     (sweepTransport_proof d) hTCT hclr hRTV hAT
 
-/-- **WP10 finish line, closed form with Combes–Thomas** (ActiveCT, TerminalCT: luna-s78actct /
-agent-s78ct). Open: clearing-block measurability, A1, A2, the clearing phase package and the run
-true values. -/
+/-- Uniform certificate input with the active and terminal Combes–Thomas bounds proved. -/
 theorem uniformCertificateInput_closedCT (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
     (he₂ : e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100))
     (hcmeas : ∀ (m n₀ j : ℕ) (u : ℝ) (y : Torus d m),
@@ -49,10 +44,8 @@ theorem uniformCertificateInput_closedCT (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
   uniformCertificateInput_closed d hd e₂ he₂ hcmeas hA1 hA2 (activeCT_proof d hd)
     (terminalCT_proof d) hclr hRTV hAT
 
-/-- **WP10 finish line, current closed form** (agent-s78box's reduction of the run true values
-to the tile and clearing true-value disciplines plugged in, `runAllTerminal_proof`). Open:
-clearing-block measurability, A1, A2, the clearing phase package, TileTrueValues
-(luna-s78truev), ClearingTrueValues. -/
+/-- Uniform certificate input with the run true values obtained from the tile and
+clearing true-value disciplines. -/
 theorem uniformCertificateInput_closedTV (d : ℕ) (hd : 3 ≤ d) (e₂ : ℝ)
     (he₂ : e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100))
     (hcmeas : ∀ (m n₀ j : ℕ) (u : ℝ) (y : Torus d m),

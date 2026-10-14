@@ -2,13 +2,13 @@ import AndersonAC.S3.HelperStatements
 import AndersonAC.S3.HelperStatements2
 
 /-!
-Algebraic assembly of WP05 (`InitializationInput`, Proposition 3.6 of §3):
+Algebraic assembly of initialization package (`InitializationInput`, Proposition 3.6 of §3):
 the scalar fixed point by contraction on the rectangle, the inverse by the
 torus Fourier algebra, and the two smallness bounds from the circulant
 symbol `Q(ζ) = t · gridAvg_k R(k) R(ζ-k)`.
 
 The analytic input is isolated in `GridBoundsStatement` (grid-level bounds
-near the band bottom); the algebraic input is the frozen `TorusFourierStatement`.
+near the band bottom); the algebraic input is `TorusFourierStatement`.
 -/
 
 noncomputable section
@@ -190,7 +190,7 @@ theorem gridAvgReal_mul_left {d L : ℕ} [NeZero L] (c : ℝ) (a : Torus d L →
   rw [← Finset.mul_sum]
   ring
 
-/-- **Assembly of WP05** from the grid bounds and the torus Fourier algebra, with `e₂ = 1/200`. -/
+/-- **Assembly of initialization package** from the grid bounds and the torus Fourier algebra, with `e₂ = 1/200`. -/
 theorem initialization_of_gridBounds (hF : TorusFourierStatement) (hG : GridBoundsStatement) :
     InitializationInput (1 / 200) := by
   intro d hd
@@ -375,7 +375,7 @@ theorem initialization_of_gridBounds (hF : TorusFourierStatement) (hG : GridBoun
           exact Real.rpow_le_rpow_of_exponent_ge htpos htle1 (by norm_num)
 
 
-/-- **Assembly of WP05 for every window parameter** `e₂ ∈ (0, 1/100)`. -/
+/-- **Assembly of initialization package for every window parameter** `e₂ ∈ (0, 1/100)`. -/
 theorem initializationInput_of_gridBoundsW (hF : TorusFourierStatement)
     (hG : GridBoundsWStatement) {e₂ : ℝ} (he : e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100)) :
     InitializationInput e₂ := by

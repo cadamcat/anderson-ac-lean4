@@ -1,11 +1,11 @@
 import AndersonAC.AgentS78.Construction.Record
 
 /-!
-# WP10 random construction, C3b: query-free blocks
+# query-free blocks
 
 A query-free block applies a measurable map to the committed record and halts at once:
 empty (skipped) slots, the snapshot of the clearing graph, the end-of-sweep restriction to
-the reserve ports, the diagonal reset (a measurable fixed point, sol-s78
+the reserve ports, the diagonal reset (a measurable fixed point,
 `measurable_contraction_reset`), and the cutoff check (abort if a site is pending). The
 common internal state of all blocks is `RunRecord d m × Sc`, the second factor holding the
 scratch data of the trial blocks.

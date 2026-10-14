@@ -8,10 +8,9 @@ set_option maxHeartbeats 5000000
 noncomputable section
 
 /-!
-Copy of sol-s78's `deterministic_induction_proof` (S78Stage/Induction.lean, luna-s78stage
-9764445) with `C₀` taken as an input above the threshold `4 / cP ^ 2 + 1` instead of an
-existential output, so that the §3 initialization constant can be used (see agent-s78
-NOTES, interface defect). Only the `C₀` bookkeeping lines differ from the original.
+This variant of `deterministic_induction_proof` (S78Stage/Induction.lean) takes `C₀`
+as an input above `4 / cP ^ 2 + 1` instead of producing it existentially. This lets
+the proof use the §3 initialization constant.
 -/
 
 namespace AndersonAC.AgentS78.InductionGe

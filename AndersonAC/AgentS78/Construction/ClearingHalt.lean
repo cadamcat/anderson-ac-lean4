@@ -2,7 +2,7 @@ import AndersonAC.AgentS78.Construction.ClearingFacts
 import AndersonAC.AgentS78.Construction.Reached
 
 /-!
-# WP10 construction: the clearing block halts deterministically (lead, agent-s78con3)
+# Deterministic halting of the clearing block
 
 Every clearing attempt halts within `heatLimit t_j + |core| + 2` operations, for **every**
 answer sequence: each heat increases `step` (FAIL at the heat limit, 06-clearing), the core

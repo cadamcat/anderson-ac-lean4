@@ -3,7 +3,7 @@ import AndersonAC.AgentS78.Construction.Invariant
 import AndersonAC.S78.Definitions
 
 /-!
-# WP10 construction, C5c: the marking rule along the block run
+# the marking rule along the block run
 
 08-history.tex:44–50 and 02-state.tex:107–113: a site pending after a run of blocks either
 was pending before them with the same latest label, or it was (re)marked by one of them,

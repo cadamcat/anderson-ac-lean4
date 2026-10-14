@@ -2,13 +2,13 @@ import AndersonAC.AgentS78.Construction.TileTrial
 import AndersonAC.S45.ConcentrationPackageProof
 
 /-!
-# WP10 construction, C4a: the first-trial bound of the tile block
+# the first-trial bound of the tile block
 
 * `tileTrialBound_of_crossing`: the S45 route — a `TrialInputs` whose crossing contains the
   first-trial failure gives `exp(−t^{−c})` by `S45.one_trial` (Lemma 5.6 with
   Golden–Thompson, `AgentS45.one_trial_proof`, `AgentS45.goldenThompson_S45`).
-* `tile_first_trial_bound`: the frozen birth bound `birthBound c j` for every good record
-  (05:766–772; scale `t ≍ 4^{−j}` by `S78.stage_scale_comparison`), from the frozen analytic
+* `tile_first_trial_bound`: the birth bound `birthBound c j` for every good record
+  (05:766–772; scale `t ≍ 4^{−j}` by `S78.stage_scale_comparison`), from the analytic
   core `TileTrialBoundStatement`. Aborted records enter a halted block and never fail.
 -/
 
@@ -105,7 +105,7 @@ theorem localFirstFail_aborted {d m : ℕ} (P : TilePlan d m) (j : ℕ)
   · have := hk 0 (Nat.succ_pos k)
     simp [localState_zero, tileBlock, hab, initScratch] at this
 
-/-- **C4a (1): the first-trial bound of the tile block.** For each `C ≥ 1`, given the frozen
+/-- The first-trial bound of the tile block. For each `C ≥ 1`, given the analytic
 analytic core `TileTrialBoundStatement d C`, there are `c > 0` and `N` such that for every
 box with `n₀ ≥ N`, `u ∈ (1/4, 1]`, every plan with these `n₀, u`, every sweep index
 `n₀ < j ≤ m + 1` (the final sweep is `j = m + 1`), tile `T`, order sizes and good record `x`,

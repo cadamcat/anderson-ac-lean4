@@ -1,9 +1,7 @@
 import AndersonAC.AgentS78.Construction.StagePhaseDoneDecay
 
 /-!
-# The analytic DONE statement
-
-agent-s78donea. `clearingDoneAnalytic_proof : ClearingDoneAnalyticStatement d` (d ≥ 3), from the
+# The analytic DONE statement. `clearingDoneAnalytic_proof : ClearingDoneAnalyticStatement d` (d ≥ 3), from the
 Combes–Thomas bound (StagePhaseDoneCT), the heat/core split at the core-phase snapshot
 (StagePhaseDoneParts), the core completion (StagePhaseDoneCore) and the decay
 (StagePhaseDoneDecay).

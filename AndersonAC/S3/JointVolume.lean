@@ -9,7 +9,7 @@ The two dispersions `A_∓ = slicedDispersion (∓1) ζ` differ by the linear fo
 `b·x`, `b_j = 4 sin(ζ_j/2)`. The joint shell lies in the slab `|b·x| ≤ s₁+s₂`;
 each hyperplane slice of the narrower shell has volume `O(min(s₁,s₂))` by
 strong convexity (tangential slices included). The two geometric inputs are
-the frozen helper statements `SlabSliceStatement` and `ConvexShellStatement`,
+the helper statements `SlabSliceStatement` and `ConvexShellStatement`,
 taken here as hypotheses until the helper proofs are integrated.
 -/
 
@@ -338,7 +338,7 @@ theorem sliced_joint_shell_volume (hslab : SlabSliceStatement) (hshell : ConvexS
     intro x hx
     exact ⟨⟨hx.1, hx.2.2⟩, hslabpt x hx.2.1 hx.2.2⟩
 
-/-- The lead's joint shell volume in the frozen statement form. -/
+/-- Joint shell volume in the statement form. -/
 theorem jointShellX_of_helpers (hslab : SlabSliceStatement) (hshell : ConvexShellStatement) :
     JointShellXStatement :=
   fun _ hn => sliced_joint_shell_volume hslab hshell hn

@@ -67,7 +67,7 @@ theorem dyson_pow_bound (A B : Matrix n n ℂ) (hA : A.IsHermitian)
       rw [e1, pow_one]
     rw [eLHS] at hL2
     rw [eRHS] at hL2
-    -- hL2 : ‖Tr((AB)^2)‖ ≤ (Tr((A^2)*(B^2))).re. Goal matches up to .re placement.
+    -- hL2 : ‖Tr((AB)^2)‖ ≤ (Tr((A^2)*(B^2))).re. Goal matches up to.re placement.
     exact hL2
   | succ k ih =>
     intro A B hA hB

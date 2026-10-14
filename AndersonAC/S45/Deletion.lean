@@ -1,6 +1,6 @@
 import AndersonAC.Blueprint.Interfaces
 
-/-! WP07 minimal join: the exact one-site inverse update (Sherman–Morrison
+/-! deletion package minimal join: the exact one-site inverse update (Sherman–Morrison
 for a diagonal rank-one change), `Packages.deletion`. Sorry-free. -/
 
 noncomputable section

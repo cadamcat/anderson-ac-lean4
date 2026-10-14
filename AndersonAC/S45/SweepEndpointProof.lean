@@ -63,7 +63,7 @@ theorem State.reindex_fourthRow (e : κ ≃ ι) (s : State ι) (t : ℝ) (i : κ
 end Frame
 
 /-! ### Helper statements taken as hypotheses (exact `Statements.lean` types at universe 0;
-`ProofCheck.lean` checks each against the Phase 1 statement). -/
+`ProofCheck.lean` checks each against the phase statement). -/
 
 def CumulativeSchurStmt : Prop :=
   ∀ (P : Type) [Fintype P] [DecidableEq P]
@@ -705,7 +705,7 @@ theorem ordinary_sweep_endpoint_of (hcum : CumulativeSchurStmt) (hcon : SchurCon
       nlinarith
     · exact lt_of_le_of_lt (hrow i) (hmarg t θ ht htt1 hθ1 hθ2).1
 
-/-- `schur_contraction` is proved (luna-s45schur). -/
+/-- `schur_contraction` is proved. -/
 theorem schurContraction_holds : SchurContractionStmt :=
   fun P _ _ => @schur_contraction_proof P _ _
 

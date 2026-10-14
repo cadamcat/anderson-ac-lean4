@@ -1,6 +1,6 @@
 import AndersonAC.S6.HelperStatements
 
-/-! Positive-ridge scalar derivative for fixed matrices (lead sol-s6 helper).
+/-! Positive-ridge scalar derivative for fixed matrices.
 Independent of the ridge-limit helper. -/
 
 noncomputable section
@@ -338,7 +338,7 @@ theorem inv_entry_deriv_eq (b n : ℕ) (C : Matrix (Fin n) (Fin b) ℂ)
   have hGH_entry : ∀ k q', ((Gτ * H'mat) k q') = -Hτ k q' := by
     intro k q'
     rw [Matrix.mul_apply]
-    -- H'mat k' q' is deriv ..., matches hGHprime
+    -- H'mat k' q' is deriv..., matches hGHprime
     exact hGHprime k q'
   have hfinal : H'mat p q = -((Hτ * Hτ) p q) := by
     calc H'mat p q = ((Hτ * (Gτ * H'mat)) p q) := by rw [← hHmat_eq]
@@ -347,7 +347,7 @@ theorem inv_entry_deriv_eq (b n : ℕ) (C : Matrix (Fin n) (Fin b) ℂ)
       _ = -(∑ k, Hτ p k * Hτ k q) := by
         simp only [mul_neg, Finset.sum_neg_distrib]
       _ = -((Hτ * Hτ) p q) := by rw [Matrix.mul_apply]
-  -- H'mat p q = deriv ...
+  -- H'mat p q = deriv...
   have hentry_H : H'mat p q = deriv (fun s => H s p q) τ := rfl
   rw [hentry_H] at hfinal
   -- hfinal : deriv = -((H*H) p q), goal is deriv = -(((H*H)) p q) with Hτ = (Gτ)⁻¹

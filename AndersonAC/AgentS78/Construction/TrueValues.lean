@@ -4,7 +4,7 @@ import AndersonAC.AgentS78.Construction.TileDisciplines
 import AndersonAC.S2.Binary
 
 /-!
-# WP10 construction, C5d: installed values along the actual run (pathwise invariant)
+# installed values along the actual run (pathwise invariant)
 
 02-state.tex:96–110: at a coupled site the installed partial value is exactly the true
 revealed prefix (`λ`-coupled binary prefix of the true digits up to `prefixLength`); terminal
@@ -14,7 +14,7 @@ sites carry their full true value `λ V`. `TrueValues n₀ u ω` is this invaria
 final record every site is terminal, so `installed = λ V(ω)` (`installed_eq_true`), the
 pathwise half of `hfinal_of_finalGood`.
 
-Frozen contract for the tile block: `TileTrueValuesStatement` (digit sweeps need the stage
+contract for the tile block: `TileTrueValuesStatement` (digit sweeps need the stage
 prefix length `j − 1 − n₀` at coupled sites of the tile, a deterministic invariant; the final
 sweep needs none).
 -/
@@ -94,7 +94,7 @@ theorem installed_eq_true {M : ℕ → ℕ} (n₀ : ℕ) (u : ℝ) (ω : RandomS
     ∀ i, x.installed i = OAI.Anderson.scaleCoupling n₀ u * (trueConfig ω i : ℝ) :=
   fun i => (hx hab).1 i (hall i)
 
-/-- **Tile true-values discipline (frozen contract).** Along the actual run of a tile block
+/-- **Tile true-values discipline (contract).** Along the actual run of a tile block
 with the answers of `ω`, `TrueValues` is kept, given that at a digit sweep the coupled active
 sites of the tile have consumed exactly the digits of the stages before (`j − 1 − n₀`). -/
 def TileTrueValuesStatement : Prop :=

@@ -12,7 +12,7 @@ import AndersonAC.S45.LocalityProof
 import AndersonAC.S45.RestrictLive
 
 /-!
-# WP10 construction, C4a core, piece A3b: tile transfer (`TileTransferStatement`)
+# tile transfer (`TileTransferStatement`)
 
 Proves `AndersonAC.AgentS78.tileTransfer_proof` (05-local-sweeps.tex:844–860, Lemma
 `local-transfer` 05:538–564, Lemma `local-prospective` 05:155–239).
@@ -789,7 +789,7 @@ end WellFormedProps
 
 Under TileGoodCore v3.1 the sweep starts on the ports of the active sites (`start_live`) and
 the start clauses are stated on `stageStartV3`. The live start state is `stageStartV3`
-reindexed along `activeLiveEquiv` (05:320–333, 04:67–80). -/
+reindexed along `activeLiveEquiv` (05:320–333, –80). -/
 
 section StartV3
 variable {d m : ℕ} {C : ℝ} (P : TilePlan d m) (j : ℕ) (T : Fin (P.cover j).cover.count)
@@ -833,7 +833,7 @@ theorem start_state_eq_reindex (hx : TileGoodCore C P j T x) :
   · ext a
     rfl
 
-/-- The broad bounds of the frozen damping at every start-live port. -/
+/-- The broad bounds of the fixed damping at every start-live port. -/
 theorem start_broad (hx : TileGoodCore C P j T x) {p : Port d m}
     (hp : p ∈ (x.sweep.state 0).live) :
     ‖portR (sweepTheta P.u m j) x.r p‖ ≤ C ∧
@@ -1042,7 +1042,7 @@ theorem prefix_schur_and_bounds (hx : TileGoodCore C P j T x)
       have hk_le : k ≤ q.length := hk.le.trans hs
       obtain ⟨_, hpiv⟩ := ih k hk hk_le
       exact ⟨(hsw k hk_le).1, (hsw k hk_le).2, fun p => ⟨(hpiv p).2.1, (hpiv p).2.2⟩⟩
-    -- restrict the prefix to the start live set `S` (luna-s78live `restrictLive`)
+    -- restrict the prefix to the start live set `S` (`restrictLive`)
     have hsub : ∀ k ≤ s, (q.state k).live ⊆ S := fun k hk =>
       wellFormed_live_antitone hq_wf (Nat.zero_le k) (hk.trans hs)
     have hpivS : ∀ k < qs.length, ∀ p, qs.pivot k = some p → p ∈ S := by
@@ -3923,7 +3923,7 @@ theorem traceTails_of_slotSeq (d : ℕ) (C : ℝ) (hC : 1 ≤ C) :
     fun s hs z hpz => (hstep_all s hs z hpz).2.2.1,
     fun s hs z hpz => (hstep_all s hs z hpz).2.2.2⟩
 
-/-- Unconditional proof of `TileTransferStatement` (A3b). -/
+/-- Unconditional proof of `TileTransferStatement` (sweep transfer). -/
 theorem tileTransfer_proof : ∀ d (C : ℝ), 1 ≤ C → TileTransferStatement d C := by
   intro d C hC
   let C_tail : ℝ := max C (5 + 6 * (d : ℝ))

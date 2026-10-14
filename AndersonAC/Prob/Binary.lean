@@ -884,7 +884,7 @@ end
 
 end AndersonAC.MuseProb
 
-/-- WP04 `binary`: uniform binary tails and prefix independence (muse-prob). -/
+/-- probability package `binary`: uniform binary tails and prefix independence. -/
 theorem AndersonAC.Blueprint.Packages.binary :
     AndersonAC.Blueprint.BinaryInput := by
   intro h

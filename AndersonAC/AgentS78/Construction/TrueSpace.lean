@@ -2,7 +2,7 @@ import AndersonAC.S2.BinaryProduct
 import AndersonAC.S2.Binary
 
 /-!
-# WP10 random construction: the enlarged probability space (C0)
+# The enlarged probability space
 
 02-state.tex:68–90, 126–135. The run uses the §2 query model `RandomSources (Torus d m) M`
 with law `sourcesLaw` (true signs `Sum.inl (i, k)`, auxiliary signs `Sum.inr k`, uniform
@@ -66,7 +66,7 @@ theorem trueConfig_measurable (d m : ℕ) (M : ℕ → ℕ) :
   have he := singleSite_val_embedding (OAI.Anderson.Torus d m)
   exact (he.measurable_comp_iff).mp (trueConfig_val_measurable d m M)
 
-/-- **C0.** The true potential has the product law as its unconditional marginal. -/
+/-- The true potential has the product law as its unconditional marginal. -/
 theorem trueConfig_law (d m : ℕ) (M : ℕ → ℕ) :
     (sourcesLaw (OAI.Anderson.Torus d m) M).map trueConfig = OAI.Anderson.torusLaw d m := by
   have he := singleSite_val_embedding (OAI.Anderson.Torus d m)

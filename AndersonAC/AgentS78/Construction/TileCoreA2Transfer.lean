@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.TileCoreA2
 
 /-!
-# WP10 C4a: A2 transfer of the S45 increment table to the padded tile monitors
+# monitor bounds transfer of the S45 increment table to the padded tile monitors
 
 Step identities (the candidate step increments of the included prefix are the S45 single
 deletion increments of the current live state), the padding/dilation operator facts, and

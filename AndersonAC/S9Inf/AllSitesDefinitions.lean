@@ -1,6 +1,6 @@
 import AndersonAC.S9Inf.ReadoutDefinitions
 
-/-! The remaining all-sites input definitions copied verbatim from the frozen inventory. -/
+/-! The remaining all-sites input definitions copied verbatim from the definitions. -/
 
 noncomputable section
 

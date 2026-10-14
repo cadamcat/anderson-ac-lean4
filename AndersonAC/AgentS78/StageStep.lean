@@ -1,7 +1,7 @@
 import AndersonAC.S78.Definitions
 
 /-!
-WP10: `PathwiseStageInputs` from per-stage section endpoints (07-assembly.tex:939–1082,
+certificate construction: `PathwiseStageInputs` from per-stage section endpoints (07-assembly.tex:939–1082,
 proof of Proposition 7.5). One stage `n → n+1` is the ordinary sweep at the old scale
 `t` (S45 `ordinary_sweep_endpoint`, transported by `AgentS78/S45Join.lean`), the
 committed clearing assembly at `t'` (S78 `committed_assembly`, compared with its
@@ -9,7 +9,7 @@ initial state = the sweep output) and the diagonal reset at `t'` (S78 `diagonal_
 `StageStep` records exactly the conclusions of these three results in S78 form; the
 theorem `pathwise_of_steps` assembles the `PathwiseStageInputs` step fields from them
 (the boundary fields are passed through). Constructing the actual random history that
-supplies the `StageStep`s is the remaining WP10 construction.
+supplies the `StageStep`s is the remaining the construction.
 -/
 
 open scoped BigOperators

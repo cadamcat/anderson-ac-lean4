@@ -1,10 +1,8 @@
 import AndersonAC.Blueprint.Transport
 
-/-! Statement inventory for `09-spectral.tex`.
-Phase 1 theorem-shaped placeholders are archived at commit 98b6e07.
-In Phase 2 each unproved obligation is a Prop-valued definition, not a
-claimed proof. This module is independent of the proof modules; PLAN.md
-records the proof routes and frozen Blueprint package types.
+/-! Proposition-valued definitions for the spectral conclusions in
+`09-spectral.tex`. This module states the obligations independently of their
+proofs and records the interfaces used by the package theorems.
 -/
 
 noncomputable section
@@ -83,7 +81,7 @@ def rank_one_resolvent_identity (T : K →L[ℂ] K) (hT : IsSelfAdjoint T)
           operatorResolvent T z v
 
 /-- Lemma 9.1. A scalar spectral resolution and its measurability are
-inputs from the spectral-theorem lane, not inferred from its mere name. -/
+inputs from the spectral-theorem module, not inferred from its mere name. -/
 def own_site_averaging (Hc : K →L[ℂ] K) (b : K) (hHc : IsSelfAdjoint Hc)
     (D : BlockSpectralData Hc b) (ρ : ℝ → ℝ) (C : ℝ)
     (hρ : Measurable ρ) (hρnonneg : ∀ᵐ s ∂volume, 0 ≤ ρ s)
@@ -401,7 +399,7 @@ def infinite_root_readout (d : ℕ) (hd : 3 ≤ d) (coupling E ε : ℝ)
 /-- Use the architecture's exact boundary interface. -/
 abbrev BoundaryTheory := AndersonAC.Blueprint.BoundaryInput
 
-/-- PVM/resolvent correspondence for every realization, supplied by luna-pvm. -/
+/-- PVM/resolvent correspondence for every realization. -/
 structure ResolvedAnderson (d : ℕ) (coupling : ℝ) where
   resolved : ∀ ω : Configuration d,
     AndersonAC.Blueprint.ResolvedOperator (hamiltonian coupling ω)
@@ -636,15 +634,15 @@ def paper_theorem_of_certificate (e₂ : ℝ) (he₂ : e₂ ∈ Set.Ioo (0 : ℝ
     (F : FiniteCertificateInputs e₂) (S : SpectralInputs) : Prop :=
   AndersonAC.Blueprint.PaperTheorem
 
-/-- WP11, in sol-arch's exact interface. -/
+/-- spectral averaging package, in exact interface. -/
 def spectral_averaging : Prop :=
   AndersonAC.Blueprint.AveragingInput
 
-/-- WP12, in sol-arch's exact interface. -/
+/-- readout package, in exact interface. -/
 def spectral_readout : Prop :=
   AndersonAC.Blueprint.ReadoutInput
 
-/-- WP13, in sol-arch's exact interface. -/
+/-- purity package, in exact interface. -/
 def spectral_purity : Prop :=
   AndersonAC.Blueprint.PurityInput
 
@@ -653,7 +651,7 @@ def weakCertificates_bridge (d : ℕ) (coupling : ℝ) (I : Set ℝ)
   halfProbabilityCertificates d coupling I
 
 /-- Final join: the e₂ witness and certificate family come from §§3–8.
-The §9 exports above discharge A, R and P in Phase 2. -/
+The §9 exports above discharge A, R and P in phase. -/
 def paper_theorem_from_inputs (e₂ : ℝ) (he₂ : e₂ ∈ Set.Ioo (0 : ℝ) (1 / 100))
     (F : AndersonAC.Blueprint.CertificateFamily e₂)
     (S : AndersonAC.Blueprint.SpectralInput) (B : AndersonAC.Blueprint.BoundaryInput)
@@ -661,13 +659,13 @@ def paper_theorem_from_inputs (e₂ : ℝ) (he₂ : e₂ ∈ Set.Ioo (0 : ℝ) (
     (P : AndersonAC.Blueprint.PurityInput) : Prop :=
   AndersonAC.Blueprint.PaperTheorem
 
-/-- The last paragraph of §9; shared with architecture WP14b. -/
+/-- The last paragraph of §9; shared with architecture parity transport. -/
 def hopping_sign_conjugation (d : ℕ) : Prop :=
   ∃ U : StateSpace d ≃ₗᵢ[ℂ] StateSpace d, ∀ (coupling : ℝ) (ω : Configuration d),
       AndersonAC.Blueprint.conjugate U (hamiltonian coupling ω) =
         -hopping d + (coupling : ℂ) • potentialOperator ω
 
-/-- Spectral transport under the parity unitary; shared with WP14c. -/
+/-- Spectral transport under the parity unitary; shared with scalar-shift transport. -/
 def ACRegion_unitary_conjugate {d : ℕ} (T : AndersonAC.Blueprint.Operator d)
     (hT : IsSelfAdjoint T) (U : StateSpace d ≃ₗᵢ[ℂ] StateSpace d) (I : Set ℝ)
     (hI : MeasurableSet I) (hac : AndersonAC.Blueprint.ACRegion T I) : Prop :=

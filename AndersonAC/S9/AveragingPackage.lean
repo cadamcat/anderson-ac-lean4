@@ -69,7 +69,7 @@ end AndersonAC.SolS9
 
 namespace AndersonAC.Blueprint.Packages
 
--- Discharges exactly WP11, with both measure-theoretic inputs proved.
+-- Discharges exactly spectral averaging package, with both measure-theoretic inputs proved.
 theorem averaging : AveragingInput :=
   AndersonAC.SolS9.averaging_of_measure_inputs
     AndersonAC.SolS9.boundedPoisson_from_finite

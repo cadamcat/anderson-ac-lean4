@@ -3,9 +3,7 @@ import AndersonAC.AgentS78.Construction.StagePhase
 import AndersonAC.AgentS78.Construction.TorusMetric
 
 /-!
-# The initial comparison of the post-sweep endpoint
-
-agent-s78send (2026-10-14). `ClearPhaseData.ofSweep'`'s `initialComparison` at the sweep end
+# The initial comparison of the post-sweep endpoint. `ClearPhaseData.ofSweep'`'s `initialComparison` at the sweep end
 (07-assembly.tex:970–1000): from the stage comparators of the old endpoint at `t_{j−1}`
 (`StageBounds`, `b' = t_{n₀} t_{j−1}`) and the affine mixture of `SweepFacts` (Proposition 4.9),
 the post-sweep inverse form is comparable to `|y|² + θ b' Λ⁺` (`post_sweep_wstar`), hence the

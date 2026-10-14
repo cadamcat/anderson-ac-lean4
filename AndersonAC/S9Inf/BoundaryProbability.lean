@@ -1,7 +1,7 @@
 import AndersonAC.S9Inf.BoundaryProbabilityCore
 import AndersonAC.S9Inf.ReadoutDefinitions
 
-/-! The frozen positive boundary probability statement. -/
+/-! Positive boundary probability statement. -/
 
 noncomputable section
 

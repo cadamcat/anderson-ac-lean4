@@ -3,7 +3,7 @@ import AndersonAC.AgentS78.Construction.TilePhaseContracts
 /-!
 # The duplicated-port sweep identity (04-sweep.tex:190–228)
 
-agent-s78schur (2026-10-14). Proof of the frozen contract `SweepSchurStatement`
+ . Proof of the contract `SweepSchurStatement`
 (TilePhaseContracts.lean). Route: Sherman–Morrison for every `StepRel` step.
 
 Invariant along the sweep: with `K` the port weights of `splitPorts θ`
@@ -17,9 +17,9 @@ of the scalars of the steps `< k` that delete the bit port of `i`. Deleting the 
 every bit port of an active site is deleted, so `H_end = M_A + diag ζ − θ t·diag r`
 (`ζ = √w S`), and the reserve block of `g` is `√θ·H_end⁻¹`.
 
-The corollary `sweepEndMapTheta_isDamped` states the consumer form: after a complete sweep
-from the start lift of a damped endpoint, the endpoint committed by `sweepEndMapTheta`
-(lane/agent-s78 3c09f7f, `M := M + diag(sweepIncrement)`) is damped at `θ t`.
+The corollary `sweepEndMapTheta_isDamped` states that after a complete sweep from
+the start lift of a damped endpoint, the endpoint committed by `sweepEndMapTheta`,
+with `M := M + diag(sweepIncrement)`, is damped at `θ t`.
 -/
 
 noncomputable section

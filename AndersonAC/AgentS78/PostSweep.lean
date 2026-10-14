@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Comparators
 
 /-!
-WP10: assembly initial data for the post-sweep state (07-assembly.tex:970–1000): the `W*`
+certificate construction: assembly initial data for the post-sweep state (07-assembly.tex:970–1000): the `W*`
 comparison at the halved low scale `θ b` from the stage-start comparators and the sweep's
 affine mixture, and the constant kernel of the post-sweep energy from a positive dual
 lower bound.

@@ -1922,7 +1922,7 @@ theorem clearing_locality_of_uniform_geometry
   · intro a
     exact (hmain a).2.2
 
-/-- Lemma 7.2, assertions (1),(3): exact frozen type of `S78.uniform_clearing_geometry`. -/
+/-- Lemma 7.2, assertions (1),(3): the type of `S78.uniform_clearing_geometry`. -/
 theorem uniform_clearing_geometry_proof (d : ℕ) (hd : 3 ≤ d) (C : ℝ) (hC : 1 ≤ C) :
     ∃ N : ℕ, ∃ C' : ℝ, 0 < C' ∧ ∀ (m n₀ j l : ℕ) (u : ℝ),
       N ≤ n₀ → n₀ ≤ j → clearingScheduled j m → u ∈ Set.Ioc (1 / 4 : ℝ) 1 →
@@ -2022,7 +2022,7 @@ theorem uniform_clearing_geometry_proof (d : ℕ) (hd : 3 ≤ d) (C : ℝ) (hC :
     have h := halo_overlap_bound hd C hC hm u hj1 hjm hu T htpos htle x
     simpa [geometryOverlapCoeff] using h
 
-/-- Lemma 7.2 assertion (2): exact frozen type of `S78.clearing_locality`. -/
+/-- Lemma 7.2 assertion (2): the type of `S78.clearing_locality`. -/
 theorem clearing_locality_proof (d : ℕ) (hd : 3 ≤ d) (C : ℝ) (hC : 1 ≤ C) :
     ∃ N : ℕ, ∀ (m n₀ j q : ℕ) (u : ℝ) (B : Finset (Torus d m))
       (pivot : Fin q → Torus d m) (T : Fin (q + 1) → Finset (Torus d m)),

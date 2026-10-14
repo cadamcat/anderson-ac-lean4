@@ -4,7 +4,7 @@ open MeasureTheory
 open scoped ENNReal
 namespace AndersonAC.SolS45
 
-/-- Frozen helper contract: Ville's inequality for a nonnegative real
+/-- helper contract: Ville's inequality for a nonnegative real
 supermartingale, with an infinite horizon and only a.e. nonnegativity. -/
 def VilleStatement : Prop :=
   ∀ (Ω : Type) [mΩ : MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]

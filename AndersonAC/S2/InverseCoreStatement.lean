@@ -1,6 +1,6 @@
 import AndersonAC.S2.Definitions
 
-/-! Frozen helper: identify the neutral inverse and its variational formula. -/
+/-! Identifies the neutral inverse and its variational formula. -/
 noncomputable section
 open scoped ComplexOrder
 open AndersonAC.S2

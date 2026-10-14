@@ -1,7 +1,7 @@
 import AndersonAC.AgentS78.Construction.ClearingTrialProof
 
 /-!
-# WP10 construction, C4b: transport of a stopped trial along `ι ≃ Fin n`
+# transport of a stopped trial along `ι ≃ Fin n`
 
 Proposition 6.6 and `trial_pivots_located` are stated for trials indexed by `Fin n`; the
 clearing trial is indexed by the active sites. `trialReindex_proof : TrialReindexStatement`
@@ -468,7 +468,7 @@ theorem trialLocalInput_map (q : StoppedTrial (Ω := Ω) core t r g0 order) (μ 
 
 end Local
 
-/-- **Transport (C4b sub-contract).** -/
+/-- **Transport (clearing trial bound sub-contract).** -/
 theorem trialReindex_proof : AndersonAC.AgentS78.TrialReindexStatement := by
   intro Ω _ ι _ _ _ _ n e core t r g0 order q
   exact ⟨mapTrial e q, rfl, rfl, rfl, rfl, fun _ _ => rfl,
@@ -478,7 +478,7 @@ end AndersonAC.AgentS78.TrialReindex
 
 namespace AndersonAC.AgentS78
 
-/-- **C4b reduction without the transport hypothesis.** -/
+/-- **clearing trial bound reduction without the transport hypothesis.** -/
 theorem clearingTrialH_of_inputs' {d : ℕ} (hd : 3 ≤ d)
     (hprep : PreparationUniformStatement) (hdrift : LeverageDriftUniformStatement)
     (hconc : AndersonAC.Blueprint.ConcentrationInput)

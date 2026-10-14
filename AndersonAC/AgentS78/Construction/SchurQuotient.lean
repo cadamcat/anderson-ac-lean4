@@ -1,7 +1,7 @@
 import AndersonAC.S78.PhysicalCertificate
 
 /-!
-# Sequential Schur quotient (agent-s78schurq, DISPATCH (A) 2026-10-14 04:48:21)
+# Sequential Schur quotient ((A))
 
 The Schur complement of `B` onto a set `A` (02-state.tex:236–247: the subscript names the
 eliminated indices `Aᶜ`) is characterised by solving the eliminated rows:

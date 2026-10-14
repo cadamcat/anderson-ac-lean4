@@ -55,7 +55,7 @@ def FiniteCertificateTarget (d : ℕ) (e₂ : ℝ) : Prop :=
     (∀ n₀ : ℕ, k ≤ n₀ → ∀ u : ℝ, u ∈ Set.Ioc (1 / 4 : ℝ) 1 →
       UniformCertificateLimit d k n₀ u e₂) ∧ UniformSmallFailure d k e₂
 
-/- The architect's frozen interfaces are imported from main. -/
+/- The abstract interfaces are imported from the package module. -/
 abbrev windowThreshold := AndersonAC.Blueprint.windowThreshold
 abbrev CertificateFamily := AndersonAC.Blueprint.CertificateFamily
 

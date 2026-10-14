@@ -3,9 +3,9 @@ import AndersonAC.AgentS78.Construction.RecordFresh
 import AndersonAC.AgentS78.Construction.ResetBlock
 
 /-!
-# WP10 construction: record-level disciplines of the stage transitions
+# record-level disciplines of the stage transitions
 
-The stage transitions (snapshot, sweep end, reset, cutoff; luna-s78reset's `sweepEndMap`,
+The stage transitions (snapshot, sweep end, reset, cutoff; `sweepEndMap`,
 `resetMap`) are query-free blocks `simpleBlock sc₀ f` (SimpleBlocks.lean). Their block
 disciplines (`simpleBlock_marking`, `simpleBlock_query`, `simpleBlock_inv`) reduce to
 record-level facts about `f`, proved here:

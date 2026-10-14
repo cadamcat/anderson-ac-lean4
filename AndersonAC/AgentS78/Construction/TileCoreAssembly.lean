@@ -4,10 +4,10 @@ import AndersonAC.S45.RawBoundsProof
 import AndersonAC.S45.TrialInputsFinal
 
 /-!
-# WP10 construction, C4a core: assembly of the pieces A0–A3
+# assembly of the pieces slot recursion–budget crossing
 
-`tileCrossing_of_pieces`: A0 (slot description), A1 (uniform slot law), A2 (monitor bounds)
-and A3 (failure crosses a budget) give `TileCrossingStatement`, through
+`tileCrossing_of_pieces`: slot recursion (slot description), tile slot law (uniform slot law), monitor bounds (monitor bounds)
+and budget crossing (failure crosses a budget) give `TileCrossingStatement`, through
 `AgentS45.ordered_raw_bounds_proof` and `AgentS45.ordered_trial_inputs_proof`
 (05:766–870).
 -/
@@ -159,7 +159,7 @@ theorem power_split (t : ℝ) (ht : 0 < t) (d : ℕ) :
   rw [sq, ← Real.rpow_add ht, ← Real.rpow_add ht]
   congr 1; push_cast; ring
 
-/-- **Assembly of the C4a core.** -/
+/-- **Assembly of the tile trial core.** -/
 theorem tileCrossing_of_pieces (d : ℕ) (C : ℝ) (hA0 : TileSlotDescriptionStatement)
     (hA1 : TileSlotLawStatement) (hA2 : TileMonitorBoundsStatement d C)
     (hA3 : TileFailCrossingStatement d C) : TileCrossingStatement d C := by

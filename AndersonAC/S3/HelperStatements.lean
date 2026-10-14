@@ -1,13 +1,9 @@
 import AndersonAC.S3.Definitions
 
 /-!
-Frozen helper statements for WP05 (§3, Proposition 3.6), stated as `Prop`
-definitions so that the lead's proofs can take them as hypotheses until the
-helper proofs are integrated. Each helper proves `<name>_proof : <Name>Statement`
-in its own module, importing only this file (and Mathlib).
-
-Route summary (lead, opus-s3): the fixed point, `‖K‖` and the fourth-power
-rows are reduced to (i) finite torus Fourier algebra, (ii) a grid-quadrature
+Helper statements for the initialization input (§3, Proposition 3.6). Each is a
+`Prop` definition. The fixed point, `‖K‖`, and fourth-power row bounds reduce to
+(i) finite torus Fourier algebra, (ii) grid quadrature
 bridge for Lipschitz compactly supported functions, (iii) polar integration
 along Euclidean rays plus explicit one-dimensional ray estimates, and (iv) a
 joint-shell volume bound from strongly convex hyperplane slices.

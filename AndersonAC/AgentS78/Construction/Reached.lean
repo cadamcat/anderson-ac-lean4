@@ -2,14 +2,14 @@ import AndersonAC.AgentS78.Construction.MarkingRule
 import AndersonAC.AgentS78.Construction.FreezingProof
 
 /-!
-# WP10 construction, C4d glue: every block is reached almost surely
+# every block is reached almost surely
 
 08-history.tex:24–31, 76–80 ("auxiliary retries terminate almost surely"; "the construction
 reaches each subsequent scheduled trial after an almost surely finite number of
 operations"). For the block run: if, from every good record, the probability that the
 block-local run has not halted after `k` steps is at most `ε k → 0`, the event depends only
 on a fresh pattern, and these patterns are unqueried when the block is entered, then the
-next block is reached almost surely (`next_block_reached`). The bound is the frozen
+next block is reached almost surely (`next_block_reached`). The bound is the
 retry estimate (e.g. `p^{⌊k/M⌋}` for a tile with retry failure probability `p < 1`).
 -/
 

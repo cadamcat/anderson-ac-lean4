@@ -4,7 +4,7 @@ import AndersonAC.S45.EndpointAssembly
 /-!
 # The reserve-row transfer for an arbitrary live start (generic port type)
 
-agent-s78send (2026-10-14). The last conclusion of `S45.local_transfer` (05:536–600: the
+ . The last conclusion of `S45.local_transfer` (05:536–600: the
 reserve fourth rows after a sweep are at most `(θ² + C' t^{δ/2000}) rowCap t`) uses only the
 row records: the row tails of every step (`TraceTails.rows`), the row budgets of the tiles,
 the scalar-record identity (`scalarRecords_holds`) and the start reserve rows. Its proof

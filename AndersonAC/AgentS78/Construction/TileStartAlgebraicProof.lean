@@ -2,9 +2,9 @@ import AndersonAC.AgentS78.Construction.TileStartAlgebraic
 import AndersonAC.AgentS78.Comparators
 
 /-!
-# WP10 tile phase: proof of the algebraic duplicated stage start (v3 proposal)
+# proof of the algebraic duplicated stage start
 
-agent-s78start (2026-10-14). `tileStartAlgebraic_proof d hd : TileStartAlgebraicStatement d`.
+ . `tileStartAlgebraic_proof d hd : TileStartAlgebraicStatement d`.
 Route: `sweep_prestate` (physical S45 state of the active block: broad bounds, `g_ii = r_i`,
 symmetry, Ward, constant kernel, `‖K‖ ≤ 1/3`), the live start lift as a mass-one port lift
 (`startLive_eq`, `livePortMap_mass`), `S45.duplication` and `S45.duplication_sharp`

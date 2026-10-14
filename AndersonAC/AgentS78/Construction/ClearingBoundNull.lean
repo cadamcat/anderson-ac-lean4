@@ -5,7 +5,7 @@ import AndersonAC.S2.BinaryProduct
 import AndersonAC.S2.SignBlocks
 
 /-!
-# Clearing first-failure bound (agent-s78clrbound): the null set of singular trial pivots
+# Clearing first-failure bound : the null set of singular trial pivots
 
 For a fixed record `x`, the §6 clearing trial on the active sites needs every principal block
 of `M₀ + diag ξ(ω)` to be invertible (`S6.construct_stopped_trial`, `hterminal`), where
