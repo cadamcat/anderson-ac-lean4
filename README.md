@@ -1,3 +1,5 @@
+[English](README.md) | [简体中文](README_zh.md)
+
 # anderson-ac-lean4
 
 A Lean 4 formalization of absolutely continuous spectrum for the weak-disorder Anderson model in dimensions at least three. It answers the energy-range question of Simon's Problem 1 for uniform site potentials.
