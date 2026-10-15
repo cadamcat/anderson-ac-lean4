@@ -4,7 +4,7 @@ A Lean 4 formalization of absolutely continuous spectrum for the weak-disorder A
 
 - **Author:** Yao Xu ([@cadamcat](https://github.com/cadamcat)); see [authorship and attribution](AUTHORS.md).
 - **Mathematics:** OpenAI, *Absolutely Continuous Spectrum for Weak-Disorder Anderson Models in Dimensions at Least Three* (2026), Theorem 1.1. The manuscript and the library it builds on are in [openai/math](https://github.com/openai/math).
-- Developed with AI assistance (Claude Code, Codex, OpenCode and Gemini); all proofs are verified by the Lean 4 kernel.
+- Developed with AI assistance; all proofs are verified by the Lean 4 kernel.
 
 ## Main result
 
